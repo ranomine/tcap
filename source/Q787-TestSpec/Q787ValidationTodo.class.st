@@ -1,0 +1,405 @@
+Class {
+	#name : #Q787ValidationTodo,
+	#superclass : #Q787ValidationTest,
+	#category : #'Q787-TestSpec'
+}
+
+{ #category : #'as yet unclassified' }
+Q787ValidationTodo class >> isAbstract [ 
+	^ true
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_1_2_3_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_1_2_3_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_1_2_5_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_1_3_1_1_1s1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_1_3_1_1_1s2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_1_3_1_1_2s1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_1_3_1_1_3s1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_2_1_5s2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_2_2_1s1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_3_1s1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_3_2s1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_3_3s1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_4_1s1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_4_1s2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_4_2s1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test1_4_2s2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_3_1_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_3_1_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_3_1_4 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_3_2_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_3_2_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_3_2_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_3_3_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_3_3_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_3_3_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_3_3_4 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_4_1_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_4_1_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_4_1_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_4_1_4 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_4_2_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_4_3_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_4_3_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_4_3_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_7_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_7_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_7_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_7_4_1_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_7_4_1_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_7_4_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_8_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_8_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_8_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_9_5_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_9_7_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_1_9_7_4 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_1_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_1_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_1_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_1_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_2_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_2_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_2_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_3_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_3_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_4_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_4_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_5_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_5_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_5_4 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_5_5 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_5_6 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_5_7 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_2_5_8 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_3_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_3_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_2_3_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_1_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_2_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_2_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_2_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_2_4 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_3_1 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_3_2 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_3_3 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_3_4 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_3_5 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_3_6 [
+		self assert: false
+]
+
+{ #category : #tests }
+Q787ValidationTodo >> test2_3_4_4 [
+		self assert: false
+]
