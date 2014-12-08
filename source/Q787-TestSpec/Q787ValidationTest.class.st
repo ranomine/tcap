@@ -3730,10 +3730,10 @@ Q787ValidationTest >> test1_2_1_3s1 [
 	
 	env servicePointB onDialogue: [ :dialogue|
 		dialogue onBegin: [ 
-		dialogue requestTcContinue.
-		dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV3' parameters: self authInfoV3Arguments class: TCAPReportSuccessAndFailure  timeout: 500. 
-		dialogue transaction transactionCoordinator postProcessPayload: [ :x | x at: 16 put: 24. x ].
-		dialogue requestTcContinue  ] ].
+			dialogue requestTcContinue.
+			dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV3' parameters: self authInfoV3Arguments class: TCAPReportSuccessAndFailure  timeout: 500. 
+			dialogue transaction transactionCoordinator postProcessPayload: [ :x | x at: 16 put: 24. x ].
+			dialogue requestTcContinue  ] ].
 	
 	env servicePointA newDialogue
 		onContinue: [ continueCalled := true ];

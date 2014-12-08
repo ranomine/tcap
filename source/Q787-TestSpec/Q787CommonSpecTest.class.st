@@ -11,7 +11,7 @@ Q787CommonSpecTest class >> isAbstract [
 
 { #category : #'as yet unclassified' }
 Q787CommonSpecTest >> asn1Model [
-	^ TestTCAP model
+	^ TCAPTestModel instance
 ]
 
 { #category : #'as yet unclassified' }
