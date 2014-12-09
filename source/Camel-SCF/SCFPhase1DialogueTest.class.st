@@ -12,12 +12,12 @@ Class {
 
 { #category : #'as yet unclassified' }
 SCFPhase1DialogueTest >> applicationContextFor: aString [
-	^ Camel current model applicationContextOidForOperationNamed: aString
+	^ self asn1Model applicationContextOidForOperationNamed: aString
 ]
 
 { #category : #'as yet unclassified' }
 SCFPhase1DialogueTest >> asn1Model [
-	^ TestTCAP model
+	^ CamelTestModel instance
 ]
 
 { #category : #'as yet unclassified' }
