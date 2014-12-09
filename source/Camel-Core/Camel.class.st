@@ -32,12 +32,6 @@ Camel class >> rootModuleNames [
 ]
 
 { #category : #'as yet unclassified' }
-Camel >> defaultModuleLoader [
-	^ ASN1LibraryModuleManager new
-		library: CamelModuleLibrary 
-]
-
-{ #category : #'as yet unclassified' }
 Camel >> rootModuleNames [ 
 	^ self class rootModuleNames 
 ]
