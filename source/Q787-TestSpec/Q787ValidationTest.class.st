@@ -3571,7 +3571,7 @@ Q787ValidationTest >> test1_1_2_1_2_2s2 [
 	env servicePointB onDialogue: [ :dialogue|
 		dialogue onBegin: [ 
 			env servicePointB transactionCoordinator 
-				requestTrPAbort: TCAPDialoguePAbort unrecognizedMessageType  
+				requestTrPAbort: dialogue newPAbort unrecognizedMessageType  
 				transaction: dialogue transaction ] ].
 	
 	env servicePointA newDialogue
@@ -3627,7 +3627,7 @@ Q787ValidationTest >> test1_1_2_2_2_2s2 [
 			onBegin: [ 
 				dialogue requestTcContinue.
 				dialogue transactionCoordinator 
-					requestTrPAbort: TCAPDialoguePAbort unrecognizedMessageType 
+					requestTrPAbort: dialogue newPAbort unrecognizedMessageType 
 					transaction: dialogue transaction ] ].
 	
 	env servicePointA newDialogue
