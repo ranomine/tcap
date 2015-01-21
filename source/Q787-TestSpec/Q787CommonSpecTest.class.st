@@ -2204,7 +2204,7 @@ Q787CommonSpecTest >> test1_1_2_1_1s2 [
 	env servicePointB autoMessageDispatch: false.
 	transaction := self sendTrBegin: env userData: nil.
 	env servicePointA transactionCoordinator 
-		requestTrUAbort: (transaction newUAbort) asAbort
+		requestTrUAbort: ((transaction newUAbort) asAbortIn: transaction container factory)
 		transaction: transaction.
 		
 	"CHECK A"
@@ -2228,7 +2228,7 @@ Q787CommonSpecTest >> test1_1_2_1_2_1s1 [
 	env servicePointA onDialogue: [ :dialogue|
 		dialogue onBegin: [ 
 			env servicePointA transactionCoordinator  
-				requestTrEnd: self createDialogueResponse  asEndMessage
+				requestTrEnd: (self createDialogueResponse asEndMessageIn: dialogue factory)
 				transaction: dialogue transaction ] ].
 	
 	env servicePointB newDialogue
@@ -2343,7 +2343,7 @@ Q787CommonSpecTest >> test1_1_2_1_2_2s3 [
 	env servicePointB onDialogue: [ :dialogue|
 		dialogue onBegin: [ 
 			env servicePointB transactionCoordinator  
-				requestTrEnd: self createDialogueResponse asEndMessage 
+				requestTrEnd: (self createDialogueResponse asEndMessageIn: dialogue factory) 
 				transaction: dialogue transaction ] ].
 	
 	env servicePointA newDialogue
@@ -2378,7 +2378,7 @@ Q787CommonSpecTest >> test1_1_2_2_1_1s1 [
 		onContinue: [ :received |
 			continueCalled := true.
 			env servicePointA transactionCoordinator 
-				requestTrEnd: self createDialogueResponse asEndMessage
+				requestTrEnd: (self createDialogueResponse asEndMessageIn: received dialogue factory)
 				transaction: received dialogue transaction]; 
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -2448,7 +2448,7 @@ Q787CommonSpecTest >> test1_1_2_2_1_1s3 [
 		onContinue: [ :cont |
 			continueCalled := true.
 			env servicePointA transactionCoordinator 
-				requestTrUAbort: cont dialogue newUAbort serviceUser asAbort
+				requestTrUAbort: (cont dialogue newUAbort serviceUser asAbortIn: cont dialogue factory)
 				transaction: cont dialogue transaction]; 
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -2482,7 +2482,7 @@ Q787CommonSpecTest >> test1_1_2_2_1_2s1 [
 		onContinue: [ :cont |
 			continueCalled := true.
 			env servicePointA transactionCoordinator 
-				requestTrEnd: self createDialogueResponse asEndMessage
+				requestTrEnd: (self createDialogueResponse asEndMessageIn: cont dialogue factory)
 				transaction: cont dialogue transaction]; 
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -2551,7 +2551,7 @@ Q787CommonSpecTest >> test1_1_2_2_1_2s3 [
 	env servicePointB newDialogue
 		onContinue: [ :cont |
 			continueCalled := true.
-			cont dialogue transaction requestTrUAbort: cont dialogue newUAbort serviceUser asAbort]; 
+			cont dialogue transaction requestTrUAbort: (cont dialogue newUAbort serviceUser asAbortIn: cont dialogue factory)]; 
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
@@ -2580,7 +2580,7 @@ Q787CommonSpecTest >> test1_1_2_2_2_1s1 [
 			onBegin: [ 
 				dialogue requestTcContinue.
 				dialogue transactionCoordinator 
-					requestTrEnd: self createDialogueResponse asEndMessage
+					requestTrEnd: (self createDialogueResponse asEndMessageIn: dialogue factory)
 					transaction: dialogue transaction ] ].
 	
 	env servicePointB newDialogue
@@ -2661,7 +2661,7 @@ Q787CommonSpecTest >> test1_1_2_2_2_2s1 [
 			onBegin: [ 
 				dialogue requestTcContinue.
 				dialogue transactionCoordinator 
-					requestTrEnd: self createDialogueResponse asEndMessage
+					requestTrEnd: (self createDialogueResponse asEndMessageIn: dialogue factory)
 					transaction: dialogue transaction ] ].
 	
 	env servicePointA newDialogue
@@ -2689,7 +2689,7 @@ Q787CommonSpecTest >> test1_1_2_2_2_2s3 [
 			onBegin: [ 
 				dialogue requestTcContinue.
 				dialogue transactionCoordinator 
-					requestTrUAbort: dialogue newUAbort serviceUser asAbort
+					requestTrUAbort: (dialogue newUAbort serviceUser asAbortIn: dialogue factory)
 					transaction: dialogue transaction ] ].
 	
 	env servicePointA newDialogue
