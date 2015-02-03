@@ -2813,7 +2813,7 @@ Q787CommonSpecTest >> test2_1_1_1_5 [
 		originatingAddress:  self originatingAddress
 		applicationContextName: '0.4.0.0.1.0.14.2'.
 	Processor yield.
-	(Delay forSeconds: 1) wait.
+	(Delay forSeconds: 0.1) wait.
 	self assert: env servicePointA didSendMessage.
 	self checkBegin: env servicePointA sentPackets first.
 	self assert: called notNil
