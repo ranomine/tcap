@@ -9,6 +9,9 @@ Class {
 
 { #category : #'as yet unclassified' }
 TCAPEntityMessageBenchmark class >> runAndCreatePlotFile [
+	ASN1CurrentContext default: (ASN1Context new
+		model: TCAPTestModel instance;
+		factory: TCAPObjectFactory new).
 	'benchmark' asFileReference writeStreamDo: [ :str |
 		str
 			truncate;
