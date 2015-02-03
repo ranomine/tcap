@@ -8,6 +8,16 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+TCAPEntityMessageBenchmark class >> runAndCreatePlotFile [
+	'benchmark' asFileReference writeStreamDo: [ :str |
+		str
+			truncate;
+			nextPutAll: 'YVALUE=';
+			nextPutAll: [
+				TCAPEntityMessageBenchmark new miniTCAPOnlyBench: 10000 ] timeToRun asMilliSeconds printString ]
+]
+
+{ #category : #'as yet unclassified' }
 TCAPEntityMessageBenchmark >> miniTCAPOnlyBench: rounds [
 	| tcapBegin tcapContinue tcapEnd tcapAbort |
 	tcapBegin := self tcapBeginData.
