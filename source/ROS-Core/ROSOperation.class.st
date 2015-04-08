@@ -44,6 +44,11 @@ ROSOperation >> errors [
 	^ type attributeAt: 'Errors'
 ]
 
+{ #category : #testing }
+ROSOperation >> hasArgumentType [
+	^ self argumentType notNil
+]
+
 { #category : #initialize }
 ROSOperation >> initializeFrom: anOperation [
 	type := anOperation

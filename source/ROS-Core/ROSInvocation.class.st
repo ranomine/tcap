@@ -98,7 +98,8 @@ ROSInvocation >> initializeFromDialogue: aDialogue [
 	just proceed"
 	operation := ROSOperation on: (
 		aDialogue applicationContext operationWithCode: self operationCode).
-	self argument: (operation decodeArgument: self argument)
+	operation hasArgumentType ifTrue: [  
+		self argument: (operation decodeArgument: self argument) ]
 ]
 
 { #category : #actions }
