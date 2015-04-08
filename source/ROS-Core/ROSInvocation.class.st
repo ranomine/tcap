@@ -123,6 +123,12 @@ ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
 		handler cull: anObject cull: anotherObject]
 ]
 
+{ #category : #'as yet unclassified' }
+ROSInvocation >> newMessage: aClass [
+	^ (aClass newIn: self modelRoot)
+		parent: self
+]
+
 { #category : #accessing }
 ROSInvocation >> normalizedOperationName [
 	self flag: #todo.
@@ -255,9 +261,7 @@ ROSInvocation >> rejectTimerExpired [
 { #category : #'as yet unclassified' }
 ROSInvocation >> returnError: aString with: anObject [
 	| error |
-	error := ROSError new
-		parent: self;
-		type: ((self asn1TypeNamed: 'ROS') elementAt: ROSError rosMessageType) value;
+	error := (self newMessage: ROSError)
 		id: self id;
 		error: (self errorNamed: aString).
 		
@@ -270,26 +274,25 @@ ROSInvocation >> returnError: aString with: anObject [
 { #category : #'as yet unclassified' }
 ROSInvocation >> returnReject: aDictionary [
 	self sendMessage: (
-		ROSReject new
-			parent: self;
-			type: ((self asn1TypeNamed: 'ROS') elementAt: ROSReject rosMessageType) value; 
+		(self newMessage: ROSReject)
 			id: self id)
  
 ]
 
 { #category : #'as yet unclassified' }
 ROSInvocation >> returnResult: aDictionary [
-	^ aDictionary asAsn1Value 
-		type: self operation resultType
+self halt.
+	^ self sendMessage: (
+		(self newMessage: ROSResult)
+			id: self id;
+			result: aDictionary)
  
 ]
 
 { #category : #'as yet unclassified' }
 ROSInvocation >> returnResultLast: aDictionary [
 	self sendMessage: (
-		ROSResultLast new
-			parent: self;
-			type: (self asn1TypeNamed: 'ReturnResult') ;
+		(self newMessage: ROSResultLast)
 			id: self id;
 			result: aDictionary)
  

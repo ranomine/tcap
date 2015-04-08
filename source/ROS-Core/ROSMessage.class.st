@@ -13,10 +13,9 @@ ROSMessage class >> fromComponent: anASN1Dictionary [
 ]
 
 { #category : #'instance creation' }
-ROSMessage class >> on: anASN1Dictionary [ 
-self halt.
-	^ self new
-		initializeFrom: anASN1Dictionary 
+ROSMessage class >> newIn: aContext [
+	^ self new 	
+		type: (aContext typeNamed: self asn1TypeName) 
 ]
 
 { #category : #'instance creation' }
