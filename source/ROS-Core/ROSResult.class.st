@@ -36,10 +36,16 @@ ROSResult >> dispatchTo: aDialogue [
 	aDialogue receivedReturn: self
 ]
 
+{ #category : #'as yet unclassified' }
+ROSResult >> hasResultType [
+	^self operation resultType notNil
+]
+
 { #category : #accessing }
 ROSResult >> initializeFromDialogue: aDialogue [
 	super initializeFromDialogue: aDialogue.
-	(map includesKey: 'result') ifTrue: [ self decodeResult ]
+	self hasResultType ifTrue: [
+		(map includesKey: 'result') ifTrue: [ self decodeResult ]]
 ]
 
 { #category : #accessing }
