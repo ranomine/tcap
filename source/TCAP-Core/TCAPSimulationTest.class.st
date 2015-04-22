@@ -285,7 +285,6 @@ TCAPSimulationTest >> shouldNotContainDialoguePortionOnEndAfterContinue [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-	self halt.
 	self assert: (self messageInspectorOn: env servicePointA sentPackets first) messageHasDialoguePortion.
 	self assert: (self messageInspectorOn: env servicePointB sentPackets first) messageHasDialoguePortion.
 	self deny: (self messageInspectorOn: env servicePointA sentPackets second) messageHasDialoguePortion.
