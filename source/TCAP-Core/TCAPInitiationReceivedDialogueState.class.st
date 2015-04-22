@@ -32,10 +32,8 @@ TCAPInitiationReceivedDialogueState >> indicationTrUAbort: anObject [
 TCAPInitiationReceivedDialogueState >> requestTcContinue [
 	| continue |
 
-	continue := dialogue newContinueMessage
-		at: 'dialoguePortion' put: (dialogue externalValue: (dialogue newAcceptedDialogueResponse: nil));
-		yourself.
-	dialogue addComponentsTo: continue.
+	continue := dialogue newContinueMessage.
+	dialogue addPendingMessagesTo: continue.
 	dialogue switchState: #active.
 	dialogue transaction requestTrContinue: continue.
 

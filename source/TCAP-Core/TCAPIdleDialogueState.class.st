@@ -14,8 +14,8 @@ TCAPIdleDialogueState >> indicationTrBegin: aMessage [
 	self flag: #unchecked.
 	"dialogue notifyDialogueCreated."
 	
-	aMessage dialoguePortion ifNotNil:[
-		dialogue extractDialoguePortion: aMessage dialoguePortion ].
+	aMessage hasDialoguePortion ifTrue:[
+		dialogue processDialogueRequest: (aMessage dialoguePortion at: 'dialogueRequest')].
 
 	dialogue switchState: #initiationReceived.
 	dialogue indicationTcBegin: aMessage.

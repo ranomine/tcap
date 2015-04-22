@@ -43,24 +43,14 @@ TCAPActiveDialogueState >> requestTcContinue [
 	| continue |
 	self flag: #unchecked.
 	continue := dialogue newContinueMessage.
-	dialogue addComponentsTo: continue.
+	dialogue addPendingMessagesTo: continue.
 	dialogue transaction requestTrContinue: continue
 ]
 
 { #category : #requests }
 TCAPActiveDialogueState >> requestTcEnd: aTerminationBoolean [
 	self flag: #unchecked.
-	self flag: #todo. "Maybe remove copy and paste?"
-	"if aTerminationBoolean is true the dialogue has to be terminated locally without any 
-	further sends."
-	aTerminationBoolean 
-		ifTrue: [ 
-			dialogue transaction requestTrEnd: nil ]
-		ifFalse: [ | end |
-			end := dialogue newEndMessage.
-			dialogue addComponentsTo: end.
-			dialogue transaction requestTrEnd: end].
-	dialogue terminate
+	self endDialogue: aTerminationBoolean
 ]
 
 { #category : #requests }

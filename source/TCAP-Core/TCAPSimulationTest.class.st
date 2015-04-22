@@ -275,29 +275,27 @@ TCAPSimulationTest >> shouldNotContainDialoguePortionOnAbort [
 { #category : #tests }
 TCAPSimulationTest >> shouldNotContainDialoguePortionOnEndAfterContinue [
 	|  env  |
-	env :=env := self given: #shouldCreateTestEnvironment.
+	env := self given: #shouldCreateTestEnvironment.
 
 	env servicePointB onDialogue: [ :dialogue |
-		dialogue
-			onBegin: [  dialogue requestTcContinue ];
-			onContinue: [ dialogue requestTcEnd: false]].
+		dialogue onBegin: [  dialogue requestTcContinue ]].
 	
 	env servicePointA newDialogue
-		onContinue: [ :continue | continue dialogue requestTcContinue ];
+		onContinue: [ :continue | continue dialogue requestTcEnd: false ];
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-	
+	self halt.
 	self assert: (self messageInspectorOn: env servicePointA sentPackets first) messageHasDialoguePortion.
 	self assert: (self messageInspectorOn: env servicePointB sentPackets first) messageHasDialoguePortion.
 	self deny: (self messageInspectorOn: env servicePointA sentPackets second) messageHasDialoguePortion.
-	self deny: (self messageInspectorOn: env servicePointB sentPackets second) messageHasDialoguePortion.
+
 ]
 
 { #category : #tests }
 TCAPSimulationTest >> shouldNotContainDialoguePortionOnSecondContinue [
 	|  env  |
-	env :=env := self given: #shouldCreateTestEnvironment.
+	env := self given: #shouldCreateTestEnvironment.
 
 	env servicePointB onDialogue: [ :dialogue |
 		dialogue onBegin: [  dialogue requestTcContinue ]].

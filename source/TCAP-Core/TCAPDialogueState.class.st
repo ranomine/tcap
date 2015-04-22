@@ -27,10 +27,8 @@ TCAPDialogueState >> endDialogue: aTerminationBoolean [
 		ifTrue: [ 
 			dialogue transaction requestTrEnd: nil ]
 		ifFalse: [ | end |
-			end := dialogue newEndMessage
-				at: 'dialoguePortion' put: ((dialogue newAcceptedDialogueResponse: nil) asExternalValueIn: self factory);
-				yourself.
-			dialogue addComponentsTo: end.
+			end := dialogue newEndMessage.
+			dialogue addPendingMessagesTo: end.
 			dialogue transaction requestTrEnd: end].
 	dialogue terminate
 ]

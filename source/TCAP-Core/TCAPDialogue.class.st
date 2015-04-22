@@ -10,7 +10,8 @@ Class {
 		'remoteInvocations',
 		'handshakeEnabled',
 		'announcer',
-		'userInformation'
+		'userInformation',
+		'pendingResponse'
 	],
 	#category : #'TCAP-Core-Model'
 }
@@ -35,6 +36,16 @@ TCAPDialogue >> addComponentsTo: anObject [
 { #category : #registering }
 TCAPDialogue >> addHandler: aHandler [
 	aHandler registerAtDialogue: announcer
+]
+
+{ #category : #'as yet unclassified' }
+TCAPDialogue >> addPendingMessagesTo: aMessage [
+	
+	pendingResponse ifNotNil: [ 
+		aMessage at: 'dialoguePortion' put: (pendingResponse asExternalValueIn: self factory).
+		pendingResponse := nil ].
+	
+	self addComponentsTo: aMessage
 ]
 
 { #category : #accessing }
@@ -95,17 +106,6 @@ TCAPDialogue >> defaultOperationSentClass [
 { #category : #accessing }
 TCAPDialogue >> enableHandshake [
 	handshakeEnabled := true
-]
-
-{ #category : #'as yet unclassified' }
-TCAPDialogue >> extractDialoguePortion: aASN1Value [
-	| seq |
-	seq := aASN1Value at: 'dialogueRequest'.
-	((seq  at: 'protocol-version') bitEquals: #( 'version1' ) ) 
-		ifTrue: [  applicationContext := (self asn1Model applicationContextWithOid: (seq at: 'application-context-name')) ]
-		ifFalse: [ self halt ].
-	seq ifNotNil: [
-		userInformation := seq user_information].
 ]
 
 { #category : #accessing }
@@ -427,6 +427,23 @@ TCAPDialogue >> processComponentsOf: aMessage [
 
 ]
 
+{ #category : #'as yet unclassified' }
+TCAPDialogue >> processDialogueRequest: request [
+
+	((request  at: 'protocol-version') bitEquals: #( 'version1' ) ) 
+		ifFalse: [ 
+			"this shouldn't happen because this is a syntax error and should be catched earlier".
+			Error signal: 'message should have been checked for protocol-version earlier' ].
+		
+	request ifNotNil: [
+		userInformation := request user_information ].	
+
+	"nothing is wrong we accept as request"
+
+	applicationContext := (self asn1Model applicationContextWithOid: (request at: 'application-context-name')).
+	self sendAcceptResponse.
+]
+
 { #category : #notifications }
 TCAPDialogue >> receivedError: anError [
 	(self localInvocationWithId: anError id)
@@ -509,6 +526,13 @@ TCAPDialogue >> requestTcUAbort: anAbortInformation [
 { #category : #requests }
 TCAPDialogue >> requestTrBeginDestinationAddress: aDestinationAddress originatingAddress: aOriginatingAddress userData: aDictionary [
 	^  self state requestTrBeginDestinationAddress: aDestinationAddress originatingAddress: aOriginatingAddress userData: aDictionary 
+]
+
+{ #category : #'as yet unclassified' }
+TCAPDialogue >> sendAcceptResponse [
+	"store response for the next continue or end message to pick up
+	and deliver back"
+	pendingResponse := self newAcceptedDialogueResponse: nil
 ]
 
 { #category : #accessing }

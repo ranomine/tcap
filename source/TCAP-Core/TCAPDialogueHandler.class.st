@@ -40,19 +40,6 @@ TCAPDialogueHandler >> dialogues [
 	^ serviceEndPoint dialoguesAndTransactions collect: #dialogue
 ]
 
-{ #category : #'as yet unclassified' }
-TCAPDialogueHandler >> extractDialoguePortionFor: aDialogue from: aDictionary [ 
-	<tcapMethod>
-	<branchTarget: 'YES'>
-	| dialoguePortion |
-	self halt.
-	dialoguePortion := aDictionary at: 'dialoguePortion'.
-	(self checkDialoguePortion: dialoguePortion) ifTrue: [
-		"user 
-			indicationTcEnd: aDialogue 
-			componentsPresent: (aDictionary includesKey: 'components')"]
-]
-
 { #category : #indications }
 TCAPDialogueHandler >> indicationTcEnd: aDialogue componentsPresent: aBoolean [
 	serviceEndPoint user indicationTcEnd: aDialogue componentsPresent: aBoolean
