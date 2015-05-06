@@ -42,6 +42,16 @@ TCAPEnvironment >> factory [
 	^ container factory
 ]
 
+{ #category : #logging }
+TCAPEnvironment >> formatForLogging [
+	^String streamContents: [:stream |
+		stream nextPutAll: self class printString;
+			nextPut: $(;
+			nextPutAll: 'id=';
+			nextPutAll: (self id isNil ifTrue: ['nil'] ifFalse: [self id hex]);
+			nextPut: $)].
+]
+
 { #category : #creating }
 TCAPEnvironment >> newAbortMessage [
 	^ self newValue: TCAPAbortMessage 
