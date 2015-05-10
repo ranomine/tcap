@@ -5312,6 +5312,10 @@ AdditionalInfo,
 	NoteMM-EventRes,
 	NumberPortabilityStatus,
 	PagingArea,
+	UpdateVcsgLocationArg,
+	UpdateVcsgLocationRes,
+	CancelVcsgLocationArg,
+	CancelVcsgLocationRes,
 
 	-- VGCS / VBS types types
 GroupId, 
@@ -8292,6 +8296,28 @@ Ext-CallBarringInfoFor-CSE ::= SEQUENCE {
 	extensionContainer	[5]	ExtensionContainer 	OPTIONAL,
 	...}
 
+UpdateVcsgLocationArg ::= SEQUENCE {
+     imsi				IMSI,
+     msisdn				[2] ISDN-AddressString	OPTIONAL,
+     vlr-Number				[0] ISDN-AddressString	OPTIONAL,
+     sgsn-Number			[1] ISDN-AddressString	OPTIONAL,
+     extensionContainer			ExtensionContainer	OPTIONAL,
+     ...}
+
+UpdateVcsgLocationRes ::= SEQUENCE {
+     temporaryEmptySubscriptiondataIndicator	NULL OPTIONAL,
+     extensionContainer ExtensionContainer OPTIONAL,
+     ...}
+
+CancelVcsgLocationArg ::= SEQUENCE {
+     identity				Identity,
+     extensionContainer			ExtensionContainer OPTIONAL,
+     ...}
+
+CancelVcsgLocationRes ::= SEQUENCE {
+     extensionContainer			ExtensionContainer OPTIONAL,
+     ...}
+
 END
 '
 ]
@@ -8496,7 +8522,11 @@ PrepareSubsequentHO-ResV3,
 	NoteMsPresentForGprsArg,
 	NoteMsPresentForGprsRes,
 	NoteMM-EventArg,
-	NoteMM-EventRes
+	NoteMM-EventRes,
+	UpdateVcsgLocationArg,
+	UpdateVcsgLocationRes,
+	CancelVcsgLocationArg,
+	CancelVcsgLocationRes
 
 
 FROM MAP-MS-DataTypes {
@@ -8984,6 +9014,29 @@ noteMM-Event  OPERATION ::= {				--Timer m
 		unknownSubscriber |
 		mm-EventNotSupported}
 	CODE	local:89 }
+
+updateVcsgLocation OPERATION ::= { ARGUMENT
+         UpdateVcsgLocationArg
+     RESULT
+         UpdateVcsgLocationRes
+     ERRORS {
+         systemFailure |
+         unexpectedDataValue |
+         unknownSubscriber}
+CODE local:53 }
+
+cancelVcsgLocation OPERATION ::= {
+     ARGUMENT
+         CancelVcsgLocationArg
+     RESULT
+         CancelVcsgLocationRes
+              -- optional
+     ERRORS {
+         dataMissing |
+         unexpectedDataValue}
+     CODE local:36 }
+
+
 
 END
 '
@@ -9591,29 +9644,6 @@ FROM SS-Operations {
 
 
 ;
-
--- dummies
-
-updateVcsgLocation OPERATION ::= {
-   ARGUMENT
-      SendIdentificationArgV3
-   RESULT
-      SendIdentificationResV3
-   ERRORS {
-      dataMissing |
-      unidentifiedSubscriber}
-   CODE  local:5500 }
-
-cancelVcsgLocation OPERATION ::= {
-   ARGUMENT
-      SendIdentificationArgV3
-   RESULT
-      SendIdentificationResV3
-   ERRORS {
-      dataMissing |
-      unidentifiedSubscriber}
-   CODE  local:5501 }
-
 
 locationUpdatingPackage-v3  OPERATION-PACKAGE ::= {
 	-- Supplier is HLR if Consumer is VLR
