@@ -5533,7 +5533,7 @@ CancelLocationRes ::= SEQUENCE {
 
 PurgeMS-ArgV2 ::= SEQUENCE {
 	imsi			IMSI,
-	vlr-Number	[0] ISDN-AddressString	OPTIONAL,
+	vlr-Number		ISDN-AddressString,
 	...
 }
 
