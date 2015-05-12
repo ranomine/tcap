@@ -513,7 +513,7 @@ ConfigurationOfTCAP >> baseline5: spec [
 
 	spec for: #'common' do: [
 		spec blessing: #'baseline'.
-		spec repository: 'http://smalltalkhub.com/mc/osmocom/Osmocom/main'.
+		spec repository: 'http://smalltalkhub.com/mc/osmocom/TCAP/main'.
 		spec 
 			project: 'Phexample' with: [
 				spec
