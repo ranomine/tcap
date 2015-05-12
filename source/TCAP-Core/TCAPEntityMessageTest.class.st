@@ -30,8 +30,8 @@ TCAPEntityMessageTest >> runCase [
 TCAPEntityMessageTest >> testEncodingTaggedType [
 	| val data |
 	val := ('PurgeMS-ArgV3' asAsn1ValueTypedIn: self asn1Model)
-            imsi: '1234' toTBCD;
-            vlr_Number: '1234' toE164;
+            imsi: #[33 67];
+            vlr_Number: #[145 33 67];
             yourself.
 
 	data := val encodeToByteArray.
