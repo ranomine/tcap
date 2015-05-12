@@ -554,14 +554,19 @@ ConfigurationOfTCAP >> baseline5: spec [
 					className: #ConfigurationOfASN1;
 					versionString: #'bleedingEdge';
 					loads: #('ASN1-Tests-Tool' );
-					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ].
+					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
+			project: 'OsmoCore' with: [
+				spec
+					className: #ConfigurationOfOsmoCore;
+					versionString: #'bleedingEdge';
+					repository: 'http://smalltalkhub.com/mc/osmocom/Core/main/' ].
 		spec 
 			package: 'ROS-Core' with: [
 				spec requires: #('ASN1-Tool' 'ASN1-Builder' ). ];
 			package: 'MAP-Core' with: [
 				spec requires: #('ROS-Core' ). ];
 			package: 'TCAP-Core' with: [
-				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' ). ];
+				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' 'OsmoCore' ). ];
 			package: 'Q787-TestSpec' with: [
 				spec requires: #('TCAP-Core' ). ];
 			package: 'TCAP-Benchmark'.
