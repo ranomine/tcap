@@ -3595,24 +3595,24 @@ Q787ValidationTest >> test1_1_2_1_2_2s2 [
 	self assert: env servicePointA isIdle.
 
 	"message tag"
-	self assert: begin taggedValue tagByteValue = 2r01100010.
+	self assert: begin taggedValue tag = (self applicationTag: 2).
 
 	"otid tag"
-	self assert: (begin findTaggedValue: 'otid') tagByteValue = 2r01001000.
+	self assert: (begin findTaggedValue: 'otid') tag = (self applicationTag: 8).
 	self assert: ((begin findKey: 'otid') size between: 1 and: 8).
 
 	"component portion tag"
 	"self assert: taggedValue contents second tagByteValue = 2r01101100. "
 
 	"message tag"
-	self assert: abort taggedValue tagByteValue = 2r01100111.
+	self assert: abort taggedValue tag = (self applicationTag: 7).
 	"otid tag"
-	self assert: (abort findTaggedValue: 'dtid') tagByteValue = 2r01001001.
+	self assert: (abort findTaggedValue: 'dtid') tag = (self applicationTag: 9).
 	self assert: (abort findKey: 'dtid') = (begin findKey: 'otid').
 	self assert: (abort message abort dtid size between: 1 and: 8).
 	
 	"self assert: (abort findTaggedValueForTypeNamed: 'DialoguePortion') tagByteValue = 2r01101011."
-	self assert: (abort findTaggedValue: 'p-abortCause') tagByteValue = 2r01001010.
+	self assert: (abort findTaggedValue: 'p-abortCause') tag = (self applicationTag: 10).
 	self assert: (abort findTaggedValue: 'p-abortCause') size = 1.
 	
 	self assert: env hasInitialState

@@ -9,6 +9,11 @@ Q787CommonSpecTest class >> isAbstract [
 	^ true
 ]
 
+{ #category : #tags }
+Q787CommonSpecTest >> applicationTag: anInteger [ 
+	^ ASN1Tag clazz: 'APPLICATION' number: anInteger
+]
+
 { #category : #'as yet unclassified' }
 Q787CommonSpecTest >> asn1Model [
 	^ TCAPTestModel instance
@@ -21,10 +26,10 @@ Q787CommonSpecTest >> checkAbort: aByteArray [
 	self assert: abort isAbort.
 
 	"message tag"
-	self assert: abort taggedValue tagByteValue = 2r01100111.
+	self assert: abort taggedValue tag = (ASN1Tag clazz: 'APPLICATION' number: 7).
 	
 	"otid tag"
-	self assert: (abort findTaggedValue: 'dtid') tagByteValue = 2r01001001.
+	self assert: (abort findTaggedValue: 'dtid') tag = (ASN1Tag clazz: 'APPLICATION' number: 9).
 	self assert: (abort message abort dtid size between: 1 and: 8).
 	
 	^ abort
@@ -37,10 +42,10 @@ Q787CommonSpecTest >> checkBegin: aByteArray [
 	self assert: begin isBegin.
 
 	"message tag"
-	self assert: begin taggedValue tagByteValue = 2r01100010.
+	self assert: begin taggedValue tag = (ASN1Tag clazz: 'APPLICATION' number: 2).
 
 	"otid tag"
-	self assert: (begin findTaggedValue: 'otid') tagByteValue = 2r01001000.
+	self assert: (begin findTaggedValue: 'otid') tag = (ASN1Tag clazz: 'APPLICATION' number: 8).
 	self assert: ((begin findKey: 'otid') size between: 1 and: 8).
 	
 	"component portion tag"
@@ -56,14 +61,14 @@ Q787CommonSpecTest >> checkContinue: aByteArray [
 	self assert: continue isContinue.
 
 	"message tag"
-	self assert: continue taggedValue tagByteValue = 2r01100101.
+	self assert: continue taggedValue tag = (ASN1Tag clazz: 'APPLICATION' number: 5).
 	
 	"otid tag"
-	self assert: (continue findTaggedValue: 'otid') tagByteValue = 2r01001000.
+	self assert: (continue findTaggedValue: 'otid') tag = (ASN1Tag clazz: 'APPLICATION' number: 8).
 	self assert: (continue message continue otid size between: 1 and: 8).
 
 	"dtid tag"
-	self assert: (continue findTaggedValue: 'dtid') tagByteValue = 2r01001001.
+	self assert: (continue findTaggedValue: 'dtid') tag = (ASN1Tag clazz: 'APPLICATION' number: 9).
 	self assert: (continue message continue dtid size between: 1 and: 8).
 	
 	^ continue
@@ -76,10 +81,10 @@ Q787CommonSpecTest >> checkEnd: aByteArray [
 	self assert: end isEnd.
 
 	"message tag"
-	self assert: end taggedValue tagByteValue = 2r01100100.
+	self assert: end taggedValue tag = (ASN1Tag clazz: 'APPLICATION' number: 4).
 
 	"otid tag"
-	self assert: (end findTaggedValue: 'dtid') tagByteValue = 2r01001001.
+	self assert: (end findTaggedValue: 'dtid') tag = (ASN1Tag clazz: 'APPLICATION' number: 9).
 	self assert: ((end findKey: 'dtid') size between: 1 and: 8).
 	
 	"component portion tag"
@@ -93,7 +98,7 @@ Q787CommonSpecTest >> checkPAbort: aByteArray [
 	| abort |
 	abort := self checkAbort: aByteArray.
 	
-	self assert: (abort findTaggedValue: 'p-abortCause') tagByteValue = 2r01001010.
+	self assert: (abort findTaggedValue: 'p-abortCause') tag = (ASN1Tag clazz: 'APPLICATION' number: 10).
 	
 	^ abort
 ]
@@ -103,7 +108,7 @@ Q787CommonSpecTest >> checkUAbort: aByteArray [
 	| abort |
 	abort := self checkAbort: aByteArray.
 	
-	self assert: (abort findTaggedValue: 'u-abortCause') tagByteValue = 2r01101011.
+	self assert: (abort findTaggedValue: 'u-abortCause') tag = (ASN1Tag clazz: 'APPLICATION' number: 11).
 	
 	^ abort
 ]
