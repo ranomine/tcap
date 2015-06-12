@@ -578,8 +578,9 @@ ConfigurationOfTCAP >> baseline5: spec [
 		spec 
 			group: 'default' with: #('ASN1-Tool' 'ROS-Core' 'MAP-Core' 'TCAP-Core' );
 			group: 'q787' with: #('Q787-TestSpec' );
-			group: 'all' with: #('default' 'ASN1 full' );
-			group: 'bench' with: #('default' 'TCAP-Benchmark' ). ].
+			group: 'all' with: #('default' 'ASN1 full' 'tests' );
+			group: 'bench' with: #('default' 'TCAP-Benchmark' );
+			group: 'tests' with: #('Q787-TestSpec' ). ].
 
 ]
 
