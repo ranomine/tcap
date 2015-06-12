@@ -571,7 +571,7 @@ ConfigurationOfTCAP >> baseline5: spec [
 			package: 'MAP-Core' with: [
 				spec requires: #('ROS-Core' ). ];
 			package: 'TCAP-Core' with: [
-				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' 'OsmoCore' ). ];
+				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' 'OsmoCore' 'OsmoNetwork' ). ];
 			package: 'Q787-TestSpec' with: [
 				spec requires: #('TCAP-Core' 'OsmoNetwork' ). ];
 			package: 'TCAP-Benchmark'.
