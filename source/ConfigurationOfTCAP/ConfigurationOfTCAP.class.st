@@ -559,7 +559,12 @@ ConfigurationOfTCAP >> baseline5: spec [
 				spec
 					className: #ConfigurationOfOsmoCore;
 					versionString: #'bleedingEdge';
-					repository: 'http://smalltalkhub.com/mc/osmocom/Core/main/' ].
+					repository: 'http://smalltalkhub.com/mc/osmocom/Core/main/' ];
+			project: 'OsmoNetwork' with: [
+				spec
+					className: #ConfigurationOfOsmoNetwork;
+					versionString: #'bleedingEdge';
+					repository: 'http://smalltalkhub.com/mc/osmocom/Network/main/' ].
 		spec 
 			package: 'ROS-Core' with: [
 				spec requires: #('ASN1-Tool' 'ASN1-Builder' ). ];
@@ -568,12 +573,12 @@ ConfigurationOfTCAP >> baseline5: spec [
 			package: 'TCAP-Core' with: [
 				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' 'OsmoCore' ). ];
 			package: 'Q787-TestSpec' with: [
-				spec requires: #('TCAP-Core' ). ];
+				spec requires: #('TCAP-Core' 'OsmoNetwork' ). ];
 			package: 'TCAP-Benchmark'.
 		spec 
 			group: 'default' with: #('ASN1-Tool' 'ROS-Core' 'MAP-Core' 'TCAP-Core' );
 			group: 'q787' with: #('Q787-TestSpec' );
-			group: 'all' with: #('default' 'ASN1 full' 'Q787-TestSpec');
+			group: 'all' with: #('default' 'ASN1 full' );
 			group: 'bench' with: #('default' 'TCAP-Benchmark' ). ].
 
 ]
