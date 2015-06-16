@@ -574,13 +574,16 @@ ConfigurationOfTCAP >> baseline5: spec [
 				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' 'OsmoCore' 'OsmoNetwork' ). ];
 			package: 'Q787-TestSpec' with: [
 				spec requires: #('TCAP-Core' 'OsmoNetwork' ). ];
-			package: 'TCAP-Benchmark'.
+			package: 'TCAP-Benchmark';
+			package: 'Camel-Core';
+			package: 'Camel-SCF'.
 		spec 
 			group: 'default' with: #('ASN1-Tool' 'ROS-Core' 'MAP-Core' 'TCAP-Core' );
 			group: 'q787' with: #('Q787-TestSpec' );
-			group: 'all' with: #('default' 'ASN1 full' 'tests' );
+			group: 'all' with: #('default' 'ASN1 full' 'tests' 'camel' );
 			group: 'bench' with: #('default' 'TCAP-Benchmark' );
-			group: 'tests' with: #('Q787-TestSpec' ). ].
+			group: 'tests' with: #('Q787-TestSpec' );
+			group: 'camel' with: #('Camel-Core' 'Camel-SCF' ). ].
 
 ]
 
