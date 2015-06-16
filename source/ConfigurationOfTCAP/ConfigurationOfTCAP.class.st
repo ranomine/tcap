@@ -386,26 +386,19 @@ ConfigurationOfTCAP >> baseline3: spec [
 
 	spec for: #common do: [
 		spec blessing: #baseline.
-                spec repository: 'http://smalltalkhub.com/mc/osmocom/Osmocom/main'.    
+                spec repository: 'http://smalltalkhub.com/mc/osmocom/TCAP/main'.    
                 spec 
 				package: 'TCAP-Core' with: [ spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample')];
 				package: 'MAP-Core' with: [ spec requires: #('ROS-Core' )];
 				package: 'ROS-Core' with: [ spec requires: #('ASN1-Tool' 'ASN1-Builder') ];
 				package: 'Q787-TestSpec' with: [ spec requires: #('TCAP-Core') ];
-				package: 'SS7-Helper' with: [ spec requires: #('Osmocom') ].
+				package: 'SS7-Helper' with: [ spec requires: #() ].
 			spec
 				project: 'Phexample' with: [
 					spec
 						className: 'ConfigurationOfPhexample';
 						versionString: '1.2';
 						repository: 'http://smalltalkhub.com/mc/Phexample/Phexample/main' ].	
-			spec
-				project: 'Osmocom' with: [
-					spec
-						className: 'ConfigurationOfOsmocom';
-						versionString: #'bleedingEdge';
-						file: 'ConfigurationOfOsmocom';
-						repository: 'http://smalltalkhub.com/mc/osmocom/Osmocom/main' ].
 			spec
 				project: 'ASN1' with: [
 					spec
@@ -431,7 +424,7 @@ ConfigurationOfTCAP >> baseline3: spec [
 			
 			
                 spec
-				group: 'default' with: #('ASN1-Tool' 'Osmocom' 'ROS-Core' 'MAP-Core' 'TCAP-Core' 'SS7-Helper');
+				group: 'default' with: #('ASN1-Tool' 'ROS-Core' 'MAP-Core' 'TCAP-Core' 'SS7-Helper');
 				group: 'q787' with: #( 'Q787-TestSpec' );
 				group: 'all' with: #('default' 'ASN1 full' 'q787')].
 ]
