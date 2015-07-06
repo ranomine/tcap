@@ -40,6 +40,11 @@ TCAPDialogueResponse >> applicationContextNameNotSupported [
 ]
 
 { #category : #converting }
+TCAPDialogueResponse >> asContinueMessageIn: aFactory [
+	^ aFactory newContinueMessage 
+]
+
+{ #category : #converting }
 TCAPDialogueResponse >> asEndMessage [
 	^ (TCAPEndMessage newIn: type modelRoot)
 		at: 'dialoguePortion' put:self asExternalValue;
