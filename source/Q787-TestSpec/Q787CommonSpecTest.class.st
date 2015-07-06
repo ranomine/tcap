@@ -19,7 +19,7 @@ Q787CommonSpecTest >> asn1Model [
 	^ TCAPTestModel instance
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #checking }
 Q787CommonSpecTest >> checkAbort: aByteArray [ 
 	| abort |
 	abort := self messageInspectorOn: aByteArray.
@@ -35,7 +35,7 @@ Q787CommonSpecTest >> checkAbort: aByteArray [
 	^ abort
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #checking }
 Q787CommonSpecTest >> checkBegin: aByteArray [ 
 	| begin |
 	begin := self messageInspectorOn: aByteArray.
@@ -54,7 +54,7 @@ Q787CommonSpecTest >> checkBegin: aByteArray [
 	^ begin
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #checking }
 Q787CommonSpecTest >> checkContinue: aByteArray [ 
 	| continue |
 	continue := self messageInspectorOn: aByteArray.
@@ -74,7 +74,7 @@ Q787CommonSpecTest >> checkContinue: aByteArray [
 	^ continue
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #checking }
 Q787CommonSpecTest >> checkEnd: aByteArray [ 
 	| end |
 	end := self messageInspectorOn: aByteArray.
@@ -93,7 +93,7 @@ Q787CommonSpecTest >> checkEnd: aByteArray [
 	^ end
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #checking }
 Q787CommonSpecTest >> checkPAbort: aByteArray [ 
 	| abort |
 	abort := self checkAbort: aByteArray.
@@ -103,7 +103,7 @@ Q787CommonSpecTest >> checkPAbort: aByteArray [
 	^ abort
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #checking }
 Q787CommonSpecTest >> checkUAbort: aByteArray [ 
 	| abort |
 	abort := self checkAbort: aByteArray.
@@ -2189,17 +2189,15 @@ Q787CommonSpecTest >> test1_1_2_1_1s1 [
 	transaction := self sendTrBegin: env userData: (TCAPBeginMessage newIn: self asn1Model).
 	transaction requestPreArrangedEndWithUserData: nil.
 
-	"CHECK A"
-	self flag:#needsToBeExtended.
+	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A? "
 	self assert: env servicePointA didSendMessage.
-	"CHECK B"
-	self assert:env servicePointA sentPackets size = 1.
-	"CHECK C"
-	self assert: env servicePointA isIdle.
-	self assert: env servicePointA didSendMessage.
-
-	"CHECK information elements"
 	self checkBegin: env servicePointA sentPackets first.
+	
+	"CHECK B: VERIFY THAT AN END MESSAGE WAS NOT SENT BY SP A. "
+	self assert: env servicePointA sentPackets size = 1.
+	
+	"CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A? "
+	self assert: env servicePointA isIdle.
 ]
 
 { #category : #tests }
@@ -2211,17 +2209,24 @@ Q787CommonSpecTest >> test1_1_2_1_1s2 [
 	env servicePointA transactionCoordinator 
 		requestTrUAbort: ((transaction newUAbort) asAbortIn: transaction container factory)
 		transaction: transaction.
-		
-	"CHECK A"
-	self flag:#needsToBeExtended.
+	
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A?"
 	self assert: env servicePointA didSendMessage.
-	"CHECK B"
-	self assert: env servicePointA didSendMessage.
-	"CHECK C"
+	self checkBegin: env servicePointA sentPackets first.
+	
+	" CHECK B: WAS THE TR-U-ABORT REQUEST PURELY LOCAL AT SP A?"
+	"self assert:env servicePointA sentPackets size =2."
+	self flag: #TBD.
+	
+	" CHECK C: VERIFY THAT NO ABORT MESSAGE WAS SENT FROM SP A. "
+	" self assert: (env servicePointA sentPackets size = 1)."
+	self flag: #TBD.
+	
+	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A? "
 	self assert: env servicePointA isIdle.
 
-	"CHECK information elements"
-	self checkBegin: env servicePointA sentPackets first.
+
+	
 
 ]
 
@@ -2241,20 +2246,26 @@ Q787CommonSpecTest >> test1_1_2_1_2_1s1 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-		
-	"SP A received the message" 
+	
+	
+	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A AND PASSED TO THE TR-USER? "
 	self assert: env servicePointA didReceiveMessage.
 	begin := self checkBegin: env servicePointA receivedPackets first.
 
-	"SP A sent abort message"
+	"CHECK B: WAS AN END MESSAGE CORRECTLY SENT BY SP A?"
 	self assert: env servicePointA didSendMessage.
 	end := self checkEnd: env servicePointA sentPackets first.
+
+	"end called on B"
+	self assert: endCalled notNil.
 	
-	"ids are corresponding"
+	"CHECK C: WAS THE DTID IN THE END MESSAGE THE SAME AS THE OTID IN THE BEGIN MESSAGE? "
 	self assert:  (end findKey: 'dtid') = (begin findKey: 'otid').
+	
+	"CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.	
 	
-	self assert: endCalled notNil
+
 ]
 
 { #category : #tests }
@@ -2273,17 +2284,20 @@ Q787CommonSpecTest >> test1_1_2_1_2_1s2 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-		
-	"SP A received the message" 
+	
+			
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A?"
 	self assert: env servicePointA didReceiveMessage.
 	self checkBegin: env servicePointA receivedPackets first.
 
-	"SP A sent abort message"
+	" CHECK B: VERIFY THAT AN END MESSAGE WAS NOT SENT BY SP A ?" 
 	self deny: env servicePointA didSendMessage.
+	self assert: endCalled isNil.
 	
+	" CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A? "
 	self assert: env servicePointA isIdle.	
 	
-	self assert: endCalled isNil
+	
 ]
 
 { #category : #tests }
@@ -2298,17 +2312,19 @@ Q787CommonSpecTest >> test1_1_2_1_2_1s3 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-		
-	"SP A received the message" 
+	
+	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A? "
 	self assert: env servicePointA didReceiveMessage.
 	begin := self checkBegin: env servicePointA receivedPackets first.
 
-	"SP A sent abort message"
+	"CHECK B: WAS AN ABORT MESSAGE CORRECTLY SENT BY SP A? "
 	self assert: env servicePointA didSendMessage.
 	abort := self checkAbort: env servicePointA sentPackets first.
 	
-	"ids are corresponding"
+	"CHECK C: WAS THE DTID IN THE ABORT MESSAGE THE SAME AS THE OTID IN THE BE GIN MESSAGE? "
 	self assert:  (abort findKey: 'dtid') = (begin findKey: 'otid').
+	
+	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.	
 ]
 
@@ -2325,19 +2341,18 @@ Q787CommonSpecTest >> test1_1_2_1_2_2s1 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
-	"SP A received the message" 
+	
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A?"
 	self assert: env servicePointA didSendMessage.
 	begin := self checkBegin: env servicePointA sentPackets first.
 
-	"SP A sent abort message"
+	" CHECK B: WAS THE ABORT MESSAGE CORRECTLY RECEIVED AT SP A? "
 	self assert: env servicePointA didReceiveMessage.
 	abort := self checkUAbort: env servicePointA receivedPackets first.
-
-	self assert: env servicePointA isIdle.
-	self assert: (abort findKey: 'dtid') = (begin findKey: 'otid').	
 	self assert: abortHandlerCalled notNil.
-		
+
+	" CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
+	self assert: env servicePointA isIdle.
 	self assert: env hasInitialState
 ]
 
@@ -2356,14 +2371,15 @@ Q787CommonSpecTest >> test1_1_2_1_2_2s3 [
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
 			
-	"SP A received the message" 
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A?"
 	self assert: env servicePointA didSendMessage.
 	begin := self checkBegin: env servicePointA sentPackets first.
 
-	"SP A sent abort message"
+	" CHECK B: WAS THE ABORT MESSAGE CORRECTLY RECEIVED AT SP A?"
 	self assert: env servicePointA didReceiveMessage.
 	end := self checkEnd: env servicePointA receivedPackets first.
 
+	" CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
 	self assert: (end findKey: 'dtid') = (begin findKey: 'otid').	
 		
@@ -2388,21 +2404,26 @@ Q787CommonSpecTest >> test1_1_2_2_1_1s1 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
+
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A?"		
 	self assert: env servicePointA didSendMessage.
 	self checkBegin: env servicePointA sentPackets first.
 
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY RECEIVED BY THE TSL AT SP A?"
 	self assert: env servicePointA didReceiveMessage.
 	continue := self checkContinue: env servicePointA receivedPackets first.
-	self assert: continue isContinue.
+	self assert: continueCalled notNil.	
 
+	" CHECK C: WAS THE END MESSAGE CORRECTLY SENT BY SP A?"
 	self assert: env servicePointA sentPackets size = 2.
 	end := self checkEnd: env servicePointA sentPackets second.
-	
-	self assert: (end findKey: 'dtid') = (continue findKey: 'otid').
-	self assert: env servicePointA isIdle.
-	self assert: continueCalled notNil.	
 	self assert: endCalled notNil.	
+	
+	" CHECK D: WAS THE DTID IN THE END MESSAGE THE SAME AS THE OTID IN THE CONTINUE MESSAGE? "
+	self assert: (end findKey: 'dtid') = (continue findKey: 'otid').
+	
+	" CHECK E: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
+	self assert: env servicePointA isIdle.	
 	self assert: env hasInitialState
 ]
 
@@ -2425,18 +2446,22 @@ Q787CommonSpecTest >> test1_1_2_2_1_1s2 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
+
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A? "		
 	self assert: env servicePointA didSendMessage.
 	self checkBegin: env servicePointA sentPackets first.
 
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY RECEIVED AT SP A? "
 	self assert: env servicePointA didReceiveMessage.
 	continue := self checkContinue: env servicePointA receivedPackets first.
 	self assert: continue isContinue.
 
+	" CHECK C: VERIFY THAT THE TR-END REQUEST PRIMITIVE WAS PURELY LOCAL AND THAT AN END MESSAGE WAS NOT GENERATED AND SENT BY SP A. "
 	self assert: continueCalled notNil.	
 	self assert: env servicePointA sentPackets size = 1.
 	self deny: endCalled notNil.
 	
+	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
 	self deny: env hasInitialState
 ]
@@ -2458,20 +2483,25 @@ Q787CommonSpecTest >> test1_1_2_2_1_1s3 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
+	
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A?"		
 	self assert: env servicePointA didSendMessage.
 	self checkBegin: env servicePointA sentPackets first.
 
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY RECEIVED AT SP A?"
 	self assert: env servicePointA didReceiveMessage.
 	continue := self checkContinue: env servicePointA receivedPackets first.
-	self assert: continue isContinue.
+	self assert: continueCalled notNil.	
 
+	" CHECK C: WAS THE ABORT MESSAGE CORRECTLY SENT BY SP A?"
 	self assert: env servicePointA sentPackets size = 2.
 	abort := self checkUAbort: env servicePointA sentPackets second.
-	
+
+	" CHECK D: WAS THE DTID IN THE ABORT MESSAGE THE SAME AS THE OTID IN THE CONTINUE MESSAGE?"	
 	self assert: (abort findKey: 'dtid') = (continue findKey: 'otid').
+	
+	" CHECK E: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
-	self assert: continueCalled notNil.	
 	self assert: env hasInitialState
 ]
 
@@ -2492,21 +2522,25 @@ Q787CommonSpecTest >> test1_1_2_2_1_2s1 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
+
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A?"		
 	self assert: env servicePointB didSendMessage.
 	self checkBegin: env servicePointB sentPackets first.
 
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY SENT FROM SP A?"
 	self assert: env servicePointA didSendMessage.
 	continue := self checkContinue: env servicePointA sentPackets first.
-	self assert: continue isContinue.
+	self assert: continueCalled notNil.	
 
+	" CHECK C: WAS THE END MESSAGE CORRECTLY RECEIVED AT SP A?"
 	self assert: env servicePointB sentPackets size = 2.
 	end := self checkEnd: env servicePointB sentPackets second.
 	
-	self assert: (end findKey: 'dtid') = (continue findKey: 'otid').
+	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
-	self assert: continueCalled notNil.	
+	self assert: (end findKey: 'dtid') = (continue findKey: 'otid').
 	self assert: env hasInitialState
+	
 ]
 
 { #category : #tests }
@@ -2525,22 +2559,25 @@ Q787CommonSpecTest >> test1_1_2_2_1_2s2 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
+	
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A?"		
 	self assert: env servicePointA didReceiveMessage.
 	self checkBegin: env servicePointA receivedPackets first.
 
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY SENT FROM SP A?"
 	self assert: env servicePointA didSendMessage.
 	continue := self checkContinue: env servicePointA sentPackets first.
+	"did B receive it?"
+	self assert: continueCalled notNil.
 
+	" CHECK C: WAS THE ABORT MESSAGE CORRECTLY RECEIVED AT SP A?"
 	self assert: env servicePointA receivedPackets size = 2.
 	abort := self checkPAbort: env servicePointA receivedPackets second.
-	self assert: abort isAbort.
-	
-	self assert: continueCalled notNil.
 	self assert: abortCalled notNil.
 	
-	self assert: (abort findKey: 'dtid') = (continue findKey: 'otid').
+	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
+	self assert: (abort findKey: 'dtid') = (continue findKey: 'otid').
 	self assert: env hasInitialState
 ]
 
@@ -2560,11 +2597,16 @@ Q787CommonSpecTest >> test1_1_2_2_1_2s3 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
+	
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A?"		
 	self assert: env servicePointA didReceiveMessage.
 	self checkBegin: env servicePointA receivedPackets first.
+	
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY SENT FROM SP A?"
 	self assert: env servicePointA didSendMessage.
 	continue := self checkContinue: env servicePointA sentPackets first.
+	
+	" CHECK C: WAS THE ABORT MESSAGE CORRECTLY RECEIVED AT SP A?"
 	self assert: env servicePointA receivedPackets size = 2.
 	abort := self checkUAbort: env servicePointA receivedPackets second.
 	
@@ -2572,13 +2614,15 @@ Q787CommonSpecTest >> test1_1_2_2_1_2s3 [
 	self assert: abortCalled notNil.
 	
 	self assert: (abort findKey: 'dtid') = (continue findKey: 'otid').
+
+	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
 
 ]
 
 { #category : #tests }
 Q787CommonSpecTest >> test1_1_2_2_2_1s1 [
-	| env  |
+	| env begin continue end |
 	env := self given: #shouldCreateTestEnvironment.
 	env servicePointA onDialogue: [ :dialogue|
 		dialogue 
@@ -2592,22 +2636,32 @@ Q787CommonSpecTest >> test1_1_2_2_2_1s1 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
-	self assert: env servicePointA didReceiveMessage.
-	self checkBegin: env servicePointA receivedPackets first.
-	self assert: env servicePointA didSendMessage.
-	self checkContinue: env servicePointA sentPackets first.
-	self assert: env servicePointA sentPackets size = 2.
-	self checkEnd: env servicePointA sentPackets second.
 
-		
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A? "		
+	self assert: env servicePointA didReceiveMessage.
+	begin := self checkBegin: env servicePointA receivedPackets first.
+	
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY SENT BY THE TSL AT SP A?"
+	self assert: env servicePointA didSendMessage.
+	continue := self checkContinue: env servicePointA sentPackets first.
+	
+	" CHECK C: WAS AN END MESSAGE CORRECTLY SENT BY SP A?"
+	self assert: env servicePointA sentPackets size = 2.
+	end  := self checkEnd: env servicePointA sentPackets second.
+
+	" CHECK D: WAS THE DTID IN THE CONTINUE AND END MESSAGES THE SAME AS THE OTID IN THE BEGIN MESSAGE."
+	
+	self assert: (continue findKey: 'dtid') = (begin findKey: 'otid').
+	self assert: (end findKey: 'dtid') = (begin findKey: 'otid').
+	
+	" CHECK E: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
 	self assert: env servicePointA isIdle.
 	self assert: env hasInitialState
 ]
 
 { #category : #tests }
 Q787CommonSpecTest >> test1_1_2_2_2_1s2 [
-	| env  |
+	| env begin continue |
 	env := self given: #shouldCreateTestEnvironment.
 	env servicePointA onDialogue: [ :dialogue|
 		dialogue 
@@ -2621,20 +2675,30 @@ Q787CommonSpecTest >> test1_1_2_2_2_1s2 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
+	
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A?"		
 	self assert: env servicePointA didReceiveMessage.
-	self checkBegin: env servicePointA receivedPackets first.
+	begin := self checkBegin: env servicePointA receivedPackets first.
+	
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY SENT BY THE TSL AT SP A?"
 	self assert: env servicePointA didSendMessage.
-	self checkContinue: env servicePointA sentPackets first.
+	continue := self checkContinue: env servicePointA sentPackets first.
+	
+	" CHECK C: VERIFY THAT THE TR-END REQUEST PRIMITIVE WAS PURELY LOCAL AND THAT 
+	  AN END MESSAGE WAS NOT GENERATED AND SENT BY SP A."
 	self assert: env servicePointA sentPackets size = 1.
-		
+	
+	" CHECK D: WAS THE DTID IN THE CONTINUE MESSAGE THE SAME AS THE OTID IN THE BEGIN?"
+	self assert: (continue findKey: 'dtid') = (begin findKey: 'otid').
+	
+	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
 	self assert: env servicePointA isIdle.
 	self deny: env hasInitialState
 ]
 
 { #category : #tests }
 Q787CommonSpecTest >> test1_1_2_2_2_1s3 [
-	| env  |
+	| env abort continue  |
 	env := self given: #shouldCreateTestEnvironment.
 	env servicePointA onDialogue: [ :dialogue|
 		dialogue 
@@ -2646,13 +2710,23 @@ Q787CommonSpecTest >> test1_1_2_2_2_1s3 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
+
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A?"		
 	self assert: env servicePointA didReceiveMessage.
 	self checkBegin: env servicePointA receivedPackets first.
+	
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY SENT FROM SP A?"
 	self assert: env servicePointA didSendMessage.
-	self checkContinue: env servicePointA sentPackets first.
+	continue := self checkContinue: env servicePointA sentPackets first.
+	
+	" CHECK C: WAS THE ABORT MESSAGE CORRECTLY SENT FROM SP A?" 
 	self assert: env servicePointA sentPackets size = 2.
-		
+	abort := self checkAbort: env servicePointA sentPackets second.
+	
+	" CHECK D: WAS THE DTID IN THE CONTINUE AND ABORT MESSAGES THE SAME AS THE OTID IN THE BEGIN MESSAGE?"
+	self assert: (abort findKey: 'dtid') = (continue findKey: 'otid').
+
+	" CHECK E: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
 	self assert: env servicePointA isIdle.
 	self assert: env hasInitialState
 ]
@@ -2673,11 +2747,19 @@ Q787CommonSpecTest >> test1_1_2_2_2_2s1 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
+	
+
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A? "
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY RECEIVED AT SP A? "
+	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
+	" CHECK C: WAS THE END MESSAGE CORRECTLY RECEIVED AT SP A?"
+	
 	self assert: env servicePointB didReceiveMessage.
 	self checkBegin: env servicePointB receivedPackets first.
+	
 	self assert: env servicePointB didSendMessage.
 	self checkContinue: env servicePointB sentPackets first.
+	
 	self assert: env servicePointB sentPackets size = 2.
 	self checkEnd: env servicePointB sentPackets second.
 		
@@ -2709,6 +2791,61 @@ Q787CommonSpecTest >> test1_1_2_2_2_2s3 [
 	self assert: env servicePointB sentPackets size = 2.
 	self checkUAbort: env servicePointB sentPackets second.
 		
+	self assert: env servicePointA isIdle.
+	self assert: env hasInitialState
+]
+
+{ #category : #tests }
+Q787CommonSpecTest >> test1_1_2_4_1 [
+	| env begin endACalled continueACalled continueBCalled |
+	env := self given: #shouldCreateTestEnvironment.
+	env servicePointB onDialogue: [ :dialogue|
+		dialogue onBegin: [
+			dialogue requestTcContinue ].
+		
+		dialogue onContinue: [ :cont |
+			continueBCalled := true.
+			env servicePointA transactionCoordinator 
+				requestTrEnd: (self createDialogueResponse asEndMessageIn: cont dialogue factory)
+				transaction: cont dialogue transaction]
+		 ].
+	 
+
+	env servicePointA newDialogue
+		onContinue: [ :received |
+			continueACalled := true.
+			env servicePointB transactionCoordinator 
+				requestTrContinue: (self createDialogueResponse asContinueMessageIn: received dialogue factory)
+				transaction: received dialogue transaction]; 
+		onEnd: [ endACalled := true ];
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+		
+	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A?"
+	self assert: env servicePointA didSendMessage.
+	begin := self checkBegin: env servicePointB receivedPackets first.
+	
+	"CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY RECEIVED AT SP A?"
+	self assert: env servicePointB didSendMessage.
+	self checkContinue: env servicePointA receivedPackets first.
+	self assert: continueACalled == true.
+	
+	"CHECK C: WAS THE CONTINUE MESSAGE CORRECTLY SENT FROM SP A?"
+	self assert: env servicePointA sentPackets size = 2.
+	self checkContinue: env servicePointA sentPackets second.
+	
+	"did B receive it?"
+	self checkContinue: env servicePointB receivedPackets second.
+	self assert: continueBCalled == true.
+	
+	"CHECK D: WAS THE END MESSAGE CORRECTLY RECEIVED AT SP A?"
+	self assert: endACalled == true.
+	self assert: env servicePointA receivedPackets size = 2.
+	self checkEnd: env servicePointA receivedPackets second.
+	
+	"CHECK E: WAS THE TSL STATE MACHINE LEFT IN THE IDLE STATE AT SP A?"
+	
 	self assert: env servicePointA isIdle.
 	self assert: env hasInitialState
 ]
