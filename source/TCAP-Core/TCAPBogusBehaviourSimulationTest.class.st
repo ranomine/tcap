@@ -5,11 +5,6 @@ Class {
 }
 
 { #category : #tests }
-TCAPBogusBehaviourSimulationTest >> expectedFailures [
-	^ #( shouldNotAbortOnEndWithoutDialoguePortionInAcMode )
-]
-
-{ #category : #tests }
 TCAPBogusBehaviourSimulationTest >> shouldNotAbortOnEndWithoutDialoguePortionInAcMode [
 	|  env  dialogue abortCalled  |
 	abortCalled := false.
@@ -26,6 +21,8 @@ TCAPBogusBehaviourSimulationTest >> shouldNotAbortOnEndWithoutDialoguePortionInA
 				msg end removeKey: 'dialoguePortion' ].
 			dialog requestTcEnd: false ]].
 	
+	"installing a quirk state makes the test proceed"
+	env servicePointA factory installStateClass: TCAPInitiationSentMissingDialoguePortionQuirkState.
 	dialogue := env servicePointA newDialogue.
 	dialogue onPAbort: [ abortCalled := true ].
 	dialogue
