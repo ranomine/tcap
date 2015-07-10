@@ -52,7 +52,7 @@ TCAPTestServiceEndPoint >> fakeDialogueId: aNumber [
 
 { #category : #testing }
 TCAPTestServiceEndPoint >> hasInitialState [
-	^ dialoguesAndTransactions isEmpty and: [ idPool hasIdsAllocated not ]
+	^ dialoguesAndTransactions isEmpty and: [ self idPool hasIdsAllocated not ]
 ]
 
 { #category : #accessing }
@@ -62,7 +62,7 @@ TCAPTestServiceEndPoint >> idPoolClass [
 
 { #category : #'as yet unclassified' }
 TCAPTestServiceEndPoint >> injectSCCP: aByteArray [ 
-	networkService doReceive: aByteArray
+	self networkService doReceive: aByteArray
 	
 ]
 

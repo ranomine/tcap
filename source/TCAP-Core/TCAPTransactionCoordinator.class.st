@@ -257,7 +257,8 @@ TCAPTransactionCoordinator >> recoverAndAbort: aTaggedValue cause: aNumber [
 	the partial object we parse we try to deduct enough information to send back an abort 
 	message to the sender."
 	
-	partial := self recoveryRead: aTaggedValue.
+	aTaggedValue isError ifFalse: [  
+		partial := self recoveryRead: aTaggedValue ].
 
 	self 
 		fullAbortOtid: (self deriveId: 'otid' from: partial)

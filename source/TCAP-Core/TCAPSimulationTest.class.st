@@ -315,6 +315,22 @@ TCAPSimulationTest >> shouldNotContainDialoguePortionOnSecondContinue [
 ]
 
 { #category : #tests }
+TCAPSimulationTest >> shouldNotCreateDialogueOnUnparsableBeginMessage [
+	"an incoming bogus begin message should not lead to a dialogue being created"
+	| endPoint |
+	
+	endPoint := TCAPTestServiceEndPoint newForTesting
+		asn1Context: self asn1Context.
+	
+	self assert: endPoint hasInitialState.
+	"inject sccp without payload"
+	endPoint injectSCCP: #[ 9 0 3 5 7 2 66 6 2 66 7 0 ].
+	self assert: endPoint hasInitialState.
+	
+
+]
+
+{ #category : #tests }
 TCAPSimulationTest >> shouldNotFailOnAbortWithoutReason [
 	|  env dialogueA abortMessage |
 
