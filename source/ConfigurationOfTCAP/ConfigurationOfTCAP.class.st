@@ -557,14 +557,19 @@ ConfigurationOfTCAP >> baseline5: spec [
 				spec
 					className: #ConfigurationOfOsmoNetwork;
 					versionString: #'bleedingEdge';
-					repository: 'http://smalltalkhub.com/mc/osmocom/Network/main/' ].
+					repository: 'http://smalltalkhub.com/mc/osmocom/Network/main/' ];
+			project: 'Fuel' with: [
+				spec
+					className: #ConfigurationOfFuel;
+					versionString: '1.9.4';
+					repository: 'http://smalltalkhub.com/mc/Pharo/Fuel/main/' ].
 		spec 
 			package: 'ROS-Core' with: [
 				spec requires: #('ASN1-Tool' 'ASN1-Builder' ). ];
 			package: 'MAP-Core' with: [
 				spec requires: #('ROS-Core' ). ];
 			package: 'TCAP-Core' with: [
-				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' 'OsmoCore' 'OsmoNetwork' ). ];
+				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' 'OsmoCore' 'OsmoNetwork' 'Fuel' ). ];
 			package: 'Q787-TestSpec' with: [
 				spec requires: #('TCAP-Core' 'OsmoNetwork' ). ];
 			package: 'TCAP-Benchmark';
