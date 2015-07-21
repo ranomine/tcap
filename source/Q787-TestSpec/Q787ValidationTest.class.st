@@ -3579,43 +3579,27 @@ Q787ValidationTest >> test1_1_2_1_2_2s2 [
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
-			
-	"SP A received the message" 
+	
+	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A? "
 	self assert: env servicePointA didSendMessage.
-	begin := self messageInspectorOn: env servicePointA sentPackets first.
-	self assert: begin isBegin.
-
-	"SP A sent abort message"
+	begin := self checkBegin: env servicePointA sentPackets first.
+	
+	"CHECK B: WAS THE ABORT MESSAGE CORRECTLY RECEIVED AT SP A? "
 	self assert: env servicePointA didReceiveMessage.
-	abort := self messageInspectorOn: env servicePointA receivedPackets first.
-	self assert: abort isAbort.
+	abort := self checkAbort:  env servicePointA receivedPackets first.
 	self assert: abortHandlerCalled notNil.
 	
-	"ids are corresponding"
+	"CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
+	self assert: env hasInitialState.
 
-	"message tag"
-	self assert: begin taggedValue tag = (self applicationTag: 2).
-
-	"otid tag"
-	self assert: (begin findTaggedValue: 'otid') tag = (self applicationTag: 8).
-	self assert: ((begin findKey: 'otid') size between: 1 and: 8).
-
-	"component portion tag"
-	"self assert: taggedValue contents second tagByteValue = 2r01101100. "
-
-	"message tag"
-	self assert: abort taggedValue tag = (self applicationTag: 7).
-	"otid tag"
-	self assert: (abort findTaggedValue: 'dtid') tag = (self applicationTag: 9).
 	self assert: (abort findKey: 'dtid') = (begin findKey: 'otid').
-	self assert: (abort message abort dtid size between: 1 and: 8).
 	
 	"self assert: (abort findTaggedValueForTypeNamed: 'DialoguePortion') tagByteValue = 2r01101011."
 	self assert: (abort findTaggedValue: 'p-abortCause') tag = (self applicationTag: 10).
 	self assert: (abort findTaggedValue: 'p-abortCause') size = 1.
 	
-	self assert: env hasInitialState
+
 ]
 
 { #category : #tests }
@@ -3646,6 +3630,74 @@ Q787ValidationTest >> test1_1_2_2_2_2s2 [
 	self assert: abortCalled notNil.
 	self assert: env servicePointA isIdle.
 	self assert: env hasInitialState
+]
+
+{ #category : #tests }
+Q787ValidationTest >> test1_1_2_3_1 [
+	| env begin  continue continueCalled end |
+	env := self given: #shouldCreateTestEnvironment.
+	env servicePointB onDialogue: [ :dialogue|
+		dialogue 
+			onBegin: [ 
+				dialogue requestTcContinue ] ].
+	
+	env servicePointA newDialogue
+			onContinue: [ :cont |
+			continueCalled := true.
+			cont dialogue transaction requestTrEnd: (self createDialogueResponse asEndMessageIn: cont dialogue factory)];
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+	
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A?"
+	self assert: env servicePointA didSendMessage.
+	begin := self checkBegin: env servicePointA sentPackets first.
+	
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY RECEIVED AT SP A? "
+	self assert: env servicePointA didReceiveMessage.
+	continue := self checkContinue: env servicePointA receivedPackets first.
+	self assert: continueCalled == true.
+ 	
+	" CHECK C: WAS THE END MESSAGE CORRECTLY SENT FROM SP A? "
+	self assert: env servicePointA sentPackets size = 2.
+	end := self checkEnd: env servicePointA sentPackets last.
+	
+	" CHECK D: WAS THE TSL STATE MACHINE LEFT IN THE IDLE STATE AT SP A?"
+	self assert: env servicePointA isIdle.
+]
+
+{ #category : #tests }
+Q787ValidationTest >> test1_1_2_3_2 [
+	| env begin continue end continueCalled  |
+	env := self given: #shouldCreateTestEnvironment.
+	env servicePointA onDialogue: [ :dialogue|
+		dialogue 
+			onBegin: [ 
+				dialogue requestTcContinue ]].
+
+	env servicePointB newDialogue
+			onContinue: [ :cont |
+			continueCalled := true.
+			cont dialogue requestTcEnd: false];
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+	
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A? "
+	self assert: env servicePointA didReceiveMessage.
+	begin := self checkBegin: env servicePointA receivedPackets first.
+	
+	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY SENT FROM SP A? "
+	self assert: env servicePointA didSendMessage.
+	continue := self checkContinue: env servicePointA sentPackets first.
+	self assert: continueCalled == true.
+	
+	" CHECK C: WAS THE END MESSAGE CORRECTLY RECEIVED AT SP A? "
+	self assert: env servicePointA receivedPackets size = 2.
+	end := self checkEnd: env servicePointA receivedPackets second.
+	
+	" CHECK D: WAS THE TSL STATE MACHINE LEFT IN THE IDLE STATE AT SP A?"
+	self assert: env servicePointA isIdle.
 ]
 
 { #category : #tests }

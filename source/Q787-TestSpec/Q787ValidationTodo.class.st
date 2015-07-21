@@ -10,16 +10,6 @@ Q787ValidationTodo class >> isAbstract [
 ]
 
 { #category : #tests }
-Q787ValidationTodo >> test1_1_2_3_1 [
-		self assert: false
-]
-
-{ #category : #tests }
-Q787ValidationTodo >> test1_1_2_3_2 [
-		self assert: false
-]
-
-{ #category : #tests }
 Q787ValidationTodo >> test1_1_2_5_1 [
 		self assert: false
 ]

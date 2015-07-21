@@ -15,11 +15,6 @@ Q787CommonTodo >> test1_1_1_2 [
 ]
 
 { #category : #tests }
-Q787CommonTodo >> test1_1_2_4_2 [
-		self assert: false
-]
-
-{ #category : #tests }
 Q787CommonTodo >> test1_1_3_2_1s1 [
 		self assert: false
 ]
