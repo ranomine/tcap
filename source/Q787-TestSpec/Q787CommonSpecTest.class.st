@@ -2872,35 +2872,50 @@ Q787CommonSpecTest >> test1_1_2_4_1 [
 
 { #category : #tests }
 Q787CommonSpecTest >> test1_1_2_4_2 [
-	| env endACalled continueACalled continueBCalled |
+	| env endBCalled continueACalled continueBCalled |
 	env := self given: #shouldCreateTestEnvironment.
-	env servicePointB onDialogue: [ :dialogue|
+	env servicePointA onDialogue: [ :dialogue|
 		dialogue onBegin: [
 			dialogue requestTcContinue ].
 		
 		dialogue onContinue: [ :cont |
-			continueBCalled := true.
+			continueACalled := true.
 			env servicePointA transactionCoordinator 
 				requestTrEnd: (self createDialogueResponse asEndMessageIn: cont dialogue factory)
 				transaction: cont dialogue transaction]
 		 ].
 	 
-	env servicePointA newDialogue
+	env servicePointB newDialogue
 		onContinue: [ :received |
-			continueACalled := true.
-			env servicePointB transactionCoordinator 
+			continueBCalled := true.
+			env servicePointA transactionCoordinator 
 				requestTrContinue: (self createDialogueResponse asContinueMessageIn: received dialogue factory)
 				transaction: received dialogue transaction]; 
-		onEnd: [ endACalled := true ];
+		onEnd: [ endBCalled := true ];
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
 		
 	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A?"
+	self assert: env servicePointA didReceiveMessage.
+	self checkBegin: env servicePointA receivedPackets first.
+	
 	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY SENT FROM SP A? "
+	self assert: env servicePointA didSendMessage.
+	self checkContinue: env servicePointA sentPackets first.
+	
 	" CHECK C: WAS THE CONTINUE MESSAGE CORRECTLY RECEIVED AT SP A? "
+	self assert: env servicePointA receivedPackets size = 2.
+	self checkContinue: env servicePointA receivedPackets second.
+	
 	" CHECK D: WAS THE END MESSAGE CORRECTLY SENT FROM SP A? "
+	self assert: env servicePointA sentPackets size = 2.
+	self checkEnd: env servicePointA sentPackets second.
+	self assert: endBCalled == true.
+	
 	" CHECK E: WAS THE TSL STATE MACHINE LEFT IN THE IDLE STATE AT SP A?"
+	self assert: env servicePointA isIdle.
+	self assert: env hasInitialState
 ]
 
 { #category : #tests }
