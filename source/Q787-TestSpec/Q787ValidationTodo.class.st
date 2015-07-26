@@ -16,7 +16,27 @@ Q787ValidationTodo >> test1_1_2_5_1 [
 
 { #category : #tests }
 Q787ValidationTodo >> test1_1_3_1_1_1s1 [
-		self assert: false
+	
+	| env  endCalled  |
+	env := self given: #shouldCreateTestEnvironment.
+	env servicePointA onDialogue: [ :dialogue|
+		dialogue 
+			onBegin: [ 
+				dialogue requestTcEnd: false ]].
+
+	env servicePointB newDialogue
+			onEnd: [ :end |
+			endCalled := true];
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+		
+	self flag: #TBD. "Short form encoding: what is that?"		
+		
+	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A AND PASSED TO THE TR-USER? "
+	" CHECK B: WAS AN END MESSAGE CORRECTLY SENT BY SP A? "
+	" CHECK C: WAS THE DTID IN THE END MESSAGE THE SAME AS THE OTID IN THE BEGIN MESSAGE? "
+	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
 { #category : #tests }
