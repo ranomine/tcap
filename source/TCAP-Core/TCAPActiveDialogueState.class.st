@@ -26,19 +26,19 @@ TCAPActiveDialogueState >> indicationTrEnd: aMessage [
 	dialogue indicationTcEnd: aMessage.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #indications }
 TCAPActiveDialogueState >> indicationTrPAbort: anObject [ 
 	self flag: #unchecked.
 	dialogue notifyPAbort: anObject 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #indications }
 TCAPActiveDialogueState >> indicationTrUAbort: anObject [
 	self flag: #unchecked.
 	dialogue notifyUAbort: anObject 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #requests }
 TCAPActiveDialogueState >> requestTcContinue [
 	| continue |
 	self flag: #unchecked.

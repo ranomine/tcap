@@ -32,7 +32,7 @@ TCAPDialogueUAbort >> asAbort [
 	^ abort
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #converting }
 TCAPDialogueUAbort >> asAbortIn: aFactory [
 	| abort |
 	abort := aFactory newAbortMessage.

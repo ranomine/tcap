@@ -15,7 +15,7 @@ TCAPInitiationSentTransactionState >> abortWithReason: aDictionary [
 	transaction stop
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #indications }
 TCAPInitiationSentTransactionState >> receivedContinue: aMessage [ 
 	self flag: #unchecked.
 	transaction remoteTransactionId: aMessage otid.

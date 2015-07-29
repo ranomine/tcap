@@ -19,7 +19,7 @@ TCAPTransactionState >> dialogueHandler [
 	^ transaction dialogueHandler
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #requests }
 TCAPTransactionState >> endTransaction: end [
 
 	end at: 'dtid' put: transaction remoteTransactionId.
@@ -49,7 +49,7 @@ TCAPTransactionState >> requestTrUAbort: aDictionary [
 	self uAbort: aDictionary
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TCAPTransactionState >> transaction: aTransaction [
 	transaction := aTransaction 
 ]

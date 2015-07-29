@@ -12,7 +12,13 @@ TCAPDialoguePAbort class >> asn1TypeName [
 { #category : #'instance creation' }
 TCAPDialoguePAbort class >> badlyFormattedTransactionPortion [
 	^ self new
-		cause: 2
+		value: 2
+]
+
+{ #category : #'instance creation' }
+TCAPDialoguePAbort class >> incorrectCauseValue [
+	^ self new
+		value: 5
 ]
 
 { #category : #'instance creation' }
@@ -41,7 +47,7 @@ TCAPDialoguePAbort class >> unrecognizedMessageType [
 { #category : #'instance creation' }
 TCAPDialoguePAbort class >> unrecognizedTransactionID [
 	^ self new
-		cause: 1
+		value: 1
 ]
 
 { #category : #converting }
