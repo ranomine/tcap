@@ -2215,12 +2215,10 @@ Q787CommonSpecTest >> test1_1_2_1_1s2 [
 	self checkBegin: env servicePointA sentPackets first.
 	
 	" CHECK B: WAS THE TR-U-ABORT REQUEST PURELY LOCAL AT SP A?"
-	"self assert:env servicePointA sentPackets size =2."
-	self flag: #TBD.
+	self assert: env servicePointB receivedPackets size = 1.
 	
 	" CHECK C: VERIFY THAT NO ABORT MESSAGE WAS SENT FROM SP A. "
-	"self assert: (env servicePointA sentPackets size = 1)."
-	self flag: #TBD.
+	self assert: (env servicePointA sentPackets size = 1).
 	
 	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A? "
 	self assert: env servicePointA isIdle.
