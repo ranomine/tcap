@@ -10,7 +10,7 @@ TCAPTestDialogue >> addLocalInvocationWithId: aNumber [
 	invocation := ROSInvocation new 
 		parent: self;
 		type: (self asn1TypeNamed: 'Invoke');
-		id: 2.
+		id: aNumber.
 	localInvocations add: invocation.
 	^ invocation
 ]

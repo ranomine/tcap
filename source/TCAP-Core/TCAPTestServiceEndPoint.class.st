@@ -67,6 +67,13 @@ TCAPTestServiceEndPoint >> injectSCCP: aByteArray [
 ]
 
 { #category : #'as yet unclassified' }
+TCAPTestServiceEndPoint >> injectTcap: aByteArray from: remoteAddress to: localAddress [
+	"inject a an encoded tcap message into the stack"
+	
+	^ transactionCoordinator receive: aByteArray from: remoteAddress to: localAddress 
+]
+
+{ #category : #'as yet unclassified' }
 TCAPTestServiceEndPoint >> newDialogue [
 	^ self newDialogueWithIdString: fakeId 
 ]

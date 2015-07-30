@@ -40,6 +40,14 @@ TCAPTestEnvironment >> initialize [
 
 ]
 
+{ #category : #injecting }
+TCAPTestEnvironment >> injectTcapA: aByteArray [
+	"inject an encoded tcap message in serviceEndPoint A using the 
+	preconfigured SCCP addresses"
+	
+	^ self servicePointA injectTcap: aByteArray from: remoteAddress to: localAddress 
+]
+
 { #category : #accessing }
 TCAPTestEnvironment >> localAddress [
 	^ localAddress

@@ -22,14 +22,13 @@ TCAPDialogueTests >> packet: aSymbol [
 	^ TCAPExamplePackets perform: aSymbol
 ]
 
-{ #category : #accessing }
+{ #category : #'setup-teardown' }
 TCAPDialogueTests >> setUp [
 	super setUp.
 	localNetworkService := SCCPMockNetworkService new.
 	remoteNetworkService := SCCPMockNetworkService new.
 	localNetworkService connectTo: remoteNetworkService.
-	"transactionSubLayer := TCAPTransactionSubLayer on: localNetworkService.
-	componentLayer := TCAPComponentSubLayer on: transactionSubLayer."
+
 ]
 
 { #category : #'as yet unclassified' }
