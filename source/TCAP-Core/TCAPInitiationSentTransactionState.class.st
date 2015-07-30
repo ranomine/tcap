@@ -49,3 +49,8 @@ TCAPInitiationSentTransactionState >> requestPreArrangedEndWithUserData: anObjec
 	self flag: #unchecked.
 	transaction stop
 ]
+
+{ #category : #requests }
+TCAPInitiationSentTransactionState >> requestTrUAbort: aDictionary [
+	"do nothing. This is a purely local action. Q.774 p. 36 "
+]
