@@ -2204,8 +2204,13 @@ Q787CommonSpecTest >> test1_1_2_1_1s1 [
 Q787CommonSpecTest >> test1_1_2_1_1s2 [
 	| env transaction |
 	env := self given: #shouldCreateTestEnvironment.
+	
+	"configure remote end for not auto dispatching. This way we can send a message which
+	is logged but we don't get one back so the test case is fulfilled"
 	env servicePointB autoMessageDispatch: false.
+
 	transaction := self sendTrBegin: env userData: nil.
+
 	env servicePointA transactionCoordinator 
 		requestTrUAbort: ((transaction newUAbort) asAbortIn: transaction container factory)
 		transaction: transaction.
