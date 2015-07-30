@@ -51,6 +51,11 @@ TCAPInitiationSentTransactionState >> requestPreArrangedEndWithUserData: anObjec
 ]
 
 { #category : #requests }
+TCAPInitiationSentTransactionState >> requestTrEnd: aBoolean [ 
+	"Q.774 p. 36" 
+]
+
+{ #category : #requests }
 TCAPInitiationSentTransactionState >> requestTrUAbort: aDictionary [
 	"do nothing. This is a purely local action. Q.774 p. 36 "
 ]

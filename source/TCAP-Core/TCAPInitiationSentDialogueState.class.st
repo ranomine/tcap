@@ -68,3 +68,9 @@ TCAPInitiationSentDialogueState >> indicationTrUAbort: anObject [
 	self flag: #unchecked.
 	dialogue notifyUAbort: anObject 
 ]
+
+{ #category : #requests }
+TCAPInitiationSentDialogueState >> requestTcEnd: aTerminationBoolean [
+	"Q.774 p. 45" 
+	self endDialogue: true
+]

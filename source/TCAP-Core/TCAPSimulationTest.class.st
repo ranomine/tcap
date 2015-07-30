@@ -462,3 +462,75 @@ TCAPSimulationTest >> shouldTransmitUserInformationWithDynamicValue [
 	self assert: ((self messageInspectorOn: env servicePointA sentPackets first) findKey: 'map-open') notNil.
 	self assert: ((self messageInspectorOn: env servicePointA sentPackets first) findKey: 'originationReference') notNil
 ]
+
+{ #category : #tests }
+TCAPSimulationTest >> testCleanupRequestTcEndInActiveState [
+	|  env  localDialogue |
+	env := self newTestEnvironment. 
+	env localAddressIs: #HLR.
+	env remoteAddressIs: #AUC.
+	env connect.
+
+	"The arguments are only decoded when invoke argument is called"
+	env servicePointB onDialogue: [ :dialogue |
+		dialogue onBegin: [
+			dialogue requestTcContinue ]].	
+	
+	localDialogue := env servicePointA newDialogue.
+	localDialogue onContinue: [ 
+		self assert: localDialogue state class = TCAPActiveDialogueState.
+		localDialogue requestTcEnd: true ] .
+	localDialogue
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+	
+
+	"Check that nothing has been sent."
+	self assert: env servicePointA hasInitialState 
+]
+
+{ #category : #tests }
+TCAPSimulationTest >> testCleanupRequestTcEndInInitReceivedState [
+	|  env  localDialogue |
+	env := self newTestEnvironment. 
+	env localAddressIs: #HLR.
+	env remoteAddressIs: #AUC.
+	env connect.
+
+	"The arguments are only decoded when invoke argument is called"
+	env servicePointB onDialogue: [ :dialogue |
+		dialogue onBegin: [
+			self assert: dialogue state class = TCAPInitiationReceivedDialogueState.
+			dialogue requestTcEnd: true ]].	
+	
+	localDialogue := env servicePointA newDialogue.
+	localDialogue
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+	
+
+	"Check that nothing has been sent."
+	self assert: env servicePointB hasInitialState 
+]
+
+{ #category : #tests }
+TCAPSimulationTest >> testCleanupRequestTcEndInInitSendState [
+	|  env  localDialogue |
+	env := self newTestEnvironment. 
+	env localAddressIs: #HLR.
+	env remoteAddressIs: #AUC.
+	env connect.
+
+	localDialogue := env servicePointA newDialogue.
+	localDialogue
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+	self assert: localDialogue state class = TCAPInitiationSentDialogueState.
+	localDialogue requestTcEnd: true.
+
+	"Check that nothing has been sent."
+	self assert: env servicePointA hasInitialState 
+]
