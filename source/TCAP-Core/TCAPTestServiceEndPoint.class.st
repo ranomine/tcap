@@ -120,8 +120,3 @@ TCAPTestServiceEndPoint >> transactionCoordinatorClass [
 	^ TCAPTestTransactionCoordinator 
 		
 ]
-
-{ #category : #accessing }
-TCAPTestServiceEndPoint >> transactionWithId: aString [
-	^ transactionCoordinator transactionWithId: aString
-]

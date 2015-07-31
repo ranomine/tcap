@@ -133,11 +133,6 @@ TCAPTransactionCoordinator >> factory [
 		factory := container factory ]
 ]
 
-{ #category : #finding }
-TCAPTransactionCoordinator >> findTransaction: aBlock [
-	^ container findTransaction: aBlock
-]
-
 { #category : #'as yet unclassified' }
 TCAPTransactionCoordinator >> fullAbortOtid: anOtid dtid: aDtid cause: aPAbort [
 	"Abort scenario (2) from Q.774 p. 30/32 "
@@ -361,21 +356,12 @@ TCAPTransactionCoordinator >> transactionForMessage: aMessage sender: aSender re
 
 { #category : #accessing }
 TCAPTransactionCoordinator >> transactionWithId: aString [ 
-	^ self transactions 	
-		detect: [ :each| each id = aString ]
-		ifNone: [ nil ]
+	^ container transactionWithId: aString
 ]
 
 { #category : #'as yet unclassified' }
 TCAPTransactionCoordinator >> transactionWithRemoteId: aString [ 
-	^ self transactions 	
-		detect: [ :each| each remoteTransactionId = aString ]
-		ifNone: [ nil ]
-]
-
-{ #category : #accessing }
-TCAPTransactionCoordinator >> transactions [
-	^ container dialoguesAndTransactions collect: #transaction
+	^ container transactionWithRemoteId: aString 
 ]
 
 { #category : #indications }

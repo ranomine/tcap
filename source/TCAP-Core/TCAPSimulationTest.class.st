@@ -407,7 +407,7 @@ TCAPSimulationTest >> shouldSendAuthenticationInfo [
 	env sendAuthenticationInfoTo: env remoteAddress parameters: '0815'.
 	self assert: env servicePointA dialoguesAndTransactions size = 1.
 	self assert: env servicePointB dialoguesAndTransactions size = 1.
-	self assert: env servicePointA transactionCoordinator transactions anyOne id hex asUppercase = 'BFBDBEEF'.
+	self assert: env servicePointA  dialoguesAndTransactions anyOne transaction id hex asUppercase = 'BFBDBEEF'.
 	^ env
 ]
 

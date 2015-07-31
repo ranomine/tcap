@@ -189,3 +189,19 @@ TCAPServiceEndPoint >> transactionCoordinator: aTCAPTransactionCoordinator [
 	transactionCoordinator := aTCAPTransactionCoordinator.
 	transactionCoordinator container: self
 ]
+
+{ #category : #accessing }
+TCAPServiceEndPoint >> transactionWithId: aString [
+	^ (dialoguesAndTransactions 
+		detect: [ :each | each transaction id = aString  ]
+		ifNone: [ ^ nil ])
+			transaction
+]
+
+{ #category : #accessing }
+TCAPServiceEndPoint >> transactionWithRemoteId: aString [
+	^ (dialoguesAndTransactions 
+		detect: [ :each | each transaction remoteTransactionId = aString  ]
+		ifNone: [ ^ nil ])
+			transaction
+]
