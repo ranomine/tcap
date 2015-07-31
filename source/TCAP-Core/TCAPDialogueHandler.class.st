@@ -29,17 +29,6 @@ TCAPDialogueHandler >> dialogueHandler [
 	^ self
 ]
 
-{ #category : #accessing }
-TCAPDialogueHandler >> dialogueWithId: aString [ 
-	^ self  dialogues 
-		detect: [ :each| each id = aString ]
-]
-
-{ #category : #accessing }
-TCAPDialogueHandler >> dialogues [
-	^ serviceEndPoint dialoguesAndTransactions collect: #dialogue
-]
-
 { #category : #indications }
 TCAPDialogueHandler >> indicationTcEnd: aDialogue componentsPresent: aBoolean [
 	serviceEndPoint user indicationTcEnd: aDialogue componentsPresent: aBoolean

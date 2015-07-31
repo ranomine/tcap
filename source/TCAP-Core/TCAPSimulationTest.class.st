@@ -384,7 +384,7 @@ TCAPSimulationTest >> shouldReceiveComponentReject [
 TCAPSimulationTest >> shouldReceiveDialogueEnd [
 	| env |
 	env := self given: #shouldSendAuthenticationInfo.
-	env servicePointA transactionCoordinator dialogueHandler dialogues anyOne id: -189.
+	env servicePointA dialoguesAndTransactions anyOne dialogue id: -189.
 	self execute: [  	
 		env servicePointA injectSCCP: TCAPExamplePackets dialogueEndDtidBFBDBEEF.
 	].
