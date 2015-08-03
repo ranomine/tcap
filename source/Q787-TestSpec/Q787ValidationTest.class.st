@@ -4242,10 +4242,10 @@ Q787ValidationTest >> test1_2_2_4s2 [
 		applicationContextName: self anyApplicationContextId. 
 
 	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A? "
-	self checkBegin: env servicePointA sentPackets first.
+	self checkBegin: env servicePointA receivedPackets first.
 	
 	"CHECK B: WAS THE FIRST CONTINUE MESSAGE CORRECTLY SENT FROM SP A? "
-	self checkContinue: env servicePointA receivedPackets first.
+	self checkContinue: env servicePointA sentPackets first.
 		
 	"CHECK C: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE? "
 	self assert: abortCalled.
