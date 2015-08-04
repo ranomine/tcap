@@ -26,7 +26,7 @@ TCAPIdleDialogueState >> indicationTrBegin: aMessage [
 			dialogue handshakeEnabled ifTrue: [ dialogue requestTcContinue ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #requests }
 TCAPIdleDialogueState >> requestTcBeginDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName userInformation: userInformation [
 	|  begin dialoguePortion |
 	begin := self factory newBeginMessage.
@@ -44,6 +44,29 @@ TCAPIdleDialogueState >> requestTcBeginDestinationAddress: aDestinationAddress o
 	dialogue addComponentsTo: begin.	
 	dialogue switchState: #initiationSent.
 	dialogue transactionCoordinator requestTrBegin: dialogue transaction destinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress  userData: begin.
+	
+
+]
+
+{ #category : #'requests - for testing' }
+TCAPIdleDialogueState >> requestTcContinueDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName userInformation: userInformation [
+	|  begin dialoguePortion |
+	"for testing: send a continue message from idle state"
+	begin := self factory newContinueMessage.
+	anApplicationContextName  ifNotNil: [ 
+		dialogue applicationContextName: anApplicationContextName.
+		
+		dialoguePortion := (self factory newDialogueRequest)
+			applicationContextName: dialogue applicationContextName;
+			userInformation: userInformation.
+			
+		begin 
+			at:  'dialoguePortion' 
+			put: (dialoguePortion asExternalValueIn: dialogue factory) ].
+	
+	dialogue addComponentsTo: begin.	
+	dialogue switchState: #initiationSent.
+	dialogue transactionCoordinator requestTrContinue: dialogue transaction destinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress  userData: begin.
 	
 
 ]

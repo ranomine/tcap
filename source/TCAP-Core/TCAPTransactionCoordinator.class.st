@@ -291,6 +291,14 @@ TCAPTransactionCoordinator >> requestTrBegin: aTransaction destinationAddress: a
 		requestTrBegin: aDictionary 
 ]
 
+{ #category : #'requests - for testing' }
+TCAPTransactionCoordinator >> requestTrContinue: aTransaction destinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress userData: aDictionary [ 
+	^ aTransaction 
+		address: anOriginatingAddress;
+		remoteAddress: aDestinationAddress;
+		requestTrContinue: aDictionary 
+]
+
 { #category : #requests }
 TCAPTransactionCoordinator >> requestTrContinue: aDictionary transaction: aTransaction [ 
 	aTransaction requestTrContinue: aDictionary

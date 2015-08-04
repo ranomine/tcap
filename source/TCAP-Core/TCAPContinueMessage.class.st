@@ -39,7 +39,7 @@ TCAPContinueMessage >> handleSyntaxError [
 
 { #category : #'as yet unclassified' }
 TCAPContinueMessage >> handleUnassignedTransaction [
-	self abortRemoteTransactionCause: 3
+	self abortRemoteTransactionCause: TCAPDialoguePAbort unrecognizedTransactionID
 ]
 
 { #category : #validating }

@@ -20,7 +20,7 @@ TCAPIdleTransactionState >> receivedBegin: aMessage [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #requests }
 TCAPIdleTransactionState >> requestTrBegin: begin [ 
 
 	begin at: 'otid' put: transaction id.
@@ -28,4 +28,14 @@ TCAPIdleTransactionState >> requestTrBegin: begin [
 	transaction sendPayload: begin asTCMessage.
 	^ transaction
 
+]
+
+{ #category : #'requests - for testing' }
+TCAPIdleTransactionState >> requestTrContinue: continue [
+	"we send a continue without having send a begin first. dtid is not registered"
+	continue
+		at: 'otid' put: transaction id;
+		at: 'dtid' put: transaction container container idPool basicNextId. "the next possible ID is unassigned now"
+	transaction switchState: #active.
+	transaction sendPayload:  continue asTCMessage 
 ]
