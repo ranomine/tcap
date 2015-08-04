@@ -4513,6 +4513,39 @@ Q787ValidationTest >> test1_2_3_2s1 [
 ]
 
 { #category : #tests }
+Q787ValidationTest >> test1_3_1s1 [
+	| env  continueCalled abort continue |
+	continueCalled := false.
+	env := self given: #shouldCreateTestEnvironment.
+	
+	env servicePointA onDialogue: [ :dialogue|
+		dialogue onContinue: [ continueCalled := true ]].
+	
+	"B sends a continue message to A in idle state"
+	env servicePointB newDialogue
+		requestTcContinueDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+	
+	"CHECK A: VERIFY THAT THE TR-USER WAS NOT INFORMED OF THE CONTINUE MESSAGE AT SP A. "
+	self assert:  env servicePointA receivedPackets size = 1.
+	continue := self checkContinue:  env servicePointA receivedPackets first.
+	self deny: continueCalled.
+	
+	"CHECK B: WAS THE DTID IN THE ABORT MESSAGE EQUAL TO THE OTID IN THE CONTINUE MESSAGE? "
+	abort  := self checkAbort: env servicePointA sentPackets first.
+	self assert: (abort findKey: 'dtid') = (continue findKey: 'otid').
+	
+	"CHECK C: WAS AN ABORT MESSAGE CORRECTLY SENT FROM SP A WITH A P-ABORT CAUSE VALUE OF UNRECOGNIZED TRANSACTION ID? "
+	self assert: env servicePointA sentPackets size = 1.
+	self assert: (abort message abort reason at: 'p-abortCause') = 1.
+	
+	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
+	self assert: env servicePointA isIdle.		
+
+]
+
+{ #category : #tests }
 Q787ValidationTest >> test2_1_3_1_1 [
 	| env rejectCalled  dialogue invocation |
 	rejectCalled := false.
