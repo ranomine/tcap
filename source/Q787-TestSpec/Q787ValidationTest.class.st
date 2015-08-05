@@ -3760,7 +3760,7 @@ Q787ValidationTest >> test1_2_1_1s2 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_1_2s1 [
-	| env  continueCalled  |
+	| env  continueCalled begin abort  |
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointB onDialogue: [ :dialogue| |  |
@@ -3774,11 +3774,9 @@ Q787ValidationTest >> test1_2_1_2s1 [
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
 	
-
-	
 	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A? "
 	self assert: env servicePointA didSendMessage.
-	self checkBegin: env servicePointA sentPackets first.
+	begin := self checkBegin: env servicePointA sentPackets first.
 	
 	" CHECK B: VERIFY THAT THE TR-USER AT SP A WAS NOT INFORMED OF THE CONTINUE MESSAGE AT SP A. "
 	self assert: continueCalled isNil.
@@ -3788,11 +3786,11 @@ Q787ValidationTest >> test1_2_1_2s1 [
 	"How can we check that? 	dialogue transaction state before  #requestTcContinue is TCAPInitiationReceivedTransactionState "
 
 	" CHECK D: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND P-ABORT CAUSE VALUE?"
-	self flag: #TBD. 
-	"DTID and P-Abort need to be checked"
 	self assert: env servicePointA sentPackets size = 2.
-	self checkAbort: env servicePointA sentPackets second.
-	
+	abort := self checkAbort: env servicePointA sentPackets second.
+	self assert: (abort message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
+	self assert: abort message abort dtid = begin message begin otid.
+
 	"SP B received the message" 
 	self assert: env servicePointB didReceiveMessage.
 	self checkBegin: env servicePointB receivedPackets first.	
@@ -3802,7 +3800,7 @@ Q787ValidationTest >> test1_2_1_2s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_1_3s1 [
-	| env  continueCalled abortInspector |
+	| env  continueCalled beginInspector abortInspector |
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointB onDialogue: [ :dialogue|
@@ -3824,13 +3822,15 @@ Q787ValidationTest >> test1_2_1_3s1 [
 	
 	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY RECEIVED AT SP A? "
 	self assert: env servicePointA didReceiveMessage.
-	self checkBegin: env servicePointB receivedPackets first.
+	beginInspector := self checkBegin: env servicePointB receivedPackets first.
 	self assert: continueCalled.
 	
 	" CHECK C: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND P-ABORT CAUSE VALUE? "
 	self assert: env servicePointA sentPackets size = 2.
-	abortInspector := self checkAbort: (env servicePointA sentPackets second). 	"DTID checked as part of checkAbort:"
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 3.
+	abortInspector := self checkAbort: (env servicePointA sentPackets second).
+	self assert: abortInspector message abort dtid = beginInspector message begin otid.
+
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
 	
 	
 	"Additional Check: SP B received the begin message" 
@@ -3962,7 +3962,7 @@ Q787ValidationTest >> test1_2_2_2s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_2_2s2 [
-	| env beginCalled abortInspector |
+	| env beginCalled  abortInspector |
 	beginCalled := false.
 	
 	env := self given: #shouldCreateTestEnvironment.
@@ -3970,7 +3970,7 @@ Q787ValidationTest >> test1_2_2_2s2 [
 	env servicePointA onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
 			beginCalled := true ]].
-	
+
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | inspect | 
 		inspect := TCAPMessageInspector packet: bytes.
 		inspect taggedValue elements second tag number: 13.
@@ -3980,17 +3980,20 @@ Q787ValidationTest >> test1_2_2_2s2 [
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
 		
-
-	"CHECK A: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE? "
+	"Misc checks"
 	self assert: env servicePointB sentPackets size = 1.
 	self assert: env servicePointA sentPackets size = 1.
-	
+	self deny: beginCalled. 
+			
+	"CHECK A: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE? "	
 	abortInspector := self checkAbort: (env servicePointA sentPackets first).
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 3.
+	self assert: abortInspector message abort dtid = #[1 0 0 0]. "hard coded as the begin message is corrupted"
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
 		
 	"CHECK B: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
-	self deny: beginCalled. 
 	self assert: env servicePointA isIdle.		
+			
+	
 
 ]
 
@@ -4032,7 +4035,7 @@ Q787ValidationTest >> test1_2_2_3s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_2_3s2 [
-	| env continueCalled  abortInspector |
+	| env continueCalled  beginInspector abortInspector |
 	continueCalled := false.
 	
 	env := self given: #shouldCreateTestEnvironment.
@@ -4052,6 +4055,8 @@ Q787ValidationTest >> test1_2_2_3s2 [
 		
 		
 	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A? "
+	beginInspector := self checkBegin: env servicePointA sentPackets first.
+	
 	" CHECK B: VERIFY THAT THE TR-USER WAS NOT INFORMED OF THE CONTINUE MESSAGE AT SP A. "
 	self deny: continueCalled. 
 	self assert: env servicePointA sentPackets size = 2.
@@ -4061,13 +4066,14 @@ Q787ValidationTest >> test1_2_2_3s2 [
 
 	" CHECK D: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE?"	
 	abortInspector := self checkAbort: (env servicePointA sentPackets second).
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 3.
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
+	self assert: abortInspector message abort dtid = beginInspector message begin otid.
 	self assert: env servicePointA isIdle.
 ]
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_2_3s3 [
-	| env continueCalled  abortInspector |
+	| env continueCalled beginInspector abortInspector |
 	continueCalled := false.
 	env := self given: #shouldCreateTestEnvironment.
 	
@@ -4090,11 +4096,12 @@ Q787ValidationTest >> test1_2_2_3s3 [
 		
 
 	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A? "
-	self checkBegin: env servicePointA sentPackets first.
+	beginInspector := self checkBegin: env servicePointA sentPackets first.
 	
 	" CHECK B: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID VALUE AND CORRECT P-ABORT CAUSE VALUE? "
 	abortInspector := self checkAbort: (env servicePointA sentPackets second).
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 3.
+	self assert: abortInspector message abort dtid = beginInspector message begin otid.
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
 	
 	" CHECK C: IF THE ABORT MESSAGE AND PRIMITIVE WERE SENT, WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.		
@@ -4136,7 +4143,7 @@ Q787ValidationTest >> test1_2_2_3s4 [
 	continueInspector := (self messageInspectorOn: env servicePointB sentPackets first) ignoreErrors.
 	abortInspector := self checkAbort: (env servicePointA sentPackets second).
 	self assert: abortInspector message abort dtid = continueInspector message continue otid.
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 3.
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
 	
 	" CHECK C: IF THE ABORT MESSAGE AND PRIMITIVE WERE SENT, WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.		
@@ -4173,7 +4180,7 @@ Q787ValidationTest >> test1_2_2_3s5 [
 	continueInspector := (self messageInspectorOn: env servicePointB sentPackets first) ignoreErrors.
 	abortInspector := self checkAbort: (env servicePointA sentPackets second).
 	self assert: abortInspector message abort dtid = continueInspector message continue otid.
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 3.
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
 	
 	"CHECK C: IF THE MESSAGE AND PRIMITIVE ABORT WERE SENT, WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.			
@@ -4223,14 +4230,13 @@ Q787ValidationTest >> test1_2_2_4s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_2_4s2 [
-	| env  abortCalled abortInspector |
+	| env  abortCalled continueInspector abortInspector |
 	abortCalled := false.
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointA onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
 			dialogue requestTcContinue ]].
-	
 	
 	env servicePointB newDialogue
 		onContinue: [ :cont |
@@ -4245,12 +4251,13 @@ Q787ValidationTest >> test1_2_2_4s2 [
 	self checkBegin: env servicePointA receivedPackets first.
 	
 	"CHECK B: WAS THE FIRST CONTINUE MESSAGE CORRECTLY SENT FROM SP A? "
-	self checkContinue: env servicePointA sentPackets first.
+	continueInspector := self checkContinue: env servicePointA sentPackets first.
 		
 	"CHECK C: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE? "
 	self assert: abortCalled.
 	abortInspector := self checkAbort: (env servicePointA sentPackets second).
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 3.
+	self assert: abortInspector message abort dtid = continueInspector message continue otid.
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
 	
 	"CHECK D: IF THE ABORT WAS SENT, WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.		
@@ -4364,7 +4371,7 @@ Q787ValidationTest >> test1_2_2_7s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_2_7s2 [
-	| env abortCalled abortInspector |
+	| env abortCalled  abortInspector |
 	abortCalled := false.
 	
 	env := self given: #shouldCreateTestEnvironment.
@@ -4381,13 +4388,15 @@ Q787ValidationTest >> test1_2_2_7s2 [
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
 
-	"CHECK A: IF A P-ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH THE CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE? "
-	abortInspector := self checkAbort: env servicePointA sentPackets first.
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 0.
-	self deny: abortCalled.
-	
+	"Misc checks"
 	self assert: env servicePointA sentPackets size = 1.
 	self assert: env servicePointB sentPackets size = 1.
+
+	"CHECK A: IF A P-ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH THE CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE? "
+	abortInspector := self checkAbort: env servicePointA sentPackets first.
+	self assert: abortInspector message abort dtid = #[1 0 0 0]. "hard coded as message can not be parsed"
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort unrecognizedMessageType value.
+	self deny: abortCalled.
 	
 	"CHECK B: IF THE ABORT WAS SENT, WERE TSL THE STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
@@ -4420,7 +4429,8 @@ Q787ValidationTest >> test1_2_2_7s3 [
 	
 	"CHECK B: IF THE P-ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH THE CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE? "
 	abortInspector := self checkAbort: env servicePointA sentPackets second.
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 0.
+	self assert: abortInspector message abort dtid = #[1 0 0 0]. "hard coded as message can not be parsed"
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort unrecognizedMessageType value.
 	self assert: abortCalled.
 	
 	"CHECK C: IF THE ABORT WAS SENT, WAS THE TR-USER AT SP A ADVISED BY A TR-P-ABORT INDICATION PRIMITIVE THAT THIS TRANSACTION HAD BEEN ABORTED? "
@@ -4435,7 +4445,7 @@ Q787ValidationTest >> test1_2_2_7s3 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_3_1s1 [
-	| env beginCalled abortCalled abortInspector |
+	| env beginCalled abortCalled  abortInspector |
 	beginCalled := false.
 	abortCalled := false.
 	
@@ -4465,7 +4475,8 @@ Q787ValidationTest >> test1_2_3_1s1 [
 	
 	"CHECK C: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE?"
 	abortInspector := self checkAbort: env servicePointA sentPackets first.
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 3.
+	self assert: abortInspector message abort dtid = #[1 0 0 0]. "hard coded as message can not be parsed"
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
 	self assert: abortCalled.
 
 	"Misc"
@@ -4475,7 +4486,7 @@ Q787ValidationTest >> test1_2_3_1s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_3_2s1 [
-	| env continueCalled abortCalled abortInspector |
+	| env continueCalled abortCalled  abortInspector |
 	abortCalled := false.
 	continueCalled := false. 
 	
@@ -4495,14 +4506,15 @@ Q787ValidationTest >> test1_2_3_2s1 [
 		applicationContextName: self anyApplicationContextId. 
 
 	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A? "
-	self checkBegin: env servicePointA sentPackets first.
+	 self checkBegin: env servicePointA sentPackets first.
 	
 	"CHECK B: VERIFY THAT THE TR-USER WAS NOT INFORMED OF THE CONTINUE MESSAGE AT SP A. "
 	self deny: continueCalled.
 	
 	"CHECK C: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE?"
 	abortInspector := self checkAbort: env servicePointA sentPackets second.
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = 3.
+	self assert: abortInspector message abort dtid = #[1 0 0 0]. "Hard coded as continue message is not parsable"
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
 	self assert: abortCalled.
 	
 	"Misc checks"
@@ -4538,7 +4550,7 @@ Q787ValidationTest >> test1_3_1s1 [
 	
 	"CHECK C: WAS AN ABORT MESSAGE CORRECTLY SENT FROM SP A WITH A P-ABORT CAUSE VALUE OF UNRECOGNIZED TRANSACTION ID? "
 	self assert: env servicePointA sentPackets size = 1.
-	self assert: (abort message abort reason at: 'p-abortCause') = 1.
+	self assert: (abort message abort reason at: 'p-abortCause') = TCAPDialoguePAbort unrecognizedTransactionID value.
 	
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.		
