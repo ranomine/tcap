@@ -102,8 +102,10 @@ TCAPServiceEndPoint >> installStateClass: aClass [
 
 { #category : #testing }
 TCAPServiceEndPoint >> isIdle [
-	self flag: #needsToDone.
-	^ true
+	"Endpoint is idle when no transactions pending"
+	
+	self flag: #needsToDone. "is this correct?"
+	^self hasTransactions not
 ]
 
 { #category : #accessing }
