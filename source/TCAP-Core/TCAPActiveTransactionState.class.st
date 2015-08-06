@@ -45,6 +45,7 @@ TCAPActiveTransactionState >> requestTrContinue: continue [
 TCAPActiveTransactionState >> requestTrEnd: aDictionary [ 
 	self flag: #unchecked.
 	aDictionary 
-		ifNotNil: [ self endTransaction: aDictionary ].
+		ifNotNil: [ self endTransaction: aDictionary ]
+		ifNil: [ transaction stop ]
 
 ]

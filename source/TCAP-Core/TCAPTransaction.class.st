@@ -47,7 +47,8 @@ TCAPTransaction >> basicAbort: abort [
 	self remoteTransactionId ifNotNil: [  
 		abort at: 'dtid' put: self remoteTransactionId ].
 	self
-		sendPayload: ((TCMessage newIn: abort type modelRoot) abort: abort)
+		sendPayload: ((TCMessage newIn: abort type modelRoot) abort: abort).
+	self stop.
 ]
 
 { #category : #accessing }
