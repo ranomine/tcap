@@ -4026,7 +4026,8 @@ Q787ValidationTest >> test1_2_2_3s1 [
 	self assert: env servicePointB sentPackets size = 1.
 	
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THE TRANSACTION, PRIOR TO THE CONTINUE MESSAGE, LEFT IN THE INITIATION SENT STATE AT SP A?"
-	self assert: env servicePointA isIdle.
+	self assert: env servicePointA dialoguesAndTransactions size = 1.
+	self assert: env servicePointA dialoguesAndTransactions anyOne transaction state class = TCAPInitiationSentTransactionState
 
 ]
 
@@ -4220,7 +4221,9 @@ Q787ValidationTest >> test1_2_2_4s1 [
 	self assert: env servicePointB sentPackets size = 2.
 	
 	"CHECK E: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION, PRIOR TO THE CORRUPTED CONTINUE MESSAGE, LEFT IN THE ACTIVE STATE AT SP A?"
-	self assert: env servicePointA isIdle.
+	self assert: env servicePointA dialoguesAndTransactions size = 1.
+	self assert: env servicePointA dialoguesAndTransactions anyOne transaction state class = TCAPActiveTransactionState
+
 ]
 
 { #category : #tests }
@@ -4295,7 +4298,9 @@ Q787ValidationTest >> test1_2_2_5s1 [
 	self assert: env servicePointB sentPackets size = 1.
 
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION, PRIOR TO THE END MESSAGE, LEFT IN THE INITIATION SENT STATE AT SP A? "
-	self assert: env servicePointA isIdle.
+	self assert: env servicePointA dialoguesAndTransactions size = 1.
+	self assert: env servicePointA dialoguesAndTransactions anyOne transaction state class = TCAPInitiationSentTransactionState
+
 ]
 
 { #category : #tests }
@@ -4326,7 +4331,9 @@ Q787ValidationTest >> test1_2_2_6s1 [
 	self assert: env servicePointB sentPackets size = 1.
 	
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION, PRIOR TO THE ABORT MESSAGE, LEFT IN THE INITIATION SENT STATE AT SP A?"		
-	self assert: env servicePointA isIdle.
+	self assert: env servicePointA dialoguesAndTransactions size = 1.
+	self assert: env servicePointA dialoguesAndTransactions anyOne transaction state class = TCAPInitiationSentTransactionState
+
 ]
 
 { #category : #tests }
