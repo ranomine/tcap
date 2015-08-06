@@ -70,13 +70,6 @@ TCAPServiceEndPoint >> dialoguesAndTransactions [
 	^ dialoguesAndTransactions copy
 ]
 
-{ #category : #finding }
-TCAPServiceEndPoint >> findTransaction: aBlock [
-	^ dialoguesAndTransactions 
-		detect: [ :each | aBlock value: each transaction  ]
-		ifNone: [ nil ]
-]
-
 { #category : #testing }
 TCAPServiceEndPoint >> hasTransactions [
 	^ dialoguesAndTransactions notEmpty

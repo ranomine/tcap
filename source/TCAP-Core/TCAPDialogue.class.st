@@ -484,24 +484,6 @@ TCAPDialogue >> requestTcContinue [
 	self state requestTcContinue
 ]
 
-{ #category : #'requests - for testing' }
-TCAPDialogue >> requestTcContinueDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName [
-	self state 
-		requestTcContinueDestinationAddress: aDestinationAddress 
-		originatingAddress: anOriginatingAddress 
-		applicationContextName: anApplicationContextName
-		userInformation: nil
-]
-
-{ #category : #'requests - for testing' }
-TCAPDialogue >> requestTcContinueDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName userInformation: aUserInformation [
-	self state 
-		requestTcContinueDestinationAddress: aDestinationAddress 
-		originatingAddress: anOriginatingAddress 
-		applicationContextName: anApplicationContextName
-		userInformation: aUserInformation
-]
-
 { #category : #requests }
 TCAPDialogue >> requestTcEnd: aTerminationBoolean [
 	self state requestTcEnd: aTerminationBoolean 

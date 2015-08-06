@@ -14,3 +14,21 @@ TCAPTestDialogue >> addLocalInvocationWithId: aNumber [
 	localInvocations add: invocation.
 	^ invocation
 ]
+
+{ #category : #'requests - for testing' }
+TCAPTestDialogue >> requestTcContinueDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName [
+	self state 
+		requestTcContinueDestinationAddress: aDestinationAddress 
+		originatingAddress: anOriginatingAddress 
+		applicationContextName: anApplicationContextName
+		userInformation: nil
+]
+
+{ #category : #'requests - for testing' }
+TCAPTestDialogue >> requestTcContinueDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName userInformation: aUserInformation [
+	self state 
+		requestTcContinueDestinationAddress: aDestinationAddress 
+		originatingAddress: anOriginatingAddress 
+		applicationContextName: anApplicationContextName
+		userInformation: aUserInformation
+]
