@@ -2393,6 +2393,7 @@ Q787CommonSpecTest >> test1_1_2_1_2_2s3 [
 Q787CommonSpecTest >> test1_1_2_2_1_1s1 [
 	| env continue end continueCalled endCalled |
 	env := self given: #shouldCreateTestEnvironment.
+	
 	env servicePointB onDialogue: [ :dialogue|
 		dialogue 
 			onBegin: [ dialogue requestTcContinue ];
@@ -2465,8 +2466,8 @@ Q787CommonSpecTest >> test1_1_2_2_1_1s2 [
 	self deny: endCalled notNil.
 	
 	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
-	self flag: #TBD.
-	self deny: env hasInitialState
+	self assert: env servicePointA isIdle.
+	self deny: env hasInitialState.
 ]
 
 { #category : #tests }
@@ -2695,7 +2696,7 @@ Q787CommonSpecTest >> test1_1_2_2_2_1s2 [
 	self assert: (continue findKey: 'dtid') = (begin findKey: 'otid').
 	
 	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
-	self flag: #TBD.
+	self assert: env servicePointA isIdle.
 	self deny: env hasInitialState
 ]
 

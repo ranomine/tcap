@@ -3970,6 +3970,7 @@ Q787ValidationTest >> test1_2_2_2s2 [
 		inspect := TCAPMessageInspector packet: bytes.
 		inspect taggedValue elements second tag number: 13.
 		inspect updatePacketFromTaggedValue; packet ].
+	
 	env servicePointB newDialogue
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -3986,7 +3987,7 @@ Q787ValidationTest >> test1_2_2_2s2 [
 	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
 		
 	"CHECK B: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
-	self flag: #TBD
+	self assert: env servicePointA isIdle.
 			
 	
 
@@ -4003,7 +4004,8 @@ Q787ValidationTest >> test1_2_2_3s1 [
 	
 	env servicePointB onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
-			dialogue requestTcContinue  ]].
+			dialogue requestTcContinue ]].
+	
 	
 	
 	env servicePointA newDialogue
@@ -4024,7 +4026,7 @@ Q787ValidationTest >> test1_2_2_3s1 [
 	self assert: env servicePointB sentPackets size = 1.
 	
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THE TRANSACTION, PRIOR TO THE CONTINUE MESSAGE, LEFT IN THE INITIATION SENT STATE AT SP A?"
-	self flag: #TBD.
+	self assert: env servicePointA isIdle.
 
 ]
 
@@ -4218,7 +4220,7 @@ Q787ValidationTest >> test1_2_2_4s1 [
 	self assert: env servicePointB sentPackets size = 2.
 	
 	"CHECK E: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION, PRIOR TO THE CORRUPTED CONTINUE MESSAGE, LEFT IN THE ACTIVE STATE AT SP A?"
-	self flag: #TBD
+	self assert: env servicePointA isIdle.
 ]
 
 { #category : #tests }
@@ -4293,7 +4295,7 @@ Q787ValidationTest >> test1_2_2_5s1 [
 	self assert: env servicePointB sentPackets size = 1.
 
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION, PRIOR TO THE END MESSAGE, LEFT IN THE INITIATION SENT STATE AT SP A? "
-	self flag:#TBD
+	self assert: env servicePointA isIdle.
 ]
 
 { #category : #tests }
@@ -4324,8 +4326,7 @@ Q787ValidationTest >> test1_2_2_6s1 [
 	self assert: env servicePointB sentPackets size = 1.
 	
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION, PRIOR TO THE ABORT MESSAGE, LEFT IN THE INITIATION SENT STATE AT SP A?"		
-	"self assert: env servicePointA isIdle."
-	self flag: #TBD.
+	self assert: env servicePointA isIdle.
 ]
 
 { #category : #tests }
@@ -4393,8 +4394,7 @@ Q787ValidationTest >> test1_2_2_7s2 [
 	self deny: abortCalled.
 	
 	"CHECK B: IF THE ABORT WAS SENT, WERE TSL THE STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
-	"self assert: env servicePointA isIdle."
-	self flag: #TBD.
+	self assert: env servicePointA isIdle.
 ]
 
 { #category : #tests }
@@ -4549,7 +4549,7 @@ Q787ValidationTest >> test1_3_1s1 [
 	self assert: (abort message abort reason at: 'p-abortCause') = TCAPDialoguePAbort unrecognizedTransactionID value.
 	
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
-	self flag: #TBD	
+	self assert: env servicePointA isIdle.
 
 ]
 
