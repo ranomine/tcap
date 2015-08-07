@@ -2,6 +2,7 @@ Class {
 	#name : #TCAPTransactionCoordinator,
 	#superclass : #TCAPObject,
 	#instVars : [
+		'factory',
 		'container',
 		'messageType',
 		'tcapPdu'

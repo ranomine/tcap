@@ -40,16 +40,6 @@ TCAPDialogueAPDU >> pduType [
 ]
 
 { #category : #accessing }
-TCAPDialogueAPDU >> typeOid [
-	^ typeOid
-]
-
-{ #category : #accessing }
-TCAPDialogueAPDU >> typeOid: anOid [
-	typeOid := anOid
-]
-
-{ #category : #accessing }
 TCAPDialogueAPDU >> userInformation [
 	^ userInformation
 ]

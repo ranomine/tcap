@@ -55,12 +55,12 @@ TCAPInitiationReceivedDialogueState >> requestTcPAbort: aPAbort [
 { #category : #requests }
 TCAPInitiationReceivedDialogueState >> requestTcUAbort: anAbortInformation [
 	| abort |
-	dialogue hasApplicationContext
-		ifTrue: [  
-			abort := ( anAbortInformation notNil  and: [ anAbortInformation isRefused ]) 
-				ifTrue: [  anAbortInformation asAbort ]
-				ifFalse: [ self factory newDialogueUAbort serviceUser asAbortIn: self factory ]]
-		ifFalse: [ abort := nil ].
+	abort := dialogue hasApplicationContext
+		ifTrue: [ 
+			(anAbortInformation notNil and: [ anAbortInformation isRefused ])
+				ifTrue: [ anAbortInformation asAbort ]
+				ifFalse: [ self factory newDialogueUAbort serviceUser asAbortIn: self factory ] ]
+		ifFalse: [ nil ].
 	dialogue transaction requestTrUAbort: abort.
 	dialogue terminate
 ]
