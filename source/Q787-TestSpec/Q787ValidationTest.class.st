@@ -4473,8 +4473,7 @@ Q787ValidationTest >> test1_2_3_1s1 [
 	self deny: beginCalled.
 	
 	"CHECK B: WERE THE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A? "
-	"self assert: env servicePointA isIdle."
-	self flag: #TBD.
+	self assert: env servicePointA isIdle.
 	
 	"CHECK C: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE?"
 	abortInspector := self checkAbort: env servicePointA sentPackets first.
