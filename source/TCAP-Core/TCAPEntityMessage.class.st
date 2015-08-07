@@ -29,6 +29,11 @@ TCAPEntityMessage class >> fromByteArray: aByteArray [
 ]
 
 { #category : #'as yet unclassified' }
+TCAPEntityMessage class >> fromSCCP: aByteArray [
+	^ self fromByteArray: ( SCCPUDT parseFrom: aByteArray ) data
+]
+
+{ #category : #'as yet unclassified' }
 TCAPEntityMessage class >> messageTypeOf: aTaggedValue [ 
 	^ [ (self tcapModule pdu elementWithTag: aTaggedValue tag) key ]
 		on: NotFound
