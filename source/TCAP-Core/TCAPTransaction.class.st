@@ -62,11 +62,6 @@ TCAPTransaction >> dialogueHandler [
 ]
 
 { #category : #accessing }
-TCAPTransaction >> ensureId [
-	^ container ensureId
-]
-
-{ #category : #accessing }
 TCAPTransaction >> id [
 	^ container id
 ]
@@ -205,12 +200,6 @@ TCAPTransaction >> sendPayload: aValue [
 		sendPayload: aValue
 		to: remoteAddress 
 		from: address
-]
-
-{ #category : #'as yet unclassified' }
-TCAPTransaction >> start [
-	self ensureId.
-	self switchState: #idle
 ]
 
 { #category : #accessing }
