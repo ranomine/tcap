@@ -58,6 +58,11 @@ ROSMessage >> operation [
 	^ parent operation
 ]
 
+{ #category : #accessing }
+ROSMessage >> operationName [
+	^ parent operationName
+]
+
 { #category : #actions }
 ROSMessage >> prepare [
 ]

@@ -26,9 +26,11 @@ ROSResult class >> rosMessageType [
 ROSResult >> decodeResult [
 
 	self result result isAsn1TaggedValue ifTrue: [  
+		self hasResultType ifFalse: [ 
+			ROSInvocationError signal: 'decoding ', self class name,' failed because operation ', self operationName,'  has no resultType ' ].
 		self result result: (ASN1
 			read: self result result
-			usingType: self operation resultType) ]
+			usingType: self resultType) ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -38,7 +40,7 @@ ROSResult >> dispatchTo: aDialogue [
 
 { #category : #'as yet unclassified' }
 ROSResult >> hasResultType [
-	^self operation resultType notNil
+	^self resultType notNil
 ]
 
 { #category : #accessing }
@@ -66,4 +68,9 @@ ROSResult >> result: anObject [
 { #category : #accessing }
 ROSResult >> resultObject [
 	^ (map at: 'result') at: 'result'
+]
+
+{ #category : #accessing }
+ROSResult >> resultType [
+	^ self operation resultType
 ]

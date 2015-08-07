@@ -71,6 +71,11 @@ ROSOperation >> invokeArgument: anObject on: invocation [
 ]
 
 { #category : #accessing }
+ROSOperation >> name [
+	^ self type originalBindingName 
+]
+
+{ #category : #accessing }
 ROSOperation >> operationCode [
 	^ type attributeAt: 'operationCode'
 ]

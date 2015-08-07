@@ -229,7 +229,7 @@ ROSInvocation >> operationCode [
 
 { #category : #accessing }
 ROSInvocation >> operationName [
-	^ operation type originalBindingName
+	^ operation name
 ]
 
 { #category : #received }
