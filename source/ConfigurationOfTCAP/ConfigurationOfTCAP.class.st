@@ -561,7 +561,7 @@ ConfigurationOfTCAP >> baseline5: spec [
 			project: 'Fuel' with: [
 				spec
 					className: #ConfigurationOfFuel;
-					versionString: '1.9.3';
+					versionString: '1.9.4';
 					repository: 'http://smalltalkhub.com/mc/Pharo/Fuel/main/' ].
 		spec 
 			package: 'ROS-Core' with: [
