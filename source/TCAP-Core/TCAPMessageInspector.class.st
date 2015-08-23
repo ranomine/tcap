@@ -45,12 +45,12 @@ TCAPMessageInspector >> findKey: aString [
 	^ self message find: aString
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #finding }
 TCAPMessageInspector >> findTaggedValue: aString [
 	^ self taggedValue findValueWithTag: (self messageValue type findTypeWithKey: aString) tag
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #finding }
 TCAPMessageInspector >> findTaggedValueForTypeNamed:  aTypeName [
 	^ self taggedValue findValueWithTag: (self asn1Model typeNamed: aTypeName)  tag
 ]

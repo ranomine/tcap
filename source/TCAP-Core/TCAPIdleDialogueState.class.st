@@ -70,3 +70,26 @@ TCAPIdleDialogueState >> requestTcContinueDestinationAddress: aDestinationAddres
 	
 
 ]
+
+{ #category : #'requests - for testing' }
+TCAPIdleDialogueState >> requestTcEndDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName userInformation: userInformation [
+	|  begin dialoguePortion |
+	"for testing: send a continue message from idle state"
+	begin := self factory newEndMessage.
+	anApplicationContextName  ifNotNil: [ 
+		dialogue applicationContextName: anApplicationContextName.
+		
+		dialoguePortion := (self factory newDialogueRequest)
+			applicationContextName: dialogue applicationContextName;
+			userInformation: userInformation.
+			
+		begin 
+			at:  'dialoguePortion' 
+			put: (dialoguePortion asExternalValueIn: dialogue factory) ].
+	
+	dialogue addComponentsTo: begin.	
+	dialogue switchState: #initiationSent.
+	dialogue transactionCoordinator requestTrEnd: dialogue transaction destinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress  userData: begin.
+	
+
+]

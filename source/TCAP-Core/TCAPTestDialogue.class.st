@@ -32,3 +32,21 @@ TCAPTestDialogue >> requestTcContinueDestinationAddress: aDestinationAddress ori
 		applicationContextName: anApplicationContextName
 		userInformation: aUserInformation
 ]
+
+{ #category : #'requests - for testing' }
+TCAPTestDialogue >> requestTcEndDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName [
+	self state 
+		requestTcEndDestinationAddress: aDestinationAddress 
+		originatingAddress: anOriginatingAddress 
+		applicationContextName: anApplicationContextName
+		userInformation: nil
+]
+
+{ #category : #'requests - for testing' }
+TCAPTestDialogue >> requestTcEndDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName userInformation: aUserInformation [
+	self state 
+		requestTcEndDestinationAddress: aDestinationAddress 
+		originatingAddress: anOriginatingAddress 
+		applicationContextName: anApplicationContextName
+		userInformation: aUserInformation
+]

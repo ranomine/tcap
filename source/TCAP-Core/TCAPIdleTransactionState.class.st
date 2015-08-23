@@ -30,7 +30,7 @@ TCAPIdleTransactionState >> requestTrBegin: begin [
 
 ]
 
-{ #category : #'requests - for testing' }
+{ #category : #requests }
 TCAPIdleTransactionState >> requestTrContinue: continue [
 	"we send a continue without having send a begin first. dtid is not registered"
 	continue
@@ -38,4 +38,9 @@ TCAPIdleTransactionState >> requestTrContinue: continue [
 		at: 'dtid' put: transaction container container idPool basicNextId. "the next possible ID is unassigned now"
 	transaction switchState: #active.
 	transaction sendPayload:  continue asTCMessage 
+]
+
+{ #category : #requests }
+TCAPIdleTransactionState >> requestTrEnd: aBoolean [ 
+	"if and end is received in idle state, do nothing. See test1_3_2s1"
 ]
