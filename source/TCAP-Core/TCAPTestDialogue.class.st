@@ -16,6 +16,24 @@ TCAPTestDialogue >> addLocalInvocationWithId: aNumber [
 ]
 
 { #category : #'requests - for testing' }
+TCAPTestDialogue >> requestTcAbortDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName [
+	self state 
+		requestTcAbortDestinationAddress: aDestinationAddress 
+		originatingAddress: anOriginatingAddress 
+		applicationContextName: anApplicationContextName
+		userInformation: nil
+]
+
+{ #category : #'requests - for testing' }
+TCAPTestDialogue >> requestTcAbortDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName userInformation: userInfo [
+	self state 
+		requestTcAbortDestinationAddress: aDestinationAddress 
+		originatingAddress: anOriginatingAddress 
+		applicationContextName: anApplicationContextName
+		userInformation: userInfo
+]
+
+{ #category : #'requests - for testing' }
 TCAPTestDialogue >> requestTcContinueDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress applicationContextName: anApplicationContextName [
 	self state 
 		requestTcContinueDestinationAddress: aDestinationAddress 

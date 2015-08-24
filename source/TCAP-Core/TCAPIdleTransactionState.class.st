@@ -21,6 +21,15 @@ TCAPIdleTransactionState >> receivedBegin: aMessage [
 ]
 
 { #category : #requests }
+TCAPIdleTransactionState >> requestTrAbort: abort [ 
+	"we send aboty without having send a begin first. dtid is not registered"
+	abort
+		at: 'dtid' put: transaction container container idPool basicNextId. "the next possible ID is unassigned now"
+	transaction switchState: #active.
+	transaction sendPayload:  abort asTCMessage 
+]
+
+{ #category : #requests }
 TCAPIdleTransactionState >> requestTrBegin: begin [ 
 
 	begin at: 'otid' put: transaction id.
@@ -41,6 +50,10 @@ TCAPIdleTransactionState >> requestTrContinue: continue [
 ]
 
 { #category : #requests }
-TCAPIdleTransactionState >> requestTrEnd: aBoolean [ 
-	"if and end is received in idle state, do nothing. See test1_3_2s1"
+TCAPIdleTransactionState >> requestTrEnd: end [ 
+	"we send end without having send a begin first. dtid is not registered"
+	end
+		at: 'dtid' put: transaction container container idPool basicNextId. "the next possible ID is unassigned now"
+	transaction switchState: #active.
+	transaction sendPayload:  end asTCMessage 
 ]

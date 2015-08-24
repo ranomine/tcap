@@ -284,6 +284,14 @@ TCAPTransactionCoordinator >> removeTransaction: aTransaction [
 	container removeDialogueAndTransaction: aTransaction container 
 ]
 
+{ #category : #'requests - for testing' }
+TCAPTransactionCoordinator >> requestTrAbort: aTransaction destinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress userData: aDictionary [ 
+	^ aTransaction 
+		address: anOriginatingAddress;
+		remoteAddress: aDestinationAddress;
+		requestTrEnd: aDictionary 
+]
+
 { #category : #requests }
 TCAPTransactionCoordinator >> requestTrBegin: aTransaction destinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress userData: aDictionary [ 
 	^ aTransaction 
