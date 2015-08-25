@@ -4620,6 +4620,56 @@ Q787ValidationTest >> test1_3_3s1 [
 ]
 
 { #category : #tests }
+Q787ValidationTest >> test1_4_1s1 [
+	| env begin1 end1Called begin2 end2Called    |
+	
+	env := self given: #shouldCreateTestEnvironment.
+	end1Called := false.
+	end2Called := false.
+	
+	env servicePointB onDialogue: [ : dialogue |
+		dialogue 
+			onBegin: [
+				"(2) on receive of the first dialogue we initiate another dialogue by sending a begin message back"
+				env servicePointB newDialogue
+					onEnd: [ 
+						"(5) the second dialogue received an end message"
+						end1Called := true ];
+					requestTcBeginDestinationAddress:  self originatingAddress
+					originatingAddress:  self destinationAddress
+					applicationContextName: self anyApplicationContextId.
+				dialogue requestTcEnd: false.
+			 ]].
+	
+	env servicePointA onDialogue: [ : dialogue | 
+		dialogue
+			"(3) received a begin message for a new dialogue"
+			onBegin: [ 
+				"(4) end the dialogue immediately"
+				dialogue requestTcEnd: false ]].
+
+	"(1) we send the first begin message"
+	env servicePointA newDialogue
+		onEnd: [ 
+			"(6) the first dialogue received an end message"
+			end2Called := true ];
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+		
+	
+	"CHECK A: WAS THE FIRST BEGIN MESSAGE CORRECTLY SENT BY SP A? "
+	begin1 := self checkBegin: env servicePointA sentPackets first.
+	self assert: end1Called.
+	
+	"CHECK B: WAS THE SECOND BEGIN MESSAGE CORRECTLY RECEIVED BY SP A? "
+	begin2 := self checkBegin: env servicePointA receivedPackets first.
+	self assert: end2Called.
+
+	self assert: env hasInitialState.
+]
+
+{ #category : #tests }
 Q787ValidationTest >> test2_1_3_1_1 [
 	| env rejectCalled  dialogue invocation |
 	rejectCalled := false.
