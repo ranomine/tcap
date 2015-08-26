@@ -93,6 +93,11 @@ TCAPIdPool >> noId [
 	^ -1 
 ]
 
+{ #category : #'as yet unclassified' }
+TCAPIdPool >> poolSize [
+	^pool size
+]
+
 { #category : #accessing }
 TCAPIdPool >> size [
 	^ size
