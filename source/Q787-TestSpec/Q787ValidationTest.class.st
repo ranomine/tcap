@@ -4740,6 +4740,60 @@ Q787ValidationTest >> test1_4_1s2 [
 ]
 
 { #category : #tests }
+Q787ValidationTest >> test1_4_2s1 [
+	| env  begin1 end1Called continue abort end2Called |
+	
+	env := self given: #shouldCreateTestEnvironment.
+	end1Called := false.
+	end2Called := false.
+	
+	env servicePointB onDialogue: [ : dialogue |
+		dialogue 
+			onBegin: [
+				env servicePointB newDialogue
+					requestTcContinueDestinationAddress:  self originatingAddress
+					originatingAddress:  self destinationAddress
+					applicationContextName: self anyApplicationContextId.
+				dialogue requestTcEnd: false.
+			 ]].
+	
+	env servicePointA onDialogue: [ : dialogue | 
+		dialogue
+			"(4) received a begin message for a new dialogue"
+			onBegin: [ 
+				"(5) end the dialogue immediately"
+				dialogue requestTrAbort: false]].
+
+	"(1) we send the first begin message"
+	env servicePointA newDialogue
+		onEnd: [ 
+			"(6) the first dialogue received an end message"
+			end2Called := true ];
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+
+	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT BY SP A? "
+	begin1 := self checkBegin: env servicePointA sentPackets first.
+	
+	"CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY RECEIVED BY SP A? "
+	continue := self checkContinue: env servicePointA receivedPackets first.
+		
+	"CHECK C: WAS THE DTID IN THE ABORT MESSAGE THE SAME AS THE OTID IN THE CONTINUE MESSAGE? "
+	abort :=  self checkAbort: env servicePointA sentPackets second.
+	self assert: (abort findKey: 'dtid') = (continue findKey: 'otid').
+	
+	"CHECK D: WAS THE P-ABORT CAUSE IN THE ABORT MESSAGE THE CORRECT VALUE, (UNRECOGNIZED TRANSACTION ID)? "
+	self assert: (abort message abort reason at: 'p-abortCause') = TCAPDialoguePAbort unrecognizedTransactionID value.
+	
+	"CHECK E: WAS THE END MESSAGE CORRECTLY RECEIVED BY SP A? "
+	self checkEnd:  env servicePointA receivedPackets second.
+	
+	"CHECK F: WERE TSL STATE MACHINES ASSOCIATED WITH THESE TRANSACTIONS LEFT IN THE IDLE STATE AT SP A?"
+	self assert: env hasInitialState.
+]
+
+{ #category : #tests }
 Q787ValidationTest >> test2_1_3_1_1 [
 	| env rejectCalled  dialogue invocation |
 	rejectCalled := false.
