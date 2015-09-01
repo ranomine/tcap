@@ -4621,7 +4621,7 @@ Q787ValidationTest >> test1_3_3s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_4_1s1 [
-	| env begin1 end1Called begin2 end2Called    |
+	| env begin1 end1 end1Called begin2 end2Called |
 	
 	env := self given: #shouldCreateTestEnvironment.
 	end1Called := false.
@@ -4660,12 +4660,82 @@ Q787ValidationTest >> test1_4_1s1 [
 	
 	"CHECK A: WAS THE FIRST BEGIN MESSAGE CORRECTLY SENT BY SP A? "
 	begin1 := self checkBegin: env servicePointA sentPackets first.
-	self assert: end1Called.
-	
+
 	"CHECK B: WAS THE SECOND BEGIN MESSAGE CORRECTLY RECEIVED BY SP A? "
 	begin2 := self checkBegin: env servicePointA receivedPackets first.
+	
+	"CHECK C: WAS THE DTID IN THE FIRST END MESSAGE THE SAME AS THE OTID IN THE SECOND BEGIN MESSAGE? "
+	end1 :=  self checkEnd: env servicePointA sentPackets second.
+	self assert: (end1 findKey: 'dtid') = (begin2 findKey: 'otid').
+	self assert: end1Called.
+	
+	"CHECK D: WAS THE SECOND END MESSAGE CORRECTLY RECEIVED BY SP A? "
+	self checkEnd: env servicePointA receivedPackets second.
 	self assert: end2Called.
+	
+	"CHECK E: WERE TSL STATE MACHINES ASSOCIATED WITH THESE TRANSACTIONS LEFT IN THE IDLE STATE AT SP A?"
+	self assert: env hasInitialState.
+]
 
+{ #category : #tests }
+Q787ValidationTest >> test1_4_1s2 [
+	| env begin1 end1 end1Called begin2 end2Called |
+	
+	env := self given: #shouldCreateTestEnvironment.
+	end1Called := false.
+	end2Called := false.
+	
+	env servicePointB onDialogue: [ : dialogue |
+		dialogue 
+			onBegin: [
+				"(2) on receive of the first dialogue we reply with continue"
+				dialogue requestTcContinue.
+				"(3) initiate another dialogue by sending a begin message back"
+				env servicePointB newDialogue
+					onEnd: [ 
+						"(5) the second dialogue received an end message"
+						end1Called := true ];
+					requestTcBeginDestinationAddress:  self originatingAddress
+					originatingAddress:  self destinationAddress
+					applicationContextName: self anyApplicationContextId.
+				dialogue requestTcEnd: false.
+			 ]].
+	
+	env servicePointA onDialogue: [ : dialogue | 
+		dialogue
+			"(4) received a begin message for a new dialogue"
+			onBegin: [ 
+				"(5) end the dialogue immediately"
+				dialogue requestTcEnd: false ]].
+
+	"(1) we send the first begin message"
+	env servicePointA newDialogue
+		onEnd: [ 
+			"(6) the first dialogue received an end message"
+			end2Called := true ];
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: self anyApplicationContextId. 
+
+	"CHECK A: WAS THE FIRST BEGIN MESSAGE CORRECTLY SENT BY SP A? "
+	begin1 := self checkBegin: env servicePointA sentPackets first.
+
+	"CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY RECEIVED BY SP A? "
+	 self checkContinue: env servicePointA receivedPackets first.
+	
+	"CHECK C: WAS THE SECOND BEGIN MESSAGE CORRECTLY RECEIVED BY SP A? "
+	begin2 := self checkBegin: env servicePointA receivedPackets second.
+	
+	"CHECK D: WAS THE DTID IN THE FIRST END MESSAGE THE SAME AS THE OTID IN THE SECOND BEGIN MESSAGE? "
+	end1 :=  self checkEnd: env servicePointA sentPackets second.
+	self assert: (end1 findKey: 'dtid') = (begin2 findKey: 'otid').
+	self assert: end1Called.
+	
+	"CHECK E: WAS THE SECOND END MESSAGE CORRECTLY RECEIVED BY SP A? "
+	self checkEnd: env servicePointA receivedPackets third.
+	self assert: end2Called.
+	
+	"CHECK F: WERE TSL STATE MACHINES ASSOCIATED WITH THESE TRANSACTIONS LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env hasInitialState.
 ]
 
