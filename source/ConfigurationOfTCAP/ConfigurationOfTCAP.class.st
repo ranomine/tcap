@@ -276,159 +276,6 @@ ConfigurationOfTCAP class >> validate [
 	^ ((Smalltalk at: #MetacelloToolBox) validateConfiguration: self debug: #() recurse: false) explore
 ]
 
-{ #category : #'as yet unclassified' }
-ConfigurationOfTCAP >> baseline01: spec [ 
-        <version: '0.1-baseline'>
-        
-	spec for: #common do: [
-		spec blessing: #baseline.
-                spec repository: 'http://smalltalkhub.com/mc/osmocom/Osmocom/main'.    
-                spec 
-				package: 'TCAP-Core' with: [ spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample')];
-				package: 'MAP-Core' with: [ spec requires: #('ROS-Core' )];
-				package: 'ROS-Core' with: [ spec requires: #('ASN1-Tool') ];
-				package: 'Q787-TestSpec' with: [ spec requires: #('TCAP-Core') ].
-			spec
-				project: 'Phexample' with: [
-					spec
-						className: 'ConfigurationOfPhexample';
-						versionString: '1.2';
-						repository: 'http://smalltalkhub.com/mc/Phexample/Phexample/main' ].	
-			spec
-				project: 'Osmocom' with: [
-					spec
-						className: 'ConfigurationOfOsmocom';
-						versionString: #'bleedingEdge';
-						file: 'ConfigurationOfOsmocom';
-						repository: 'http://smalltalkhub.com/mc/osmocom/Osmocom/main' ].
-			spec
-				project: 'ASN1' with: [
-					spec
-						className: 'ConfigurationOfASN1';
-						versionString: #development;
-						file: 'ConfigurationOfASN1';
-						repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ].
-			spec
-				project: 'ASN1-Tool' copyFrom: 'ASN1' with: [
-					spec loads:  #( 'ASN1-Tool' ) ].
-			spec
-				project: 'ASN1-Tests-Builder' copyFrom: 'ASN1' with: [
-					spec loads:  #( 'ASN1-Tests-Builder' ) ].
-			spec
-				project: 'ASN1 full' copyFrom: 'ASN1' with: [
-					spec loads:  #( 'tests' ) ].
-			spec
-				project: 'ASN1-Tests-Tool' copyFrom: 'ASN1-Tool' with: [
-					spec loads:  #( 'ASN1-Tests-Tool' ) ].
-			
-                spec
-				group: 'default' with: #('ASN1-Tool' 'Osmocom' 'ROS-Core' 'MAP-Core' 'TCAP-Core');
-				group: 'q787' with: #( 'Q787-TestSpec' );
-				group: 'all' with: #('default' 'ASN1 full')].
-]
-
-{ #category : #'as yet unclassified' }
-ConfigurationOfTCAP >> baseline2: spec [ 
-        <version: '2-baseline'>
-
-	spec for: #common do: [
-		spec blessing: #baseline.
-                spec repository: 'http://smalltalkhub.com/mc/osmocom/Osmocom/main'.    
-                spec 
-				package: 'TCAP-Core' with: [ spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample')];
-				package: 'MAP-Core' with: [ spec requires: #('ROS-Core' )];
-				package: 'ROS-Core' with: [ spec requires: #('ASN1-Tool') ];
-				package: 'Q787-TestSpec' with: [ spec requires: #('TCAP-Core') ];
-				package: 'SS7-Helper' with: [ spec requires: #('Osmocom') ].
-			spec
-				project: 'Phexample' with: [
-					spec
-						className: 'ConfigurationOfPhexample';
-						versionString: '1.2';
-						repository: 'http://smalltalkhub.com/mc/Phexample/Phexample/main' ].	
-			spec
-				project: 'Osmocom' with: [
-					spec
-						className: 'ConfigurationOfOsmocom';
-						versionString: #'bleedingEdge';
-						file: 'ConfigurationOfOsmocom';
-						repository: 'http://smalltalkhub.com/mc/osmocom/Osmocom/main' ].
-			spec
-				project: 'ASN1' with: [
-					spec
-						className: 'ConfigurationOfASN1';
-						versionString: #bleedingEdge;
-						file: 'ConfigurationOfASN1';
-						repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ].
-			spec
-				project: 'ASN1-Tool' copyFrom: 'ASN1' with: [
-					spec loads:  #( 'ASN1-Tool' ) ].
-			spec
-				project: 'ASN1-Tests-Builder' copyFrom: 'ASN1' with: [
-					spec loads:  #( 'ASN1-Tests-Builder' ) ].
-			spec
-				project: 'ASN1 full' copyFrom: 'ASN1' with: [
-					spec loads:  #( 'tests' ) ].
-			spec
-				project: 'ASN1-Tests-Tool' copyFrom: 'ASN1-Tool' with: [
-					spec loads:  #( 'ASN1-Tests-Tool' ) ].
-			
-			
-                spec
-				group: 'default' with: #('ASN1-Tool' 'Osmocom' 'ROS-Core' 'MAP-Core' 'TCAP-Core' 'SS7-Helper');
-				group: 'q787' with: #( 'Q787-TestSpec' );
-				group: 'all' with: #('default' 'ASN1 full' 'q787')].
-]
-
-{ #category : #'as yet unclassified' }
-ConfigurationOfTCAP >> baseline3: spec [ 
-        <version: '3-baseline'>
-
-	spec for: #common do: [
-		spec blessing: #baseline.
-                spec repository: 'http://smalltalkhub.com/mc/osmocom/TCAP/main'.    
-                spec 
-				package: 'TCAP-Core' with: [ spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample')];
-				package: 'MAP-Core' with: [ spec requires: #('ROS-Core' )];
-				package: 'ROS-Core' with: [ spec requires: #('ASN1-Tool' 'ASN1-Builder') ];
-				package: 'Q787-TestSpec' with: [ spec requires: #('TCAP-Core') ];
-				package: 'SS7-Helper' with: [ spec requires: #() ].
-			spec
-				project: 'Phexample' with: [
-					spec
-						className: 'ConfigurationOfPhexample';
-						versionString: '1.2';
-						repository: 'http://smalltalkhub.com/mc/Phexample/Phexample/main' ].	
-			spec
-				project: 'ASN1' with: [
-					spec
-						className: 'ConfigurationOfASN1';
-						versionString: #bleedingEdge;
-						file: 'ConfigurationOfASN1';
-						repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ].
-			spec
-				project: 'ASN1-Tool' copyFrom: 'ASN1' with: [
-					spec loads:  #( 'ASN1-Tool' ) ].
-			spec
-				project: 'ASN1-Builder' copyFrom: 'ASN1' with: [
-					spec loads:  #( 'ASN1-Builder' ) ].
-			spec
-				project: 'ASN1-Tests-Builder' copyFrom: 'ASN1' with: [
-					spec loads:  #( 'ASN1-Tests-Builder' ) ].
-			spec
-				project: 'ASN1 full' copyFrom: 'ASN1' with: [
-					spec loads:  #( 'tests' ) ].
-			spec
-				project: 'ASN1-Tests-Tool' copyFrom: 'ASN1-Tool' with: [
-					spec loads:  #( 'ASN1-Tests-Tool' ) ].
-			
-			
-                spec
-				group: 'default' with: #('ASN1-Tool' 'ROS-Core' 'MAP-Core' 'TCAP-Core' 'SS7-Helper');
-				group: 'q787' with: #( 'Q787-TestSpec' );
-				group: 'all' with: #('default' 'ASN1 full' 'q787')].
-]
-
 { #category : #baselines }
 ConfigurationOfTCAP >> baseline4: spec [
 	<version: '4-baseline'>
@@ -615,86 +462,7 @@ ConfigurationOfTCAP >> project [
 ConfigurationOfTCAP >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '0.3'.
-
-]
-
-{ #category : #versions }
-ConfigurationOfTCAP >> version01: spec [
-	<version: '0.1' imports: #('0.1-baseline' )>
-
-	spec for: #'common' do: [
-		spec blessing: #'development'.
-		spec description: '0.3.8 : version bump
-0.3.9 : version bump
-0.1 : bisecting SS7 into TCAP and HLR'.
-		spec author: 'NorbertHartl'.
-		spec timestamp: '12/10/2013 11:56'.
-		spec 
-			project: 'Phexample' with: '1.2';
-			project: 'Osmocom' with: '0.1.6';
-			project: 'ASN1' with: '0.8.6';
-			project: 'ASN1-Tool' with: '0.8.6';
-			project: 'ASN1-Tests-Builder' with: '0.8.6';
-			project: 'ASN1 full' with: '0.8.6';
-			project: 'ASN1-Tests-Tool' with: '0.8.6'.
-		spec 
-			package: 'TCAP-Core' with: 'TCAP-Core-HolgerHansPeterFreyther.103';
-			package: 'MAP-Core' with: 'MAP-Core-HolgerHansPeterFreyther.14';
-			package: 'ROS-Core' with: 'ROS-Core-NorbertHartl.20';
-			package: 'HLR-Core' with: 'HLR-Core-HolgerHansPeterFreyther.81';
-			package: 'Q787-TestSpec' with: 'Q787-TestSpec-NorbertHartl.25'. ].
-
-]
-
-{ #category : #versions }
-ConfigurationOfTCAP >> version021: spec [
-	<version: '0.2.1' imports: #('0.1-baseline' )>
-
-	spec for: #'common' do: [
-		spec blessing: #'release'.
-		spec description: '0.2 : fixed Issue #1086 : dialogue portions should only be sent in initiation received state and only for continue and end. Fix and tests added'.
-		spec author: 'NorbertHartl'.
-		spec timestamp: '1/14/2014 15:02'.
-		spec 
-			project: 'Phexample' with: '1.2';
-			project: 'Osmocom' with: '0.1.6';
-			project: 'ASN1' with: '0.8.14';
-			project: 'ASN1-Tool' with: '0.8.14';
-			project: 'ASN1-Tests-Builder' with: '0.8.14';
-			project: 'ASN1 full' with: '0.8.14';
-			project: 'ASN1-Tests-Tool' with: '0.8.14'.
-		spec 
-			package: 'TCAP-Core' with: 'TCAP-Core-NorbertHartl.105';
-			package: 'MAP-Core' with: 'MAP-Core-HolgerHansPeterFreyther.14';
-			package: 'ROS-Core' with: 'ROS-Core-NorbertHartl.20';
-			package: 'Q787-TestSpec' with: 'Q787-TestSpec-NorbertHartl.26'. ].
-
-]
-
-{ #category : #versions }
-ConfigurationOfTCAP >> version02: spec [
-	<version: '0.2' imports: #('0.1-baseline' )>
-
-	spec for: #'common' do: [
-		spec blessing: #'development'.
-		spec description: '0.1 : bisecting SS7 into TCAP and HLR
-0.2 : fixed Issue #1086 : dialogue portions should only be sent in initiation received state and only for continue and end. Fix and tests added'.
-		spec author: 'NorbertHartl'.
-		spec timestamp: '1/14/2014 15:02'.
-		spec 
-			project: 'Phexample' with: '1.2';
-			project: 'Osmocom' with: '0.1.6';
-			project: 'ASN1' with: '0.8.13';
-			project: 'ASN1-Tool' with: '0.8.13';
-			project: 'ASN1-Tests-Builder' with: '0.8.13';
-			project: 'ASN1 full' with: '0.8.13';
-			project: 'ASN1-Tests-Tool' with: '0.8.13'.
-		spec 
-			package: 'TCAP-Core' with: 'TCAP-Core-NorbertHartl.105';
-			package: 'MAP-Core' with: 'MAP-Core-HolgerHansPeterFreyther.14';
-			package: 'ROS-Core' with: 'ROS-Core-NorbertHartl.20';
-			package: 'Q787-TestSpec' with: 'Q787-TestSpec-NorbertHartl.26'. ].
+	spec for: #'common' version: '0.4'.
 
 ]
 
@@ -722,5 +490,36 @@ ConfigurationOfTCAP >> version03: spec [
 			package: 'MAP-Core' with: 'MAP-Core-HolgerHansPeterFreyther.36';
 			package: 'TCAP-Core' with: 'TCAP-Core-NorbertHartl.182';
 			package: 'Q787-TestSpec' with: 'Q787-TestSpec-NorbertHartl.45'. ].
+
+]
+
+{ #category : #versions }
+ConfigurationOfTCAP >> version04: spec [
+	<version: '0.4' imports: #('5-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 0.4'.
+		spec author: 'NorbertHartl'.
+		spec timestamp: '9/9/2015 14:42'.
+		spec 
+			project: 'Phexample' with: '1.2';
+			project: 'ASN1' with: '0.8.28-baseline';
+			project: 'ASN1-Tool' with: '0.8.28-baseline';
+			project: 'ASN1-Builder' with: '0.8.28-baseline';
+			project: 'ASN1-Tests-Builder' with: '0.8.28-baseline';
+			project: 'ASN1 full' with: '0.8.28-baseline';
+			project: 'ASN1-Tests-Tool' with: '0.8.28-baseline';
+			project: 'OsmoCore' with: '0.1-baseline';
+			project: 'OsmoNetwork' with: '0.1-baseline';
+			project: 'Fuel' with: '1.9.4'.
+		spec 
+			package: 'ROS-Core' with: 'ROS-Core-NorbertHartl.49';
+			package: 'MAP-Core' with: 'MAP-Core-NorbertHartl.60';
+			package: 'TCAP-Core' with: 'TCAP-Core-NorbertHartl.232';
+			package: 'Q787-TestSpec' with: 'Q787-TestSpec-NorbertHartl.70';
+			package: 'TCAP-Benchmark' with: 'TCAP-Benchmark-NorbertHartl.3';
+			package: 'Camel-Core' with: 'Camel-Core-NorbertHartl.10';
+			package: 'Camel-SCF' with: 'Camel-SCF-NorbertHartl.6'. ].
 
 ]
