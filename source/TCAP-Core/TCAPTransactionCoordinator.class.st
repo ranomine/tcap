@@ -60,7 +60,7 @@ TCAPTransactionCoordinator >> createBasicTransaction [
 { #category : #'as yet unclassified' }
 TCAPTransactionCoordinator >> decodeBinaryMessageFrom: aByteArray [
 	^ [ (TCAPBinaryMessage on: aByteArray) taggedValue; yourself ]
-		on: ASN1TaggedValueError 
+		on: ASN1EncodedValueError 
 		do: [ :readError |
 			"reading tagged values has failed. Try to recover as much data as necessary
 			 to send back a response to the sender" 
