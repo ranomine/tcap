@@ -14,7 +14,7 @@ Q787ValidationTest >> addExtraElementAfterDtidBlock [
 	^ [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
 		"insert bogus p-abortcause"
-		insp taggedValue elements add: (ASN1PrimitiveTaggedValue new tag: (ASN1Tag clazz: 'APPLICATION' number:10); contents: 3) afterIndex: 2.
+		insp taggedValue elements add: (ASN1EncodedPrimitiveValue new tag: (ASN1Tag clazz: 'APPLICATION' number:10); contents: 3) afterIndex: 2.
 		insp updatePacketFromTaggedValue; packet ].
 	
 ]
@@ -4460,7 +4460,7 @@ Q787ValidationTest >> test1_2_3_1s1 [
 
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
-		insp taggedValue elements add: (ASN1PrimitiveTaggedValue new tag: (ASN1Tag clazz: 'UNIVERSAL' number: 2); contents: 3) beforeIndex: 1.
+		insp taggedValue elements add: (ASN1EncodedPrimitiveValue new tag: (ASN1Tag clazz: 'UNIVERSAL' number: 2); contents: 3) beforeIndex: 1.
 		insp updatePacketFromTaggedValue; packet ].
 	
 	env servicePointB newDialogue
