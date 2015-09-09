@@ -30,7 +30,7 @@ ROSError class >> rosMessageType [
 { #category : #'as yet unclassified' }
 ROSError >> decodeParameter [
 
-	(map at: 'parameter' ifAbsent: [ ^ self ]) isAsn1TaggedValue ifTrue: [  
+	(map at: 'parameter' ifAbsent: [ ^ self ]) isAsn1EncodedValue ifTrue: [  
 		map
 			at: 'parameter'
 			put: (ASN1

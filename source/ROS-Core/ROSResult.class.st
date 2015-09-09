@@ -25,7 +25,7 @@ ROSResult class >> rosMessageType [
 { #category : #decoding }
 ROSResult >> decodeResult [
 
-	self result result isAsn1TaggedValue ifTrue: [  
+	self result result isAsn1EncodedValue ifTrue: [  
 		self hasResultType ifFalse: [ 
 			ROSInvocationError signal: 'decoding ', self class name,' failed because operation ', self operationName,'  has no resultType ' ].
 		self result result: (ASN1
