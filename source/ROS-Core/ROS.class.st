@@ -11,7 +11,7 @@ ROS class >> asn1TypeName [
 
 { #category : #'initailize-release' }
 ROS class >> typedCollection [
-	^ ASN1TypedCollection type: self
+	^ ASN1TypedCollectionType type: self
 ]
 
 { #category : #accessing }

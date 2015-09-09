@@ -1,16 +1,16 @@
-Extension { #name : #ASN1Object }
+Extension { #name : #ASN1ObjectType }
 
 { #category : #'*ros-core' }
-ASN1Object >> isError [
+ASN1ObjectType >> isError [
 	^ self clazz = 'ERROR'
 ]
 
 { #category : #'*ros-core' }
-ASN1Object >> isOperation [
+ASN1ObjectType >> isOperation [
 	^ self clazz = 'OPERATION'
 ]
 
 { #category : #'*ros-core' }
-ASN1Object >> operationWithCode: aNumber [
+ASN1ObjectType >> operationWithCode: aNumber [
 	^ self findElement: [ :op | op isOperation and: [ (op attributeAt: 'operationCode') = aNumber ] ]
 ]
