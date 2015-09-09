@@ -25,7 +25,7 @@ MAPTest >> shouldFindAllApplicationContexts [
 	operations := self model allOperations.
 	self assert: operations notEmpty.
 	operations do: [ :operation| | operationName contexts |
-		operationName := operation definingModule fieldAtValue: operation. 
+		operationName := operation module fieldAtValue: operation. 
 		self shouldnt: [contexts := self model applicationContextsForOperation: operation] raise: Error ].
 
 ]
@@ -81,7 +81,7 @@ MAPTest >> shouldHaveOneApplicationContextPerOperation [
 	operations := self model allOperations.
 	self assert: operations notEmpty.
 	operations do: [ :operation| | operationName contexts |
-		operationName := operation definingModule fieldAtValue: operation. 
+		operationName := operation module fieldAtValue: operation. 
 		self shouldnt: [contexts := self model applicationContextsForOperation: operation] raise: Error.
 		self assert: contexts size = 1 ].
 
