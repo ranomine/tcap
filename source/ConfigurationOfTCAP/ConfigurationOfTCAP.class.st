@@ -428,7 +428,7 @@ ConfigurationOfTCAP >> baseline5: spec [
 			group: 'all' with: #('default' 'ASN1 full' 'tests' 'camel' );
 			group: 'bench' with: #('default' 'TCAP-Benchmark' );
 			group: 'tests' with: #('Q787-TestSpec' );
-			group: 'camel' with: #('Camel-Core' 'Camel-SCF' ). ].
+			group: 'camel' with: #('default' 'Camel-Core' 'Camel-SCF' ). ].
 
 ]
 
