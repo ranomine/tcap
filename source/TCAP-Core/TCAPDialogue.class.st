@@ -282,7 +282,7 @@ TCAPDialogue >> newInvocationForName: aString parameters: anObject  class: aClas
 { #category : #accessing }
 TCAPDialogue >> newInvocationForName: aString parameters: anObject  class: aClass linkedTo: anotherInvocation [
 	| invocation |
-	invocation := (componentCoordinator invocationFromName: aString)
+	invocation := ((self rosOperationNamed: aString) invokeWithArgument: anObject)
 		parent: self;
 		id: invokeIdPool nextId;
 		onMessage: [  self halt ];
@@ -293,7 +293,6 @@ TCAPDialogue >> newInvocationForName: aString parameters: anObject  class: aClas
 	anotherInvocation ifNotNil: [  
 		invocation linkedTo: anotherInvocation ].
 	
-	invocation invokeArgument: anObject.
 	^ invocation
 ]
 
