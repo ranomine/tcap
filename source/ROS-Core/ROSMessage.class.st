@@ -13,12 +13,6 @@ ROSMessage class >> fromComponent: anASN1Dictionary [
 ]
 
 { #category : #'instance creation' }
-ROSMessage class >> newIn: aContext [
-	^ self new 	
-		type: (aContext typeNamed: self asn1TypeName) 
-]
-
-{ #category : #'instance creation' }
 ROSMessage class >> withMessageType: aString [ 
 	^ self allSubclasses
 		detect: [ :cls |
@@ -27,12 +21,13 @@ ROSMessage class >> withMessageType: aString [
 
 { #category : #converting }
 ROSMessage >> asROS [
+	| ros |
 	self prepare.
 	"self validate."
-	^ ROS new 
-		type: (self asn1TypeNamed: 'ROS');
-		at: self class rosMessageType put: self;
-		yourself
+	ros := (self asn1TypeNamed: 'ROS') newValue.
+	(ros expandFieldNamed: self class rosMessageType)
+		value: self.
+	^ ros
 ]
 
 { #category : #accessing }

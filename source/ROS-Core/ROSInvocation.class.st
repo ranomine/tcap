@@ -125,8 +125,10 @@ ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
 
 { #category : #'as yet unclassified' }
 ROSInvocation >> newMessage: aClass [
-	^ (aClass newIn: self modelRoot)
+
+	^ (type modelRoot typeNamed: aClass asn1TypeName) newValue  
 		parent: self
+
 ]
 
 { #category : #accessing }

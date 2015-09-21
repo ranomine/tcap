@@ -15,6 +15,11 @@ ROSOperation >> argumentType [
 	^ type attributeAt: 'ArgumentType'
 ]
 
+{ #category : #accessing }
+ROSOperation >> argumentValue [
+	^ self argumentType newValue
+]
+
 { #category : #actions }
 ROSOperation >> argumentValueFor: anObject [
 	^ self argumentType newValue: anObject
@@ -54,20 +59,20 @@ ROSOperation >> initializeFrom: anOperation [
 	type := anOperation
 ]
 
-{ #category : #actions }
-ROSOperation >> invocationWithArgument: anObject [ 
-	^ ASN1Dictionary new 
-		at: 'opcode' put: self operationCodeDict;
-		at: 'argument' put: (self argumentType newValue: anObject);
-		yourself 
-]
-
 { #category : #'as yet unclassified' }
 ROSOperation >> invokeArgument: anObject on: invocation [
+self halt.
 	invocation opcodeNumber: self operationCode.
 	invocation 
 		at: 'argument'
 		put: (self argumentType newValue: anObject)
+]
+
+{ #category : #'as yet unclassified' }
+ROSOperation >> invokeWithArgument: anObject [
+	^ self newInvocation 
+		opcodeNumber: self operationCode;
+		argument: anObject; yourself
 ]
 
 { #category : #accessing }
@@ -75,17 +80,15 @@ ROSOperation >> name [
 	^ self type originalBindingName 
 ]
 
-{ #category : #accessing }
-ROSOperation >> operationCode [
-	^ type attributeAt: 'operationCode'
+{ #category : #'as yet unclassified' }
+ROSOperation >> newInvocation [
+	^ (type modelRoot typeNamed: 'Invoke') newValue
+		operation: self 
 ]
 
 { #category : #accessing }
-ROSOperation >> operationCodeDict [
-	 ^ ASN1Dictionary new
-		at: 'local' put: (type attributeAt: #operationCode);
-		yourself 
-		
+ROSOperation >> operationCode [
+	^ type attributeAt: 'operationCode'
 ]
 
 { #category : #accessing }
