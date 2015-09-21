@@ -21,7 +21,7 @@ Q787ValidationTest >> addExtraElementAfterDtidBlock [
 
 { #category : #'as yet unclassified' }
 Q787ValidationTest >> authInfoV3Arguments [
-	^ ASN1Dictionary new 
+	^ (self newValueOfTypeNamed: 'SendAuthenticationInfoArgV3')
 		at: 'imsi' put: (ByteArray readHexFrom: '72040800004067F4');
 		at: 'numberOfRequestedVectors' put: 4;
 		yourself
@@ -3593,7 +3593,7 @@ Q787ValidationTest >> test1_1_2_1_2_2s2 [
 	self assert: env servicePointA isIdle.
 	self assert: env hasInitialState.
 
-	self assert: (abort findKey: 'dtid') = (begin findKey: 'otid').
+	self assert: (abort findKey: 'dtid') basicValue = (begin findKey: 'otid') basicValue.
 	
 	"self assert: (abort findTaggedValueForTypeNamed: 'DialoguePortion') tagByteValue = 2r01101011."
 	self assert: (abort findTaggedValue: 'p-abortCause') tag = (self applicationTag: 10).
@@ -3828,7 +3828,7 @@ Q787ValidationTest >> test1_2_1_3s1 [
 	abortInspector := self checkAbort: (env servicePointA sentPackets second).
 	self assert: abortInspector message abort dtid = beginInspector message begin otid.
 
-	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
+	self assert: (abortInspector message abort reason at: 'p-abortCause') basicValue = TCAPDialoguePAbort incorrectTransactionPortion value.
 	
 	
 	"Additional Check: SP B received the begin message" 
@@ -4548,7 +4548,7 @@ Q787ValidationTest >> test1_3_1s1 [
 	
 	"CHECK B: WAS THE DTID IN THE ABORT MESSAGE EQUAL TO THE OTID IN THE CONTINUE MESSAGE? "
 	abort  := self checkAbort: env servicePointA sentPackets first.
-	self assert: (abort findKey: 'dtid') = (continue findKey: 'otid').
+	self assert: (abort findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue.
 	
 	"CHECK C: WAS AN ABORT MESSAGE CORRECTLY SENT FROM SP A WITH A P-ABORT CAUSE VALUE OF UNRECOGNIZED TRANSACTION ID? "
 	self assert: env servicePointA sentPackets size = 1.
@@ -4666,7 +4666,7 @@ Q787ValidationTest >> test1_4_1s1 [
 	
 	"CHECK C: WAS THE DTID IN THE FIRST END MESSAGE THE SAME AS THE OTID IN THE SECOND BEGIN MESSAGE? "
 	end1 :=  self checkEnd: env servicePointA sentPackets second.
-	self assert: (end1 findKey: 'dtid') = (begin2 findKey: 'otid').
+	self assert: (end1 findKey: 'dtid') basicValue = (begin2 findKey: 'otid') basicValue.
 	self assert: end1Called.
 	
 	"CHECK D: WAS THE SECOND END MESSAGE CORRECTLY RECEIVED BY SP A? "
@@ -4728,7 +4728,7 @@ Q787ValidationTest >> test1_4_1s2 [
 	
 	"CHECK D: WAS THE DTID IN THE FIRST END MESSAGE THE SAME AS THE OTID IN THE SECOND BEGIN MESSAGE? "
 	end1 :=  self checkEnd: env servicePointA sentPackets second.
-	self assert: (end1 findKey: 'dtid') = (begin2 findKey: 'otid').
+	self assert: (end1 findKey: 'dtid') basicValue = (begin2 findKey: 'otid') basicValue.
 	self assert: end1Called.
 	
 	"CHECK E: WAS THE SECOND END MESSAGE CORRECTLY RECEIVED BY SP A? "
@@ -4781,7 +4781,7 @@ Q787ValidationTest >> test1_4_2s1 [
 		
 	"CHECK C: WAS THE DTID IN THE ABORT MESSAGE THE SAME AS THE OTID IN THE CONTINUE MESSAGE? "
 	abort :=  self checkAbort: env servicePointA sentPackets second.
-	self assert: (abort findKey: 'dtid') = (continue findKey: 'otid').
+	self assert: (abort findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue.
 	
 	"CHECK D: WAS THE P-ABORT CAUSE IN THE ABORT MESSAGE THE CORRECT VALUE, (UNRECOGNIZED TRANSACTION ID)? "
 	self assert: (abort message abort reason at: 'p-abortCause') = TCAPDialoguePAbort unrecognizedTransactionID value.
@@ -4837,7 +4837,7 @@ Q787ValidationTest >> test1_4_2s2 [
 		
 	"CHECK C: WAS THE DTID IN THE ABORT MESSAGE THE SAME AS THE OTID IN THE SECOND CONTINUE MESSAGE? "
 	abort :=  self checkAbort: env servicePointA sentPackets second.
-	self assert: (abort findKey: 'dtid') = (continue findKey: 'otid').
+	self assert: (abort findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue.
 	
 	"CHECK D: WAS THE P-ABORT CAUSE IN THE ABORT MESSAGE THE CORRECT VALUE, (UNRECOGNIZED TRANSACTION ID)? "
 	self assert: (abort message abort reason at: 'p-abortCause') = TCAPDialoguePAbort unrecognizedTransactionID value.
