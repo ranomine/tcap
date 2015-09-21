@@ -23,3 +23,8 @@ TCAPDialoguePDU class >> isAsn1ModelClass [
 TCAPDialoguePDU >> oidName [
 	^ 'dialogue-as-id'
 ]
+
+{ #category : #accessing }
+TCAPDialoguePDU >> pduType [
+	^ map keys anyOne
+]

@@ -49,8 +49,10 @@ TCAPComponentCoordinator >> invocationClass [
 
 { #category : #'as yet unclassified' }
 TCAPComponentCoordinator >> invocationFromName: aString [
-	^ (self invocationClass type: (dialogue asn1TypeNamed: 'Invoke'))
-		operation: (ROSOperation on: (dialogue operationNamed: aString))
+
+	^ (dialogue asn1TypeNamed: 'Invoke') newValue
+		operation: (ROSOperation on: (dialogue operationNamed: aString)).
+
 ]
 
 { #category : #'as yet unclassified' }

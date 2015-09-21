@@ -121,10 +121,10 @@ TCAPTransactionCoordinator >> discard [
 ]
 
 { #category : #requests }
-TCAPTransactionCoordinator >> encodePayload: aDictionary [
+TCAPTransactionCoordinator >> encodePayload: aValue [
 	 ^ self asn1Model resolveOidsWhile: [ 
 			self asn1
-				encodeToByteArray: aDictionary
+				encodeToByteArray: aValue
 				usingType: self tcapPdu ].	
 ]
 
@@ -144,7 +144,7 @@ TCAPTransactionCoordinator >> fullAbortOtid: anOtid dtid: aDtid cause: aPAbort [
 		ifNotNil: [ :transaction | 
 			transaction remoteTransactionId: anOtid.
 			"abort the local transaction"
-			transaction pAbort: (transaction newPAbort value: aPAbort value).
+			transaction pAbort: (transaction newPAbort basicValue: aPAbort value).
 			transaction localAbort ]
 		ifNil: [ 
 			(self transactionWithRemoteId: anOtid)
@@ -273,9 +273,9 @@ TCAPTransactionCoordinator >> recoveryRead: aTaggedValue [
 		as: self messageClass
 		reader: self newASN1Reader) entityMessage.
 	"((message hasField: 'otid') and: [ (message at: 'otid') isNil ]) ifTrue: [  "
-		message basicAt: 'otid' put:  (ASN1 octetStringFrom: aTaggedValue withTagNumber: 8) "]".
+		message value basicAt: 'otid' put:  (ASN1 octetStringFrom: aTaggedValue withTagNumber: 8) "]".
 	"((message hasField: 'dtid') and: [ (message at: 'dtid') isNil ]) ifTrue: [  "
-		message basicAt: 'dtid' put: (ASN1 octetStringFrom: aTaggedValue withTagNumber: 9) "]".
+		message value basicAt: 'dtid' put: (ASN1 octetStringFrom: aTaggedValue withTagNumber: 9) "]".
 	^ message
 ]
 
@@ -374,7 +374,7 @@ TCAPTransactionCoordinator >> transactionForMessage: aMessage sender: aSender re
 			limit transaction 
 				address: aReceiver;
 				remoteAddress: aSender;
-				pAbort: (limit transaction newPAbort value: TCAPDialoguePAbort resourceLimitation);
+				pAbort: (limit transaction newPAbort basicValue: TCAPDialoguePAbort resourceLimitation);
 				stop. 
 				TCAPProcessingAborted signal ].
 ]
@@ -405,7 +405,7 @@ TCAPTransactionCoordinator >> withAbortHandlersDo: aBlock from: aSender to: aRec
 				tx address: aReceiver;
 					remoteAddress: aSender;
 					remoteTransactionId: abort otid;
-					pAbort: (tx newPAbort value: abort cause value) ]]
+					pAbort: (tx newPAbort basicValue: abort cause value) ]]
 			on: TCAPLocalAbort
 			do: [ :ab | 
 				"Abort scenario (5) from Q.774 p. 30/32 "

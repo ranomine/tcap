@@ -29,16 +29,22 @@ TCAPModelRoot >> applicationContextForOperation: anOperation [
 		ifAbsentPut: [ asn1Model applicationContextForOperation: anOperation ] 
 ]
 
+{ #category : #delegating }
+TCAPModelRoot >> applicationContextNamed: aString [
+	self halt.
+	^ asn1Model applicationContextNamed: aString
+]
+
 { #category : #'as yet unclassified' }
 TCAPModelRoot >> applicationContextOidForOperationNamed: aString [ 
 	^ asn1Model applicationContextOidForOperationNamed: aString
 ]
 
 { #category : #accessing }
-TCAPModelRoot >> applicationContextWithOid: anOidOrString [
+TCAPModelRoot >> applicationContextWithOid: anOid [
 	^ applicationContextByOid  
-		at: anOidOrString asAsn1Oid
-		ifAbsentPut: [ asn1Model applicationContextWithOid: anOidOrString ]
+		at: anOid
+		ifAbsentPut: [ asn1Model applicationContextWithOid: anOid ]
 ]
 
 { #category : #delegating }
@@ -73,7 +79,6 @@ TCAPModelRoot >> configureModel [
 			select: [ :each | each isAsn1ModelClass ]) collect: [ :cls |
 				col add: (cls asn1TypeName -> cls asn1InstanceFactory) ] ].
 	col.
-
 	asn1Model applyMapping: col asDictionary
 
 ]

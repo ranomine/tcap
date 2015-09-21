@@ -40,8 +40,8 @@ TCAPPacketParseTests >> testPurgeMS [
 	assoc := self readResolvedFrom: (self packet: #purgeMS).
 	self assert: (cmd := assoc begin) notNil.
 	self assert: (cmd otid) asAsn1HexString = '5101034E'.
-	self assert: (cmd dialoguePortion dialogueRequest protocol_version stringValue = '1').
-	self assert: (cmd dialoguePortion dialogueRequest application_context_name = '0.4.0.0.1.0.27.3') 
+	self assert: (cmd dialoguePortion dialogueRequest protocol_version = '1').
+	self assert: (cmd dialoguePortion dialogueRequest application_context_name value = '0.4.0.0.1.0.27.3') 
 	
 
 ]
@@ -72,8 +72,8 @@ TCAPPacketParseTests >> testPurgeMSResult [
 	assoc := self  readResolvedFrom: (self packet: #purgeMSResult).
 	self assert: (cmd := assoc end) notNil.
 	self assert: (cmd dtid) asAsn1HexString = '5101034E'.
-	self assert: (cmd dialoguePortion dialogueResponse protocol_version stringValue = '1').
-	self assert: (cmd dialoguePortion dialogueResponse application_context_name = '0.4.0.0.1.0.27.3') 
+	self assert: (cmd dialoguePortion dialogueResponse protocol_version = '1').
+	self assert: (cmd dialoguePortion dialogueResponse application_context_name value = '0.4.0.0.1.0.27.3') 
 	
 
 ]
@@ -104,7 +104,7 @@ TCAPPacketParseTests >> testTcapBegin [
 	assoc := self readResolvedFrom: (self packet: #exampleTcapBeginPacket).
 	self assert: (cmd := assoc begin) notNil.
 	self assert: (cmd otid) asAsn1HexString = '04251B7D'.
-	self assert: (cmd dialoguePortion dialogueRequest application_context_name) = '0.4.0.0.1.0.25.2'.
+	self assert: cmd dialoguePortion dialogueRequest application_context_name basicValue = '0.4.0.0.1.0.25.2'.
 	self assert: (cmd dialoguePortion dialogueRequest user_information) notNil.
 	self assert: (cmd find: 'application-context-name' ) notNil 
 ]
@@ -121,7 +121,7 @@ TCAPPacketParseTests >> testTcapContinue [
 	self assert: (cmd := assoc continue) notNil.
 	self assert: (cmd otid) asAsn1HexString = '51010312'.
 	self assert: (cmd dtid) asAsn1HexString = '04251B7D'.
-	self assert: (cmd dialoguePortion dialogueResponse application_context_name) = '0.4.0.0.1.0.25.2'.
+	self assert: cmd dialoguePortion dialogueResponse application_context_name basicValue = '0.4.0.0.1.0.25.2'.
 	
 
 ]
@@ -153,7 +153,7 @@ TCAPPacketParseTests >> testUpdateLocation [
 	assoc := self readResolvedFrom: (self packet: #updateLocation).
 	self assert: (cmd := assoc begin) notNil.
 	self assert: (cmd otid) asAsn1HexString = '510103D3'.
-	self assert: (cmd dialoguePortion dialogueRequest application_context_name  = '0.4.0.0.1.0.1.2') 
+	self assert: (cmd dialoguePortion dialogueRequest application_context_name basicValue = '0.4.0.0.1.0.1.2') 
 	
 
 ]

@@ -12,7 +12,7 @@ TCAPModelConfiguration >> mappings [
 		at: 'Continue' put: TCAPContinueMessage;
 		at: 'End' put: TCAPEndMessage;
 		at: 'Abort' put: TCAPAbortMessage;
-		at: 'DialoguePortion' put: [ :type | TCAPDialoguePortion new type:type;  oid: (type asn1TypeNamed: 'dialogue-as-id')];
+		"at: 'DialoguePortion' put: [ :type | TCAPDialoguePortion new type:type;  oid: (type asn1TypeNamed: 'dialogue-as-id')];"
 		at: 'DialoguePDU' put: TCAPDialoguePDU;
 		at: 'AARQ-apdu' put: TCAPDialogueRequest;
 		at: 'AARE-apdu' put: TCAPDialogueResponse;
@@ -23,6 +23,7 @@ TCAPModelConfiguration >> mappings [
 		at: 'ReturnResult' put: ROSResultLast;
 		at: 'ReturnError' put: ROSError;
 		at: 'Reject' put: ROSReject;
+		at: 'ROS' put: ROS;
 		yourself
 		
 		

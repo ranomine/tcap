@@ -75,14 +75,18 @@ TCAPEntityMessage >> abortRemoteTransactionCause: aPAbort [
 
 { #category : #converting }
 TCAPEntityMessage >> asTCMessage [
-	^ ((self asn1TypeNamed: 'TCMessage') newValueAs: TCMessage)
-		at: self class type put: self;
+	| tcType |
+	tcType := self asn1TypeNamed: 'TCMessage'.
+	^ tcType newValue
+		at: self class type
+		put: ((tcType elementAt: self class type) newValue: self);
 		yourself
+
 ]
 
 { #category : #'as yet unclassified' }
 TCAPEntityMessage >> checkIdRange: aString [
-	(aString notNil and: [ aString size between: 1 and: 4 ]) ifFalse: [ 
+	(aString notNil and: [ aString byteSize between: 1 and: 4 ]) ifFalse: [ 
 		TCAPInvalidRange signal ]
 	
 ]
@@ -126,6 +130,11 @@ TCAPEntityMessage >> hasDialoguePortion [
 ]
 
 { #category : #accessing }
+TCAPEntityMessage >> messageType [
+	^ self class type
+]
+
+{ #category : #accessing }
 TCAPEntityMessage >> otid [
 	^ self at: 'otid' ifAbsent: [ nil ]
 ]
@@ -149,8 +158,7 @@ TCAPEntityMessage >> setMap: aDictionary [
 
 { #category : #'as yet unclassified' }
 TCAPEntityMessage >> transactionIn: aTransactionCoordinator [
-	(aTransactionCoordinator transactionWithId: self dtid) ifNil: [  ^ self handleUnassignedTransaction  ].
-	^ aTransactionCoordinator transactionWithId: self dtid
+	^ (aTransactionCoordinator transactionWithId: self dtid basicValue) ifNil: [  ^ self handleUnassignedTransaction  ].
 ]
 
 { #category : #validating }
@@ -175,7 +183,7 @@ TCAPEntityMessage >> validateOtidSyntax [
 { #category : #validating }
 TCAPEntityMessage >> validateProtocolVersion [
 	self hasDialoguePortion ifTrue: [  
-		((self dialoguePortion soleValue at: 'protocol-version') bitEquals: #( 'version1' ) ) 
+		((self dialoguePortion soleValue value basicAt: 'protocol-version') bitEquals: #( 'version1' ) ) 
 			ifFalse: [ TCAPWrongProtocolVersion signal ] ]
 ]
 

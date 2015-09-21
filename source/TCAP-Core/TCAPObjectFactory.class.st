@@ -58,6 +58,15 @@ TCAPObjectFactory >> dialogueHandlerClass [
 ]
 
 { #category : #accessing }
+TCAPObjectFactory >> dialoguePortionFromApdu: anApdu [
+	| dialoguePdu external  |
+	dialoguePdu := self newDialoguePDU: anApdu.
+	external := dialoguePdu asExternalValue: (self typeNamed: dialoguePdu oidName).
+		
+	^ (self typeNamed: 'DialoguePortion') newValue: external	
+]
+
+{ #category : #accessing }
 TCAPObjectFactory >> dialogueStateClassAt: aSymbol put: aClass [
 	^ dialogueStateClasses 
 		at: aSymbol
@@ -83,7 +92,8 @@ TCAPObjectFactory >> installStateClass: aClass [
 
 { #category : #accessing }
 TCAPObjectFactory >> newAbortMessage [
-	^ TCAPAbortMessage newIn: self
+
+	^ self newValueForTypeNamed: 'Abort'
 ]
 
 { #category : #accessing }
@@ -125,14 +135,16 @@ TCAPObjectFactory >> newDialoguePDU [
 
 { #category : #accessing }
 TCAPObjectFactory >> newDialoguePDU: aPdu [
-	^ (TCAPDialoguePDU newIn: self)
+	| pduValue |
+	pduValue := (self typeNamed: TCAPDialoguePDU asn1TypeName) newValue.
+	^ pduValue 
 		at: aPdu pduType put: aPdu;
-		yourself
-		
+		yourself		
 ]
 
 { #category : #accessing }
 TCAPObjectFactory >> newDialoguePortion: aDialoguePDU [ 
+self halt.
 	^  (TCAPDialoguePortion newIn: self)
 		oid: (self typeNamed: aDialoguePDU oidName);
 		value: aDialoguePDU 
@@ -141,16 +153,19 @@ TCAPObjectFactory >> newDialoguePortion: aDialoguePDU [
 
 { #category : #accessing }
 TCAPObjectFactory >> newDialogueRequest [
-	^ (TCAPDialogueRequest newIn: self)
+
+	^ ((self typeNamed: TCAPDialogueRequest asn1TypeName) newValue)
 		at: 'protocol-version' put: '1';
-		yourself
+		yourself.
 ]
 
 { #category : #accessing }
 TCAPObjectFactory >> newDialogueResponse [
-	^ (TCAPDialogueResponse newIn: self)
-		at: 'protocol-version' put: '1';
-		yourself
+	| dialogueResponse |
+	dialogueResponse := (self typeNamed: 'AARE-apdu') newValue.
+	dialogueResponse value
+		at: 'protocol-version' put: '1'.
+	^ dialogueResponse
 ]
 
 { #category : #accessing }
@@ -185,6 +200,7 @@ TCAPObjectFactory >> newROSError [
 
 { #category : #accessing }
 TCAPObjectFactory >> newROSInvocation [
+self halt.
 	^ ROSInvocation newIn: self
 ]
 

@@ -50,5 +50,5 @@ TCAPEntityMessageTest >> testFromByteArray [
 
 	"Some dummy checks"
 	self deny: msg isNil.
-	self assert: msg entityMessage class equals: TCAPBeginMessage.
+	self assert: msg entityMessage value class equals: TCAPBeginMessage.
 ]

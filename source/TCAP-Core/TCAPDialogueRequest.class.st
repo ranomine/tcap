@@ -20,8 +20,8 @@ TCAPDialogueRequest class >> isAsn1ModelClass [
 ]
 
 { #category : #accessing }
-TCAPDialogueRequest >> applicationContextName: aString [
-	self at: 'application-context-name' put: aString
+TCAPDialogueRequest >> applicationContextName: anOid [
+	(self value expandFieldNamed: 'application-context-name') value: anOid
 ]
 
 { #category : #accessing }

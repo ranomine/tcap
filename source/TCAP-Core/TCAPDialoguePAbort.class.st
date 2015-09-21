@@ -1,6 +1,6 @@
 Class {
 	#name : #TCAPDialoguePAbort,
-	#superclass : #ASN1PrimitiveValue,
+	#superclass : #ASN1TaggedValue,
 	#category : #'TCAP-Core-Model'
 }
 
@@ -11,20 +11,17 @@ TCAPDialoguePAbort class >> asn1TypeName [
 
 { #category : #'instance creation' }
 TCAPDialoguePAbort class >> badlyFormattedTransactionPortion [
-	^ self new
-		value: 2
+	^  2
 ]
 
 { #category : #'instance creation' }
 TCAPDialoguePAbort class >> incorrectCauseValue [
-	^ self new
-		value: 5
+	^ 5
 ]
 
 { #category : #'instance creation' }
 TCAPDialoguePAbort class >> incorrectTransactionPortion [
-	^ self new
-		value: 3
+	^ 3 
 ]
 
 { #category : #'as yet unclassified' }
@@ -34,27 +31,24 @@ TCAPDialoguePAbort class >> isAsn1ModelClass [
 
 { #category : #'instance creation' }
 TCAPDialoguePAbort class >> resourceLimitation [
-	^ self new
-		value: 4
+	^ 4
 ]
 
 { #category : #'instance creation' }
 TCAPDialoguePAbort class >> unrecognizedMessageType [
-	^ self new
-		value: 0
+	^ 0
 ]
 
 { #category : #'instance creation' }
 TCAPDialoguePAbort class >> unrecognizedTransactionID [
-	^ self new
-		value: 1
+	^ 1
 ]
 
 { #category : #converting }
 TCAPDialoguePAbort >> asAbort [
 	| abort |
 	self halt.
-	abort := (self asn1TypeNamed: 'Abort') asAsn1Value.
+	abort := (self asn1TypeNamed: 'Abort') newValue.
 	(abort expandFieldNamed: 'reason') 
 		at: 'p-abortCause' put: self.
 	^ abort
@@ -72,6 +66,11 @@ TCAPDialoguePAbort >> asAbortIn: aFactory [
 ]
 
 { #category : #accessing }
+TCAPDialoguePAbort >> incorrectTransactionPortion [
+	self basicValue: 3
+]
+
+{ #category : #accessing }
 TCAPDialoguePAbort >> unrecognizedMessageType [
-	self value: 0
+	self basicValue: 0
 ]

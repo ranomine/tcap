@@ -19,6 +19,7 @@ TCAPDialogueUAbort class >> isAsn1ModelClass [
 
 { #category : #'instance creation' }
 TCAPDialogueUAbort class >> serviceProvider [
+self halt.
 	^ 1 
 ]
 
@@ -26,7 +27,7 @@ TCAPDialogueUAbort class >> serviceProvider [
 TCAPDialogueUAbort >> asAbort [
 	| abort |
 	self halt.
-	abort := (self asn1TypeNamed: 'Abort') asAsn1Value.
+	abort := (self asn1TypeNamed: 'Abort') newValue.
 	(abort expandFieldNamed: 'reason')
 		at: 'u-abortCause' put: self asExternalValue.
 	^ abort
@@ -37,7 +38,7 @@ TCAPDialogueUAbort >> asAbortIn: aFactory [
 	| abort |
 	abort := aFactory newAbortMessage.
 	(abort expandFieldNamed: 'reason')
-		at: 'u-abortCause' put: (self asExternalValueIn: aFactory).
+		at: 'u-abortCause' put: (aFactory dialoguePortionFromApdu: self).
 	^ abort
 ]
 
@@ -58,5 +59,5 @@ TCAPDialogueUAbort >> serviceProvider [
 
 { #category : #accessing }
 TCAPDialogueUAbort >> serviceUser [
-	self at: 'abort-source' put: 0
+	self value at: 'abort-source' put: 0
 ]

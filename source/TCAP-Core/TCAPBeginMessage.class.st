@@ -31,7 +31,7 @@ TCAPBeginMessage >> dispatchTo: aTransaction [
 
 { #category : #'as yet unclassified' }
 TCAPBeginMessage >> handleSyntaxError [
-	self abortRemoteTransactionCause: TCAPDialoguePAbort incorrectTransactionPortion 
+	self abortRemoteTransactionCause: TCAPDialoguePAbort incorrectTransactionPortion
 ]
 
 { #category : #validating }

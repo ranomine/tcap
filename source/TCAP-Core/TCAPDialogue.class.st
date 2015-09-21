@@ -40,9 +40,9 @@ TCAPDialogue >> addHandler: aHandler [
 
 { #category : #'as yet unclassified' }
 TCAPDialogue >> addPendingMessagesTo: aMessage [
-	
+
 	pendingResponse ifNotNil: [ 
-		aMessage at: 'dialoguePortion' put: (pendingResponse asExternalValueIn: self factory).
+		aMessage at: 'dialoguePortion' put: (self factory dialoguePortionFromApdu: pendingResponse).
 		pendingResponse := nil ].
 	
 	self addComponentsTo: aMessage
@@ -91,6 +91,17 @@ TCAPDialogue >> applicationContextName [
 { #category : #accessing }
 TCAPDialogue >> applicationContextName: anOid [ 
 	applicationContext := self asn1Model applicationContextWithOid: anOid
+]
+
+{ #category : #accessing }
+TCAPDialogue >> applicationContextNameString [
+self halt.
+	^ self applicationContextName value
+]
+
+{ #category : #accessing }
+TCAPDialogue >> applicationContextNameString: aString [ 
+	self applicationContextName: aString asAsn1Oid
 ]
 
 { #category : #accessing }
@@ -245,16 +256,17 @@ TCAPDialogue >> newAcceptedDialogueResponse: aUserInformation [
 { #category : #creating }
 TCAPDialogue >> newDialoguePortion: aClass userInformation: aUserInformation [
 	| dialoguePortion |
-	dialoguePortion := (self factory newDialogueResponse) 
-			at: 'application-context-name' put: self applicationContextName;
-			yourself.
+	dialoguePortion := self factory newDialogueResponse.
+	(dialoguePortion expandFieldNamed: 'application-context-name')
+		value: self applicationContextName.
 	aUserInformation ifNotNil: [ 
-		 dialoguePortion at: 'user-information' put: aUserInformation ].
+		 dialoguePortion value at: 'user-information' put: aUserInformation ].
 	^ dialoguePortion
 ]
 
 { #category : #creating }
 TCAPDialogue >> newDialogueRequest: aUserInfoformation [
+self halt.
 	^ self newDialoguePortion: TCAPDialogueRequest userInformation: aUserInfoformation  
 ]
 
@@ -430,7 +442,7 @@ TCAPDialogue >> processComponentsOf: aMessage [
 { #category : #'as yet unclassified' }
 TCAPDialogue >> processDialogueRequest: request [
 
-	((request  at: 'protocol-version') bitEquals: #( 'version1' ) ) 
+	((request  basicAt: 'protocol-version') bitEquals: #( 'version1' ) ) 
 		ifFalse: [ 
 			"this shouldn't happen because this is a syntax error and should be catched earlier".
 			Error signal: 'message should have been checked for protocol-version earlier' ].
@@ -440,7 +452,7 @@ TCAPDialogue >> processDialogueRequest: request [
 
 	"nothing is wrong we accept as request"
 
-	applicationContext := (self asn1Model applicationContextWithOid: (request at: 'application-context-name')).
+	applicationContext := (self asn1Model applicationContextWithOid: (request basicAt: 'application-context-name') value).
 	self sendAcceptResponse.
 ]
 
@@ -458,6 +470,14 @@ TCAPDialogue >> receivedReject: aReject [
 { #category : #received }
 TCAPDialogue >> receivedReturnLast: aResultLast [ 
 	(self localInvocationWithId: aResultLast id) receivedReturnLast: aResultLast 
+]
+
+{ #category : #requests }
+TCAPDialogue >> requestTcBeginDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress [ 
+	self state 
+		requestTcBeginDestinationAddress: aDestinationAddress 
+		originatingAddress: anOriginatingAddress 
+
 ]
 
 { #category : #requests }
@@ -480,28 +500,43 @@ TCAPDialogue >> requestTcBeginDestinationAddress: aDestinationAddress originatin
 ]
 
 { #category : #requests }
+TCAPDialogue >> requestTcBeginDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress userInformation:  anUserInformation [
+	self state 
+		requestTcBeginDestinationAddress: aDestinationAddress 
+		originatingAddress: anOriginatingAddress 
+		userInformation: anUserInformation 
+
+]
+
+{ #category : #requests }
 TCAPDialogue >> requestTcContinue [
 	self state requestTcContinue
 ]
 
 { #category : #requests }
 TCAPDialogue >> requestTcEnd: aTerminationBoolean [
+
 	self state requestTcEnd: aTerminationBoolean 
 ]
 
 { #category : #accessing }
-TCAPDialogue >> requestTcInvokeNamed: aString parameters: anObject  class: aNumber timeout: aTimeout [ 
-	^ self  requestTcInvokeNamed: aString parameters: anObject  class: aNumber timeout: aTimeout linkedTo: nil
+TCAPDialogue >> requestTcInvoke: anOperation parameters: anObject  class: aClass timeout: aTimeout [ 
+	^ self 
+		requestTcInvoke: anOperation
+		parameters: anObject  
+		class: aClass 
+		timeout: aTimeout 
+		linkedTo: nil
 ]
 
 { #category : #accessing }
-TCAPDialogue >> requestTcInvokeNamed: aString parameters: anObject  class: aClass timeout: aTimeout linkedTo: anInvocation [
+TCAPDialogue >> requestTcInvoke: anOperation parameters: anObject  class: aClass timeout: aTimeout linkedTo: anInvocation [
 	| invocation |
-	invocation := (componentCoordinator invocationFromName: aString)
+	invocation := (anOperation invokeWithArgument: anObject)
 		parent: self;
 		id: invokeIdPool nextId;
 		onMessage: [  self halt ];
-		invokeArgument: anObject asAsn1Value;
+		"invokeArgument: anObject;"
 		yourself.
 	invocation operationClass: aClass.
 	invocation startInvocationTimer: aTimeout.
@@ -511,10 +546,31 @@ TCAPDialogue >> requestTcInvokeNamed: aString parameters: anObject  class: aClas
 	^ invocation  
 ]
 
+{ #category : #accessing }
+TCAPDialogue >> requestTcInvokeNamed: aString parameters: anObject  class: aNumber timeout: aTimeout [ 
+	^ self  
+		requestTcInvokeNamed: aString 
+		parameters: anObject
+		class: aNumber 
+		timeout: aTimeout
+		linkedTo: nil
+]
+
+{ #category : #accessing }
+TCAPDialogue >> requestTcInvokeNamed: aString parameters: anObject  class: aClass timeout: aTimeout linkedTo: anInvocation [
+	^ self 
+		requestTcInvoke: (componentCoordinator dialogue rosOperationNamed: aString) 
+		parameters: anObject  
+		class: aClass 
+		timeout: aTimeout 
+		linkedTo: anInvocation 
+	
+]
+
 { #category : #requests }
 TCAPDialogue >> requestTcPAbort: aNumber [
 	| pAbort |
-	pAbort := self factory newDialoguePAbort value: aNumber.
+	pAbort := self factory newDialoguePAbort basicValue: aNumber.
 	self state requestTcPAbort: pAbort 
 ]
 
@@ -526,6 +582,11 @@ TCAPDialogue >> requestTcUAbort: anAbortInformation [
 { #category : #requests }
 TCAPDialogue >> requestTrBeginDestinationAddress: aDestinationAddress originatingAddress: aOriginatingAddress userData: aDictionary [
 	^  self state requestTrBeginDestinationAddress: aDestinationAddress originatingAddress: aOriginatingAddress userData: aDictionary 
+]
+
+{ #category : #accessing }
+TCAPDialogue >> rosOperationNamed: aString [ 
+	^ ROSOperation on: (self operationNamed: aString)
 ]
 
 { #category : #'as yet unclassified' }

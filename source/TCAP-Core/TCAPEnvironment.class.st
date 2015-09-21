@@ -54,6 +54,7 @@ TCAPEnvironment >> formatForLogging [
 
 { #category : #creating }
 TCAPEnvironment >> newAbortMessage [
+self halt.
 	^ self newValue: TCAPAbortMessage 
 ]
 
@@ -91,7 +92,7 @@ TCAPEnvironment >> newValue: aClass [
 
 { #category : #'as yet unclassified' }
 TCAPEnvironment >> newValueNamed: aString [
-	^ (self asn1Model typeNamed: aString) asAsn1Value
+	^ (self asn1Model typeNamed: aString) newValue
 ]
 
 { #category : #actions }

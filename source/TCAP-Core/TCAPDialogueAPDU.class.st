@@ -1,6 +1,6 @@
 Class {
 	#name : #TCAPDialogueAPDU,
-	#superclass : #ASN1AdaptiveTypeObject,
+	#superclass : #ASN1TaggedValue,
 	#instVars : [
 		'applicationContextName',
 		'userInformation'
@@ -18,12 +18,12 @@ self halt.
 
 { #category : #converting }
 TCAPDialogueAPDU >> asDialoguePduIn: aFactory [
-	
 	^ aFactory newDialoguePDU: self
 ]
 
 { #category : #converting }
 TCAPDialogueAPDU >> asExternalValue [
+self halt.
 	^ (self asDialoguePdu asExternalValue: (self asn1TypeNamed: 'dialogue-as-id'))
 		type: (self asn1TypeNamed: 'DialoguePortion')
 ]
@@ -46,5 +46,5 @@ TCAPDialogueAPDU >> userInformation [
 
 { #category : #accessing }
 TCAPDialogueAPDU >> userInformation: anObject [
-	self at: 'user-information' put: anObject
+	self value at: 'user-information' put: anObject
 ]

@@ -7,6 +7,6 @@ Class {
 { #category : #dispatching }
 TCAPAfterMessageReceived >> dispatchTo: aHandler [ 
 	aHandler 
-		perform: (#after, message class type capitalized, #MessageReceived) asSymbol asMutator 
+		perform: (#after, message messageType capitalized, #MessageReceived) asSymbol asMutator 
 		with: self
 ]

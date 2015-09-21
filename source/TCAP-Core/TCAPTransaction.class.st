@@ -44,10 +44,15 @@ TCAPTransaction >> allocateId [
 
 { #category : #'as yet unclassified' }
 TCAPTransaction >> basicAbort: abort [
+	| tcMessage |
 	self remoteTransactionId ifNotNil: [  
 		abort at: 'dtid' put: self remoteTransactionId ].
-	self
-		sendPayload: ((TCMessage newIn: abort type modelRoot) abort: abort).
+	tcMessage := self factory newValueForTypeNamed: 'TCMessage'.
+	self flag: #needsRedesign.
+	"expandFieldName will create an object for the abort we are setting.
+	Needs a way to set a predefined value"
+	(tcMessage expandFieldNamed: 'abort') value: abort.
+	self sendPayload: tcMessage.
 	self stop.
 ]
 

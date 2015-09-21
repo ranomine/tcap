@@ -6,13 +6,10 @@ Class {
 
 { #category : #'as yet unclassified' }
 TCAPSimulationTest >> exampleResult [
-	^ ASN1Array new
-		add: (ASN1Dictionary new
-			at: 'rand' put: (ByteArray readHexFrom: 'DEADBEEF');
-			at: 'sres' put: (ByteArray readHexFrom: 'DEADBEEF');
-			at: 'kc' put: (ByteArray readHexFrom: 'DEADBEEF');
-		yourself);
-	yourself
+	^ (self typeNamed: 'AuthenticationSet') newValue
+		at: 'rand' put: (ByteArray readHexFrom: 'DEADBEEF');
+		at: 'sres' put: (ByteArray readHexFrom: 'DEADBEEF');
+		at: 'kc' put: (ByteArray readHexFrom: 'DEADBEEF')
 ]
 
 { #category : #'as yet unclassified' }
@@ -413,23 +410,20 @@ TCAPSimulationTest >> shouldSendAuthenticationInfo [
 
 { #category : #tests }
 TCAPSimulationTest >> shouldTransmitUserInformation [
-	|  env  |
+	|  env mapPdu external |
 	env := self given: #shouldCreateTestEnvironment.
 
+	mapPdu := (self asn1Model typeNamed: 'MAP-DialoguePDU') newValue beSelfExpanding.
+	mapPdu map_open
+		destinationReference: '0816';
+		originationReference: '0815'.
+	external := mapPdu asExternalValue: '0.4.0.0.1.1.1.1'.
+		
 	env servicePointA newDialogue
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId
-		userInformation: (ASN1Array new 
-			add: (
-				ASN1Dictionary new
-					at: 'map-open' put: (ASN1Dictionary new
-						at: 'destinationReference' put: '0816';
-						at: 'originationReference' put: '0815';
-						yourself);
-					at: 'oid' put: '0.4.0.0.1.1.1.1';
-					yourself); 
-			yourself). 
+		userInformation: { external }.
 	
 	self assert: (self messageInspectorOn: env servicePointA sentPackets first) isBegin.
 	self assert: ((self messageInspectorOn: env servicePointA sentPackets first) findKey: 'map-open') notNil.
@@ -446,16 +440,12 @@ TCAPSimulationTest >> shouldTransmitUserInformationWithDynamicValue [
 		map_open
 			originationReference: '0815';
 			destinationReference: '0816'.
+
 	env servicePointA newDialogue
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId
-		userInformation: (ASN1Array new 
-			add: (
-				ASN1ExternalValue new 
-					value: userInfo;
-					oid: '0.4.0.0.1.1.1.1');
-			yourself).
+		userInformation: (userInfo asExternalValue: '0.4.0.0.1.1.1.1' ).
 					
 	
 	self assert: (self messageInspectorOn: env servicePointA sentPackets first) isBegin.

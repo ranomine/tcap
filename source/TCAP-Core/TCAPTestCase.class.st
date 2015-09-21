@@ -38,6 +38,11 @@ TCAPTestCase >> newTestEnvironment [
 		asn1Context: self asn1Context
 ]
 
+{ #category : #creating }
+TCAPTestCase >> newValueOfTypeNamed: aString [ 
+	^ (self asn1Model typeNamed: aString) newValue
+]
+
 { #category : #'as yet unclassified' }
 TCAPTestCase >> originatingAddress [
 	^ SCCPAddress createForSSN: #HLR

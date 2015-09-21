@@ -44,7 +44,7 @@ TCAPInitiationSentDialogueState >> indicationTrEnd: aMessage [
 		(aMessage hasDialoguePortion) 
 			ifTrue: [ 
 				dialoguePortion := aMessage dialoguePortion.
-				(dialoguePortion value soleValue pduType = 'dialogueResponse') 
+				(dialoguePortion value pduType = 'dialogueResponse') 
 				ifTrue: [ 
 					aMessage hasComponents ifTrue: [
 						dialogue processComponentsOf: aMessage ].

@@ -31,7 +31,7 @@ TCAPDialogueResponse class >> serviceProvider [
 
 { #category : #accessing }
 TCAPDialogueResponse >> accepted [
-	self at: 'result' put: 0
+	self value at: 'result' put: 0
 ]
 
 { #category : #accessing }
@@ -46,6 +46,7 @@ TCAPDialogueResponse >> asContinueMessageIn: aFactory [
 
 { #category : #converting }
 TCAPDialogueResponse >> asEndMessage [
+self halt.
 	^ (TCAPEndMessage newIn: type modelRoot)
 		at: 'dialoguePortion' put:self asExternalValue;
 		yourself 
@@ -54,7 +55,7 @@ TCAPDialogueResponse >> asEndMessage [
 { #category : #converting }
 TCAPDialogueResponse >> asEndMessageIn: aFactory [
 	^ aFactory newEndMessage 
-		at: 'dialoguePortion' put: (self asExternalValueIn: aFactory);
+		at: 'dialoguePortion' put: (aFactory dialoguePortionFromApdu: self);
 		yourself 
 ]
 
@@ -78,12 +79,12 @@ TCAPDialogueResponse >> noCommonDialoguePortion [
 
 { #category : #accessing }
 TCAPDialogueResponse >> noReasonGiven [
-	self source value: 1
+	self source basicValue: 1
 ]
 
 { #category : #accessing }
 TCAPDialogueResponse >> null [
-	self source value: 0
+	self source basicValue: 0
 ]
 
 { #category : #accessing }
