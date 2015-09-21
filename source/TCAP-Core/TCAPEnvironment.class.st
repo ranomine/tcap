@@ -54,7 +54,6 @@ TCAPEnvironment >> formatForLogging [
 
 { #category : #creating }
 TCAPEnvironment >> newAbortMessage [
-self halt.
 	^ self newValue: TCAPAbortMessage 
 ]
 

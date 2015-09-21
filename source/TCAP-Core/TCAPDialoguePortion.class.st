@@ -5,11 +5,6 @@ Class {
 }
 
 { #category : #accessing }
-TCAPDialoguePortion class >> asn1InstanceFactoryX [
-	^ [ :type | self halt. TCAPDialoguePortion new type:type;  oid: (type asn1TypeNamed: 'dialogue-as-id')]
-]
-
-{ #category : #accessing }
 TCAPDialoguePortion class >> asn1TypeName [
 	^ 'DialoguePortion'
 ]

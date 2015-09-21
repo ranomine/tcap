@@ -94,12 +94,6 @@ TCAPDialogue >> applicationContextName: anOid [
 ]
 
 { #category : #accessing }
-TCAPDialogue >> applicationContextNameString [
-self halt.
-	^ self applicationContextName value
-]
-
-{ #category : #accessing }
 TCAPDialogue >> applicationContextNameString: aString [ 
 	self applicationContextName: aString asAsn1Oid
 ]

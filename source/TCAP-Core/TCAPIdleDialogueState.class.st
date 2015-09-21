@@ -62,7 +62,7 @@ TCAPIdleDialogueState >> requestTcBeginDestinationAddress: aDestinationAddress o
 	userInformation ifNotNil: [ 
 		dialogue userInformation: userInformation ].
 	
-	self requestTcBeginDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress 
+	self requestTcBeginDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress userInformation: userInformation
 
 ]
 
