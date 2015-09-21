@@ -118,5 +118,5 @@ MAPTest >> testInsertSubscriberDataBitStringAccess [
 	"TODO: now start inspecting all of it..."
 	self assert: data msisdn hex = '91533458001091'.
 	self assert: data category asInteger = 10.
-	self assert: data subscriberStatus value = 'operatorDeterminedBarring'
+	self assert: data subscriberStatus name = 'operatorDeterminedBarring'
 ]

@@ -21,14 +21,11 @@ ASN1ModelRoot >> applicationContextOidForOperationNamed: aString [
 ]
 
 { #category : #'*map-core' }
-ASN1ModelRoot >> applicationContextWithOid: aStringOrOid [
-	"need to disambiguate the meaning of an oid being a string or oid object. It would be preferrable
-	to have oid objects. Need to check if creating oid objects on the fly is a good solution"
-	self flag: #needsRedesign.
+ASN1ModelRoot >> applicationContextWithOid: anOidOrString [
 	modules do: [:module|
-		(module applicationContextWithOid: aStringOrOid asAsn1Oid) ifNotNil: [:context|
+		(module applicationContextWithOid: anOidOrString asAsn1Oid) ifNotNil: [:context|
 			^ context]].
-	NotFound signal: 'application context with ', aStringOrOid asString, ' not found'
+	NotFound signal: 'application context with ', anOidOrString asString, ' not found'
 ]
 
 { #category : #'*map-core' }
