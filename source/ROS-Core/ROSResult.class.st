@@ -61,7 +61,7 @@ ROSResult >> result: anObject [
 			anObject keysAndValuesDo: [ :key :v |
 				val at: key put: v ] ]."
 		res := self expandFieldNamed: 'result'.
-		res at: 'result' put: val.
+		(res expandFieldNamed: 'result') basicValue: val.
 		(res expandFieldNamed: 'opcode') at: 'local' put: self operation operationCode ] ]
 ]
 

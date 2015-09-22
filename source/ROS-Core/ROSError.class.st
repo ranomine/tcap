@@ -58,9 +58,9 @@ ROSError >> errorCode [
 	^ (self at: 'errcode') at: 'local'
 ]
 
-{ #category : #initialize }
-ROSError >> initializeErrorCode [
-	(self expandFieldNamed: 'errcode') at: 'local' put: (error attributeAt: 'errorCode')
+{ #category : #accessing }
+ROSError >> errorCode: aNumber [
+	^ ((self expandFieldNamed: 'errcode') expandFieldNamed: 'local') basicValue: aNumber
 ]
 
 { #category : #resolving }
@@ -89,11 +89,11 @@ ROSError >> parameterType [
 
 { #category : #converting }
 ROSError >> prepare [
-	(self expandFieldNamed: 'errcode') at: 'local' put: (error attributeAt: 'errorCode').
+	"(self expandFieldNamed: 'errcode') at: 'local' put: (error attributeAt: 'errorCode')."
 ]
 
 { #category : #accessing }
 ROSError >> setParameter: aParameter [
-	aParameter ifNil: [ ^ self ].
- 	self at: 'parameter' put: (aParameter asAsn1Value type: self parameterType) 
+	aParameter ifNil: [ self halt ].
+ 	(self expandFieldNamed: 'parameter') basicValue: aParameter
 ]

@@ -60,6 +60,11 @@ ROSInvocation >> argumentValue [
 	^ self operation argumentType newValue
 ]
 
+{ #category : #accessing }
+ROSInvocation >> argumentValue: anObject [
+	^ self operation argumentType newValue: anObject
+]
+
 { #category : #timer }
 ROSInvocation >> cancelTimer [
 	timer ifNotNil: [
@@ -271,16 +276,67 @@ ROSInvocation >> resultValue [
 ]
 
 { #category : #'as yet unclassified' }
-ROSInvocation >> returnError: aString with: anObject [
-	| error |
-	error := (self newMessage: ROSError)
-		id: self id;
-		error: (self errorNamed: aString).
-		
-	anObject ifNotNil: [ 
-		 error setParameter: anObject asAsn1Value ].
+ROSInvocation >> returnError: anError [
+	| rosError |
+	self halt.
+	rosError := (self newMessage: ROSError)
+		id: self id.
+	
+	anError ifNotNil: [ 
+		 rosError setParameter: anError ].
 
-	self sendMessage: error 
+	rosError errorCode: (anError type attributeAt: 'errorCode').
+
+	self sendMessage: rosError 
+]
+
+{ #category : #'as yet unclassified' }
+ROSInvocation >> returnError: aString using: aBlock [
+	| errorType  error |
+
+	errorType := type  asn1TypeNamed: aString. 
+	error := ( errorType attributeAt: 'ParameterType') newValue.
+	aBlock value: error.
+	
+	self returnError:  errorType value: error.
+]
+
+{ #category : #'as yet unclassified' }
+ROSInvocation >> returnError: errorType value: error [
+	| rosError |
+
+	rosError := (self newMessage: ROSError)
+		id: self id.
+	
+	error ifNotNil: [ 
+		 rosError setParameter: error ].
+
+	rosError errorCode: (errorType attributeAt: 'errorCode').
+
+	self sendMessage: rosError 
+]
+
+{ #category : #'as yet unclassified' }
+ROSInvocation >> returnError: aString with: anObject [
+	| rosError error |
+
+	error := self errorNamed: aString. 
+
+	rosError := (self newMessage: ROSError)
+		id: self id.
+	
+	anObject ifNotNil: [ 
+		 rosError setParameter: anObject ].
+	
+	rosError errorCode: (error attributeAt: 'errorCode').
+
+	self sendMessage: rosError 
+]
+
+{ #category : #'as yet unclassified' }
+ROSInvocation >> returnErrorNamed: aString [
+self halt.
+	self returnError: (self errorNamed: aString)
 ]
 
 { #category : #'as yet unclassified' }

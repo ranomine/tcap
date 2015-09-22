@@ -20,8 +20,8 @@ ROSOperation >> argumentValue [
 	^ self argumentType newValue
 ]
 
-{ #category : #actions }
-ROSOperation >> argumentValueFor: anObject [
+{ #category : #accessing }
+ROSOperation >> argumentValue: anObject [
 	^ self argumentType newValue: anObject
 ]
 
@@ -61,9 +61,11 @@ ROSOperation >> initializeFrom: anOperation [
 
 { #category : #'as yet unclassified' }
 ROSOperation >> invokeWithArgument: anObject [
-	^ self newInvocation 
-		opcodeNumber: self operationCode;
-		argument: anObject; yourself
+	| invocation |
+	invocation := self newInvocation 
+		opcodeNumber: self operationCode.
+	(invocation expandFieldNamed: 'argument') basicValue: anObject.
+	^ invocation
 ]
 
 { #category : #accessing }
@@ -97,4 +99,9 @@ ROSOperation >> printOn: aStream [
 { #category : #accessing }
 ROSOperation >> resultType [
 	^ type attributeAt: 'ResultType'
+]
+
+{ #category : #accessing }
+ROSOperation >> resultValue [
+	^ self resultType newValue
 ]
