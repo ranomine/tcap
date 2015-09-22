@@ -55,6 +55,11 @@ ROSInvocation class >> rosMessageType [
 	^ 'invoke'
 ]
 
+{ #category : #accessing }
+ROSInvocation >> argumentValue [
+	^ self operation argumentType newValue
+]
+
 { #category : #timer }
 ROSInvocation >> cancelTimer [
 	timer ifNotNil: [
@@ -258,6 +263,11 @@ ROSInvocation >> rejectExpireTime [
 { #category : #actions }
 ROSInvocation >> rejectTimerExpired [
 
+]
+
+{ #category : #accessing }
+ROSInvocation >> resultValue [
+	^ self operation resultType newValue
 ]
 
 { #category : #'as yet unclassified' }

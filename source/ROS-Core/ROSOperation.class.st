@@ -60,15 +60,6 @@ ROSOperation >> initializeFrom: anOperation [
 ]
 
 { #category : #'as yet unclassified' }
-ROSOperation >> invokeArgument: anObject on: invocation [
-self halt.
-	invocation opcodeNumber: self operationCode.
-	invocation 
-		at: 'argument'
-		put: (self argumentType newValue: anObject)
-]
-
-{ #category : #'as yet unclassified' }
 ROSOperation >> invokeWithArgument: anObject [
 	^ self newInvocation 
 		opcodeNumber: self operationCode;
