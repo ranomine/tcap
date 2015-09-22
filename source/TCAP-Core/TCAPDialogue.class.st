@@ -99,7 +99,12 @@ TCAPDialogue >> applicationContextNameString: aString [
 ]
 
 { #category : #accessing }
-TCAPDialogue >> applicationContextNamed: aString [ 
+TCAPDialogue >> applicationContextNamed: aString [
+	^ self asn1Model typeNamed: aString
+]
+
+{ #category : #accessing }
+TCAPDialogue >> applicationContextOidForOperationNamed: aString [ 
 	^ self asn1Model applicationContextOidForOperationNamed: aString
 ]
 

@@ -87,7 +87,7 @@ TCAPTestEnvironment >> sendAuthenticationInfoTo: anAddress parameters: aDictiona
 	dialogue
 		requestTcBeginDestinationAddress: anAddress
 		originatingAddress: localAddress 
-		applicationContextName: (dialogue applicationContextNamed: operationName)
+		applicationContextName: (dialogue applicationContextOidForOperationNamed: operationName)
 	
 ]
 
