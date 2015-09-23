@@ -136,7 +136,8 @@ ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
 { #category : #'as yet unclassified' }
 ROSInvocation >> newMessage: aClass [
 
-	^ (type modelRoot typeNamed: aClass asn1TypeName) newValue  
+	^ (self asn1TypeNamed: aClass asn1TypeName) newValue  
+		invokeId: self invokeId;
 		parent: self
 
 ]
@@ -276,37 +277,10 @@ ROSInvocation >> resultValue [
 ]
 
 { #category : #'as yet unclassified' }
-ROSInvocation >> returnError: anError [
-	| rosError |
-	self halt.
-	rosError := (self newMessage: ROSError)
-		id: self id.
-	
-	anError ifNotNil: [ 
-		 rosError setParameter: anError ].
-
-	rosError errorCode: (anError type attributeAt: 'errorCode').
-
-	self sendMessage: rosError 
-]
-
-{ #category : #'as yet unclassified' }
-ROSInvocation >> returnError: aString using: aBlock [
-	| errorType  error |
-
-	errorType := type  asn1TypeNamed: aString. 
-	error := ( errorType attributeAt: 'ParameterType') newValue.
-	aBlock value: error.
-	
-	self returnError:  errorType value: error.
-]
-
-{ #category : #'as yet unclassified' }
-ROSInvocation >> returnError: errorType value: error [
+ROSInvocation >> returnError: errorType parameter: error [
 	| rosError |
 
-	rosError := (self newMessage: ROSError)
-		id: self id.
+	rosError := self newMessage: ROSError.
 	
 	error ifNotNil: [ 
 		 rosError setParameter: error ].
@@ -317,42 +291,33 @@ ROSInvocation >> returnError: errorType value: error [
 ]
 
 { #category : #'as yet unclassified' }
-ROSInvocation >> returnError: aString with: anObject [
-	| rosError error |
+ROSInvocation >> returnErrorNamed: aString [
 
-	error := self errorNamed: aString. 
-
-	rosError := (self newMessage: ROSError)
-		id: self id.
-	
-	anObject ifNotNil: [ 
-		 rosError setParameter: anObject ].
-	
-	rosError errorCode: (error attributeAt: 'errorCode').
-
-	self sendMessage: rosError 
+	self returnError: (self errorNamed: aString) parameter: nil
 ]
 
 { #category : #'as yet unclassified' }
-ROSInvocation >> returnErrorNamed: aString [
-self halt.
-	self returnError: (self errorNamed: aString)
+ROSInvocation >> returnErrorNamed: aString using: aBlock [
+	| errorType  error |
+
+	errorType := type  asn1TypeNamed: aString. 
+	error := ( errorType attributeAt: 'ParameterType' ) newValue.
+	aBlock value: error.
+	
+	self returnError:  errorType parameter: error.
 ]
 
 { #category : #'as yet unclassified' }
 ROSInvocation >> returnReject: aDictionary [
 	self sendMessage: (
-		(self newMessage: ROSReject)
-			id: self id)
+		self newMessage: ROSReject)
  
 ]
 
 { #category : #'as yet unclassified' }
 ROSInvocation >> returnResult: aDictionary [
-self halt.
 	^ self sendMessage: (
 		(self newMessage: ROSResult)
-			id: self id;
 			result: aDictionary)
  
 ]
@@ -361,7 +326,6 @@ self halt.
 ROSInvocation >> returnResultLast: aDictionary [
 	self sendMessage: (
 		(self newMessage: ROSResultLast)
-			id: self id;
 			result: aDictionary)
  
 ]

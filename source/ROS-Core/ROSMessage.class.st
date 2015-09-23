@@ -32,11 +32,13 @@ ROSMessage >> asROS [
 
 { #category : #accessing }
 ROSMessage >> id [
+	self halt.
 	^ (self at: 'invokeId') at: 'present'
 ]
 
 { #category : #accessing }
 ROSMessage >> id: aNumber [
+	self halt.
 	aNumber ifNil: [ self halt ].
 	(self expandFieldNamed: 'invokeId')
 		at: 'present' put: aNumber
@@ -44,8 +46,20 @@ ROSMessage >> id: aNumber [
 
 { #category : #accessing }
 ROSMessage >> initializeFromDialogue: aDialogue [
-	parent := aDialogue localInvocationWithId: self invokeId present.
+	parent := aDialogue localInvocationWithId: self invokeId.
 
+]
+
+{ #category : #accessing }
+ROSMessage >> invokeId [
+	^ (self at: 'invokeId') at: 'present'
+]
+
+{ #category : #accessing }
+ROSMessage >> invokeId: aNumber [
+	aNumber ifNil: [ self halt ].
+	(self expandFieldNamed: 'invokeId')
+		at: 'present' put: aNumber
 ]
 
 { #category : #accessing }
