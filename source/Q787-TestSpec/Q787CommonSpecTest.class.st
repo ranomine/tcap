@@ -2985,7 +2985,7 @@ Q787CommonSpecTest >> test2_1_1_1_3 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					inv returnError: 'systemFailure' with: nil.
+					inv returnErrorNamed: 'systemFailure'.
 					dialog requestTcEnd: false ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue 
