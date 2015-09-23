@@ -37,8 +37,8 @@ TCAPIdleDialogueState >> requestTcAbortDestinationAddress: aDestinationAddress o
 		dialoguePortion := (self factory newDialogueRequest)
 			applicationContextName: dialogue applicationContextName.
 
-		dialoguePortion
-			userInformation: userInformation ].
+		userInformation ifNotNil: [  
+			dialoguePortion userInformation: userInformation ]].
 	
 	dialogue addComponentsTo: begin.	
 	dialogue switchState: #initiationSent.
@@ -107,8 +107,10 @@ TCAPIdleDialogueState >> requestTcContinueDestinationAddress: aDestinationAddres
 		dialogue applicationContextName: anApplicationContextName asAsn1Oid.
 		
 		dialoguePortion := (self factory newDialogueRequest)
-			applicationContextName: dialogue applicationContextName;
-			userInformation: userInformation.
+			applicationContextName: dialogue applicationContextName.
+			
+		userInformation ifNotNil: [  
+			dialoguePortion userInformation: userInformation ].
 
 		begin 
 			at:  'dialoguePortion' 
@@ -130,8 +132,10 @@ TCAPIdleDialogueState >> requestTcEndDestinationAddress: aDestinationAddress ori
 		dialogue applicationContextName: anApplicationContextName asAsn1Oid.
 		
 		dialoguePortion := (self factory newDialogueRequest)
-			applicationContextName: dialogue applicationContextName;
-			userInformation: userInformation.
+			applicationContextName: dialogue applicationContextName.
+			
+		userInformation ifNotNil: [  
+			dialoguePortion userInformation: userInformation ].
 
 		begin 
 			at:  'dialoguePortion' 

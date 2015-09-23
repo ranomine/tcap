@@ -9,7 +9,7 @@ TCAPTestDialogue >> addLocalInvocationWithId: aNumber [
 	 | invocation |
 	invocation := (self asn1TypeNamed: 'Invoke') newValue
 		parent: self;
-		id: aNumber.
+		invokeId: aNumber.
 	localInvocations add: invocation.
 	^ invocation
 ]

@@ -240,7 +240,7 @@ TCAPDialogue >> invoke: invocation withTimeout: aDuration [
 { #category : #accessing }
 TCAPDialogue >> localInvocationWithId: aNumber [
 	^ localInvocations  
-		detect: [ :each| each id = aNumber  ]
+		detect: [ :each| each invokeId = aNumber  ]
 		ifNone: [  nil  ]
 ]
 
@@ -289,7 +289,7 @@ TCAPDialogue >> newInvocationForName: aString parameters: anObject  class: aClas
 	| invocation |
 	invocation := ((self rosOperationNamed: aString) invokeWithArgument: anObject)
 		parent: self;
-		id: invokeIdPool nextId;
+		invokeId: invokeIdPool nextId;
 		onMessage: [  self halt ];
 		operationClass: aClass.		
 	
@@ -456,18 +456,18 @@ TCAPDialogue >> processDialogueRequest: request [
 
 { #category : #notifications }
 TCAPDialogue >> receivedError: anError [
-	(self localInvocationWithId: anError id)
+	(self localInvocationWithId: anError invokeId)
 		receivedError: anError
 ]
 
 { #category : #received }
 TCAPDialogue >> receivedReject: aReject [ 
-	(self localInvocationWithId: aReject id) receivedReject: aReject
+	(self localInvocationWithId: aReject invokeId) receivedReject: aReject
 ]
 
 { #category : #received }
 TCAPDialogue >> receivedReturnLast: aResultLast [ 
-	(self localInvocationWithId: aResultLast id) receivedReturnLast: aResultLast 
+	(self localInvocationWithId: aResultLast invokeId) receivedReturnLast: aResultLast 
 ]
 
 { #category : #requests }
@@ -532,7 +532,7 @@ TCAPDialogue >> requestTcInvoke: anOperation parameters: anObject  class: aClass
 	| invocation |
 	invocation := (anOperation invokeWithArgument: anObject)
 		parent: self;
-		id: invokeIdPool nextId;
+		invokeId: invokeIdPool nextId;
 		onMessage: [  self halt ];
 		"invokeArgument: anObject;"
 		yourself.

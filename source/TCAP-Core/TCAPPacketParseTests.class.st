@@ -55,7 +55,7 @@ TCAPPacketParseTests >> testPurgeMSResolveContext [
 	contract := applicationContext attributeAt: 'associationContract'.
 	consumer := contract attributeAt: 'InitiatorConsumerOf'.
 	invoke := begin components first invoke.
-	invokeId := invoke invokeId present.
+	invokeId := invoke invokeId.
 	operationCode := invoke opcode local.
 	operation := consumer findElement: [ :each| each isOperation and: [ (each attributeAt: 'operationCode') = operationCode ] ].
 	argument := ASN1 
