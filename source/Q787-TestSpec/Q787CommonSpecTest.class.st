@@ -2928,7 +2928,7 @@ Q787CommonSpecTest >> test2_1_1_1_1 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					inv returnResultLast: self exampleResult.
+					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
@@ -2955,7 +2955,7 @@ Q787CommonSpecTest >> test2_1_1_1_2 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					inv returnResultLast: self exampleResult.
+					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue 
