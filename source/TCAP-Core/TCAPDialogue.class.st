@@ -307,7 +307,7 @@ TCAPDialogue >> newRemoteInvocation: anInvocation [
 		onMessage: [:msg|  componentCoordinator addComponent: msg asROS ].
 	
 	remoteInvocations  
-		detect: [ :each| each id = anInvocation id  ]
+		detect: [ :each| each invokeId = anInvocation invokeId  ]
 		ifFound: [  TCAPDuplicateInvocationId signal: 'invocation with id ', anInvocation id, ' alread exists'  ].
 	
 	remoteInvocations add: anInvocation.
