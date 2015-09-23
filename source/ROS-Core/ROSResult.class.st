@@ -52,16 +52,12 @@ ROSResult >> initializeFromDialogue: aDialogue [
 
 { #category : #accessing }
 ROSResult >> result: anObject [
-	| res val |
+	| res |
 
 	anObject ifNotNil: [  
 	self operation resultType ifNotNil: [  
-		val := self operation resultType newValue: anObject.
-		"anObject ifNotNil: [  
-			anObject keysAndValuesDo: [ :key :v |
-				val at: key put: v ] ]."
 		res := self expandFieldNamed: 'result'.
-		(res expandFieldNamed: 'result') basicValue: val.
+		(res expandFieldNamed: 'result') basicValue: anObject.
 		(res expandFieldNamed: 'opcode') at: 'local' put: self operation operationCode ] ]
 ]
 

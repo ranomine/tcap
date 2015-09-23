@@ -323,10 +323,19 @@ ROSInvocation >> returnResult: aDictionary [
 ]
 
 { #category : #'as yet unclassified' }
-ROSInvocation >> returnResultLast: aDictionary [
+ROSInvocation >> returnResultLast: aResult [
 	self sendMessage: (
 		(self newMessage: ROSResultLast)
-			result: aDictionary)
+			result: aResult)
+ 
+]
+
+{ #category : #'as yet unclassified' }
+ROSInvocation >> returnResultLastUsing: aBlock [
+	| result |
+	result := self resultValue.
+	aBlock value: result.
+	self returnResultLast: result.
  
 ]
 
