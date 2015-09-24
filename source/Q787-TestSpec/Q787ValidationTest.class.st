@@ -3593,7 +3593,7 @@ Q787ValidationTest >> test1_1_2_1_2_2s2 [
 	self assert: env servicePointA isIdle.
 	self assert: env hasInitialState.
 
-	self assert: (abort findKey: 'dtid') basicValue = (begin findKey: 'otid') basicValue.
+	self assert: (abort findKey: 'dtid') contents = (begin findKey: 'otid') contents.
 	
 	"self assert: (abort findTaggedValueForTypeNamed: 'DialoguePortion') tagByteValue = 2r01101011."
 	self assert: (abort findTaggedValue: 'p-abortCause') tag = (self applicationTag: 10).
@@ -3828,7 +3828,7 @@ Q787ValidationTest >> test1_2_1_3s1 [
 	abortInspector := self checkAbort: (env servicePointA sentPackets second).
 	self assert: abortInspector message abort dtid = beginInspector message begin otid.
 
-	self assert: (abortInspector message abort reason at: 'p-abortCause') basicValue = TCAPDialoguePAbort incorrectTransactionPortion value.
+	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
 	
 	
 	"Additional Check: SP B received the begin message" 
@@ -3937,7 +3937,7 @@ Q787ValidationTest >> test1_2_2_2s1 [
 		dialogue onBegin: [ 
 			beginCalled := true ]].
 	
-	env servicePointB transactionCoordinator postProcessDictionary: [ :dict| dict values first removeKey: 'otid' ].
+	env servicePointB transactionCoordinator postProcessDictionary: [ :dict| dict begin removeKey: 'otid' ].
 	env servicePointB newDialogue
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -4000,7 +4000,7 @@ Q787ValidationTest >> test1_2_2_3s1 [
 	
 	env := self given: #shouldCreateTestEnvironment.
 	
-	env servicePointB transactionCoordinator postProcessDictionary: [ :dict| dict values first removeKey: 'otid' ].
+	env servicePointB transactionCoordinator postProcessDictionary: [ :dict| dict continue removeKey: 'otid' ].
 	
 	env servicePointB onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
@@ -4038,7 +4038,7 @@ Q787ValidationTest >> test1_2_2_3s2 [
 	
 	env := self given: #shouldCreateTestEnvironment.
 	
-	env servicePointB transactionCoordinator postProcessDictionary: [ :dict| dict values first removeKey: 'dtid' ].
+	env servicePointB transactionCoordinator postProcessDictionary: [ :dict| dict continue removeKey: 'dtid' ].
 	
 	env servicePointB onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
@@ -4273,7 +4273,7 @@ Q787ValidationTest >> test1_2_2_5s1 [
 	endCalled := false.
 	
 	env := self given: #shouldCreateTestEnvironment.
-	env servicePointB transactionCoordinator postProcessDictionary: [ :dict| dict values first removeKey: 'dtid' ].
+	env servicePointB transactionCoordinator postProcessDictionary: [ :dict| dict end removeKey: 'dtid' ].
 	env servicePointB onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
 			dialogue requestTcEnd: false  ]].
@@ -4309,7 +4309,7 @@ Q787ValidationTest >> test1_2_2_6s1 [
 	abortCalled := false.
 	
 	env := self given: #shouldCreateTestEnvironment.
-	env servicePointB transactionCoordinator postProcessDictionary: [ :dict| dict values first removeKey: 'dtid' ].
+	env servicePointB transactionCoordinator postProcessDictionary: [ :message | message abort removeKey: 'dtid' ].
 	env servicePointB onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
 			dialogue requestTcUAbort: nil ]].
@@ -4347,8 +4347,8 @@ Q787ValidationTest >> test1_2_2_7s1 [
 		dialogue onBegin: [ 
 			dialogue requestTcUAbort: nil ]].
 	
-	env servicePointB transactionCoordinator postProcessDictionary: [ :dict |
-		dict values first removeKey: 'otid' ].
+	env servicePointB transactionCoordinator postProcessDictionary: [ :message |
+		message begin removeKey: 'otid' ].
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
 		insp taggedValue tag: (ASN1Tag clazz: 'APPLICATION' number: 3).
@@ -4548,7 +4548,7 @@ Q787ValidationTest >> test1_3_1s1 [
 	
 	"CHECK B: WAS THE DTID IN THE ABORT MESSAGE EQUAL TO THE OTID IN THE CONTINUE MESSAGE? "
 	abort  := self checkAbort: env servicePointA sentPackets first.
-	self assert: (abort findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue.
+	self assert: (abort findKey: 'dtid') contents = (continue findKey: 'otid') contents.
 	
 	"CHECK C: WAS AN ABORT MESSAGE CORRECTLY SENT FROM SP A WITH A P-ABORT CAUSE VALUE OF UNRECOGNIZED TRANSACTION ID? "
 	self assert: env servicePointA sentPackets size = 1.
@@ -4666,7 +4666,7 @@ Q787ValidationTest >> test1_4_1s1 [
 	
 	"CHECK C: WAS THE DTID IN THE FIRST END MESSAGE THE SAME AS THE OTID IN THE SECOND BEGIN MESSAGE? "
 	end1 :=  self checkEnd: env servicePointA sentPackets second.
-	self assert: (end1 findKey: 'dtid') basicValue = (begin2 findKey: 'otid') basicValue.
+	self assert: (end1 findKey: 'dtid') contents = (begin2 findKey: 'otid') contents.
 	self assert: end1Called.
 	
 	"CHECK D: WAS THE SECOND END MESSAGE CORRECTLY RECEIVED BY SP A? "
@@ -4728,7 +4728,7 @@ Q787ValidationTest >> test1_4_1s2 [
 	
 	"CHECK D: WAS THE DTID IN THE FIRST END MESSAGE THE SAME AS THE OTID IN THE SECOND BEGIN MESSAGE? "
 	end1 :=  self checkEnd: env servicePointA sentPackets second.
-	self assert: (end1 findKey: 'dtid') basicValue = (begin2 findKey: 'otid') basicValue.
+	self assert: (end1 findKey: 'dtid') contents = (begin2 findKey: 'otid') contents.
 	self assert: end1Called.
 	
 	"CHECK E: WAS THE SECOND END MESSAGE CORRECTLY RECEIVED BY SP A? "
@@ -4781,7 +4781,7 @@ Q787ValidationTest >> test1_4_2s1 [
 		
 	"CHECK C: WAS THE DTID IN THE ABORT MESSAGE THE SAME AS THE OTID IN THE CONTINUE MESSAGE? "
 	abort :=  self checkAbort: env servicePointA sentPackets second.
-	self assert: (abort findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue.
+	self assert: (abort findKey: 'dtid') contents = (continue findKey: 'otid') contents.
 	
 	"CHECK D: WAS THE P-ABORT CAUSE IN THE ABORT MESSAGE THE CORRECT VALUE, (UNRECOGNIZED TRANSACTION ID)? "
 	self assert: (abort message abort reason at: 'p-abortCause') = TCAPDialoguePAbort unrecognizedTransactionID value.
@@ -4837,7 +4837,7 @@ Q787ValidationTest >> test1_4_2s2 [
 		
 	"CHECK C: WAS THE DTID IN THE ABORT MESSAGE THE SAME AS THE OTID IN THE SECOND CONTINUE MESSAGE? "
 	abort :=  self checkAbort: env servicePointA sentPackets second.
-	self assert: (abort findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue.
+	self assert: (abort findKey: 'dtid') contents = (continue findKey: 'otid') contents.
 	
 	"CHECK D: WAS THE P-ABORT CAUSE IN THE ABORT MESSAGE THE CORRECT VALUE, (UNRECOGNIZED TRANSACTION ID)? "
 	self assert: (abort message abort reason at: 'p-abortCause') = TCAPDialoguePAbort unrecognizedTransactionID value.

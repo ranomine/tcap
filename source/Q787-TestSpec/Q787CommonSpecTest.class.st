@@ -46,7 +46,7 @@ Q787CommonSpecTest >> checkBegin: aByteArray [
 
 	"otid tag"
 	self assert: (begin findTaggedValue: 'otid') tag = (ASN1Tag clazz: 'APPLICATION' number: 8).
-	self assert: ((begin findKey: 'otid') basicValue byteSize between: 1 and: 8).
+	self assert: ((begin findKey: 'otid') contents byteSize between: 1 and: 8).
 	
 	"component portion tag"
 	"self assert: taggedValue contents second tagByteValue = 2r01101100. "
@@ -85,7 +85,7 @@ Q787CommonSpecTest >> checkEnd: aByteArray [
 
 	"otid tag"
 	self assert: (end findTaggedValue: 'dtid') tag = (ASN1Tag clazz: 'APPLICATION' number: 9).
-	self assert: ((end findKey: 'dtid') basicValue byteSize between: 1 and: 8).
+	self assert: ((end findKey: 'dtid') contents byteSize between: 1 and: 8).
 	
 	"component portion tag"
 	"self assert: taggedValue contents second tagByteValue = 2r01101100. "
@@ -2260,7 +2260,7 @@ Q787CommonSpecTest >> test1_1_2_1_2_1s1 [
 	self assert: endCalled notNil.
 	
 	"CHECK C: WAS THE DTID IN THE END MESSAGE THE SAME AS THE OTID IN THE BEGIN MESSAGE? "
-	self assert:  (end findKey: 'dtid') basicValue = (begin findKey: 'otid') basicValue.
+	self assert:  (end findKey: 'dtid') contents = (begin findKey: 'otid') contents.
 	
 	"CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.	
@@ -2322,7 +2322,7 @@ Q787CommonSpecTest >> test1_1_2_1_2_1s3 [
 	abort := self checkAbort: env servicePointA sentPackets first.
 	
 	"CHECK C: WAS THE DTID IN THE ABORT MESSAGE THE SAME AS THE OTID IN THE BE GIN MESSAGE? "
-	self assert:  (abort findKey: 'dtid') basicValue = (begin findKey: 'otid') basicValue.
+	self assert:  (abort findKey: 'dtid') contents = (begin findKey: 'otid') contents.
 	
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.	
@@ -2381,7 +2381,7 @@ Q787CommonSpecTest >> test1_1_2_1_2_2s3 [
 
 	" CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
-	self assert: (end findKey: 'dtid') basicValue = (begin findKey: 'otid') basicValue.	
+	self assert: (end findKey: 'dtid') contents = (begin findKey: 'otid') contents.	
 		
 	self assert: env hasInitialState
 ]
@@ -2499,7 +2499,7 @@ Q787CommonSpecTest >> test1_1_2_2_1_1s3 [
 	abort := self checkUAbort: env servicePointA sentPackets second.
 
 	" CHECK D: WAS THE DTID IN THE ABORT MESSAGE THE SAME AS THE OTID IN THE CONTINUE MESSAGE?"	
-	self assert: (abort findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue.
+	self assert: (abort findKey: 'dtid') contents = (continue findKey: 'otid') contents.
 	
 	" CHECK E: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
@@ -2539,7 +2539,7 @@ Q787CommonSpecTest >> test1_1_2_2_1_2s1 [
 	
 	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
-	self assert: (end findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue.
+	self assert: (end findKey: 'dtid') contents = (continue findKey: 'otid') contents.
 	self assert: env hasInitialState
 	
 ]
@@ -2578,7 +2578,7 @@ Q787CommonSpecTest >> test1_1_2_2_1_2s2 [
 	
 	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
-	self assert: (abort findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue.
+	self assert: (abort findKey: 'dtid') contents = (continue findKey: 'otid') contents.
 	self assert: env hasInitialState
 ]
 
@@ -2614,7 +2614,7 @@ Q787CommonSpecTest >> test1_1_2_2_1_2s3 [
 	self assert: continueCalled notNil.
 	self assert: abortCalled notNil.
 	
-	self assert: (abort findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue .
+	self assert: (abort findKey: 'dtid') contents = (continue findKey: 'otid') contents .
 
 	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
@@ -2652,8 +2652,8 @@ Q787CommonSpecTest >> test1_1_2_2_2_1s1 [
 
 	" CHECK D: WAS THE DTID IN THE CONTINUE AND END MESSAGES THE SAME AS THE OTID IN THE BEGIN MESSAGE."
 	
-	self assert: (continue findKey: 'dtid') basicValue = (begin findKey: 'otid') basicValue.
-	self assert: (end findKey: 'dtid') basicValue = (begin findKey: 'otid') basicValue.
+	self assert: (continue findKey: 'dtid') contents = (begin findKey: 'otid') contents.
+	self assert: (end findKey: 'dtid') contents = (begin findKey: 'otid') contents.
 	
 	" CHECK E: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
 	self assert: env servicePointA isIdle.
@@ -2690,7 +2690,7 @@ Q787CommonSpecTest >> test1_1_2_2_2_1s2 [
 	self assert: env servicePointA sentPackets size = 1.
 	
 	" CHECK D: WAS THE DTID IN THE CONTINUE MESSAGE THE SAME AS THE OTID IN THE BEGIN?"
-	self assert: (continue findKey: 'dtid') basicValue = (begin findKey: 'otid') basicValue.
+	self assert: (continue findKey: 'dtid') contents = (begin findKey: 'otid') contents.
 	
 	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
 	self assert: env servicePointA isIdle.
@@ -2725,7 +2725,7 @@ Q787CommonSpecTest >> test1_1_2_2_2_1s3 [
 	abort := self checkAbort: env servicePointA sentPackets second.
 	
 	" CHECK D: WAS THE DTID IN THE CONTINUE AND ABORT MESSAGES THE SAME AS THE OTID IN THE BEGIN MESSAGE?"
-	self assert: (abort findKey: 'dtid') basicValue = (continue findKey: 'otid') basicValue.
+	self assert: (abort findKey: 'dtid') contents = (continue findKey: 'otid') contents.
 
 	" CHECK E: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"	
 	self assert: env servicePointA isIdle.
