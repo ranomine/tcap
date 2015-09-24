@@ -272,10 +272,9 @@ TCAPTransactionCoordinator >> recoveryRead: aTaggedValue [
 		skipErrors: true
 		as: self messageClass
 		reader: self newASN1Reader) entityMessage.
-	"((message hasField: 'otid') and: [ (message at: 'otid') isNil ]) ifTrue: [  "
-		message value basicAt: 'otid' put:  (ASN1 octetStringFrom: aTaggedValue withTagNumber: 8) "]".
-	"((message hasField: 'dtid') and: [ (message at: 'dtid') isNil ]) ifTrue: [  "
-		message value basicAt: 'dtid' put: (ASN1 octetStringFrom: aTaggedValue withTagNumber: 9) "]".
+		self halt.
+		message value at: 'otid' put:  (ASN1 octetStringFrom: aTaggedValue withTagNumber: 8) "]".
+		message value at: 'dtid' put: (ASN1 octetStringFrom: aTaggedValue withTagNumber: 9) "]".
 	^ message
 ]
 
@@ -374,7 +373,7 @@ TCAPTransactionCoordinator >> transactionForMessage: aMessage sender: aSender re
 			limit transaction 
 				address: aReceiver;
 				remoteAddress: aSender;
-				pAbort: (limit transaction newPAbort basicValue: TCAPDialoguePAbort resourceLimitation);
+				pAbort: (limit transaction newPAbort contents: TCAPDialoguePAbort resourceLimitation);
 				stop. 
 				TCAPProcessingAborted signal ].
 ]
@@ -405,7 +404,7 @@ TCAPTransactionCoordinator >> withAbortHandlersDo: aBlock from: aSender to: aRec
 				tx address: aReceiver;
 					remoteAddress: aSender;
 					remoteTransactionId: abort otid;
-					pAbort: (tx newPAbort basicValue: abort cause value) ]]
+					pAbort: (tx newPAbort contents: abort cause value) ]]
 			on: TCAPLocalAbort
 			do: [ :ab | 
 				"Abort scenario (5) from Q.774 p. 30/32 "

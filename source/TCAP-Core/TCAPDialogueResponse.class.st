@@ -84,7 +84,7 @@ TCAPDialogueResponse >> noReasonGiven [
 
 { #category : #accessing }
 TCAPDialogueResponse >> null [
-	self source basicValue: 0
+	self source contents: 0
 ]
 
 { #category : #accessing }

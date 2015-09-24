@@ -42,7 +42,7 @@ TCAPDialogue >> addHandler: aHandler [
 TCAPDialogue >> addPendingMessagesTo: aMessage [
 
 	pendingResponse ifNotNil: [ 
-		aMessage at: 'dialoguePortion' put: (self factory dialoguePortionFromApdu: pendingResponse).
+		aMessage privAt: 'dialoguePortion' put: (self factory dialoguePortionFromApdu: pendingResponse).
 		pendingResponse := nil ].
 	
 	self addComponentsTo: aMessage
@@ -440,7 +440,7 @@ TCAPDialogue >> processComponentsOf: aMessage [
 { #category : #'as yet unclassified' }
 TCAPDialogue >> processDialogueRequest: request [
 
-	((request  basicAt: 'protocol-version') bitEquals: #( 'version1' ) ) 
+	((request  privAt: 'protocol-version') bitEquals: #( 'version1' ) ) 
 		ifFalse: [ 
 			"this shouldn't happen because this is a syntax error and should be catched earlier".
 			Error signal: 'message should have been checked for protocol-version earlier' ].
@@ -450,7 +450,7 @@ TCAPDialogue >> processDialogueRequest: request [
 
 	"nothing is wrong we accept as request"
 
-	applicationContext := (self asn1Model applicationContextWithOid: (request basicAt: 'application-context-name') value).
+	applicationContext := (self asn1Model applicationContextWithOid: (request privAt: 'application-context-name') value).
 	self sendAcceptResponse.
 ]
 
@@ -568,7 +568,7 @@ TCAPDialogue >> requestTcInvokeNamed: aString parameters: anObject  class: aClas
 { #category : #requests }
 TCAPDialogue >> requestTcPAbort: aNumber [
 	| pAbort |
-	pAbort := self factory newDialoguePAbort basicValue: aNumber.
+	pAbort := self factory newDialoguePAbort contents: aNumber.
 	self state requestTcPAbort: pAbort 
 ]
 

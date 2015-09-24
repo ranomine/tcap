@@ -38,7 +38,7 @@ TCAPDialogueUAbort >> asAbortIn: aFactory [
 	| abort |
 	abort := aFactory newAbortMessage.
 	(abort expandFieldNamed: 'reason')
-		at: 'u-abortCause' put: (aFactory dialoguePortionFromApdu: self).
+		privAt: 'u-abortCause' put: (aFactory dialoguePortionFromApdu: self).
 	^ abort
 ]
 

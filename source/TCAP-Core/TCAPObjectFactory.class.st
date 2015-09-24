@@ -138,7 +138,7 @@ TCAPObjectFactory >> newDialoguePDU: aPdu [
 	| pduValue |
 	pduValue := (self typeNamed: TCAPDialoguePDU asn1TypeName) newValue.
 	^ pduValue 
-		at: aPdu pduType put: aPdu;
+		privAt: aPdu pduType put: aPdu;
 		yourself		
 ]
 

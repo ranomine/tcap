@@ -78,7 +78,7 @@ TCAPEntityMessage >> asTCMessage [
 	| tcType |
 	tcType := self asn1TypeNamed: 'TCMessage'.
 	^ tcType newValue
-		at: self class type
+		privAt: self class type
 		put: ((tcType elementAt: self class type) newValue: self);
 		yourself
 
@@ -158,7 +158,7 @@ TCAPEntityMessage >> setMap: aDictionary [
 
 { #category : #'as yet unclassified' }
 TCAPEntityMessage >> transactionIn: aTransactionCoordinator [
-	^ (aTransactionCoordinator transactionWithId: self dtid basicValue) ifNil: [  ^ self handleUnassignedTransaction  ].
+	^ (aTransactionCoordinator transactionWithId: self dtid) ifNil: [  ^ self handleUnassignedTransaction  ].
 ]
 
 { #category : #validating }
@@ -183,7 +183,7 @@ TCAPEntityMessage >> validateOtidSyntax [
 { #category : #validating }
 TCAPEntityMessage >> validateProtocolVersion [
 	self hasDialoguePortion ifTrue: [  
-		((self dialoguePortion soleValue value basicAt: 'protocol-version') bitEquals: #( 'version1' ) ) 
+		((self dialoguePortion soleValue value privAt: 'protocol-version') bitEquals: #( 'version1' ) ) 
 			ifFalse: [ TCAPWrongProtocolVersion signal ] ]
 ]
 

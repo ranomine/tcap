@@ -6,7 +6,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 TCAPTestCase >> anyApplicationContextId [
-	^ (self asn1Model applicationContexts anyOne attributeAt: 'applicationContextName') value
+	^ (self asn1Model applicationContexts anyOne attributeAt: 'applicationContextName') contents
 ]
 
 { #category : #'as yet unclassified' }

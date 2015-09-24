@@ -104,7 +104,7 @@ TCAPPacketParseTests >> testTcapBegin [
 	assoc := self readResolvedFrom: (self packet: #exampleTcapBeginPacket).
 	self assert: (cmd := assoc begin) notNil.
 	self assert: (cmd otid) asAsn1HexString = '04251B7D'.
-	self assert: cmd dialoguePortion dialogueRequest application_context_name basicValue = '0.4.0.0.1.0.25.2'.
+	self assert: cmd dialoguePortion dialogueRequest application_context_name contents = '0.4.0.0.1.0.25.2'.
 	self assert: (cmd dialoguePortion dialogueRequest user_information) notNil.
 	self assert: (cmd find: 'application-context-name' ) notNil 
 ]
@@ -121,7 +121,7 @@ TCAPPacketParseTests >> testTcapContinue [
 	self assert: (cmd := assoc continue) notNil.
 	self assert: (cmd otid) asAsn1HexString = '51010312'.
 	self assert: (cmd dtid) asAsn1HexString = '04251B7D'.
-	self assert: cmd dialoguePortion dialogueResponse application_context_name basicValue = '0.4.0.0.1.0.25.2'.
+	self assert: cmd dialoguePortion dialogueResponse application_context_name contents = '0.4.0.0.1.0.25.2'.
 	
 
 ]
@@ -153,7 +153,7 @@ TCAPPacketParseTests >> testUpdateLocation [
 	assoc := self readResolvedFrom: (self packet: #updateLocation).
 	self assert: (cmd := assoc begin) notNil.
 	self assert: (cmd otid) asAsn1HexString = '510103D3'.
-	self assert: (cmd dialoguePortion dialogueRequest application_context_name basicValue = '0.4.0.0.1.0.1.2') 
+	self assert: (cmd dialoguePortion dialogueRequest application_context_name contents = '0.4.0.0.1.0.1.2') 
 	
 
 ]

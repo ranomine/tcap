@@ -84,7 +84,7 @@ TCAPIdleDialogueState >> requestTcBeginDestinationAddress: aDestinationAddress o
 					ifFalse: [ Array with: userInformation ])].
 
 		begin 
-			at:  'dialoguePortion' 
+			privAt:  'dialoguePortion' 
 			put: (dialogue factory dialoguePortionFromApdu: dialogueRequest) ].
 	
 	dialogue addComponentsTo: begin.	
