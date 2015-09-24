@@ -64,7 +64,7 @@ ROSOperation >> invokeWithArgument: anObject [
 	| invocation |
 	invocation := self newInvocation 
 		opcodeNumber: self operationCode.
-	(invocation expandFieldNamed: 'argument') basicValue: anObject.
+	(invocation expandFieldNamed: 'argument') contents: anObject.
 	^ invocation
 ]
 

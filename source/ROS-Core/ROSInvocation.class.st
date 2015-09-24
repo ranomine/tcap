@@ -55,9 +55,14 @@ ROSInvocation class >> rosMessageType [
 	^ 'invoke'
 ]
 
+{ #category : #'as yet unclassified' }
+ROSInvocation >> argumentType [
+	^ self operation argumentType 
+]
+
 { #category : #accessing }
 ROSInvocation >> argumentValue [
-	^ self operation argumentType newValue
+	^ self argumentType newValue
 ]
 
 { #category : #accessing }
@@ -109,7 +114,7 @@ ROSInvocation >> initializeFromDialogue: aDialogue [
 	operation := ROSOperation on: (
 		aDialogue applicationContext operationWithCode: self operationCode).
 	operation hasArgumentType ifTrue: [  
-		self argument: (operation decodeArgument: self argument) ]
+		self privAt: 'argument' put: (operation decodeArgument: (self privAt: 'argument')) ]
 ]
 
 { #category : #actions }
@@ -131,6 +136,15 @@ ROSInvocation >> invokeHandler: aBlock with: anObject [
 ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
 	(aBlock ifNil: [ defaultHandler ]) ifNotNil: [ :handler |
 		handler cull: anObject cull: anotherObject]
+]
+
+{ #category : #'as yet unclassified' }
+ROSInvocation >> newArgumentUsing: aBlock [
+	| argument |
+	self halt.
+	argument := self argumentValue.
+	aBlock value: argument.
+	self argument: argument
 ]
 
 { #category : #'as yet unclassified' }
@@ -278,6 +292,8 @@ ROSInvocation >> resultValue [
 
 { #category : #'as yet unclassified' }
 ROSInvocation >> returnError: errorType parameter: error [
+	"construct an envelope ros error object with the error as a parameter.
+	Assign the error code from type information"
 	| rosError |
 
 	rosError := self newMessage: ROSError.
@@ -343,6 +359,14 @@ ROSInvocation >> returnResultLastUsing: aBlock [
 ROSInvocation >> sendMessage: aMessage [
 	messageBlock ifNotNil: [ 
 		messageBlock value: aMessage ]
+]
+
+{ #category : #accessing }
+ROSInvocation >> setArgument: aParameter [
+	aParameter ifNil: [ self halt ].
+	self halt.
+	self removeAt: 'argument'.
+ 	(self expandFieldNamed: 'argument') basicValue: aParameter
 ]
 
 { #category : #accessing }

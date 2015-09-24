@@ -30,7 +30,7 @@ ROSError class >> rosMessageType [
 { #category : #'as yet unclassified' }
 ROSError >> decodeParameter [
 
-	(map at: 'parameter' ifAbsent: [ ^ self ]) isAsn1EncodedValue ifTrue: [  
+	(map at: 'parameter' ifAbsent: [ ^ self ]) contents isAsn1EncodedValue ifTrue: [  
 		map
 			at: 'parameter'
 			put: (ASN1
@@ -60,7 +60,7 @@ ROSError >> errorCode [
 
 { #category : #accessing }
 ROSError >> errorCode: aNumber [
-	^ ((self expandFieldNamed: 'errcode') expandFieldNamed: 'local') basicValue: aNumber
+	^ ((self expandFieldNamed: 'errcode') expandFieldNamed: 'local') contents: aNumber
 ]
 
 { #category : #resolving }
@@ -95,5 +95,5 @@ ROSError >> prepare [
 { #category : #accessing }
 ROSError >> setParameter: aParameter [
 	aParameter ifNil: [ self halt ].
- 	(self expandFieldNamed: 'parameter') basicValue: aParameter
+ 	(self expandFieldNamed: 'parameter') contents: aParameter
 ]

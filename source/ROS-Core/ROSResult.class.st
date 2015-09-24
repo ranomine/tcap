@@ -28,7 +28,7 @@ ROSResult >> decodeResult [
 	self result result isAsn1EncodedValue ifTrue: [  
 		self hasResultType ifFalse: [ 
 			ROSInvocationError signal: 'decoding ', self class name,' failed because operation ', self operationName,'  has no resultType ' ].
-		self result result: (ASN1
+		self result privAt: 'result' put: (ASN1
 			read: self result result
 			usingType: self resultType) ]
 ]
@@ -57,7 +57,7 @@ ROSResult >> result: anObject [
 	anObject ifNotNil: [  
 	self operation resultType ifNotNil: [  
 		res := self expandFieldNamed: 'result'.
-		(res expandFieldNamed: 'result') basicValue: anObject.
+		(res expandFieldNamed: 'result') contents: anObject.
 		(res expandFieldNamed: 'opcode') at: 'local' put: self operation operationCode ] ]
 ]
 
