@@ -113,7 +113,7 @@ TCAPIdleDialogueState >> requestTcContinueDestinationAddress: aDestinationAddres
 			dialoguePortion userInformation: userInformation ].
 
 		begin 
-			at:  'dialoguePortion' 
+			privAt:  'dialoguePortion' 
 			put: (dialogue factory dialoguePortionFromApdu: dialoguePortion) ].
 	
 	dialogue addComponentsTo: begin.	
@@ -138,7 +138,7 @@ TCAPIdleDialogueState >> requestTcEndDestinationAddress: aDestinationAddress ori
 			dialoguePortion userInformation: userInformation ].
 
 		begin 
-			at:  'dialoguePortion' 
+			privAt:  'dialoguePortion' 
 			put: (dialogue factory dialoguePortionFromApdu: dialoguePortion ) ].
 	
 	dialogue addComponentsTo: begin.	

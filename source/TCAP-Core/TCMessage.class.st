@@ -46,6 +46,14 @@ TCMessage >> entityMessage [
 		ifEmpty: [ TCAPInvalidEntityMessage new ]
 ]
 
+{ #category : #printing }
+TCMessage >> printOn: aStream [
+	super printOn: aStream.
+	aStream nextPut: $[.
+	aStream nextPutAll: map keys first asString.
+	aStream nextPut: $]	
+]
+
 { #category : #accessing }
 TCMessage >> realEntityMessage [
 	^ self entityMessage realMessage 

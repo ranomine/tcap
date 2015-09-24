@@ -144,7 +144,7 @@ TCAPTransactionCoordinator >> fullAbortOtid: anOtid dtid: aDtid cause: aPAbort [
 		ifNotNil: [ :transaction | 
 			transaction remoteTransactionId: anOtid.
 			"abort the local transaction"
-			transaction pAbort: (transaction newPAbort basicValue: aPAbort value).
+			transaction pAbort: (transaction newPAbort contents: aPAbort value).
 			transaction localAbort ]
 		ifNil: [ 
 			(self transactionWithRemoteId: anOtid)
@@ -272,9 +272,14 @@ TCAPTransactionCoordinator >> recoveryRead: aTaggedValue [
 		skipErrors: true
 		as: self messageClass
 		reader: self newASN1Reader) entityMessage.
-		self halt.
-		message value at: 'otid' put:  (ASN1 octetStringFrom: aTaggedValue withTagNumber: 8) "]".
-		message value at: 'dtid' put: (ASN1 octetStringFrom: aTaggedValue withTagNumber: 9) "]".
+		(message value hasField: 'otid') ifTrue: [  
+			message value 
+				at: 'otid' 
+				put:  (ASN1 octetStringFrom: aTaggedValue withTagNumber: 8) ].
+		(message value hasField: 'dtid') ifTrue: [  
+			message value 
+				at: 'dtid' 
+				put: (ASN1 octetStringFrom: aTaggedValue withTagNumber: 9) ].
 	^ message
 ]
 

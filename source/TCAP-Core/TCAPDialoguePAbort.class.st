@@ -67,10 +67,10 @@ TCAPDialoguePAbort >> asAbortIn: aFactory [
 
 { #category : #accessing }
 TCAPDialoguePAbort >> incorrectTransactionPortion [
-	self basicValue: 3
+	self contents: 3
 ]
 
 { #category : #accessing }
 TCAPDialoguePAbort >> unrecognizedMessageType [
-	self basicValue: 0
+	self contents: 0
 ]

@@ -55,7 +55,7 @@ self halt.
 { #category : #converting }
 TCAPDialogueResponse >> asEndMessageIn: aFactory [
 	^ aFactory newEndMessage 
-		at: 'dialoguePortion' put: (aFactory dialoguePortionFromApdu: self);
+		privAt: 'dialoguePortion' put: (aFactory dialoguePortionFromApdu: self);
 		yourself 
 ]
 
@@ -79,7 +79,7 @@ TCAPDialogueResponse >> noCommonDialoguePortion [
 
 { #category : #accessing }
 TCAPDialogueResponse >> noReasonGiven [
-	self source basicValue: 1
+	self source contents: 1
 ]
 
 { #category : #accessing }
