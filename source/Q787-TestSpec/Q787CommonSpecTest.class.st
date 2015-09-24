@@ -120,7 +120,7 @@ Q787CommonSpecTest >> createDialogueResponse [
 		rejectPermanent; 
 		serviceUser; 
 		noReasonGiven;
-		at: 'protocol-version' put: '1';
+		at: 'protocol-version' put: #( version1 );
 		at: 'application-context-name' put: '0.8.15';
 		yourself
 ]
