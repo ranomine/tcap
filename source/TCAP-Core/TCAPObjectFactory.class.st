@@ -155,7 +155,7 @@ self halt.
 TCAPObjectFactory >> newDialogueRequest [
 
 	^ ((self typeNamed: TCAPDialogueRequest asn1TypeName) newValue)
-		at: 'protocol-version' put: '1';
+		at: 'protocol-version' put: #( version1 );
 		yourself.
 ]
 
@@ -164,7 +164,7 @@ TCAPObjectFactory >> newDialogueResponse [
 	| dialogueResponse |
 	dialogueResponse := (self typeNamed: 'AARE-apdu') newValue.
 	dialogueResponse value
-		at: 'protocol-version' put: '1'.
+		at: 'protocol-version' put: #( version1 ).
 	^ dialogueResponse
 ]
 
