@@ -48,7 +48,7 @@ MAPTest >> shouldFindApplicationContextForSendAuthenticationOperation [
 	context := contexts associations first.
 	self assert: context value clazz = 'APPLICATION-CONTEXT'.
 	self assert: context key = 'infoRetrievalContext-v3'.
-	self assert: (context value attributeAt: 'applicationContextName')  value value= '0.4.0.0.1.0.14.3'
+	self assert: (context value attributeAt: 'applicationContextName') contents= '0.4.0.0.1.0.14.3'
 
 ]
 
@@ -97,7 +97,7 @@ MAPTest >> testApplicationContextWithId [
 	| context |
 	self shouldnt: [ context := self model applicationContextWithOid:'0.4.0.0.1.0.27.3' ] raise: Error.
 	self assert: context notNil.
-	self assert: (context attributeAt: 'applicationContextName') value = '0.4.0.0.1.0.27.3'
+	self assert: (context attributeAt: 'applicationContextName') contents = '0.4.0.0.1.0.27.3'
 ]
 
 { #category : #'as yet unclassified' }
