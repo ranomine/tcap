@@ -364,9 +364,8 @@ ROSInvocation >> sendMessage: aMessage [
 { #category : #accessing }
 ROSInvocation >> setArgument: aParameter [
 	aParameter ifNil: [ self halt ].
-	self halt.
-	self removeAt: 'argument'.
- 	(self expandFieldNamed: 'argument') basicValue: aParameter
+	self removeKey: 'argument' ifAbsent: [].
+ 	(self expandFieldNamed: 'argument') contents: aParameter
 ]
 
 { #category : #accessing }
