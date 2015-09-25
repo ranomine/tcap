@@ -28,8 +28,3 @@ TCAPDialogueRequest >> applicationContextName: anOid [
 TCAPDialogueRequest >> pduType [
 	^ 'dialogueRequest'
 ]
-
-{ #category : #accessing }
-TCAPDialogueRequest >> protocolVersion: aString [
-	self at: 'protocol-version' put: aString
-]
