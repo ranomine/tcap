@@ -50,7 +50,8 @@ TCMessage >> entityMessage [
 TCMessage >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $[.
-	aStream nextPutAll: map keys first asString.
+	map ifNotEmpty: [  
+		aStream nextPutAll: map keys first asString ].
 	aStream nextPut: $]	
 ]
 
