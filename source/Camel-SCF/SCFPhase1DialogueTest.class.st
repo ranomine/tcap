@@ -65,17 +65,17 @@ SCFPhase1DialogueTest >> setUp [
 
 { #category : #'as yet unclassified' }
 SCFPhase1DialogueTest >> testInitialDPV1 [
-	| dialogue invoke params invokeResult |
-
-	params := ASN1Dictionary new
-		at: 'serviceKey' put: 23;
-		yourself.
+	| dialogue invoke params invokeResult operation |
 
 	dialogue := testEndPoint newDialogue.
 	dialogue
 		onInvoke: [:in | invokeResult := in].
+	operation := dialogue rosOperationNamed: 'initialDPV1'.
+	params := operation argumentValue
+		at: 'serviceKey' put: 23;
+		yourself.
 
-	invoke := dialogue requestTcInvokeNamed: 'initialDPV1' parameters: params class: 1 timeout: 500.
+	invoke := dialogue requestTcInvoke: operation parameters: params class: 1 timeout: 500.
 	invoke
 		onReturn: [self assert: false];
 		onError: [self assert: false];
