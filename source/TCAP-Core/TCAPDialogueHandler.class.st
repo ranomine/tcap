@@ -9,11 +9,6 @@ Class {
 }
 
 { #category : #accessing }
-TCAPDialogueHandler class >> layer [
-	^ #TCAPComponentSubLayer 
-]
-
-{ #category : #accessing }
 TCAPDialogueHandler >> asn1Model [
 	^ asn1Model ifNil: [
 		asn1Model := self container asn1Model ]

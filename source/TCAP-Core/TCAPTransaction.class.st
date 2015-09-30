@@ -16,11 +16,6 @@ TCAPTransaction class >> id: aNumber [
 		id: aNumber 
 ]
 
-{ #category : #'as yet unclassified' }
-TCAPTransaction class >> layer [
-	^ #TCAPTransactionSubLayer 
-]
-
 { #category : #requests }
 TCAPTransaction >> abortWithReason: anASN1Dictionary [ 
 	self state abortWithReason: anASN1Dictionary 

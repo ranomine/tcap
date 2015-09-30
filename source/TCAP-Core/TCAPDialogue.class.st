@@ -16,11 +16,6 @@ Class {
 	#category : #'TCAP-Core-Model'
 }
 
-{ #category : #accessing }
-TCAPDialogue class >> layer [
-	^ #TCAPComponentSubLayer 
-]
-
 { #category : #'as yet unclassified' }
 TCAPDialogue class >> on: aTransaction [
 	^ self new

@@ -13,11 +13,6 @@ Class {
 }
 
 { #category : #accessing }
-TCAPServiceEndPoint class >> layer [
-	^ self 
-]
-
-{ #category : #accessing }
 TCAPServiceEndPoint class >> newForTesting [
 	^ self new
 		factory: TCAPTestObjectFactory new
@@ -63,11 +58,6 @@ TCAPServiceEndPoint >> dialogueHandler [
 	^ dialogueHandler ifNil: [ 
 		dialogueHandler := self factory newDialogueHandler
 			serviceEndPoint: self   ]
-]
-
-{ #category : #accessing }
-TCAPServiceEndPoint >> dialoguesAndTransactions [
-	^ dialoguesAndTransactions copy
 ]
 
 { #category : #testing }

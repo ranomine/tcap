@@ -36,6 +36,11 @@ TCAPTestServiceEndPoint >> dialogueHandlerClass [
 ]
 
 { #category : #accessing }
+TCAPTestServiceEndPoint >> dialoguesAndTransactions [
+	^ dialoguesAndTransactions copy
+]
+
+{ #category : #accessing }
 TCAPTestServiceEndPoint >> didReceiveMessage [
 	^ networkService receivedPackets notEmpty
 ]
