@@ -10,12 +10,6 @@ Class {
 	#category : #'TCAP-Core-Model'
 }
 
-{ #category : #'initialize-release' }
-TCAPTransaction class >> id: aNumber [
-	^ self new
-		id: aNumber 
-]
-
 { #category : #requests }
 TCAPTransaction >> abortWithReason: anASN1Dictionary [ 
 	self state abortWithReason: anASN1Dictionary 

@@ -7,7 +7,8 @@ Class {
 		'dialogueHandler',
 		'dialoguesAndTransactions',
 		'idPool',
-		'announcer'
+		'announcer',
+		'dialoguesAndTransactionsMutex'
 	],
 	#category : #'TCAP-Core-Model'
 }
@@ -20,7 +21,8 @@ TCAPServiceEndPoint class >> newForTesting [
 
 { #category : #accessing }
 TCAPServiceEndPoint >> addDialogueAndTransaction: aDialogueAndTransaction [ 
-	^ dialoguesAndTransactions add: aDialogueAndTransaction 
+	^ dialoguesAndTransactionsMutex critical: [
+		dialoguesAndTransactions add: aDialogueAndTransaction ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -75,7 +77,8 @@ TCAPServiceEndPoint >> idPool [
 TCAPServiceEndPoint >> initialize [
 	super initialize.
 	dialoguesAndTransactions := Set new.
-	announcer := Announcer new
+	announcer := Announcer new.
+	dialoguesAndTransactionsMutex := Mutex new
 ]
 
 { #category : #accessing }
@@ -158,7 +161,8 @@ TCAPServiceEndPoint >> removeDialogueAndTransaction: aDialogueAndTransaction [
 	self idPool freeByteArray: aDialogueAndTransaction id.
 	"dialogues and transactions can be released independently. As the object
 	is shared a double remove is possible"
-	dialoguesAndTransactions remove:aDialogueAndTransaction ifAbsent: [ ].
+	dialoguesAndTransactionsMutex critical: [  
+		dialoguesAndTransactions remove:aDialogueAndTransaction ifAbsent: [ ] ].
 	announcer announce: (TCAPDialogueTerminated dialogue: aDialogueAndTransaction dialogue)
 ]
 
@@ -176,16 +180,18 @@ TCAPServiceEndPoint >> transactionCoordinator: aTCAPTransactionCoordinator [
 
 { #category : #accessing }
 TCAPServiceEndPoint >> transactionWithId: aString [
-	^ (dialoguesAndTransactions 
-		detect: [ :each | each transaction id = aString  ]
-		ifNone: [ ^ nil ])
-			transaction
+	^ dialoguesAndTransactionsMutex critical: [
+		(dialoguesAndTransactions 
+			detect: [ :each | each transaction id = aString  ]
+			ifNone: [ ^ nil ])
+				transaction ]
 ]
 
 { #category : #accessing }
 TCAPServiceEndPoint >> transactionWithRemoteId: aString [
-	^ (dialoguesAndTransactions 
-		detect: [ :each | each transaction remoteTransactionId = aString  ]
-		ifNone: [ ^ nil ])
-			transaction
+	^ dialoguesAndTransactionsMutex critical: [
+		(dialoguesAndTransactions 
+			detect: [ :each | each transaction remoteTransactionId = aString  ]
+			ifNone: [ ^ nil ])
+				transaction ]
 ]

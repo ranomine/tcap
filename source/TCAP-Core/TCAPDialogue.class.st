@@ -16,12 +16,6 @@ Class {
 	#category : #'TCAP-Core-Model'
 }
 
-{ #category : #'as yet unclassified' }
-TCAPDialogue class >> on: aTransaction [
-	^ self new
-		transaction: aTransaction 
-]
-
 { #category : #adding }
 TCAPDialogue >> addComponentsTo: anObject [
 	self hasComponents ifTrue: [
