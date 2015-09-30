@@ -231,7 +231,6 @@ TCAPDialogue >> initialize [
 { #category : #accessing }
 TCAPDialogue >> invoke: invocation withTimeout: aDuration [
 	invocation startInvocationTimer: aDuration.
-	invocation parent: self.
 	localInvocations add: invocation.
 	componentCoordinator addComponent: (invocation asROS).
 
@@ -288,7 +287,6 @@ TCAPDialogue >> newInvocationForName: aString parameters: anObject  class: aClas
 TCAPDialogue >> newInvocationForName: aString parameters: anObject  class: aClass linkedTo: anotherInvocation [
 	| invocation |
 	invocation := ((self rosOperationNamed: aString) invokeWithArgument: anObject)
-		parent: self;
 		invokeId: invokeIdPool nextId;
 		onMessage: [  self halt ];
 		operationClass: aClass.		
@@ -531,7 +529,6 @@ TCAPDialogue >> requestTcInvoke: anOperation parameters: anObject  class: aClass
 TCAPDialogue >> requestTcInvoke: anOperation parameters: anObject  class: aClass timeout: aTimeout linkedTo: anInvocation [
 	| invocation |
 	invocation := (anOperation invokeWithArgument: anObject)
-		parent: self;
 		invokeId: invokeIdPool nextId;
 		onMessage: [  self halt ];
 		"invokeArgument: anObject;"
