@@ -1,7 +1,7 @@
 Class {
 	#name : #TCAPOperationSentClass,
 	#superclass : #Object,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #'as yet unclassified' }

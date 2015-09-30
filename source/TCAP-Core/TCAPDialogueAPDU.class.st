@@ -5,7 +5,7 @@ Class {
 		'applicationContextName',
 		'userInformation'
 	],
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #converting }

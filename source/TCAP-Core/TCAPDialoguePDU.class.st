@@ -1,7 +1,7 @@
 Class {
 	#name : #TCAPDialoguePDU,
 	#superclass : #ASN1AdaptiveTypeObject,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #'initailize-release' }

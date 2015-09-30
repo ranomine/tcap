@@ -1,7 +1,7 @@
 Class {
 	#name : #TCAPDialoguePortion,
 	#superclass : #ASN1TaggedValue,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #accessing }

@@ -1,7 +1,7 @@
 Class {
 	#name : #TCAPDialoguePAbort,
 	#superclass : #ASN1TaggedValue,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #'initailize-release' }

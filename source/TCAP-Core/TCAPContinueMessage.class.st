@@ -1,7 +1,7 @@
 Class {
 	#name : #TCAPContinueMessage,
 	#superclass : #TCAPEntityMessage,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #'initailize-release' }

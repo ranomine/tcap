@@ -1,7 +1,7 @@
 Class {
 	#name : #TCAPAbortMessage,
 	#superclass : #TCAPEntityMessage,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #accessing }

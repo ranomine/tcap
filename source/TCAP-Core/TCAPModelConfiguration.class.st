@@ -1,7 +1,7 @@
 Class {
 	#name : #TCAPModelConfiguration,
 	#superclass : #ASN1ModelConfiguration,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #'as yet unclassified' }

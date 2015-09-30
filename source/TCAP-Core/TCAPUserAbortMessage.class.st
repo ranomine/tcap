@@ -1,7 +1,7 @@
 Class {
 	#name : #TCAPUserAbortMessage,
 	#superclass : #TCAPEntityMessage,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #'as yet unclassified' }

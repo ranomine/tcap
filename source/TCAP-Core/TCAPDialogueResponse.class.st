@@ -5,7 +5,7 @@ Class {
 		'source',
 		'diagnostic'
 	],
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #accessing }

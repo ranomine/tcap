@@ -1,7 +1,7 @@
 Class {
 	#name : #TCAPInvalidEntityMessage,
 	#superclass : #TCAPEntityMessage,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #accessing }

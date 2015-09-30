@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'source'
 	],
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #'initailize-release' }

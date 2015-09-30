@@ -5,7 +5,7 @@ Class {
 		'bytes',
 		'encodedValue'
 	],
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #'instance creation' }

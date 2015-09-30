@@ -1,7 +1,7 @@
 Class {
 	#name : #TCAPEntityMessage,
 	#superclass : #ASN1AdaptiveTypeObject,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
 
 { #category : #'as yet unclassified' }

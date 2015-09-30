@@ -1,5 +1,5 @@
 Class {
 	#name : #TCAPWaitForReject,
 	#superclass : #TCAPOperationSentClass,
-	#category : #'TCAP-Core-Model'
+	#category : #'TCAP-Core-Message'
 }
