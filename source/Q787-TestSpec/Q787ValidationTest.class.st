@@ -14,8 +14,8 @@ Q787ValidationTest >> addExtraElementAfterDtidBlock [
 	^ [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
 		"insert bogus p-abortcause"
-		insp taggedValue elements add: (ASN1EncodedPrimitiveValue new tag: (ASN1Tag clazz: 'APPLICATION' number:10); contents: 3) afterIndex: 2.
-		insp updatePacketFromTaggedValue; packet ].
+		insp encodedValue elements add: (ASN1EncodedPrimitiveValue new tag: (ASN1Tag clazz: 'APPLICATION' number:10); contents: 3) afterIndex: 2.
+		insp updatePacketFromEncodedValue; packet ].
 	
 ]
 
@@ -3596,8 +3596,8 @@ Q787ValidationTest >> test1_1_2_1_2_2s2 [
 	self assert: (abort findKey: 'dtid') contents = (begin findKey: 'otid') contents.
 	
 	"self assert: (abort findTaggedValueForTypeNamed: 'DialoguePortion') tagByteValue = 2r01101011."
-	self assert: (abort findTaggedValue: 'p-abortCause') tag = (self applicationTag: 10).
-	self assert: (abort findTaggedValue: 'p-abortCause') size = 1.
+	self assert: (abort findEncodedValue: 'p-abortCause') tag = (self applicationTag: 10).
+	self assert: (abort findEncodedValue: 'p-abortCause') size = 1.
 	
 
 ]
@@ -3968,8 +3968,8 @@ Q787ValidationTest >> test1_2_2_2s2 [
 
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | inspect | 
 		inspect := TCAPMessageInspector packet: bytes.
-		inspect taggedValue elements second tag number: 13.
-		inspect updatePacketFromTaggedValue; packet ].
+		inspect encodedValue elements second tag number: 13.
+		inspect updatePacketFromEncodedValue; packet ].
 	
 	env servicePointB newDialogue
 		requestTcBeginDestinationAddress:  self destinationAddress
@@ -4076,8 +4076,8 @@ Q787ValidationTest >> test1_2_2_3s3 [
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
 		"duplicate OTID in tagged value structure"
-		insp taggedValue elements add: insp taggedValue elements first beforeIndex: 2.
-		insp updatePacketFromTaggedValue; packet ].
+		insp encodedValue elements add: insp encodedValue elements first beforeIndex: 2.
+		insp updatePacketFromEncodedValue; packet ].
 	
 	env servicePointB onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
@@ -4118,8 +4118,8 @@ Q787ValidationTest >> test1_2_2_3s4 [
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
 		"duplicate dtid in tagged value"
-		insp taggedValue elements add: insp taggedValue elements second beforeIndex: 3.
-		insp updatePacketFromTaggedValue; packet ].
+		insp encodedValue elements add: insp encodedValue elements second beforeIndex: 3.
+		insp updatePacketFromEncodedValue; packet ].
 	
 	env servicePointB onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
@@ -4351,8 +4351,8 @@ Q787ValidationTest >> test1_2_2_7s1 [
 		message begin removeKey: 'otid' ].
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
-		insp taggedValue tag: (ASN1Tag clazz: 'APPLICATION' number: 3).
-		insp updatePacketFromTaggedValue; packet ].
+		insp encodedValue tag: (ASN1Tag clazz: 'APPLICATION' number: 3).
+		insp updatePacketFromEncodedValue; packet ].
 	env servicePointB newDialogue
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -4383,8 +4383,8 @@ Q787ValidationTest >> test1_2_2_7s2 [
 			dialogue requestTcUAbort: nil ]].
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
-		insp taggedValue tag: (ASN1Tag clazz: 'APPLICATION' number: 3).
-		insp updatePacketFromTaggedValue; packet ].
+		insp encodedValue tag: (ASN1Tag clazz: 'APPLICATION' number: 3).
+		insp updatePacketFromEncodedValue; packet ].
 	env servicePointB newDialogue
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -4417,8 +4417,8 @@ Q787ValidationTest >> test1_2_2_7s3 [
 
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
-		insp taggedValue tag: (ASN1Tag clazz: 'APPLICATION' number: 3).
-		insp updatePacketFromTaggedValue; packet ].
+		insp encodedValue tag: (ASN1Tag clazz: 'APPLICATION' number: 3).
+		insp updatePacketFromEncodedValue; packet ].
 	
 	env servicePointA newDialogue
 		onPAbort: [ abortCalled := true ];
@@ -4460,8 +4460,8 @@ Q787ValidationTest >> test1_2_3_1s1 [
 
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
-		insp taggedValue elements add: (ASN1EncodedPrimitiveValue new tag: (ASN1Tag clazz: 'UNIVERSAL' number: 2); contents: 3) beforeIndex: 1.
-		insp updatePacketFromTaggedValue; packet ].
+		insp encodedValue elements add: (ASN1EncodedPrimitiveValue new tag: (ASN1Tag clazz: 'UNIVERSAL' number: 2); contents: 3) beforeIndex: 1.
+		insp updatePacketFromEncodedValue; packet ].
 	
 	env servicePointB newDialogue
 		onPAbort: [ abortCalled := true ];
