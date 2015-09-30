@@ -59,13 +59,13 @@ TCAPTransactionCoordinator >> createBasicTransaction [
 
 { #category : #'as yet unclassified' }
 TCAPTransactionCoordinator >> decodeBinaryMessageFrom: aByteArray [
-	^ [ (TCAPBinaryMessage on: aByteArray) taggedValue; yourself ]
+	^ [ (TCAPBinaryMessage on: aByteArray) encodedValue; yourself ]
 		on: ASN1EncodedValueError 
 		do: [ :readError |
 			"reading tagged values has failed. Try to recover as much data as necessary
 			 to send back a response to the sender" 
 			self 
-				recoverAndAbort: readError taggedValues 
+				recoverAndAbort: readError encodedValue 
 				cause: TCAPDialoguePAbort incorrectTransactionPortion ]
 ]
 
@@ -90,7 +90,7 @@ TCAPTransactionCoordinator >> decodeTCMessageFrom: aByteArray [
 	binaryMessage := (self decodeBinaryMessageFrom: aByteArray).
 	^ [	
 		(ASN1 
-			read: binaryMessage taggedValue
+			read: binaryMessage encodedValue
 			usingType:  self messageType
 			inContext: self asn1Model
 			skipErrors: false
@@ -98,7 +98,7 @@ TCAPTransactionCoordinator >> decodeTCMessageFrom: aByteArray [
 			reader: self newASN1Reader)]
 		on: ASN1StructureError 
 		do: [ :err | 
-			(self recoveryRead: binaryMessage taggedValue) handleSyntaxError ]
+			(self recoveryRead: binaryMessage encodedValue) handleSyntaxError ]
 ]
 
 { #category : #'as yet unclassified' }

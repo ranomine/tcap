@@ -3,7 +3,7 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'bytes',
-		'taggedValue'
+		'encodedValue'
 	],
 	#category : #'TCAP-Core-Model'
 }
@@ -17,6 +17,12 @@ TCAPBinaryMessage class >> on: aByteArray [
 { #category : #accessing }
 TCAPBinaryMessage >> bytes: aByteArray [ 
 	bytes := aByteArray
+]
+
+{ #category : #accessing }
+TCAPBinaryMessage >> encodedValue [
+	^ encodedValue ifNil: [ 
+		encodedValue := self readEncodedValue  ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -34,14 +40,8 @@ TCAPBinaryMessage >> entityMessageFor: aTaggedValue [
 ]
 
 { #category : #'as yet unclassified' }
-TCAPBinaryMessage >> readTaggedValue [
+TCAPBinaryMessage >> readEncodedValue [
 	"read the tagged value structure into tagged values. If this fails we consider the
 	message only useful for recovery read for an abort"
-	^ ASN1 readTaggedValuesFrom: bytes readStream 
-]
-
-{ #category : #accessing }
-TCAPBinaryMessage >> taggedValue [
-	^ taggedValue ifNil: [ 
-		taggedValue := self readTaggedValue  ]
+	^ ASN1 readEncodedValuesFrom: bytes readStream 
 ]

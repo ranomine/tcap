@@ -3,13 +3,19 @@ Class {
 	#superclass : #TCAPObject,
 	#instVars : [
 		'packet',
-		'taggedValue',
 		'message',
 		'ignoreErrors',
-		'asn1Model'
+		'asn1Model',
+		'encodedValue'
 	],
 	#category : #'TCAP-Core'
 }
+
+{ #category : #'as yet unclassified' }
+TCAPMessageInspector class >> encodedValue: aTaggedValue [ 
+	^ self new
+		encodedValue: aTaggedValue
+]
 
 { #category : #'as yet unclassified' }
 TCAPMessageInspector class >> message: aMessage [ 
@@ -23,12 +29,6 @@ TCAPMessageInspector class >> packet: aByteArray [
 		packet: aByteArray
 ]
 
-{ #category : #'as yet unclassified' }
-TCAPMessageInspector class >> taggedValue: aTaggedValue [ 
-	^ self new
-		taggedValue: aTaggedValue
-]
-
 { #category : #accessing }
 TCAPMessageInspector >> asn1Model [
 	^ asn1Model ifNil: [ 
@@ -40,19 +40,43 @@ TCAPMessageInspector >> asn1Model: anObject [
 	asn1Model := anObject 
 ]
 
+{ #category : #accessing }
+TCAPMessageInspector >> encodedValue [
+	^ encodedValue ifNil: [ 
+		self packet 
+			ifNotNil: [ 
+				self updateEncodedValueFromPacket.
+				encodedValue ]
+			ifNil: [ 
+				self message ifNotNil: [ 
+					self updateEncodedValueFromMessage.
+					encodedValue ] ] ]
+]
+
+{ #category : #accessing }
+TCAPMessageInspector >> encodedValue: anEncodedValue [
+	encodedValue := anEncodedValue
+]
+
+{ #category : #'as yet unclassified' }
+TCAPMessageInspector >> encodedValueUpdated [
+	self updateMessageFromEncodedValue.
+	self updatePacketFromEncodedValue.
+]
+
+{ #category : #finding }
+TCAPMessageInspector >> findEncodedValue: aString [
+	^ self encodedValue findValueWithTag: (self messageValue type findTypeWithKey: aString) tag
+]
+
+{ #category : #finding }
+TCAPMessageInspector >> findEncodedValueForTypeNamed:  aTypeName [
+	^ self encodedValue findValueWithTag: (self asn1Model typeNamed: aTypeName)  tag
+]
+
 { #category : #finding }
 TCAPMessageInspector >> findKey: aString [ 
 	^ self message find: aString
-]
-
-{ #category : #finding }
-TCAPMessageInspector >> findTaggedValue: aString [
-	^ self taggedValue findValueWithTag: (self messageValue type findTypeWithKey: aString) tag
-]
-
-{ #category : #finding }
-TCAPMessageInspector >> findTaggedValueForTypeNamed:  aTypeName [
-	^ self taggedValue findValueWithTag: (self asn1Model typeNamed: aTypeName)  tag
 ]
 
 { #category : #testing }
@@ -94,7 +118,7 @@ TCAPMessageInspector >> isEnd [
 { #category : #accessing }
 TCAPMessageInspector >> message [ 
 	^ message ifNil: [
-		self updateMessageFromTaggedValue.
+		self updateMessageFromEncodedValue.
 		message ]
 ]
 
@@ -120,8 +144,8 @@ TCAPMessageInspector >> messageType [
 
 { #category : #'as yet unclassified' }
 TCAPMessageInspector >> messageUpdated [
-	self updateTaggedValueFromMessage.
-	self updatePacketFromTaggedValue.
+	self updateEncodedValueFromMessage.
+	self updatePacketFromEncodedValue.
 ]
 
 { #category : #accessing }
@@ -132,8 +156,8 @@ TCAPMessageInspector >> messageValue [
 { #category : #accessing }
 TCAPMessageInspector >> packet [ 
 	^ packet ifNil: [ 
-		self taggedValue ifNotNil: [
-			self updatePacketFromTaggedValue.
+		self encodedValue ifNotNil: [
+			self updatePacketFromEncodedValue.
 			packet  ] ]
 ]
 
@@ -144,32 +168,8 @@ TCAPMessageInspector >> packet: aByteArray [
 
 { #category : #'as yet unclassified' }
 TCAPMessageInspector >> packetUpdated [
-	self updateTaggedValueFromPacket.
-	self updateMessageFromTaggedValue.
-]
-
-{ #category : #accessing }
-TCAPMessageInspector >> taggedValue [
-	^ taggedValue ifNil: [ 
-		self packet 
-			ifNotNil: [ 
-				self updateTaggedValueFromPacket.
-				taggedValue ]
-			ifNil: [ 
-				self message ifNotNil: [ 
-					self updateTaggedValueFromMessage.
-					taggedValue ] ] ]
-]
-
-{ #category : #accessing }
-TCAPMessageInspector >> taggedValue: aTaggedValue [
-	taggedValue := aTaggedValue
-]
-
-{ #category : #'as yet unclassified' }
-TCAPMessageInspector >> taggedValueUpdated [
-	self updateMessageFromTaggedValue.
-	self updatePacketFromTaggedValue.
+	self updateEncodedValueFromPacket.
+	self updateMessageFromEncodedValue.
 ]
 
 { #category : #accessing }
@@ -188,37 +188,37 @@ TCAPMessageInspector >> update: aBlock onError: anErrorBlock [
 ]
 
 { #category : #updating }
-TCAPMessageInspector >> updateMessageFromTaggedValue [
+TCAPMessageInspector >> updateEncodedValueFromMessage [
+	self asn1Model resolveOidsWhile: [ 
+		encodedValue := ASN1 
+			write: self message 
+			usingModule: self tcapModule ]
+]
+
+{ #category : #updating }
+TCAPMessageInspector >> updateEncodedValueFromPacket [
+	encodedValue := ASN1 readEncodedValuesFrom: self packet readStream
+]
+
+{ #category : #updating }
+TCAPMessageInspector >> updateMessageFromEncodedValue [
 	self 
 		update: [ message := ASN1
-			read: self taggedValue 
+			read: self encodedValue 
 			usingModule: self tcapModule 
 			inContext: self asn1Model ]
 		onError: [
 			message := ASN1
-				read: self taggedValue 
+				read: self encodedValue 
 				usingType: self tcapModule pdu
 				inContext: self asn1Model
 				skipErrors: true ]
 ]
 
 { #category : #updating }
-TCAPMessageInspector >> updatePacketFromTaggedValue [
+TCAPMessageInspector >> updatePacketFromEncodedValue [
 	packet := ByteArray streamContents: [ :stream |
 		ASN1 
-			writeTaggedValues: self taggedValue 
+			writeEncodedValues: self encodedValue 
 			on: stream  ]
-]
-
-{ #category : #updating }
-TCAPMessageInspector >> updateTaggedValueFromMessage [
-	self asn1Model resolveOidsWhile: [ 
-		taggedValue := ASN1 
-			write: self message 
-			usingModule: self tcapModule ]
-]
-
-{ #category : #updating }
-TCAPMessageInspector >> updateTaggedValueFromPacket [
-	taggedValue := ASN1 readTaggedValuesFrom: self packet readStream
 ]

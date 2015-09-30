@@ -20,7 +20,7 @@ TCAPEntityMessage class >> fromByteArray: aByteArray [
 	| ctx |
 	ctx := self asn1Context.
 	^ ASN1 
-			read: (TCAPBinaryMessage on: aByteArray)  taggedValue 
+			read: (TCAPBinaryMessage on: aByteArray)  encodedValue 
 			usingType:  (ctx model typeNamed: 'TCMessage')
 			inContext: ctx model
 			skipErrors: false
