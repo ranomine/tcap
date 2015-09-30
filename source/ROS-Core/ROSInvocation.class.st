@@ -60,16 +60,6 @@ ROSInvocation >> argumentType [
 	^ self operation argumentType 
 ]
 
-{ #category : #accessing }
-ROSInvocation >> argumentValue [
-	^ self argumentType newValue
-]
-
-{ #category : #accessing }
-ROSInvocation >> argumentValue: anObject [
-	^ self operation argumentType newValue: anObject
-]
-
 { #category : #timer }
 ROSInvocation >> cancelTimer [
 	timer ifNotNil: [
@@ -142,9 +132,19 @@ ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
 ROSInvocation >> newArgumentUsing: aBlock [
 	| argument |
 	self halt.
-	argument := self argumentValue.
+	argument := self newArgumentValue.
 	aBlock value: argument.
 	self argument: argument
+]
+
+{ #category : #accessing }
+ROSInvocation >> newArgumentValue [
+	^ self argumentType newValue
+]
+
+{ #category : #accessing }
+ROSInvocation >> newArgumentValue: anObject [
+	^ self operation argumentType newValue: anObject
 ]
 
 { #category : #'as yet unclassified' }
@@ -152,8 +152,13 @@ ROSInvocation >> newMessage: aClass [
 
 	^ (self asn1TypeNamed: aClass asn1TypeName) newValue  
 		invokeId: self invokeId;
-		parent: self
+		invocation: self
 
+]
+
+{ #category : #accessing }
+ROSInvocation >> newResultValue [
+	^ self operation resultType newValue
 ]
 
 { #category : #accessing }
@@ -238,8 +243,7 @@ ROSInvocation >> operation [
 
 { #category : #accessing }
 ROSInvocation >> operation: aROSOperation [
-	operation := aROSOperation.
-	"self opcodeNumber: aROSOperation operationCode "
+	operation := aROSOperation
 ]
 
 { #category : #accessing }
@@ -283,11 +287,6 @@ ROSInvocation >> rejectExpireTime [
 { #category : #actions }
 ROSInvocation >> rejectTimerExpired [
 
-]
-
-{ #category : #accessing }
-ROSInvocation >> resultValue [
-	^ self operation resultType newValue
 ]
 
 { #category : #'as yet unclassified' }
@@ -349,7 +348,7 @@ ROSInvocation >> returnResultLast: aResult [
 { #category : #'as yet unclassified' }
 ROSInvocation >> returnResultLastUsing: aBlock [
 	| result |
-	result := self resultValue.
+	result := self newResultValue.
 	aBlock value: result.
 	self returnResultLast: result.
  
@@ -363,7 +362,6 @@ ROSInvocation >> sendMessage: aMessage [
 
 { #category : #accessing }
 ROSInvocation >> setArgument: aParameter [
-	aParameter ifNil: [ self halt ].
 	self removeKey: 'argument' ifAbsent: [].
  	(self expandFieldNamed: 'argument') contents: aParameter
 ]

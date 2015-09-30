@@ -15,16 +15,6 @@ ROSOperation >> argumentType [
 	^ type attributeAt: 'ArgumentType'
 ]
 
-{ #category : #accessing }
-ROSOperation >> argumentValue [
-	^ self argumentType newValue
-]
-
-{ #category : #accessing }
-ROSOperation >> argumentValue: anObject [
-	^ self argumentType newValue: anObject
-]
-
 { #category : #'as yet unclassified' }
 ROSOperation >> decodeArgument: anObject [
 	^ ASN1 
@@ -73,10 +63,25 @@ ROSOperation >> name [
 	^ self type originalBindingName 
 ]
 
+{ #category : #accessing }
+ROSOperation >> newArgumentValue [
+	^ self argumentType newValue
+]
+
+{ #category : #accessing }
+ROSOperation >> newArgumentValue: anObject [
+	^ self argumentType newValue: anObject
+]
+
 { #category : #'as yet unclassified' }
 ROSOperation >> newInvocation [
 	^ (type modelRoot typeNamed: 'Invoke') newValue
 		operation: self 
+]
+
+{ #category : #accessing }
+ROSOperation >> newResultValue [
+	^ self resultType newValue
 ]
 
 { #category : #accessing }
@@ -99,9 +104,4 @@ ROSOperation >> printOn: aStream [
 { #category : #accessing }
 ROSOperation >> resultType [
 	^ type attributeAt: 'ResultType'
-]
-
-{ #category : #accessing }
-ROSOperation >> resultValue [
-	^ self resultType newValue
 ]

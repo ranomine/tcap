@@ -1,6 +1,6 @@
 Class {
 	#name : #ROSError,
-	#superclass : #ROSMessage,
+	#superclass : #ROSReply,
 	#instVars : [
 		'error'
 	],

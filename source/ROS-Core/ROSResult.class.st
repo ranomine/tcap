@@ -1,6 +1,6 @@
 Class {
 	#name : #ROSResult,
-	#superclass : #ROSMessage,
+	#superclass : #ROSReply,
 	#instVars : [
 		'encodedResult'
 	],
