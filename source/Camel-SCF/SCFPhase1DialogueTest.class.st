@@ -71,7 +71,7 @@ SCFPhase1DialogueTest >> testInitialDPV1 [
 	dialogue
 		onInvoke: [:in | invokeResult := in].
 	operation := dialogue rosOperationNamed: 'initialDPV1'.
-	params := operation argumentValue
+	params := operation newArgumentValue
 		at: 'serviceKey' put: 23;
 		yourself.
 
