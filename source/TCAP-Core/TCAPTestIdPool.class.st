@@ -9,7 +9,8 @@ Class {
 
 { #category : #accessing }
 TCAPTestIdPool >> basicNextId [
-	^ pool max + 100000 atRandom
+	^ mutex critical: [
+			pool max + 100000 atRandom ]
 ]
 
 { #category : #accessing }

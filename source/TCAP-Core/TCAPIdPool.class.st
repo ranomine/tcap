@@ -4,21 +4,23 @@ Class {
 	#instVars : [
 		'size',
 		'pool',
-		'startValue'
+		'startValue',
+		'mutex'
 	],
 	#category : #'TCAP-Core-Model'
 }
 
 { #category : #accessing }
 TCAPIdPool >> allocate: aNumber [
-	(pool includes: aNumber)  ifTrue: [ 
-		 TCAPIdAlreadyAllocated signal: 'id ', aNumber asString,' is already allocated'].
-	^ pool add: aNumber
+	^ mutex critical: [  
+		(pool includes: aNumber)  ifTrue: [ 
+			 TCAPIdAlreadyAllocated signal: 'id ', aNumber asString,' is already allocated'].
+	 pool add: aNumber ]
 ]
 
 { #category : #accessing }
 TCAPIdPool >> basicNextId [
-	^ pool max + 1
+	^ mutex critical: [ pool max + 1 ]
 ]
 
 { #category : #accessing }
@@ -30,7 +32,7 @@ TCAPIdPool >> findAndAllocateFreedId [
 TCAPIdPool >> free: anId [
 	"ids can be double freed because dialogue and transaction are
 	sharing them"
-	pool remove: anId ifAbsent: [ ] 
+	mutex critical: [ pool remove: anId ifAbsent: [ ] ]
 ]
 
 { #category : #accessing }
@@ -47,12 +49,7 @@ TCAPIdPool >> freeString: aString [
 
 { #category : #testing }
 TCAPIdPool >> hasIdsAllocated [
-	^ pool notEmpty
-]
-
-{ #category : #testing }
-TCAPIdPool >> hasMoreIds [
-	^ pool size < size
+	^ mutex critical: [ pool notEmpty ]
 ]
 
 { #category : #'initialize-release' }
@@ -60,22 +57,24 @@ TCAPIdPool >> initialize [
 	super initialize.
 	pool := Set new: 10.
 	startValue := 1.
+	mutex := Mutex new
 ]
 
 { #category : #accessing }
 TCAPIdPool >> max [
-	^ pool max
+	^ mutex critical: [ pool max ]
 ]
 
 { #category : #accessing }
 TCAPIdPool >> nextId [
 	| id |
-	id := pool isEmpty
-		ifTrue: [ startValue ] 
-		ifFalse: [ self basicNextId ].
-	^ (id <= size) 
-		ifTrue: [  self allocate: id ]
-		ifFalse: [ self findAndAllocateFreedId ]
+	^ mutex critical: [ 
+		id := pool isEmpty
+			ifTrue: [ startValue ] 
+			ifFalse: [ self basicNextId ].
+		(id <= size) 
+			ifTrue: [  self allocate: id ]
+			ifFalse: [ self findAndAllocateFreedId ] ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -95,7 +94,7 @@ TCAPIdPool >> noId [
 
 { #category : #'as yet unclassified' }
 TCAPIdPool >> poolSize [
-	^pool size
+	^ mutex critical: [ pool size ]
 ]
 
 { #category : #accessing }
