@@ -5,7 +5,8 @@ Class {
 		'id',
 		'dialogue',
 		'transaction',
-		'container'
+		'container',
+		'mutex'
 	],
 	#category : #'TCAP-Core-Model'
 }
@@ -42,6 +43,11 @@ TCAPDialogueAndTransaction >> container: aDialogueHandler [
 	container := aDialogueHandler 
 ]
 
+{ #category : #synchronization }
+TCAPDialogueAndTransaction >> critical: aBlock [
+	^ mutex critical: aBlock 
+]
+
 { #category : #accessing }
 TCAPDialogueAndTransaction >> deallocateId [
 	container idPool freeByteArray: id
@@ -70,6 +76,12 @@ TCAPDialogueAndTransaction >> id [
 { #category : #accessing }
 TCAPDialogueAndTransaction >> id: aString [ 
 	id := aString
+]
+
+{ #category : #initialization }
+TCAPDialogueAndTransaction >> initialize [
+	super initialize.
+	mutex := Mutex new
 ]
 
 { #category : #accessing }

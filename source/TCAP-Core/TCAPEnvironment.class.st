@@ -7,6 +7,11 @@ Class {
 	#category : #'TCAP-Core-Model'
 }
 
+{ #category : #converting }
+TCAPEnvironment >> asSynchronizedWrapper [
+	^ TCAPSynchronizedWrapper on: self 
+]
+
 { #category : #accessing }
 TCAPEnvironment >> asn1Context [
 	^ container asn1Context
@@ -30,6 +35,11 @@ TCAPEnvironment >> container [
 { #category : #accessing }
 TCAPEnvironment >> container: aContainer [
 	container := aContainer
+]
+
+{ #category : #synchronization }
+TCAPEnvironment >> critical: aBlock [
+	^ container critical: aBlock
 ]
 
 { #category : #accessing }
@@ -89,12 +99,12 @@ TCAPEnvironment >> newValue: aClass [
 	^ aClass newIn: self asn1Model
 ]
 
-{ #category : #'as yet unclassified' }
-TCAPEnvironment >> newValueNamed: aString [
-	^ (self asn1Model typeNamed: aString) newValue
-]
-
 { #category : #actions }
 TCAPEnvironment >> switchState: aSymbol [
 	self nextState: (self newState: aSymbol).
+]
+
+{ #category : #synchronization }
+TCAPEnvironment >> synchronizedDo: aBlock [
+	^ self critical: aBlock
 ]

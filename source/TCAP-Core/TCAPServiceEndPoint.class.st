@@ -184,7 +184,7 @@ TCAPServiceEndPoint >> transactionWithId: aString [
 		(dialoguesAndTransactions 
 			detect: [ :each | each transaction id = aString  ]
 			ifNone: [ ^ nil ])
-				transaction ]
+				transaction asSynchronizedWrapper]
 ]
 
 { #category : #accessing }
@@ -193,5 +193,5 @@ TCAPServiceEndPoint >> transactionWithRemoteId: aString [
 		(dialoguesAndTransactions 
 			detect: [ :each | each transaction remoteTransactionId = aString  ]
 			ifNone: [ ^ nil ])
-				transaction ]
+				transaction asSynchronizedWrapper ]
 ]

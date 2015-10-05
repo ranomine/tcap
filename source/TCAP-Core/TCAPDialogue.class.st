@@ -277,7 +277,6 @@ TCAPDialogue >> newInvocationForName: aString parameters: anObject  class: aClas
 	| invocation |
 	invocation := ((self rosOperationNamed: aString) invokeWithArgument: anObject)
 		invokeId: invokeIdPool nextId;
-		onMessage: [  self halt ];
 		operationClass: aClass.		
 	
 	localInvocations add: invocation.
@@ -519,8 +518,6 @@ TCAPDialogue >> requestTcInvoke: anOperation parameters: anObject  class: aClass
 	| invocation |
 	invocation := (anOperation invokeWithArgument: anObject)
 		invokeId: invokeIdPool nextId;
-		onMessage: [  self halt ];
-		"invokeArgument: anObject;"
 		yourself.
 	invocation operationClass: aClass.
 	invocation startInvocationTimer: aTimeout.
