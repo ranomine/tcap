@@ -128,15 +128,6 @@ ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
 		handler cull: anObject cull: anotherObject]
 ]
 
-{ #category : #'as yet unclassified' }
-ROSInvocation >> newArgumentUsing: aBlock [
-	| argument |
-	self halt.
-	argument := self newArgumentValue.
-	aBlock value: argument.
-	self argument: argument
-]
-
 { #category : #accessing }
 ROSInvocation >> newArgumentValue [
 	^ self argumentType newValue
@@ -158,7 +149,7 @@ ROSInvocation >> newMessage: aClass [
 
 { #category : #accessing }
 ROSInvocation >> newResultValue [
-	^ self operation resultType newValue
+	^ self operation newResultValue 
 ]
 
 { #category : #accessing }
