@@ -9,11 +9,6 @@ Q787CommonSpecTest class >> isAbstract [
 	^ true
 ]
 
-{ #category : #tags }
-Q787CommonSpecTest >> applicationTag: anInteger [ 
-	^ ASN1Tag clazz: 'APPLICATION' number: anInteger
-]
-
 { #category : #'as yet unclassified' }
 Q787CommonSpecTest >> asn1Model [
 	^ TCAPTestModel instance
@@ -27,6 +22,7 @@ Q787CommonSpecTest >> checkAbort: aByteArray [
 
 	"message tag"
 	self assert: abort encodedValue tag = (ASN1Tag clazz: 'APPLICATION' number: 7).
+	self assert: abort encodedValue tagByteValue = 2r01100111.
 	
 	"otid tag"
 	self assert: (abort findEncodedValue: 'dtid') tag = (ASN1Tag clazz: 'APPLICATION' number: 9).

@@ -3594,9 +3594,8 @@ Q787ValidationTest >> test1_1_2_1_2_2s2 [
 	self assert: env hasInitialState.
 
 	self assert: (abort findKey: 'dtid') contents = (begin findKey: 'otid') contents.
-	
 	"self assert: (abort findTaggedValueForTypeNamed: 'DialoguePortion') tagByteValue = 2r01101011."
-	self assert: (abort findEncodedValue: 'p-abortCause') tag = (self applicationTag: 10).
+	self assert: (abort findEncodedValue: 'p-abortCause') tag = (ASN1Tag clazz: 'APPLICATION' number: 10).
 	self assert: (abort findEncodedValue: 'p-abortCause') size = 1.
 	
 
