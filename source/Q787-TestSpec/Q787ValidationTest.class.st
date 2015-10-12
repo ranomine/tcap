@@ -3592,11 +3592,10 @@ Q787ValidationTest >> test1_1_2_1_2_2s2 [
 	"CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
 	self assert: env hasInitialState.
-
+	
+	"additional checks"
 	self assert: (abort findKey: 'dtid') contents = (begin findKey: 'otid') contents.
-	"self assert: (abort findTaggedValueForTypeNamed: 'DialoguePortion') tagByteValue = 2r01101011."
-	self assert: (abort findEncodedValue: 'p-abortCause') tag = (ASN1Tag clazz: 'APPLICATION' number: 10).
-	self assert: (abort findEncodedValue: 'p-abortCause') size = 1.
+	self checkPAbort: env servicePointA receivedPackets first
 	
 
 ]
