@@ -2932,7 +2932,7 @@ Q787CommonSpecTest >> test1_1_2_4_2 [
 
 { #category : #tests }
 Q787CommonSpecTest >> test2_1_1_1_1 [
-	| env dialogue invocation called |
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter sequence|
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointB
@@ -2950,11 +2950,37 @@ Q787CommonSpecTest >> test2_1_1_1_1 [
 		originatingAddress:  self originatingAddress
 		applicationContextName: '0.4.0.0.1.0.14.2'.
 	
-	self assert: env servicePointA didSendMessage.
-	self checkBegin: env servicePointA sentPackets first.
-	self checkContinue: env servicePointA receivedPackets first.
-	self assert: called notNil
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	begin := self checkBegin: env servicePointA sentPackets first.	
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
 
+	"CHECK B: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	continue := self checkContinue: env servicePointA receivedPackets first.	 
+	self assert: called == true.	
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+	"Opcode and parameter is empty??? tests page 119 wants an opcode?"
+	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
 ]
 
 { #category : #tests }
