@@ -3243,3 +3243,66 @@ Q787CommonSpecTest >> test2_1_1_1_5 [
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
 ]
+
+{ #category : #tests }
+Q787CommonSpecTest >> test2_1_1_2_1 [
+
+	| env dialogue invocation called begin   invokeComponent invokeID opcode parameter errorComponent end errorCode componentPortion |
+	env := self given: #shouldCreateTestEnvironment.
+	"difference to test #test2_1_1_1_3 is to use CLass2 (TCAPReportFailure)"
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnErrorNamed: 'systemFailure'.
+					dialog requestTcEnd: false ]].
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue 
+		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
+		parameters:  '123456789' 
+		class: TCAPReportFailure 
+		timeout: 10.
+	invocation onError: [ :result |  called := true ].
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	" CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	self assert: env servicePointA didSendMessage.
+	begin := self checkBegin: env servicePointA sentPackets first.
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56.
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+
+	" CHECK B: WAS THE RETURN ERROR COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	end := self checkEnd: env servicePointA receivedPackets first. 
+	self assert: called isNil. "we do not report errors"
+	
+	componentPortion := end encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	errorComponent :=  componentPortion elements first.
+	self assert:  errorComponent tagByteValue = 2r10100011.
+ 	invokeID := errorComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	errorCode := errorComponent elements second.
+	self assert: errorCode tagByteValue = 2r00000010.
+	self assert: errorCode contents byteSize = 1.
+	self assert: errorCode contents asInteger = 34. "here it is 34"
+	
+	
+	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+]
