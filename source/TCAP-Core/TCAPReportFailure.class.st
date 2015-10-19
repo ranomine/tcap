@@ -11,3 +11,8 @@ Class {
 TCAPReportFailure class >> classNumber [
 	^ 2
 ]
+
+{ #category : #'as yet unclassified' }
+TCAPReportFailure class >> receivedError: anError invocation: anInvocation [ 
+	"we do not notify errors"
+]
