@@ -2999,31 +2999,74 @@ Q787CommonSpecTest >> test2_1_1_1_1 [
 
 { #category : #tests }
 Q787CommonSpecTest >> test2_1_1_1_2 [
-	| env dialogue invocation called |
+	| env dialogue invocation invokecalled returncalled begin continue componentPortion invokeComponent  invokeIDReturn opcode parameter sequence invokeIDInvoke  |
 	env := self given: #shouldCreateTestEnvironment.
 	
-	env servicePointB
+	env servicePointA
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
+					invokecalled := true.
 					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
 					dialog requestTcContinue ]].
-	dialogue := env servicePointA newDialogue.	
+	dialogue := env servicePointB newDialogue.	
 	invocation :=dialogue 
 		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
 		parameters:  '123456789' 
 		class: TCAPReportSuccessAndFailure 
 		timeout: 10.
-	invocation onReturnLast: [ :result |  called := true ].
+	invocation onReturnLast: [ :result |  returncalled := true ].
 	dialogue 
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
 		applicationContextName: '0.4.0.0.1.0.14.2'.
 	
+	" CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A?"
+	self assert: env servicePointB didSendMessage.
+	self assert: invokecalled notNil.
+	begin := self checkBegin: env servicePointB sentPackets first.
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001. "INVOKE"
+ 	invokeIDInvoke := invokeComponent elements first.
+	self assert: invokeIDInvoke tagByteValue = 2r00000010.
+	self assert: invokeIDInvoke contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+	
+	" CHECK B: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION SENT BY SP A?" 
+	self assert: returncalled notNil.
 	self assert: env servicePointA didSendMessage.
-	self checkBegin: env servicePointA sentPackets first.
-	self checkContinue: env servicePointA receivedPackets first.
-	self assert: called notNil
+	continue := self checkContinue: env servicePointA sentPackets first.
+	
+	componentPortion := continue encodedValue elements fourth.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100010. "RETURN RESULT-LAST"
+ 	invokeIDReturn := invokeComponent elements first.
+	self assert: invokeIDReturn tagByteValue = 2r00000010.
+	self assert: invokeIDReturn contents byteSize = 1.
+	
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+	"opcode is 3"
+	"opcode := invokeComponent elements third.
+	self assert: opcode tagByteValue = 2r00000010."
+	"parameter should be 4"
+	
+	" CHECK C: WAS THE INVOKE ID IN THE RETURN RESULT-LAST COMPONENT THE SAME AS THE ONE IN THE INVOKE COMPONENT? "
+	self assert: invokeIDInvoke contents value asInteger = invokeIDReturn contents value asInteger.
+	
+	" CHECK D: WAS THE OPERATION CODE IN THE RETURN RESULT-LAST COMPONENT THE SAME AS THE ONE IN THE INVOKE COMPONENT?"
+	"self TBD" "we have no operation code"	
+
+
 
 ]
 
