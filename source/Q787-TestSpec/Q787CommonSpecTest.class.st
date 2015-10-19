@@ -3136,6 +3136,70 @@ Q787CommonSpecTest >> test2_1_1_1_3 [
 ]
 
 { #category : #tests }
+Q787CommonSpecTest >> test2_1_1_1_4 [
+	| env dialogue invocation called begin end componentPortion invokeComponent  opcode parameter  invokeIDInvoke  invokeIDReturn errorComponent  errorCode |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	env servicePointA
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnErrorNamed: 'systemFailure'.
+					dialog requestTcEnd: false ]].
+	dialogue := env servicePointB newDialogue.	
+	invocation :=dialogue 
+		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
+		parameters:  '123456789' 
+		class: TCAPReportSuccessAndFailure 
+		timeout: 10.
+	invocation onError: [ :result |  called := true ].
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	" CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	self assert: env servicePointB didSendMessage.
+	begin := self checkBegin: env servicePointA receivedPackets first.
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001. "INVOKE"
+ 	invokeIDInvoke := invokeComponent elements first.
+	self assert: invokeIDInvoke tagByteValue = 2r00000010.
+	self assert: invokeIDInvoke contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+	
+	" CHECK B: WAS THE RETURN ERROR COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	self assert: called notNil.
+	self assert: env servicePointA didSendMessage.
+	end := self checkEnd: env servicePointA sentPackets first. 
+	
+	componentPortion := end encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	errorComponent :=  componentPortion elements first.
+	self assert:  errorComponent tagByteValue = 2r10100011.
+ 	invokeIDReturn := errorComponent elements first.
+	self assert: invokeIDReturn tagByteValue = 2r00000010.
+	self assert: invokeIDReturn contents byteSize = 1.
+	errorCode := errorComponent elements second.
+	self assert: errorCode tagByteValue = 2r00000010.
+	self assert: errorCode contents byteSize = 1.
+	
+	" CHECK C: WAS THE INVOKE ID IN THE RETURN ERROR COMPONENT THE SAME AS THE ONE IN THE INVOKE COMPONENT? "
+	self assert: invokeIDInvoke contents value asInteger = invokeIDReturn contents value asInteger.
+	
+	" CHECK D: WAS THE ERROR CODE IN THE RETURN ERROR COMPONENT VALID?"
+	self assert: errorCode contents asInteger = 34. "here it is 34"
+]
+
+{ #category : #tests }
 Q787CommonSpecTest >> test2_1_1_1_5 [
 	| env dialogue invocation called  |
 	env := self given: #shouldCreateTestEnvironment.
