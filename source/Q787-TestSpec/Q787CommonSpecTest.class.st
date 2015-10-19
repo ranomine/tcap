@@ -46,6 +46,9 @@ Q787CommonSpecTest >> checkBegin: aByteArray [
 	self assert: begin encodedValue tag = (ASN1Tag clazz: 'APPLICATION' number: 2).
 	self assert: begin encodedValue tagByteValue = 2r01100010.
 
+	"we have 1 to 3 elements: otid, optional dialog portion and optional component portion"
+	self assert:  (begin encodedValue elements size between: 1 and: 3). 
+
 	"otid tag"
 	self assert: (begin findEncodedValue: 'otid') tag = (ASN1Tag clazz: 'APPLICATION' number: 8).
 	self assert: (begin findEncodedValue: 'otid') tagByteValue = 2r01001000.
@@ -63,9 +66,12 @@ Q787CommonSpecTest >> checkContinue: aByteArray [
 	| continue |
 	continue := self messageInspectorOn: aByteArray.
 	self assert: continue isContinue.
-
+	
 	"message tag"
 	self assert: continue encodedValue tag = (ASN1Tag clazz: 'APPLICATION' number: 5).
+	
+	"we have 2 to 4 elements: otid, dtid, optional dialog portion and optional component portion"
+	self assert:  (continue encodedValue elements size between: 2 and: 4). 
 	
 	"otid tag"
 	self assert: (continue findEncodedValue: 'otid') tag = (ASN1Tag clazz: 'APPLICATION' number: 8).
@@ -77,6 +83,11 @@ Q787CommonSpecTest >> checkContinue: aByteArray [
 	self assert: (continue findEncodedValue: 'dtid') tagByteValue = 2r01001001.
 	self assert: (continue message continue dtid byteSize between: 1 and: 8).
 	
+	"component portion tag if present"
+	 continue encodedValue elements size = 4 ifTrue: [ 
+		self assert: continue encodedValue elements fourth tagByteValue =  2r1101100.
+		self assert: continue encodedValue elements fourth tag  =  (ASN1Tag clazz: 'APPLICATION' number: 12)].
+	
 	^ continue
 ]
 
@@ -85,10 +96,13 @@ Q787CommonSpecTest >> checkEnd: aByteArray [
 	| end |
 	end := self messageInspectorOn: aByteArray.
 	self assert: end isEnd.
-
+	
 	"message tag"
 	self assert: end encodedValue tag = (ASN1Tag clazz: 'APPLICATION' number: 4).
 	self assert: end encodedValue tagByteValue = 2r01100100.
+
+	"we have 1 to 3 elements: otid,  optional dialog portion and optional component portion"
+	self assert:  (end encodedValue elements size between: 1 and: 3). 
 
 	"otid tag"
 	self assert: (end findEncodedValue: 'dtid') tag = (ASN1Tag clazz: 'APPLICATION' number: 9).
