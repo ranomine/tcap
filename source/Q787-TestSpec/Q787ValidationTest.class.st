@@ -3666,12 +3666,13 @@ Q787ValidationTest >> test1_1_2_3_1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_1_2_3_2 [
-	| env begin continue end continueCalled  |
+	| env begin continue end continueCalled endCalled  |
 	env := self given: #shouldCreateTestEnvironment.
 	env servicePointA onDialogue: [ :dialogue|
 		dialogue 
 			onBegin: [ 
-				dialogue requestTcContinue ]].
+				dialogue requestTcContinue ];
+			onEnd: [endCalled := true]].
 
 	env servicePointB newDialogue
 			onContinue: [ :cont |
@@ -3693,6 +3694,7 @@ Q787ValidationTest >> test1_1_2_3_2 [
 	" CHECK C: WAS THE END MESSAGE CORRECTLY RECEIVED AT SP A? "
 	self assert: env servicePointA receivedPackets size = 2.
 	end := self checkEnd: env servicePointA receivedPackets second.
+	self assert: endCalled == true.
 	
 	" CHECK D: WAS THE TSL STATE MACHINE LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env servicePointA isIdle.
