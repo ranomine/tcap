@@ -2982,7 +2982,7 @@ Q787CommonSpecTest >> test2_1_1_1_1 [
 	self assert: parameter contents asString = '123456789'.
 
 	"CHECK B: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
-	continue := self checkContinue: env servicePointA receivedPackets first.	 
+	continue := self checkContinue: env servicePointA receivedPackets first.
 	self assert: called == true.	
 	componentPortion := continue encodedValue elements last.
 	self assert: componentPortion tagByteValue =2r01101100.
@@ -2992,7 +2992,12 @@ Q787CommonSpecTest >> test2_1_1_1_1 [
 	self assert: invokeID contents byteSize = 1.
 	sequence := invokeComponent elements second.
 	self assert: sequence tagByteValue = 2r110000.
-	"Opcode and parameter is empty??? tests page 119 wants an opcode?"
+
+	opcode := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcode first = 2r00000010.
+	self assert: opcode second = 1.
+	self assert: opcode third = 56.
+
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
 ]
