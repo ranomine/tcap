@@ -6,27 +6,94 @@ Class {
 
 { #category : #tests }
 Q787CommonTodo >> test1_1_1_1 [
-		self assert: false
+	"Unidirectional: Sending page 6"
+	self assert: false.
+	self flag: #TBD.
+	"CHECK A: WAS THE UNIDIRECTIONAL MESSAGE CORRECTLY SENT FROM SP A? "
+	"CHECK B: WAS THE TSL STATE MACHINE ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
 { #category : #tests }
 Q787CommonTodo >> test1_1_1_2 [
-		self assert: false
+	"Unidirectional: Receiving page 7"
+	self assert: false.
+	self flag: #TBD.
+	"CHECK A: WAS THE UNIDIRECTIONAL MESSAGE CORRECTLY RECEIVED AT SP A? "
+	"CHECK B: WAS THE TSL STATE MACHINE ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
 { #category : #tests }
 Q787CommonTodo >> test1_1_3_2_1s1 [
-		self assert: false
+	"Value variations: Transaction ID; length is one octet. Page 58"
+	self assert: false.
+	self flag: #TBD.
+	
+	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A AND PASSED TO THE TR-USER? "
+	"CHECK B: WAS AN END MESSAGE CORRECTLY SENT BY SP A? "
+	"CHECK C: WAS THE DTID IN THE END MESSAGE THE SAME AS THE OTID IN THE BEGIN MESSAGE? "
+	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
 { #category : #tests }
 Q787CommonTodo >> test1_1_3_2_1s2 [
-		self assert: false
+	"Value variations: Transaction ID: Length is four octets. Page 60"
+	self assert: false.
+	self flag: #TBD.
+	
+	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A AND PASSED TO THE TR-USER? "
+	"CHECK B: WAS AN END MESSAGE CORRECTLY SENT BY SP A? "
+	"CHECK C: WAS THE DTID IN THE END MESSAGE THE SAME AS THE OTID IN THE BEGIN MESSAGE? "
+	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
 { #category : #tests }
 Q787CommonTodo >> test2_1_2_1_1 [
-		self assert: false
+	"Invoke linked components. Page 134"
+
+	| env dialogue invocation called invokeBcalled invokeAcalled |
+	env := self given: #shouldCreateTestEnvironment.
+	self flag: #TBD. "can't invoke in the invoke?"
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					invokeBcalled := true.
+					dialog requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500 linkedTo: inv.
+					dialog requestTcContinue ]].
+			
+	dialogue := env servicePointA newDialogue.
+	 env servicePointA onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					invokeAcalled := true.
+					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+					dialog requestTcContinue ]].
+	
+	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation onReturnLast: [ :result |  called := true ].
+	
+		
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+		
+	self assert: invokeBcalled = true.
+	self assert: invokeAcalled = true.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	"CHECK B: WAS A LINKED INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	"CHECK C: WAS THE LINKED ID THE SAME AS THE ORIGINAL INVOKE ID SENT BY SP B? "
+	"CHECK D: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	"CHECK E: WAS THE SECOND RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	"CHECK F: WAS THE INVOKE ID IN THE SECOND RETURN RESULT-LAST COMPONENT THE SAME AS THE ONE IN THE ORIGINAL 
+	                 INVOKE COMPONENT SENT BY SP B? "
+	"CHECK G: WAS THE OPERATION CODE IN THE SECOND RETURN RESULT-LAST COMPONENT THE SAME AS THE ONE IN 
+	                 THE ORIGINAL INVOKE COMPONENT ? "
+	"CHECK H: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?
+"
+
+
 ]
 
 { #category : #tests }
