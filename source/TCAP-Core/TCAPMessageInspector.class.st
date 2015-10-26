@@ -80,6 +80,11 @@ TCAPMessageInspector >> findKey: aString [
 ]
 
 { #category : #testing }
+TCAPMessageInspector >> hasComponents [
+	^self encodedValue elements last tag =  (ASN1Tag clazz: 'APPLICATION' number: 12).
+]
+
+{ #category : #testing }
 TCAPMessageInspector >> hasType: aString [
 	^ self messageType = aString
 ]
