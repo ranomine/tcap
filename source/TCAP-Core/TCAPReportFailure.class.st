@@ -16,3 +16,12 @@ TCAPReportFailure class >> classNumber [
 TCAPReportFailure class >> receivedError: anError invocation: anInvocation [ 
 	"we do not notify errors"
 ]
+
+{ #category : #'as yet unclassified' }
+TCAPReportFailure class >> receivedReturnLast: aResultLast invocation: aInvocation [ 
+	aInvocation 
+		notifyReturnLast: aResultLast;
+		cancelTimer;
+		startRejectTimer;
+		waitForReject
+]
