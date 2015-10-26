@@ -3331,6 +3331,8 @@ Q787CommonSpecTest >> test2_1_1_2_2 [
 		applicationContextName: '0.4.0.0.1.0.14.2'.
 	Processor yield.
 	(Delay forSeconds: 0.1) wait.
+	
+	
 	" CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
 	self assert: env servicePointA didSendMessage.
 	begin := self checkBegin: env servicePointA sentPackets first.
@@ -3354,7 +3356,8 @@ Q787CommonSpecTest >> test2_1_1_2_2 [
 	self assert: invokeCalled == true. "we reach here but time out"
 	
 	" CHECK C: WAS THE TC-USER AT SP A INFORMED OF TIMER EXPIRY? "
-	self flag: #TBD.
+	self flag: #TBD. 
+	"TC-L-CANCEL needs to be checked on the lower protocol layer. see Recommendation Q.775 page 16"
 	
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
 	env servicePointA isIdle. "when it is idle there are no invocations, either"

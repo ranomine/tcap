@@ -3634,6 +3634,8 @@ Q787ValidationTest >> test1_1_2_2_2_2s2 [
 Q787ValidationTest >> test1_1_2_3_1 [
 	| env begin  continue continueCalled end |
 	env := self given: #shouldCreateTestEnvironment.
+	"To verify that SP A is able to accept a Continue message without CP"
+	
 	env servicePointB onDialogue: [ :dialogue|
 		dialogue 
 			onBegin: [ 
@@ -3647,6 +3649,7 @@ Q787ValidationTest >> test1_1_2_3_1 [
 		originatingAddress:  self originatingAddress
 		applicationContextName: self anyApplicationContextId. 
 	
+
 	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY SENT FROM SP A?"
 	self assert: env servicePointA didSendMessage.
 	begin := self checkBegin: env servicePointA sentPackets first.
@@ -3655,6 +3658,7 @@ Q787ValidationTest >> test1_1_2_3_1 [
 	self assert: env servicePointA didReceiveMessage.
 	continue := self checkContinue: env servicePointA receivedPackets first.
 	self assert: continueCalled == true.
+	self assert: (continue encodedValue elements size = 3).  "no component portion present"
  	
 	" CHECK C: WAS THE END MESSAGE CORRECTLY SENT FROM SP A? "
 	self assert: env servicePointA sentPackets size = 2.
@@ -3667,6 +3671,8 @@ Q787ValidationTest >> test1_1_2_3_1 [
 { #category : #tests }
 Q787ValidationTest >> test1_1_2_3_2 [
 	| env begin continue end continueCalled endCalled  |
+	"To verify that SP A is able to accept a Begin message without CP"
+	
 	env := self given: #shouldCreateTestEnvironment.
 	env servicePointA onDialogue: [ :dialogue|
 		dialogue 
@@ -3685,6 +3691,7 @@ Q787ValidationTest >> test1_1_2_3_2 [
 	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A? "
 	self assert: env servicePointA didReceiveMessage.
 	begin := self checkBegin: env servicePointA receivedPackets first.
+	self assert: (begin encodedValue elements size = 2).  "no component portion present"
 	
 	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY SENT FROM SP A? "
 	self assert: env servicePointA didSendMessage.
