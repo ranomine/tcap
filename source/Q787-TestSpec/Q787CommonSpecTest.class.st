@@ -3362,3 +3362,61 @@ Q787CommonSpecTest >> test2_1_1_2_2 [
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
 ]
+
+{ #category : #tests }
+Q787CommonSpecTest >> test2_1_1_3_1 [
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter sequence|
+	env := self given: #shouldCreateTestEnvironment.
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+					dialog requestTcContinue ]].
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccess timeout: 500.
+	invocation onReturnLast: [ :result |  called := true ].
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	begin := self checkBegin: env servicePointA sentPackets first.	
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+
+	"CHECK B: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	continue := self checkContinue: env servicePointA receivedPackets first.
+	self assert: called == true.
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+
+	opcode := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcode first = 2r00000010.
+	self assert: opcode second = 1.
+	self assert: opcode third = 56.
+
+	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+]
