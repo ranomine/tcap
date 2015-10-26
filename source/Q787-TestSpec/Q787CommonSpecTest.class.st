@@ -55,9 +55,9 @@ Q787CommonSpecTest >> checkBegin: aByteArray [
 	self assert: ((begin findKey: 'otid') contents byteSize between: 1 and: 8).
 	
 	"component portion tag if present"
-	 begin encodedValue elements size = 3  ifTrue: [ 
-		self assert: begin encodedValue elements third tagByteValue =  2r01101100.
-		self assert: begin encodedValue elements third tag  =  (ASN1Tag clazz: 'APPLICATION' number: 12)].
+	 begin hasComponents ifTrue: [ 
+		self assert: begin encodedValue elements last  tagByteValue =  2r01101100.
+		self assert: begin encodedValue elements last tag  =  (ASN1Tag clazz: 'APPLICATION' number: 12)].
 	^ begin
 ]
 
@@ -84,7 +84,7 @@ Q787CommonSpecTest >> checkContinue: aByteArray [
 	self assert: (continue message continue dtid byteSize between: 1 and: 8).
 	
 	"component portion tag if present"
-	 continue encodedValue elements size = 4 ifTrue: [ 
+	  continue hasComponents ifTrue: [ 
 		self assert: continue encodedValue elements fourth tagByteValue =  2r1101100.
 		self assert: continue encodedValue elements fourth tag  =  (ASN1Tag clazz: 'APPLICATION' number: 12)].
 	
@@ -110,7 +110,7 @@ Q787CommonSpecTest >> checkEnd: aByteArray [
 	self assert: ((end findKey: 'dtid') contents byteSize between: 1 and: 8).
 
 	"component portion tag if present"
-	 end encodedValue elements size = 3 ifTrue: [ 
+	 end hasComponents ifTrue: [ 
 		self assert: end encodedValue elements third tagByteValue =  2r1101100.
 		self assert: end encodedValue elements third tag  =  (ASN1Tag clazz: 'APPLICATION' number: 12)].
 	^ end

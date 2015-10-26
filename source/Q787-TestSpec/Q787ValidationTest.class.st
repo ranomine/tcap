@@ -3658,8 +3658,7 @@ Q787ValidationTest >> test1_1_2_3_1 [
 	self assert: env servicePointA didReceiveMessage.
 	continue := self checkContinue: env servicePointA receivedPackets first.
 	self assert: continueCalled == true.
-	self assert: (continue encodedValue elements size = 3).  "no component portion present"
- 	
+	self deny: continue hasComponents.
 	" CHECK C: WAS THE END MESSAGE CORRECTLY SENT FROM SP A? "
 	self assert: env servicePointA sentPackets size = 2.
 	end := self checkEnd: env servicePointA sentPackets last.
@@ -3691,7 +3690,7 @@ Q787ValidationTest >> test1_1_2_3_2 [
 	" CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A? "
 	self assert: env servicePointA didReceiveMessage.
 	begin := self checkBegin: env servicePointA receivedPackets first.
-	self assert: (begin encodedValue elements size = 2).  "no component portion present"
+	self deny: begin hasComponents.
 	
 	" CHECK B: WAS THE CONTINUE MESSAGE CORRECTLY SENT FROM SP A? "
 	self assert: env servicePointA didSendMessage.
