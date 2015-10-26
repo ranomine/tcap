@@ -3891,7 +3891,8 @@ Q787ValidationTest >> test1_2_1_4s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_1_5s1 [
-	| env  abortCalled |
+	"Abort message; Invalid P-Abort cause value. Page 69"
+	| env  abortCalled abort |
 	abortCalled := false.
 	
 	env := self given: #shouldCreateTestEnvironment.
@@ -3920,6 +3921,10 @@ Q787ValidationTest >> test1_2_1_5s1 [
 
 	"additional check: B received just one message"
 	self assert: env servicePointB receivedPackets size = 1.
+	
+	"Misc checks: check p-abort cause value"
+	abort := self checkAbort: env servicePointA receivedPackets first.
+	self assert: (abort message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectCauseValue value.
 	
 	" CHECK C: IF THE TR-ABORT IND. WAS SENT, WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A? "
 	self assert: abortCalled. 
