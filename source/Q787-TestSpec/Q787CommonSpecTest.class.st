@@ -3004,7 +3004,7 @@ Q787CommonSpecTest >> test2_1_1_1_1 [
 
 { #category : #tests }
 Q787CommonSpecTest >> test2_1_1_1_2 [
-	| env dialogue invocation invokecalled returncalled begin continue componentPortion invokeComponent  invokeIDReturn opcode parameter sequence invokeIDInvoke  |
+	| env dialogue invocation invokecalled returncalled begin continue componentPortion invokeComponent  invokeIDReturn opcode opcode2 parameter sequence invokeIDInvoke  |
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointA
@@ -3060,16 +3060,17 @@ Q787CommonSpecTest >> test2_1_1_1_2 [
 	
 	sequence := invokeComponent elements second.
 	self assert: sequence tagByteValue = 2r110000.
-	"opcode is 3"
-	"opcode := invokeComponent elements third.
-	self assert: opcode tagByteValue = 2r00000010."
-	"parameter should be 4"
+	
+	opcode2 := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcode2 first = 2r00000010.
+	self assert: opcode2 second = 1.
+	self assert: opcode2 third = 56.
 	
 	" CHECK C: WAS THE INVOKE ID IN THE RETURN RESULT-LAST COMPONENT THE SAME AS THE ONE IN THE INVOKE COMPONENT? "
 	self assert: invokeIDInvoke contents value asInteger = invokeIDReturn contents value asInteger.
 	
 	" CHECK D: WAS THE OPERATION CODE IN THE RETURN RESULT-LAST COMPONENT THE SAME AS THE ONE IN THE INVOKE COMPONENT?"
-	"self TBD" "we have no operation code"	
+	self assert: opcode contents asInteger = opcode2 third.
 
 
 
