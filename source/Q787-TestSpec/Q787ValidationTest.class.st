@@ -4859,36 +4859,3 @@ Q787ValidationTest >> test1_4_2s2 [
 	"CHECK F: WERE TSL STATE MACHINES ASSOCIATED WITH THESE TRANSACTIONS LEFT IN THE IDLE STATE AT SP A?"
 	self assert: env hasInitialState.
 ]
-
-{ #category : #tests }
-Q787ValidationTest >> test2_1_3_1_1 [
-	| env rejectCalled  dialogue invocation |
-	rejectCalled := false.
-	
-	env := self given: #shouldCreateTestEnvironment.
-	
-	env servicePointB onDialogue: [ : dialog |
-		dialog onInvoke: [ :notification |
-			notification invocation returnReject: nil.
-			dialog requestTcContinue ]].
-
-	dialogue := env servicePointA newDialogue.
-		
-	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
-	
-	invocation 
-		onReject: [ rejectCalled := true ].
-
-	dialogue
-		requestTcBeginDestinationAddress:  self destinationAddress
-		originatingAddress:  self originatingAddress
-		applicationContextName: '0.4.0.0.1.0.14.2'. 
-		
-	self assert: env servicePointA sentPackets size = 1.
-	self assert: env servicePointB sentPackets size = 1.
-	
-	self flag: #todo.
-	"state machine must be implemented to end the dialogue immediately on reject"
-	"self deny: dialogue hasInvocations."
-
-]

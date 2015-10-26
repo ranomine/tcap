@@ -153,6 +153,59 @@ Q787ValidationTodo >> test1_2_2_1s1 [
 ]
 
 { #category : #tests }
+Q787ValidationTodo >> test2_1_3_1_1 [
+	| env rejectCalled  dialogue invocation begin componentPortion invokeComponent invokeID opcode parameter  |
+	rejectCalled := false.
+	
+	env := self given: #shouldCreateTestEnvironment.
+	
+	env servicePointB onDialogue: [ : dialog |
+		dialog onInvoke: [ :notification |
+			notification invocation returnReject: nil.
+			dialog requestTcContinue ]].
+
+	dialogue := env servicePointA newDialogue.
+		
+	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	
+	invocation 
+		onReject: [ rejectCalled := true ].
+
+	dialogue
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'. 
+		
+	self assert: env servicePointA sentPackets size = 1.
+	self assert: env servicePointB sentPackets size = 1.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	begin := self checkBegin: env servicePointA sentPackets first.	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+
+	"CHECK B: WAS THE REJECT COMPONENT WITH CORRECT INFORMATION PAS SED TO TC-USER BY SP A? "
+	self flag: #TBD.
+	
+	
+	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either" 
+	self flag: #TBD. "not sure, should test the invocation state machine"
+
+]
+
+{ #category : #tests }
 Q787ValidationTodo >> test2_1_3_1_2 [
 		self assert: false
 ]
