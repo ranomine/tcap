@@ -57,7 +57,7 @@ TCAPPacketParseTests >> testPurgeMSResolveContext [
 	invoke := begin components first invoke.
 	invokeId := invoke invokeId.
 	operationCode := invoke opcode local.
-	operation := consumer findElement: [ :each| each isOperation and: [ (each attributeAt: 'operationCode') = operationCode ] ].
+	operation := consumer findElement: [ :each| each isOperation and: [ (each attributeAt: 'operationCode') contents = operationCode ] ].
 	argument := ASN1 
 		read: invoke argument 
 		usingType: (operation attributeAt: 'ArgumentType').
