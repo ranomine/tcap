@@ -60,14 +60,14 @@ ROSError >> errorCode [
 
 { #category : #accessing }
 ROSError >> errorCode: aNumber [
-	^ ((self expandFieldNamed: 'errcode') expandFieldNamed: 'local') contents: aNumber
+	^ (self expandFieldNamed: 'errcode') privAt: 'local' put: aNumber
 ]
 
 { #category : #resolving }
 ROSError >> initializeFromDialogue: aDialogue [
 	super initializeFromDialogue: aDialogue.
 	error := aDialogue applicationContext findElement: [ :err | 
-		err isError and: [ (err attributeAt: 'errorCode') = self errorCode ] ].
+		err isError and: [ (err attributeAt: 'errorCode') contents = self errorCode ] ].
 	self decodeParameter 
 ]
 

@@ -222,7 +222,7 @@ ROSInvocation >> onReturnLast: aBlock [
 { #category : #accessing }
 ROSInvocation >> opcodeNumber: aNumber [
 	(self expandFieldNamed: 'opcode') 
-		at: 'local' 
+		privAt: 'local' 
 		put: aNumber.
 ]
 

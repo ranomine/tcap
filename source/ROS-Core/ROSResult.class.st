@@ -58,7 +58,7 @@ ROSResult >> result: anObject [
 	self operation resultType ifNotNil: [  
 		res := self expandFieldNamed: 'result'.
 		(res expandFieldNamed: 'result') contents: anObject.
-		(res expandFieldNamed: 'opcode') at: 'local' put: self operation operationCode ] ]
+		(res expandFieldNamed: 'opcode') privAt: 'local' put: self operation operationCode ] ]
 ]
 
 { #category : #accessing }

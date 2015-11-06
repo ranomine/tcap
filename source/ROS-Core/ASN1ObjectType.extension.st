@@ -12,5 +12,5 @@ ASN1ObjectType >> isOperation [
 
 { #category : #'*ros-core' }
 ASN1ObjectType >> operationWithCode: aNumber [
-	^ self findElement: [ :op | op isOperation and: [ (op attributeAt: 'operationCode') = aNumber ] ]
+	^ self findElement: [ :op | op isOperation and: [ (op attributeAt: 'operationCode') contents = aNumber ] ]
 ]
