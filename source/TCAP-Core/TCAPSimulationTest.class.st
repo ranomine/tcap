@@ -155,23 +155,6 @@ TCAPSimulationTest >> shouldContainDialoguePortionOnEnd [
 ]
 
 { #category : #tests }
-TCAPSimulationTest >> shouldContinueWithEnabledHandshake [
-	|  env  |
-	env := self given: #shouldCreateTestEnvironment.
-
-	env servicePointB onDialogue: [ :dialogue |
-		dialogue onBegin: [ dialogue enableHandshake ]].
-	
-	env servicePointA newDialogue
-		requestTcBeginDestinationAddress:  self destinationAddress
-		originatingAddress:  self originatingAddress
-		applicationContextName: self anyApplicationContextId. 
-	
-	self assert: (self messageInspectorOn: env servicePointA receivedPackets first) isContinue.
-
-]
-
-{ #category : #tests }
 TCAPSimulationTest >> shouldHandleNoProtocolVersion [
 	|  env |
 	env := self newTestEnvironment. 
