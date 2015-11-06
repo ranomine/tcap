@@ -62,6 +62,18 @@ TCAPServiceEndPoint >> dialogueHandler [
 			serviceEndPoint: self   ]
 ]
 
+{ #category : #accessing }
+TCAPServiceEndPoint >> enableMandatoryHandshake [
+
+	self addHandler: TCAPHandshakeHandler new withMandatoryHandshake
+]
+
+{ #category : #accessing }
+TCAPServiceEndPoint >> enableOptionalHandshake [
+
+	self addHandler: TCAPHandshakeHandler new withOptionalHandshake
+]
+
 { #category : #testing }
 TCAPServiceEndPoint >> hasTransactions [
 	^ dialoguesAndTransactions notEmpty
