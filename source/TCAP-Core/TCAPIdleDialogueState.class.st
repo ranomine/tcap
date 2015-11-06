@@ -22,8 +22,6 @@ TCAPIdleDialogueState >> indicationTrBegin: aMessage [
 
 	aMessage hasComponents 
 		ifTrue: [ dialogue processComponentsOf: aMessage  ]
-		ifFalse: [ 
-			dialogue handshakeEnabled ifTrue: [ dialogue requestTcContinue ] ]
 ]
 
 { #category : #'requests - for testing' }

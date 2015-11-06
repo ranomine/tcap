@@ -8,7 +8,6 @@ Class {
 		'invokeIdPool',
 		'localInvocations',
 		'remoteInvocations',
-		'handshakeEnabled',
 		'announcer',
 		'userInformation',
 		'pendingResponse'
@@ -103,11 +102,6 @@ TCAPDialogue >> defaultOperationSentClass [
 ]
 
 { #category : #accessing }
-TCAPDialogue >> enableHandshake [
-	handshakeEnabled := true
-]
-
-{ #category : #accessing }
 TCAPDialogue >> flushComponents [
 	^ componentCoordinator flushComponents
 ]
@@ -115,11 +109,6 @@ TCAPDialogue >> flushComponents [
 { #category : #'as yet unclassified' }
 TCAPDialogue >> guessAppplicationContextFromOperationCode: aNumber [
 	applicationContext := self applicationContextForOperationCode: aNumber
-]
-
-{ #category : #testing }
-TCAPDialogue >> handshakeEnabled [
-	^ handshakeEnabled 
 ]
 
 { #category : #testing }
@@ -208,7 +197,6 @@ TCAPDialogue >> indicationTrUAbort: anObject [
 TCAPDialogue >> initialize [
 	super initialize.
 	announcer := Announcer new.
-	handshakeEnabled := false.
 	componentCoordinator := TCAPComponentCoordinator new
 		dialogue: self.
 	invokeIdPool := TCAPIdPool new size: 16rFFFF.
