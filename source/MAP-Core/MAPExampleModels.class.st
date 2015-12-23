@@ -30,13 +30,12 @@ MAPExampleModels class >> named: aString [
 
 { #category : #'as yet unclassified' }
 MAPExampleModels class >> readModelFromSelector:aString [
-	^ (Smalltalk at: #FLMaterializer) 
-		materializeFromByteArray: (self perform: aString asSymbol)
+	^ STON fromString: (self perform: aString asSymbol)
 ]
 
 { #category : #'as yet unclassified' }
 MAPExampleModels class >> readModelNamed: aString [
-	^ self readModelFromSelector: aString, 'ModelFuel'
+	^ self readModelFromSelector: aString, 'ModelSton'
 ]
 
 { #category : #'as yet unclassified' }
