@@ -9,5 +9,5 @@ ASN1Module >> operationNamed: aString [
 { #category : #'*ros-core' }
 ASN1Module >> operations [
 	^ (self allObjects select: [:each| each isOperation])
-		select: [:each| (each attributeAt: 'operationCode') isNumber ]
+		select: [:each| (each attributeAt: 'operationCode') notNil ]
 ]
