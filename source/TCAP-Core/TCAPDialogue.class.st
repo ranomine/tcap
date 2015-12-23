@@ -350,42 +350,42 @@ TCAPDialogue >> notifyUAbort: aMessage [
 { #category : #accessing }
 TCAPDialogue >> onBegin: aBlock [
 	^ announcer
-		on: TCAPBeginReceived 
+		when: TCAPBeginReceived 
 		do: aBlock
 ]
 
 { #category : #accessing }
 TCAPDialogue >> onContinue: aBlock [
 	^ announcer
-		on: TCAPContinueReceived 
+		when: TCAPContinueReceived 
 		do: aBlock
 ]
 
 { #category : #accessing }
 TCAPDialogue >> onEnd: aBlock [
 	^ announcer
-		on: TCAPEndReceived 
+		when: TCAPEndReceived 
 		do: aBlock
 ]
 
 { #category : #accessing }
 TCAPDialogue >> onInvoke: aBlock [
 	^ announcer
-		on: TCAPInvocationReceived 
+		when: TCAPInvocationReceived 
 		do: aBlock
 ]
 
 { #category : #accessing }
 TCAPDialogue >> onPAbort: aBlock [
 	^ announcer 
-		on: TCAPProtocolAbortReceived 
+		when: TCAPProtocolAbortReceived 
 		do: aBlock
 ]
 
 { #category : #accessing }
 TCAPDialogue >> onUAbort: aBlock [
 	^ announcer
-		on: TCAPUserAbortReceived 
+		when: TCAPUserAbortReceived 
 		do: aBlock
 ]
 

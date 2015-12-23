@@ -164,7 +164,7 @@ TCAPServiceEndPoint >> notifyDialogueReceived: aDialogue [
 { #category : #accessing }
 TCAPServiceEndPoint >> onDialogue: aBlock [
 	announcer
-		on: TCAPDialogueReceived
+		when: TCAPDialogueReceived
 		do: aBlock
 ]
 
