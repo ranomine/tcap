@@ -116,19 +116,19 @@ TCAPAllNotificationHandler >> invocationReceived: aInvocationReceived [
 
 { #category : #registering }
 TCAPAllNotificationHandler >> registerAtDialogue: anAnnouncer [
-	anAnnouncer on: TCAPBeginReceived send: #dialogueBeginReceived: to: self.
-	anAnnouncer on: TCAPContinueReceived send: #dialogueContinueReceived: to: self.
-	anAnnouncer on: TCAPEndReceived send: #dialogueEndReceived: to: self.
-	anAnnouncer on: TCAPProtocolAbortReceived send: #dialoguePAbortReceived: to: self.
-	anAnnouncer on: TCAPUserAbortReceived send: #dialogueUAbortReceived: to: self.
-	anAnnouncer on: TCAPInvocationReceived send: #invocationReceived: to: self.
-	anAnnouncer on: TCAPBeforeMessageReceived send: #beforeMessageReceived: to: self. 
-	anAnnouncer on: TCAPAfterMessageReceived send: #afterMessageReceived: to: self.
+	anAnnouncer when: TCAPBeginReceived send: #dialogueBeginReceived: to: self.
+	anAnnouncer when: TCAPContinueReceived send: #dialogueContinueReceived: to: self.
+	anAnnouncer when: TCAPEndReceived send: #dialogueEndReceived: to: self.
+	anAnnouncer when: TCAPProtocolAbortReceived send: #dialoguePAbortReceived: to: self.
+	anAnnouncer when: TCAPUserAbortReceived send: #dialogueUAbortReceived: to: self.
+	anAnnouncer when: TCAPInvocationReceived send: #invocationReceived: to: self.
+	anAnnouncer when: TCAPBeforeMessageReceived send: #beforeMessageReceived: to: self. 
+	anAnnouncer when: TCAPAfterMessageReceived send: #afterMessageReceived: to: self.
 ]
 
 { #category : #registering }
 TCAPAllNotificationHandler >> registerAtServicePoint: anAnnouncer [
-	anAnnouncer on: TCAPDialogueCreated send: #dialogueCreated: to: self.
-	anAnnouncer on: TCAPDialogueReceived send: #dialogueReceived: to: self.
-	anAnnouncer on: TCAPDialogueTerminated send: #dialogueTerminated: to: self
+	anAnnouncer when: TCAPDialogueCreated send: #dialogueCreated: to: self.
+	anAnnouncer when: TCAPDialogueReceived send: #dialogueReceived: to: self.
+	anAnnouncer when: TCAPDialogueTerminated send: #dialogueTerminated: to: self
 ]
