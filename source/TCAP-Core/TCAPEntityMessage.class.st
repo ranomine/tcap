@@ -113,12 +113,6 @@ TCAPEntityMessage >> dtid [
 	^ self at: 'dtid' ifAbsent: [ nil ]
 ]
 
-{ #category : #converting }
-TCAPEntityMessage >> entityMessage [
-	self halt.
-	^ self 
-]
-
 { #category : #testing }
 TCAPEntityMessage >> hasComponents [
 	^ self components notNil and: [ self components size > 0 ]

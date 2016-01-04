@@ -17,7 +17,6 @@ TCAPTransaction >> abortWithReason: anASN1Dictionary [
 
 { #category : #accessing }
 TCAPTransaction >> address [
-	address ifNil: [  self halt ].
 	^ address 
 ]
 

@@ -143,15 +143,6 @@ TCAPObjectFactory >> newDialoguePDU: aPdu [
 ]
 
 { #category : #accessing }
-TCAPObjectFactory >> newDialoguePortion: aDialoguePDU [ 
-self halt.
-	^  (TCAPDialoguePortion newIn: self)
-		oid: (self typeNamed: aDialoguePDU oidName);
-		value: aDialoguePDU 
-		
-]
-
-{ #category : #accessing }
 TCAPObjectFactory >> newDialogueRequest [
 
 	^ ((self typeNamed: TCAPDialogueRequest asn1TypeName) newValue)

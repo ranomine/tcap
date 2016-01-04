@@ -28,12 +28,6 @@ self halt.
 		type: (self asn1TypeNamed: 'DialoguePortion')
 ]
 
-{ #category : #converting }
-TCAPDialogueAPDU >> asExternalValueIn: aFactory [
-	^ aFactory newDialoguePortion: (self asDialoguePduIn: aFactory)
-
-]
-
 { #category : #accessing }
 TCAPDialogueAPDU >> pduType [
 	self subclassResponsibility 

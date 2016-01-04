@@ -17,12 +17,6 @@ TCAPDialogueUAbort class >> isAsn1ModelClass [
 	^ true
 ]
 
-{ #category : #'instance creation' }
-TCAPDialogueUAbort class >> serviceProvider [
-self halt.
-	^ 1 
-]
-
 { #category : #converting }
 TCAPDialogueUAbort >> asAbort [
 	| abort |

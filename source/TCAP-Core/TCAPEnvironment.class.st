@@ -43,11 +43,6 @@ TCAPEnvironment >> critical: aBlock [
 ]
 
 { #category : #accessing }
-TCAPEnvironment >> externalValue: anObject [
-	^ anObject asExternalValueIn: self factory
-]
-
-{ #category : #accessing }
 TCAPEnvironment >> factory [
 	^ container factory
 ]

@@ -36,20 +36,12 @@ TCAPDialogueResponse >> accepted [
 
 { #category : #accessing }
 TCAPDialogueResponse >> applicationContextNameNotSupported [
-	self serviceUser contents: 2
+	self serviceUser value: 2
 ]
 
 { #category : #converting }
 TCAPDialogueResponse >> asContinueMessageIn: aFactory [
 	^ aFactory newContinueMessage 
-]
-
-{ #category : #converting }
-TCAPDialogueResponse >> asEndMessage [
-self halt.
-	^ (TCAPEndMessage newIn: type modelRoot)
-		at: 'dialoguePortion' put:self asExternalValue;
-		yourself 
 ]
 
 { #category : #converting }

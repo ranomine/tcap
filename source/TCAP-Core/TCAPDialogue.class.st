@@ -240,12 +240,6 @@ TCAPDialogue >> newDialoguePortion: aClass userInformation: aUserInformation [
 ]
 
 { #category : #creating }
-TCAPDialogue >> newDialogueRequest: aUserInfoformation [
-self halt.
-	^ self newDialoguePortion: TCAPDialogueRequest userInformation: aUserInfoformation  
-]
-
-{ #category : #creating }
 TCAPDialogue >> newDialogueResponse: aUserInformation [
 	^ self newDialoguePortion: TCAPDialogueResponse userInformation: aUserInformation  
 ]
