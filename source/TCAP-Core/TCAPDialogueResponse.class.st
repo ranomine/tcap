@@ -36,7 +36,7 @@ TCAPDialogueResponse >> accepted [
 
 { #category : #accessing }
 TCAPDialogueResponse >> applicationContextNameNotSupported [
-	self serviceUser value: 2
+	self serviceUser contents: 2
 ]
 
 { #category : #converting }
