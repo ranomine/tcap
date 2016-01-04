@@ -21,11 +21,6 @@ ROSInvocation class >> asn1TypeName [
 	^ 'Invoke'
 ]
 
-{ #category : #'instance creation' }
-ROSInvocation class >> dispatchInstanceCreationOn: aFactory [ 
-	^ aFactory newROSInvocation
-]
-
 { #category : #'as yet unclassified' }
 ROSInvocation class >> isAsn1ModelClass [
 	^ true

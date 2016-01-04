@@ -94,6 +94,6 @@ ROSError >> prepare [
 
 { #category : #accessing }
 ROSError >> setParameter: aParameter [
-	aParameter ifNil: [ self halt ].
+	aParameter ifNil: [ Error signal: 'cannot use nil as a parameter' ].
  	(self expandFieldNamed: 'parameter') contents: aParameter
 ]
