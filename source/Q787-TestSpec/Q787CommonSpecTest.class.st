@@ -2956,7 +2956,7 @@ Q787CommonSpecTest >> test2_1_1_1_1 [
 					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
-	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
 	invocation onReturnLast: [ :result |  called := true ].
 	
 	dialogue 
@@ -3017,7 +3017,7 @@ Q787CommonSpecTest >> test2_1_1_1_2 [
 	dialogue := env servicePointB newDialogue.	
 	invocation :=dialogue 
 		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
-		parameters:  '123456789' 
+		parameters:  '123456789' asByteArray
 		class: TCAPReportSuccessAndFailure 
 		timeout: 10.
 	invocation onReturnLast: [ :result |  returncalled := true ].
@@ -3090,7 +3090,7 @@ Q787CommonSpecTest >> test2_1_1_1_3 [
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue 
 		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
-		parameters:  '123456789' 
+		parameters:  '123456789' asByteArray
 		class: TCAPReportSuccessAndFailure 
 		timeout: 10.
 	invocation onError: [ :result |  called := true ].
@@ -3155,7 +3155,7 @@ Q787CommonSpecTest >> test2_1_1_1_4 [
 	dialogue := env servicePointB newDialogue.	
 	invocation :=dialogue 
 		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
-		parameters:  '123456789' 
+		parameters:  '123456789' asByteArray
 		class: TCAPReportSuccessAndFailure 
 		timeout: 10.
 	invocation onError: [ :result |  called := true ].
@@ -3215,7 +3215,7 @@ Q787CommonSpecTest >> test2_1_1_1_5 [
 				onInvoke: [ : inv | 
 					invokeCalled := true]].
 	dialogue := env servicePointA newDialogue.	
-	invocation := dialogue newInvocationForName: 'sendAuthenticationInfoV2'  parameters:  '123456789'.
+	invocation := dialogue newInvocationForName: 'sendAuthenticationInfoV2'  parameters:  '123456789' asByteArray.
 	invocation onLCancel: [ :result | cancelCalled := true ].
 	dialogue invoke: invocation withTimeout: 0 seconds.
 	dialogue 
@@ -3265,7 +3265,7 @@ Q787CommonSpecTest >> test2_1_1_2_1 [
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue 
 		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
-		parameters:  '123456789' 
+		parameters:  '123456789' asByteArray
 		class: TCAPReportFailure 
 		timeout: 10.
 	invocation onError: [ :result |  called := true ].
@@ -3323,7 +3323,7 @@ Q787CommonSpecTest >> test2_1_1_2_2 [
 				onInvoke: [ : inv | 
 					invokeCalled := true]].
 	dialogue := env servicePointA newDialogue.	
-	invocation := dialogue newInvocationForName: 'sendAuthenticationInfoV2'  parameters:  '123456789' class: TCAPReportFailure.
+	invocation := dialogue newInvocationForName: 'sendAuthenticationInfoV2'  parameters:  '123456789' asByteArray class: TCAPReportFailure.
 	invocation onLCancel: [ :result | cancelCalled := true ].
 	dialogue invoke: invocation withTimeout: 0 seconds.
 	dialogue 
@@ -3376,7 +3376,7 @@ Q787CommonSpecTest >> test2_1_1_3_1 [
 					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
-	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccess timeout: 500.
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccess timeout: 500.
 	invocation onReturnLast: [ :result |  called := true ].
 	
 	dialogue 
@@ -3432,7 +3432,7 @@ Q787CommonSpecTest >> test2_1_1_3_2 [
 				onInvoke: [ : inv | 
 					invokeCalled := true]].
 	dialogue := env servicePointA newDialogue.	
-	invocation := dialogue newInvocationForName: 'sendAuthenticationInfoV2'  parameters:  '123456789' class: TCAPReportSuccess.
+	invocation := dialogue newInvocationForName: 'sendAuthenticationInfoV2'  parameters:  '123456789' asByteArray class: TCAPReportSuccess.
 	invocation onLCancel: [ :result | cancelCalled := true ].
 	dialogue invoke: invocation withTimeout: 0 seconds.
 	dialogue 
@@ -3483,7 +3483,7 @@ Q787CommonSpecTest >> test2_1_1_4_1 [
 				onInvoke: [ : inv | 
 					invokeCalled := true]].
 	dialogue := env servicePointA newDialogue.	
-	invocation := dialogue newInvocationForName: 'sendAuthenticationInfoV2'  parameters:  '123456789' class: TCAPReportNothing.
+	invocation := dialogue newInvocationForName: 'sendAuthenticationInfoV2'  parameters:  '123456789' asByteArray class: TCAPReportNothing.
 	invocation onLCancel: [ :result | cancelCalled := true ].
 	dialogue invoke: invocation withTimeout: 0 seconds.
 	dialogue 

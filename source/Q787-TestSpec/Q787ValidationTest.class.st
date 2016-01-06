@@ -3717,7 +3717,7 @@ Q787ValidationTest >> test1_2_1_1s1 [
 		dialog onBegin: [ beginCalled := true] ].
 	
 	dialogue := env servicePointB newDialogue.
-	dialogue transaction id: ''.
+	dialogue transaction id: '' asByteArray.
 	dialogue
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -3771,7 +3771,7 @@ Q787ValidationTest >> test1_2_1_2s1 [
 	
 	env servicePointB onDialogue: [ :dialogue| |  |
 		dialogue onBegin: [ 
-			dialogue transaction remoteTransactionId: ''.
+			dialogue transaction remoteTransactionId: '' asByteArray.
 			dialogue requestTcContinue ] ].
 	
 	env servicePointA newDialogue
@@ -3858,7 +3858,7 @@ Q787ValidationTest >> test1_2_1_4s1 [
 	
 	env servicePointB onDialogue: [ :dialogue|
 		dialogue onBegin: [ 
-			dialogue transaction remoteTransactionId: '1234567890'.
+			dialogue transaction remoteTransactionId: '1234567890' asByteArray.
 			dialogue requestTcEnd: false.
 		 ] ].
 	
@@ -4874,7 +4874,7 @@ Q787ValidationTest >> test2_1_3_1_1 [
 
 	dialogue := env servicePointA newDialogue.
 		
-	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
 	
 	invocation 
 		onReject: [ rejectCalled := true ].
