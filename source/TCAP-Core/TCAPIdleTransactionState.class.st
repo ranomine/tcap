@@ -24,7 +24,7 @@ TCAPIdleTransactionState >> receivedBegin: aMessage [
 TCAPIdleTransactionState >> requestTrAbort: abort [ 
 	"we send aboty without having send a begin first. dtid is not registered"
 	abort
-		at: 'dtid' put: transaction container container idPool basicNextId. "the next possible ID is unassigned now"
+		at: 'dtid' put: transaction container container idPool basicNextId asByteArray. "the next possible ID is unassigned now"
 	transaction switchState: #active.
 	transaction sendPayload:  abort asTCMessage 
 ]
@@ -44,7 +44,7 @@ TCAPIdleTransactionState >> requestTrContinue: continue [
 	"we send a continue without having send a begin first. dtid is not registered"
 	continue
 		at: 'otid' put: transaction id;
-		at: 'dtid' put: transaction container container idPool basicNextId. "the next possible ID is unassigned now"
+		at: 'dtid' put: transaction container container idPool basicNextId asByteArray. "the next possible ID is unassigned now"
 	transaction switchState: #active.
 	transaction sendPayload:  continue asTCMessage 
 ]
@@ -53,7 +53,7 @@ TCAPIdleTransactionState >> requestTrContinue: continue [
 TCAPIdleTransactionState >> requestTrEnd: end [ 
 	"we send end without having send a begin first. dtid is not registered"
 	end
-		at: 'dtid' put: transaction container container idPool basicNextId. "the next possible ID is unassigned now"
+		at: 'dtid' put: transaction container container idPool basicNextId asByteArray. "the next possible ID is unassigned now"
 	transaction switchState: #active.
 	transaction sendPayload:  end asTCMessage 
 ]

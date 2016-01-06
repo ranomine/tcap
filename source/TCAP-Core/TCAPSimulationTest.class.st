@@ -384,7 +384,7 @@ TCAPSimulationTest >> shouldSendAuthenticationInfo [
 	env remoteAddressIs: #AUC.
 	env connect.
 	env servicePointA fakeDialogueId: 'BFBDBEEF' byteArrayFromHex.
-	env sendAuthenticationInfoTo: env remoteAddress parameters: '0815'.
+	env sendAuthenticationInfoTo: env remoteAddress parameters: '0815' asByteArray.
 	self assert: env servicePointA dialoguesAndTransactions size = 1.
 	self assert: env servicePointB dialoguesAndTransactions size = 1.
 	self assert: env servicePointA  dialoguesAndTransactions anyOne transaction id hex asUppercase = 'BFBDBEEF'.
@@ -398,8 +398,8 @@ TCAPSimulationTest >> shouldTransmitUserInformation [
 
 	mapPdu := (self asn1Model typeNamed: 'MAP-DialoguePDU') newValue beSelfExpanding.
 	mapPdu map_open
-		destinationReference: '0816';
-		originationReference: '0815'.
+		destinationReference: '0816' asByteArray;
+		originationReference: '0815' asByteArray.
 	external := mapPdu asExternalValue: '0.4.0.0.1.1.1.1'.
 		
 	env servicePointA newDialogue
@@ -421,8 +421,8 @@ TCAPSimulationTest >> shouldTransmitUserInformationWithDynamicValue [
 	userInfo := 'MAP-DialoguePDU' asAsn1ValueTypedIn: self asn1Model.
 	userInfo beSelfExpanding 
 		map_open
-			originationReference: '0815';
-			destinationReference: '0816'.
+			originationReference: '0815' asByteArray;
+			destinationReference: '0816' asByteArray.
 
 	env servicePointA newDialogue
 		requestTcBeginDestinationAddress:  self destinationAddress

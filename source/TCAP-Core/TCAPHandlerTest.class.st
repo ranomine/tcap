@@ -16,7 +16,7 @@ TCAPHandlerTest >> shouldAbortMessageContainingComponentsWithMandatoryHandshake 
 		dialog onBegin: [ self fail ] ].
 	
 	dialogue := env servicePointA newDialogue.	
-	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
 
 	dialogue 
 		onPAbort: [ : x | abortCalled := true ];
@@ -81,7 +81,7 @@ TCAPHandlerTest >> shouldNotContinueMessageWithComponentsWithOptionalHandler [
 	env servicePointB addHandler: mapsec.
 
 	dialogue := env servicePointA newDialogue.	
-	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
 	dialogue 
 		onContinue: [ continueCalled := true ];
 		requestTcBeginDestinationAddress:  self destinationAddress
@@ -107,7 +107,7 @@ TCAPHandlerTest >> shouldRemoveDialogueAfterTimeout [
 				onInvoke: [ : inv | 
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
-	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
 	dialogue 
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -130,7 +130,7 @@ TCAPHandlerTest >> shouldRemoveLocalDialogueAfterTimeout [
 	env servicePointA addHandler: handler.
 
 	dialogue := env servicePointA newDialogue.	
-	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
 	dialogue 
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -158,7 +158,7 @@ TCAPHandlerTest >> shouldRemoveRemoteDialogueAfterTimeout [
 				onInvoke: [ : inv | 
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
-	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
 	dialogue 
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress

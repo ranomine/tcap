@@ -273,13 +273,11 @@ TCAPTransactionCoordinator >> recoveryRead: aTaggedValue [
 		as: self messageClass
 		reader: self newASN1Reader) entityMessage.
 		(message value hasField: 'otid') ifTrue: [  
-			message value 
-				at: 'otid' 
-				put:  (ASN1 octetStringFrom: aTaggedValue withTagNumber: 8) ].
-		(message value hasField: 'dtid') ifTrue: [  
-			message value 
-				at: 'dtid' 
-				put: (ASN1 octetStringFrom: aTaggedValue withTagNumber: 9) ].
+			(ASN1 octetStringFrom: aTaggedValue withTagNumber: 8) ifNotNil: [ :otid | 
+			message value at: 'otid' put: otid ] ].
+		(message value hasField: 'dtid') ifTrue: [ 
+			 (ASN1 octetStringFrom: aTaggedValue withTagNumber: 9) ifNotNil: [ :dtid | 
+			message value at: 'dtid' put: dtid  ]].
 	^ message
 ]
 
