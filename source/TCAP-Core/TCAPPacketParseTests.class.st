@@ -40,7 +40,7 @@ TCAPPacketParseTests >> testPurgeMS [
 	assoc := self readResolvedFrom: (self packet: #purgeMS).
 	self assert: (cmd := assoc begin) notNil.
 	self assert: (cmd otid) asAsn1HexString = '5101034E'.
-	self assert: (cmd dialoguePortion dialogueRequest protocol_version first = 'version1').
+	self assert: ((cmd dialoguePortion dialogueRequest baseValueAt: 'protocol-version') namedBits first = 'version1').
 	self assert: (cmd dialoguePortion dialogueRequest application_context_name value = '0.4.0.0.1.0.27.3') 
 	
 
@@ -72,7 +72,7 @@ TCAPPacketParseTests >> testPurgeMSResult [
 	assoc := self  readResolvedFrom: (self packet: #purgeMSResult).
 	self assert: (cmd := assoc end) notNil.
 	self assert: (cmd dtid) asAsn1HexString = '5101034E'.
-	self assert: (cmd dialoguePortion dialogueResponse protocol_version first = 'version1').
+	self assert: ((cmd dialoguePortion dialogueResponse baseValueAt: 'protocol-version') namedBits first = 'version1').
 	self assert: (cmd dialoguePortion dialogueResponse application_context_name value = '0.4.0.0.1.0.27.3') 
 	
 

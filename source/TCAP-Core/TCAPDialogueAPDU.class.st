@@ -17,11 +17,6 @@ self halt.
 ]
 
 { #category : #converting }
-TCAPDialogueAPDU >> asDialoguePduIn: aFactory [
-	^ aFactory newDialoguePDU: self
-]
-
-{ #category : #converting }
 TCAPDialogueAPDU >> asExternalValue [
 self halt.
 	^ (self asDialoguePdu asExternalValue: (self asn1TypeNamed: 'dialogue-as-id'))
