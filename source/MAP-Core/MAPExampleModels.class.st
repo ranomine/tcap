@@ -3028,7 +3028,7 @@ MAPExampleModels class >> tcapModelSton [
 																		#module : @56,
 																		#type : ASN1BitStringType {
 																			#module : @56,
-																			#bits : [
+																			#namedBits : [
 																				ASN1NamedValue {
 																					#module : @56,
 																					#name : ''clir-invoked'',
@@ -4086,7 +4086,7 @@ MAPExampleModels class >> tcapModelSton [
 																					#module : @1221,
 																					#type : ASN1BitStringType {
 																						#module : @1221,
-																						#bits : [
+																						#namedBits : [
 																							ASN1NamedValue {
 																								#module : @1221,
 																								#name : ''sc-AddressNotIncluded'',
@@ -6051,7 +6051,7 @@ MAPExampleModels class >> tcapModelSton [
 																		},
 																		''SpecificCSI-Withdraw'' : ASN1BitStringType {
 																			#module : @1971,
-																			#bits : [
+																			#namedBits : [
 																				ASN1NamedValue {
 																					#module : @1971,
 																					#name : ''o-csi'',
@@ -8297,7 +8297,7 @@ MAPExampleModels class >> tcapModelSton [
 																												#module : @1971,
 																												#type : ASN1BitStringType {
 																													#module : @1971,
-																													#bits : [
+																													#namedBits : [
 																														ASN1NamedValue {
 																															#module : @1971,
 																															#name : ''allOG-CallsBarred'',
@@ -8450,7 +8450,7 @@ MAPExampleModels class >> tcapModelSton [
 																												#module : @1971,
 																												#type : ASN1BitStringType {
 																													#module : @1971,
-																													#bits : [
+																													#namedBits : [
 																														ASN1NamedValue {
 																															#module : @1971,
 																															#name : ''plmn-SpecificBarringType1'',
@@ -8769,7 +8769,7 @@ MAPExampleModels class >> tcapModelSton [
 																		''BasicServiceCriteria'' : @2545,
 																		''RequestedEquipmentInfo'' : ASN1BitStringType {
 																			#module : @1971,
-																			#bits : [
+																			#namedBits : [
 																				ASN1NamedValue {
 																					#module : @1971,
 																					#name : ''equipmentStatus'',
@@ -9533,7 +9533,7 @@ MAPExampleModels class >> tcapModelSton [
 																																	#module : @1971,
 																																	#type : ASN1BitStringType {
 																																		#module : @1971,
-																																		#bits : Set [ ]
+																																		#namedBits : Set [ ]
 																																	},
 																																	#tag : ASN1Tag {
 																																		#number : 0
@@ -10753,7 +10753,7 @@ MAPExampleModels class >> tcapModelSton [
 																						#module : @1971,
 																						#type : ASN1BitStringType {
 																							#module : @1971,
-																							#bits : [
+																							#namedBits : [
 																								ASN1NamedValue {
 																									#module : @1971,
 																									#name : ''phase1'',
@@ -10799,7 +10799,7 @@ MAPExampleModels class >> tcapModelSton [
 																						#module : @1971,
 																						#type : ASN1BitStringType {
 																							#module : @1971,
-																							#bits : [
+																							#namedBits : [
 																								ASN1NamedValue {
 																									#module : @1971,
 																									#name : ''o-csi'',
@@ -10862,7 +10862,7 @@ MAPExampleModels class >> tcapModelSton [
 																						#module : @1971,
 																						#type : ASN1BitStringType {
 																							#module : @1971,
-																							#bits : [
+																							#namedBits : [
 																								ASN1NamedValue {
 																									#module : @1971,
 																									#name : ''utran'',
@@ -10902,7 +10902,7 @@ MAPExampleModels class >> tcapModelSton [
 																						#module : @1971,
 																						#type : ASN1BitStringType {
 																							#module : @1971,
-																							#bits : [
+																							#namedBits : [
 																								ASN1NamedValue {
 																									#module : @1971,
 																									#name : ''odb-all-apn'',
@@ -11846,7 +11846,7 @@ MAPExampleModels class >> tcapModelSton [
 																											#module : @1971,
 																											#type : ASN1BitStringType {
 																												#module : @1971,
-																												#bits : Set [ ]
+																												#namedBits : Set [ ]
 																											},
 																											#tag : ASN1Tag {
 																												#number : 0
@@ -11860,7 +11860,7 @@ MAPExampleModels class >> tcapModelSton [
 																											#module : @1971,
 																											#type : ASN1BitStringType {
 																												#module : @1971,
-																												#bits : Set [ ]
+																												#namedBits : Set [ ]
 																											},
 																											#tag : ASN1Tag {
 																												#number : 1
@@ -11912,7 +11912,7 @@ MAPExampleModels class >> tcapModelSton [
 																									#fields : {
 																										''GGSN-InterfaceList'' : ASN1BitStringType {
 																											#module : @4181,
-																											#bits : [
+																											#namedBits : [
 																												ASN1NamedValue {
 																													#module : @4181,
 																													#name : ''gn'',
@@ -11932,7 +11932,7 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										''SGSN-EventList'' : ASN1BitStringType {
 																											#module : @4181,
-																											#bits : [
+																											#namedBits : [
 																												ASN1NamedValue {
 																													#module : @4181,
 																													#name : ''pdpContext'',
@@ -11975,7 +11975,7 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										''MGW-InterfaceList'' : ASN1BitStringType {
 																											#module : @4181,
-																											#bits : [
+																											#namedBits : [
 																												ASN1NamedValue {
 																													#module : @4181,
 																													#name : ''mc'',
@@ -11995,7 +11995,7 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										''SGSN-InterfaceList'' : ASN1BitStringType {
 																											#module : @4181,
-																											#bits : [
+																											#namedBits : [
 																												ASN1NamedValue {
 																													#module : @4181,
 																													#name : ''gb'',
@@ -12055,7 +12055,7 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										''SGW-InterfaceList'' : ASN1BitStringType {
 																											#module : @4181,
-																											#bits : [
+																											#namedBits : [
 																												ASN1NamedValue {
 																													#module : @4181,
 																													#name : ''s4'',
@@ -12092,7 +12092,7 @@ MAPExampleModels class >> tcapModelSton [
 																														#module : @4181,
 																														#type : ASN1BitStringType {
 																															#module : @4181,
-																															#bits : [
+																															#namedBits : [
 																																ASN1NamedValue {
 																																	#module : @4181,
 																																	#name : ''a'',
@@ -12190,7 +12190,7 @@ MAPExampleModels class >> tcapModelSton [
 																														#module : @4181,
 																														#type : ASN1BitStringType {
 																															#module : @4181,
-																															#bits : [
+																															#namedBits : [
 																																ASN1NamedValue {
 																																	#module : @4181,
 																																	#name : ''iu'',
@@ -12225,7 +12225,7 @@ MAPExampleModels class >> tcapModelSton [
 																														#module : @4181,
 																														#type : ASN1BitStringType {
 																															#module : @4181,
-																															#bits : [
+																															#namedBits : [
 																																ASN1NamedValue {
 																																	#module : @4181,
 																																	#name : ''gmb'',
@@ -12246,7 +12246,7 @@ MAPExampleModels class >> tcapModelSton [
 																														#module : @4181,
 																														#type : ASN1BitStringType {
 																															#module : @4181,
-																															#bits : [
+																															#namedBits : [
 																																ASN1NamedValue {
 																																	#module : @4181,
 																																	#name : ''s1-mme'',
@@ -12297,7 +12297,7 @@ MAPExampleModels class >> tcapModelSton [
 																														#module : @4181,
 																														#type : ASN1BitStringType {
 																															#module : @4181,
-																															#bits : [
+																															#namedBits : [
 																																ASN1NamedValue {
 																																	#module : @4181,
 																																	#name : ''s2a'',
@@ -12352,7 +12352,7 @@ MAPExampleModels class >> tcapModelSton [
 																														#module : @4181,
 																														#type : ASN1BitStringType {
 																															#module : @4181,
-																															#bits : [
+																															#namedBits : [
 																																ASN1NamedValue {
 																																	#module : @4181,
 																																	#name : ''s1-mme'',
@@ -12434,7 +12434,7 @@ MAPExampleModels class >> tcapModelSton [
 																										''RNC-InterfaceList'' : @4258,
 																										''BMSC-EventList'' : ASN1BitStringType {
 																											#module : @4181,
-																											#bits : [
+																											#namedBits : [
 																												ASN1NamedValue {
 																													#module : @4181,
 																													#name : ''mbmsMulticastServiceActivation'',
@@ -12560,7 +12560,7 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										''MSC-S-EventList'' : ASN1BitStringType {
 																											#module : @4181,
-																											#bits : [
+																											#namedBits : [
 																												ASN1NamedValue {
 																													#module : @4181,
 																													#name : ''mo-mtCall'',
@@ -12726,7 +12726,7 @@ MAPExampleModels class >> tcapModelSton [
 																														#module : @4181,
 																														#type : ASN1BitStringType {
 																															#module : @4181,
-																															#bits : [
+																															#namedBits : [
 																																ASN1NamedValue {
 																																	#module : @4181,
 																																	#name : ''msc-s'',
@@ -12820,7 +12820,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		#module : @4181,
 																																		#type : ASN1BitStringType {
 																																			#module : @4181,
-																																			#bits : [
+																																			#namedBits : [
 																																				ASN1NamedValue {
 																																					#module : @4181,
 																																					#name : ''context'',
@@ -12851,7 +12851,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		#module : @4181,
 																																		#type : ASN1BitStringType {
 																																			#module : @4181,
-																																			#bits : [
+																																			#namedBits : [
 																																				ASN1NamedValue {
 																																					#module : @4181,
 																																					#name : ''pdpContext'',
@@ -12888,7 +12888,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		#module : @4181,
 																																		#type : ASN1BitStringType {
 																																			#module : @4181,
-																																			#bits : [
+																																			#namedBits : [
 																																				ASN1NamedValue {
 																																					#module : @4181,
 																																					#name : ''ue-initiatedPDNconectivityRequest'',
@@ -12933,7 +12933,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		#module : @4181,
 																																		#type : ASN1BitStringType {
 																																			#module : @4181,
-																																			#bits : [
+																																			#namedBits : [
 																																				ASN1NamedValue {
 																																					#module : @4181,
 																																					#name : ''pdn-connectionCreation'',
@@ -12963,7 +12963,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		#module : @4181,
 																																		#type : ASN1BitStringType {
 																																			#module : @4181,
-																																			#bits : [
+																																			#namedBits : [
 																																				ASN1NamedValue {
 																																					#module : @4181,
 																																					#name : ''pdn-connectionCreation'',
@@ -13265,7 +13265,7 @@ MAPExampleModels class >> tcapModelSton [
 																		''RAND'' : @2995,
 																		''AccessRestrictionData'' : ASN1BitStringType {
 																			#module : @1971,
-																			#bits : [
+																			#namedBits : [
 																				ASN1NamedValue {
 																					#module : @1971,
 																					#name : ''utranNotAllowed'',
@@ -13400,7 +13400,7 @@ MAPExampleModels class >> tcapModelSton [
 																						#module : @1971,
 																						#type : ASN1BitStringType {
 																							#module : @1971,
-																							#bits : [
+																							#namedBits : [
 																								ASN1NamedValue {
 																									#module : @1971,
 																									#name : ''mme'',
@@ -13469,7 +13469,7 @@ MAPExampleModels class >> tcapModelSton [
 																						#module : @1971,
 																						#type : ASN1BitStringType {
 																							#module : @1971,
-																							#bits : [
+																							#namedBits : [
 																								ASN1NamedValue {
 																									#module : @1971,
 																									#name : ''privilegedUplinkRequest'',
@@ -13495,7 +13495,7 @@ MAPExampleModels class >> tcapModelSton [
 																							#module : @1971,
 																							#type : ASN1BitStringType {
 																								#module : @1971,
-																								#bits : Set [ ]
+																								#namedBits : Set [ ]
 																							},
 																							#tag : ASN1Tag {
 																								#number : 0
@@ -14736,7 +14736,7 @@ MAPExampleModels class >> tcapModelSton [
 																		},
 																		''RequestedNodes'' : ASN1BitStringType {
 																			#module : @1971,
-																			#bits : [
+																			#namedBits : [
 																				ASN1NamedValue {
 																					#module : @1971,
 																					#name : ''mme'',
@@ -15404,7 +15404,7 @@ MAPExampleModels class >> tcapModelSton [
 																									#module : @1971,
 																									#type : ASN1BitStringType {
 																										#module : @1971,
-																										#bits : [
+																										#namedBits : [
 																											ASN1NamedValue {
 																												#module : @1971,
 																												#name : ''updateMME'',
@@ -15953,7 +15953,7 @@ MAPExampleModels class >> tcapModelSton [
 																		''Ext-ForwFeature'' : @2378,
 																		''OfferedCamel4Functionalities'' : ASN1BitStringType {
 																			#module : @1971,
-																			#bits : [
+																			#namedBits : [
 																				ASN1NamedValue {
 																					#module : @1971,
 																					#name : ''initiateCallAttempt'',
@@ -19519,7 +19519,7 @@ MAPExampleModels class >> tcapModelSton [
 																	#tagEnvironment : @410,
 																	#modelRoot : @1
 																},
-																#bits : [
+																#namedBits : [
 																	ASN1NamedValue {
 																		#module : @1971,
 																		#name : ''lcsCapabilitySet1'',
@@ -19959,7 +19959,7 @@ MAPExampleModels class >> tcapModelSton [
 																		#module : @52,
 																		#type : ASN1BitStringType {
 																			#module : @52,
-																			#bits : [
+																			#namedBits : [
 																				ASN1NamedValue {
 																					#module : @52,
 																					#name : ''msAvailable'',
@@ -20397,7 +20397,7 @@ MAPExampleModels class >> tcapModelSton [
 											''VelocityEstimate'' : @7039,
 											''SupportedGADShapes'' : ASN1BitStringType {
 												#module : @52,
-												#bits : [
+												#namedBits : [
 													ASN1NamedValue {
 														#module : @52,
 														#name : ''ellipsoidPoint'',
@@ -24220,7 +24220,7 @@ MAPExampleModels class >> tcapModelSton [
 									#module : @8301,
 									#type : ASN1BitStringType {
 										#module : @8301,
-										#bits : [
+										#namedBits : [
 											ASN1NamedValue {
 												#module : @8301,
 												#name : ''firstServiceAllowed'',
@@ -24688,7 +24688,7 @@ MAPExampleModels class >> tcapModelSton [
 				},
 				''SuppressMTSS'' : ASN1BitStringType {
 					#module : @8301,
-					#bits : [
+					#namedBits : [
 						ASN1NamedValue {
 							#module : @8301,
 							#name : ''suppressCUG'',
@@ -32493,7 +32493,7 @@ MAPExampleModels class >> tcapModelSton [
 									#tagEnvironment : @410,
 									#type : ASN1BitStringType {
 										#module : @11349,
-										#bits : [
+										#namedBits : [
 											ASN1NamedValue {
 												#module : @11349,
 												#name : ''version1'',
@@ -32510,7 +32510,7 @@ MAPExampleModels class >> tcapModelSton [
 										#module : @11349,
 										#type : ASN1BitStringType {
 											#module : @11349,
-											#bits : [
+											#namedBits : [
 												ASN1NamedValue {
 													#module : @11349,
 													#name : ''version1'',
@@ -32518,9 +32518,7 @@ MAPExampleModels class >> tcapModelSton [
 												}
 											]
 										},
-										#bits : [
-											''version1''
-										]
+										#contents : ''1''
 									}
 								}
 							},
@@ -32583,7 +32581,7 @@ MAPExampleModels class >> tcapModelSton [
 			},
 			#fields : {
 				''Associate-result'' : ASN1IntegerType {
-					#module : @11381,
+					#module : @11380,
 					#namedNumbers : OrderedCollection [
 						ASN1NamedNumber {
 							#name : ''accepted'',
@@ -32596,21 +32594,21 @@ MAPExampleModels class >> tcapModelSton [
 					]
 				},
 				''AARQ-apdu'' : ASN1TaggedType {
-					#module : @11381,
+					#module : @11380,
 					#tagEnvironment : @410,
 					#type : ASN1SequenceType {
-						#module : @11381,
+						#module : @11380,
 						#elements : SmallDictionary {
 							''protocol-version'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
+									#module : @11380,
 									#tagEnvironment : @410,
 									#type : ASN1BitStringType {
-										#module : @11381,
-										#bits : [
+										#module : @11380,
+										#namedBits : [
 											ASN1NamedValue {
-												#module : @11381,
+												#module : @11380,
 												#name : ''version1'',
 												#value : 0
 											}
@@ -32622,29 +32620,27 @@ MAPExampleModels class >> tcapModelSton [
 								},
 								#modifier : ASN1ModifierDefaultValue {
 									#value : ASN1BitStringValue {
-										#module : @11381,
+										#module : @11380,
 										#type : ASN1BitStringType {
-											#module : @11381,
-											#bits : [
+											#module : @11380,
+											#namedBits : [
 												ASN1NamedValue {
-													#module : @11381,
+													#module : @11380,
 													#name : ''version1'',
 													#value : 0
 												}
 											]
 										},
-										#bits : [
-											''version1''
-										]
+										#contents : ''1''
 									}
 								}
 							},
 							''application-context-name'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
+									#module : @11380,
 									#type : ASN1ObjectIdentifierType {
-										#module : @11381
+										#module : @11380
 									},
 									#tag : ASN1Tag {
 										#number : 1
@@ -32652,14 +32648,14 @@ MAPExampleModels class >> tcapModelSton [
 								}
 							},
 							''user-information'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
+									#module : @11380,
 									#tagEnvironment : @410,
 									#type : ASN1TypedSequenceType {
-										#module : @11381,
+										#module : @11380,
 										#type : ASN1ExternalType {
-											#module : @11381
+											#module : @11380
 										}
 									},
 									#tag : ASN1Tag {
@@ -32676,11 +32672,11 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''dialogue-as-id'' : ASN1ObjectIdentifier {
-					#module : @11381,
+					#module : @11380,
 					#contents : ''0.0.17.773.1.1.1''
 				},
 				''ABRT-source'' : ASN1IntegerType {
-					#module : @11381,
+					#module : @11380,
 					#namedNumbers : OrderedCollection [
 						ASN1NamedNumber {
 							#name : ''dialogue-service-user'',
@@ -32693,12 +32689,12 @@ MAPExampleModels class >> tcapModelSton [
 					]
 				},
 				''Associate-source-diagnostic'' : ASN1ChoiceType {
-					#module : @11381,
+					#module : @11380,
 					#elements : SmallDictionary {
 						''dialogue-service-user'' : ASN1TaggedType {
-							#module : @11381,
+							#module : @11380,
 							#type : ASN1IntegerType {
-								#module : @11381,
+								#module : @11380,
 								#namedNumbers : OrderedCollection [
 									ASN1NamedNumber {
 										#name : ''null'',
@@ -32719,9 +32715,9 @@ MAPExampleModels class >> tcapModelSton [
 							}
 						},
 						''dialogue-service-provider'' : ASN1TaggedType {
-							#module : @11381,
+							#module : @11380,
 							#type : ASN1IntegerType {
-								#module : @11381,
+								#module : @11380,
 								#namedNumbers : OrderedCollection [
 									ASN1NamedNumber {
 										#name : ''null'',
@@ -32744,21 +32740,21 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''AARE-apdu'' : ASN1TaggedType {
-					#module : @11381,
+					#module : @11380,
 					#tagEnvironment : @410,
 					#type : ASN1SequenceType {
-						#module : @11381,
+						#module : @11380,
 						#elements : SmallDictionary {
 							''protocol-version'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
+									#module : @11380,
 									#tagEnvironment : @410,
 									#type : ASN1BitStringType {
-										#module : @11381,
-										#bits : [
+										#module : @11380,
+										#namedBits : [
 											ASN1NamedValue {
-												#module : @11381,
+												#module : @11380,
 												#name : ''version1'',
 												#value : 0
 											}
@@ -32770,29 +32766,27 @@ MAPExampleModels class >> tcapModelSton [
 								},
 								#modifier : ASN1ModifierDefaultValue {
 									#value : ASN1BitStringValue {
-										#module : @11381,
+										#module : @11380,
 										#type : ASN1BitStringType {
-											#module : @11381,
-											#bits : [
+											#module : @11380,
+											#namedBits : [
 												ASN1NamedValue {
-													#module : @11381,
+													#module : @11380,
 													#name : ''version1'',
 													#value : 0
 												}
 											]
 										},
-										#bits : [
-											''version1''
-										]
+										#contents : ''1''
 									}
 								}
 							},
 							''application-context-name'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
+									#module : @11380,
 									#type : ASN1ObjectIdentifierType {
-										#module : @11381
+										#module : @11380
 									},
 									#tag : ASN1Tag {
 										#number : 1
@@ -32800,34 +32794,34 @@ MAPExampleModels class >> tcapModelSton [
 								}
 							},
 							''result'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
-									#type : @11384,
+									#module : @11380,
+									#type : @11383,
 									#tag : ASN1Tag {
 										#number : 2
 									}
 								}
 							},
 							''result-source-diagnostic'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
-									#type : @11419,
+									#module : @11380,
+									#type : @11417,
 									#tag : ASN1Tag {
 										#number : 3
 									}
 								}
 							},
 							''user-information'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
+									#module : @11380,
 									#tagEnvironment : @410,
 									#type : ASN1TypedSequenceType {
-										#module : @11381,
+										#module : @11380,
 										#type : ASN1ExternalType {
-											#module : @11381
+											#module : @11380
 										}
 									},
 									#tag : ASN1Tag {
@@ -32844,7 +32838,7 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''Release-response-reason'' : ASN1IntegerType {
-					#module : @11381,
+					#module : @11380,
 					#namedNumbers : OrderedCollection [
 						ASN1NamedNumber {
 							#name : ''normal'',
@@ -32861,18 +32855,18 @@ MAPExampleModels class >> tcapModelSton [
 					]
 				},
 				''RLRQ-apdu'' : ASN1TaggedType {
-					#module : @11381,
+					#module : @11380,
 					#tagEnvironment : @410,
 					#type : ASN1SequenceType {
-						#module : @11381,
+						#module : @11380,
 						#elements : SmallDictionary {
 							''reason'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
+									#module : @11380,
 									#tagEnvironment : @410,
 									#type : ASN1IntegerType {
-										#module : @11381,
+										#module : @11380,
 										#namedNumbers : OrderedCollection [
 											ASN1NamedNumber {
 												#name : ''normal'',
@@ -32895,14 +32889,14 @@ MAPExampleModels class >> tcapModelSton [
 								#modifier : ASN1ModifierOptional { }
 							},
 							''user-information'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
+									#module : @11380,
 									#tagEnvironment : @410,
 									#type : ASN1TypedSequenceType {
-										#module : @11381,
+										#module : @11380,
 										#type : ASN1ExternalType {
-											#module : @11381
+											#module : @11380
 										}
 									},
 									#tag : ASN1Tag {
@@ -32919,36 +32913,36 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''DialoguePDU'' : ASN1ChoiceType {
-					#module : @11381,
+					#module : @11380,
 					#elements : SmallDictionary {
-						''dialogueRequest'' : @11388,
-						''dialogueResponse'' : @11435,
+						''dialogueRequest'' : @11387,
+						''dialogueResponse'' : @11433,
 						''dialogueAbort'' : ASN1TaggedType {
-							#module : @11381,
+							#module : @11380,
 							#tagEnvironment : @410,
 							#type : ASN1SequenceType {
-								#module : @11381,
+								#module : @11380,
 								#elements : SmallDictionary {
 									''abort-source'' : ASN1ComponentType {
-										#module : @11381,
+										#module : @11380,
 										#type : ASN1TaggedType {
-											#module : @11381,
+											#module : @11380,
 											#tagEnvironment : @410,
-											#type : @11415,
+											#type : @11413,
 											#tag : ASN1Tag {
 												#number : 0
 											}
 										}
 									},
 									''user-information'' : ASN1ComponentType {
-										#module : @11381,
+										#module : @11380,
 										#type : ASN1TaggedType {
-											#module : @11381,
+											#module : @11380,
 											#tagEnvironment : @410,
 											#type : ASN1TypedSequenceType {
-												#module : @11381,
+												#module : @11380,
 												#type : ASN1ExternalType {
-													#module : @11381
+													#module : @11380
 												}
 											},
 											#tag : ASN1Tag {
@@ -32966,20 +32960,20 @@ MAPExampleModels class >> tcapModelSton [
 						}
 					}
 				},
-				''Release-request-reason'' : @11477,
-				''ABRT-apdu'' : @11493,
+				''Release-request-reason'' : @11474,
+				''ABRT-apdu'' : @11490,
 				''RLRE-apdu'' : ASN1TaggedType {
-					#module : @11381,
+					#module : @11380,
 					#tagEnvironment : @410,
 					#type : ASN1SequenceType {
-						#module : @11381,
+						#module : @11380,
 						#elements : SmallDictionary {
 							''reason'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
+									#module : @11380,
 									#tagEnvironment : @410,
-									#type : @11467,
+									#type : @11464,
 									#tag : ASN1Tag {
 										#number : 0
 									}
@@ -32987,14 +32981,14 @@ MAPExampleModels class >> tcapModelSton [
 								#modifier : ASN1ModifierOptional { }
 							},
 							''user-information'' : ASN1ComponentType {
-								#module : @11381,
+								#module : @11380,
 								#type : ASN1TaggedType {
-									#module : @11381,
+									#module : @11380,
 									#tagEnvironment : @410,
 									#type : ASN1TypedSequenceType {
-										#module : @11381,
+										#module : @11380,
 										#type : ASN1ExternalType {
-											#module : @11381
+											#module : @11380
 										}
 									},
 									#tag : ASN1Tag {
@@ -33022,7 +33016,7 @@ MAPExampleModels class >> tcapModelSton [
 			},
 			#fields : {
 				''Supported-MAP-Operations'' : ASN1SetType {
-					#module : @11520,
+					#module : @11517,
 					#elements : ASN1Union {
 						#elements : OrderedCollection [
 							ASN1ElementComplement {
@@ -33378,7 +33372,7 @@ MAPExampleModels class >> tcapModelSton [
 			},
 			#fields : {
 				''callCompletionContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
@@ -33386,23 +33380,23 @@ MAPExampleModels class >> tcapModelSton [
 							#number : 1
 						},
 						''AbstractSyntaxes'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''ABSTRACT-SYNTAX'',
 							#attributes : {
-								''id'' : @11414,
-								''Type'' : @11491
+								''id'' : @11412,
+								''Type'' : @11488
 							}
 						},
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.8.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33416,24 +33410,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''shortMsgMT-RelayContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.25.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33447,24 +33441,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''groupCallControlContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.31.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33478,24 +33472,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''shortMsgMT-RelayContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.25.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33509,24 +33503,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''locationSvcGatewayContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.37.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33540,24 +33534,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''subscriberInfoEnquiryContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.28.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33571,24 +33565,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''locationSvcEnquiryContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.38.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33605,24 +33599,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''gprsLocationInfoRetrievalContext-v4'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.33.4''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33636,24 +33630,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''anyTimeInfohandlingContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.43.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33667,24 +33661,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''anyTimeInfoEnquiryContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.29.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33698,24 +33692,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''gprsLocationInfoRetrievalContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.33.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33729,24 +33723,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''shortMsgGatewayContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.20.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33760,24 +33754,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''mm-EventReportingContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.42.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33791,24 +33785,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''imsiRetrievalContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.26.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33822,24 +33816,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''tracingContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.17.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33853,24 +33847,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''mwdMngtContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.24.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33884,24 +33878,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''networkLocUpContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.1.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33914,7 +33908,7 @@ MAPExampleModels class >> tcapModelSton [
 									}
 								},
 								''InitiatorSupplierOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33931,24 +33925,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''shortMsgGatewayContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.20.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33962,24 +33956,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''tracingContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.17.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -33993,24 +33987,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''mwdMngtContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.24.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34024,24 +34018,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''interVlrInfoRetrievalContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.15.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34055,24 +34049,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''groupCallInfoRetControlContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.45.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34086,24 +34080,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''msPurgingContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.27.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34117,24 +34111,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''istAlertingContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.4.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34148,24 +34142,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''locationInfoRetrievalContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.5.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34179,24 +34173,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''interVlrInfoRetrievalContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.15.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34210,24 +34204,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''shortMsgAlertContext-v1'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.23.1''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34241,24 +34235,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''locationCancellationContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.2.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34272,24 +34266,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''msPurgingContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.27.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34303,24 +34297,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''locationInfoRetrievalContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.5.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34334,24 +34328,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''shortMsgMT-Relay-VGCS-Context-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.41.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34365,24 +34359,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''authenticationFailureReportContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.39.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34396,24 +34390,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''locationCancellationContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.2.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34427,24 +34421,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''shortMsgAlertContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.23.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34458,28 +34452,28 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''map-ac'' : ASN1ObjectIdentifier {
-					#module : @11639,
+					#module : @11636,
 					#contents : ''0.4.0.0.1.0''
 				},
 				''callControlTransferContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.6.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34493,24 +34487,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''resetContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.10.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34524,24 +34518,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''callControlTransferContext-v4'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.6.4''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34555,24 +34549,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''resourceManagementContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.44.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34586,24 +34580,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''resetContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.10.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34617,24 +34611,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''ss-InvocationNotificationContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.36.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34648,24 +34642,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''reportingContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.7.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34681,7 +34675,7 @@ MAPExampleModels class >> tcapModelSton [
 									}
 								},
 								''InitiatorSupplierOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34698,24 +34692,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''gprsLocationUpdateContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.32.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34725,7 +34719,7 @@ MAPExampleModels class >> tcapModelSton [
 									}
 								},
 								''InitiatorSupplierOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34742,24 +34736,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''roamingNumberEnquiryContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.3.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34773,24 +34767,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''equipmentMngtContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.13.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34804,24 +34798,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''roamingNumberEnquiryContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.3.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34835,24 +34829,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''equipmentMngtContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.13.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34866,24 +34860,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''vcsgLocationCancellationContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.47.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34897,24 +34891,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''handoverControlContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.11.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34928,24 +34922,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''handoverControlContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.11.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34959,24 +34953,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''shortMsgMO-RelayContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.21.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -34990,24 +34984,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''failureReportContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.34.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35021,24 +35015,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''vcsgLocationUpdateContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.46.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35048,7 +35042,7 @@ MAPExampleModels class >> tcapModelSton [
 									}
 								},
 								''InitiatorSupplierOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35062,24 +35056,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''shortMsgMO-RelayContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.21.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35093,24 +35087,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''infoRetrievalContext-v1'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.14.1''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35124,24 +35118,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''subscriberDataMngtContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.16.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35155,24 +35149,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''networkFunctionalSsContext-v1'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.18.1''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35192,24 +35186,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''infoRetrievalContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.14.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35223,24 +35217,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''subscriberDataModificationNotificationContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.22.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35254,24 +35248,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''subscriberDataMngtContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.16.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35285,24 +35279,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''networkFunctionalSsContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.18.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35316,24 +35310,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''gprsNotifyContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.35.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35347,24 +35341,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''infoRetrievalContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.14.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35378,24 +35372,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''serviceTerminationContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.9.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35409,24 +35403,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''networkUnstructuredSsContext-v2'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.19.2''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''OperationsOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35440,24 +35434,24 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''sIWFSAllocationContext-v3'' : ASN1ObjectType {
-					#module : @11639,
+					#module : @11636,
 					#clazz : ''APPLICATION-CONTEXT'',
 					#attributes : {
 						''dialogueMode'' : ASN1NamedNumber {
 							#name : ''structured'',
 							#number : 1
 						},
-						''AbstractSyntaxes'' : @11645,
+						''AbstractSyntaxes'' : @11642,
 						''applicationContextName'' : ASN1ObjectIdentifier {
-							#module : @11639,
+							#module : @11636,
 							#contents : ''0.4.0.0.1.0.12.3''
 						},
 						''associationContract'' : ASN1ObjectType {
-							#module : @11639,
+							#module : @11636,
 							#clazz : ''CONTRACT'',
 							#attributes : {
 								''InitiatorConsumerOf'' : ASN1SetType {
-									#module : @11639,
+									#module : @11636,
 									#elements : ASN1Union {
 										#elements : OrderedCollection [
 											ASN1ElementComplement {
@@ -35483,71 +35477,71 @@ MAPExampleModels class >> tcapModelSton [
 				#contents : ''0.4.0.0.1.3.99.11''
 			},
 			#fields : {
-				''subscriberDataModificationNotificationContract-v3'' : @12244,
-				''infoRetrievalContract-v1'' : @12202,
-				''tracingContract-v3'' : @11835,
-				''locationInfoRetrievalContract-v2'' : @11895,
-				''authenticationFailureReportContract-v3'' : @11965,
-				''locationInfoRetrievalContract-v3'' : @11945,
-				''infoRetrievalContract-v2'' : @12234,
-				''subscriberDataMngtContract-v2'' : @12212,
-				''istAlertingContract-v3'' : @11885,
-				''callCompletionContract-v3'' : @11648,
-				''msPurgingContract-v2'' : @11875,
-				''infoRetrievalContract-v3'' : @12284,
-				''subscriberDataMngtContract-v3'' : @12254,
-				''resourceManagementContract-v3'' : @12026,
-				''shortMsgMT-Relay-VGCS-Contract-v3'' : @11955,
-				''msPurgingContract-v3'' : @11935,
-				''failureReportContract-v3'' : @12168,
-				''mwdMngtContract-v3'' : @11799,
-				''networkFunctionalSsContract-v1'' : @12222,
-				''subscriberInfoEnquiryContract-v3'' : @11698,
-				''imsiRetrievalContract-v2'' : @11779,
-				''vcsgLocationUpdateContract-v3'' : @12178,
-				''shortMsgGatewayContract-v2'' : @11759,
-				''groupCallInfoRetControlContract-v3'' : @11865,
-				''shortMsgMO-RelayContract-v2'' : @12158,
-				''networkFunctionalSsContract-v2'' : @12264,
-				''gprsLocationInfoRetrievalContract-v3'' : @11749,
-				''locationSvcGatewayContract-v3'' : @11688,
-				''shortMsgGatewayContract-v3'' : @11825,
-				''shortMsgMO-RelayContract-v3'' : @12192,
-				''anyTimeInfohandlingContract-v3'' : @11729,
-				''gprsLocationInfoRetrievalContract-v4'' : @11719,
-				''ss-InvocationNotificationContract-v3'' : @12046,
-				''vcsgLocationCancellationContract-v3'' : @12128,
-				''shortMsgMT-RelayContract-v2'' : @11658,
-				''handoverControlContract-v2'' : @12138,
-				''shortMsgMT-RelayContract-v3'' : @11678,
-				''anyTimeInfoEnquiryContract-v3'' : @11739,
-				''handoverControlContract-v3'' : @12148,
-				''mm-EventReportingContract-v3'' : @11769,
-				''resetContract-v2'' : @12006,
-				''resetContract-v3'' : @12036,
-				''serviceTerminationContract-v3'' : @12294,
-				''roamingNumberEnquiryContract-v2'' : @12088,
-				''equipmentMngtContract-v2'' : @12098,
-				''locationCancellationContract-v2'' : @11925,
-				''interVlrInfoRetrievalContract-v2'' : @11855,
-				''sIWFSAllocationContract-v3'' : @12314,
-				''roamingNumberEnquiryContract-v3'' : @12108,
-				''callControlTransferContract-v3'' : @11996,
-				''locationCancellationContract-v3'' : @11975,
-				''equipmentMngtContract-v3'' : @12118,
-				''interVlrInfoRetrievalContract-v3'' : @11905,
-				''callControlTransferContract-v4'' : @12016,
-				''gprsLocationUpdateContract-v3'' : @12073,
-				''groupCallControlContract-v3'' : @11668,
-				''networkLocUpContract-v3'' : @11809,
-				''gprsNotifyContract-v3'' : @12274,
-				''shortMsgAlertContract-v1'' : @11915,
-				''locationSvcEnquiryContract-v3'' : @11708,
-				''mwdMngtContract-v2'' : @11845,
-				''networkUnstructuredSsContract-v2'' : @12304,
-				''tracingContract-v2'' : @11789,
-				''reportingContract-v3'' : @12056,
-				''shortMsgAlertContract-v2'' : @11985
+				''subscriberDataModificationNotificationContract-v3'' : @12241,
+				''infoRetrievalContract-v1'' : @12199,
+				''tracingContract-v3'' : @11832,
+				''locationInfoRetrievalContract-v2'' : @11892,
+				''authenticationFailureReportContract-v3'' : @11962,
+				''locationInfoRetrievalContract-v3'' : @11942,
+				''infoRetrievalContract-v2'' : @12231,
+				''subscriberDataMngtContract-v2'' : @12209,
+				''istAlertingContract-v3'' : @11882,
+				''callCompletionContract-v3'' : @11645,
+				''msPurgingContract-v2'' : @11872,
+				''infoRetrievalContract-v3'' : @12281,
+				''subscriberDataMngtContract-v3'' : @12251,
+				''resourceManagementContract-v3'' : @12023,
+				''shortMsgMT-Relay-VGCS-Contract-v3'' : @11952,
+				''msPurgingContract-v3'' : @11932,
+				''failureReportContract-v3'' : @12165,
+				''mwdMngtContract-v3'' : @11796,
+				''networkFunctionalSsContract-v1'' : @12219,
+				''subscriberInfoEnquiryContract-v3'' : @11695,
+				''imsiRetrievalContract-v2'' : @11776,
+				''vcsgLocationUpdateContract-v3'' : @12175,
+				''shortMsgGatewayContract-v2'' : @11756,
+				''groupCallInfoRetControlContract-v3'' : @11862,
+				''shortMsgMO-RelayContract-v2'' : @12155,
+				''networkFunctionalSsContract-v2'' : @12261,
+				''gprsLocationInfoRetrievalContract-v3'' : @11746,
+				''locationSvcGatewayContract-v3'' : @11685,
+				''shortMsgGatewayContract-v3'' : @11822,
+				''shortMsgMO-RelayContract-v3'' : @12189,
+				''anyTimeInfohandlingContract-v3'' : @11726,
+				''gprsLocationInfoRetrievalContract-v4'' : @11716,
+				''ss-InvocationNotificationContract-v3'' : @12043,
+				''vcsgLocationCancellationContract-v3'' : @12125,
+				''shortMsgMT-RelayContract-v2'' : @11655,
+				''handoverControlContract-v2'' : @12135,
+				''shortMsgMT-RelayContract-v3'' : @11675,
+				''anyTimeInfoEnquiryContract-v3'' : @11736,
+				''handoverControlContract-v3'' : @12145,
+				''mm-EventReportingContract-v3'' : @11766,
+				''resetContract-v2'' : @12003,
+				''resetContract-v3'' : @12033,
+				''serviceTerminationContract-v3'' : @12291,
+				''roamingNumberEnquiryContract-v2'' : @12085,
+				''equipmentMngtContract-v2'' : @12095,
+				''locationCancellationContract-v2'' : @11922,
+				''interVlrInfoRetrievalContract-v2'' : @11852,
+				''sIWFSAllocationContract-v3'' : @12311,
+				''roamingNumberEnquiryContract-v3'' : @12105,
+				''callControlTransferContract-v3'' : @11993,
+				''locationCancellationContract-v3'' : @11972,
+				''equipmentMngtContract-v3'' : @12115,
+				''interVlrInfoRetrievalContract-v3'' : @11902,
+				''callControlTransferContract-v4'' : @12013,
+				''gprsLocationUpdateContract-v3'' : @12070,
+				''groupCallControlContract-v3'' : @11665,
+				''networkLocUpContract-v3'' : @11806,
+				''gprsNotifyContract-v3'' : @12271,
+				''shortMsgAlertContract-v1'' : @11912,
+				''locationSvcEnquiryContract-v3'' : @11705,
+				''mwdMngtContract-v2'' : @11842,
+				''networkUnstructuredSsContract-v2'' : @12301,
+				''tracingContract-v2'' : @11786,
+				''reportingContract-v3'' : @12053,
+				''shortMsgAlertContract-v2'' : @11982
 			},
 			#tagEnvironment : @34,
 			#modelRoot : @1
@@ -35559,23 +35553,23 @@ MAPExampleModels class >> tcapModelSton [
 			},
 			#fields : {
 				''MAP-AcceptInfo'' : ASN1SequenceType {
-					#module : @12324,
+					#module : @12321,
 					#elements : SmallDictionary {
 						#extensionMarker : ASN1Extension { },
 						''extensionContainer'' : ASN1ComponentType {
-							#module : @12324,
+							#module : @12321,
 							#type : @369,
 							#modifier : ASN1ModifierOptional { }
 						}
 					}
 				},
 				''MAP-OpenInfo'' : ASN1SequenceType {
-					#module : @12324,
+					#module : @12321,
 					#elements : SmallDictionary {
 						''destinationReference'' : ASN1ComponentType {
-							#module : @12324,
+							#module : @12321,
 							#type : ASN1TaggedType {
-								#module : @12324,
+								#module : @12321,
 								#type : @441,
 								#tag : ASN1Tag {
 									#number : 0
@@ -35584,9 +35578,9 @@ MAPExampleModels class >> tcapModelSton [
 							#modifier : ASN1ModifierOptional { }
 						},
 						''originationReference'' : ASN1ComponentType {
-							#module : @12324,
+							#module : @12321,
 							#type : ASN1TaggedType {
-								#module : @12324,
+								#module : @12321,
 								#type : @441,
 								#tag : ASN1Tag {
 									#number : 1
@@ -35596,37 +35590,37 @@ MAPExampleModels class >> tcapModelSton [
 						},
 						#extensionMarker : ASN1Extension { },
 						''extensionContainer'' : ASN1ComponentType {
-							#module : @12324,
+							#module : @12321,
 							#type : @369,
 							#modifier : ASN1ModifierOptional { }
 						}
 					}
 				},
 				''MAP-DialoguePDU'' : ASN1ChoiceType {
-					#module : @12324,
+					#module : @12321,
 					#elements : SmallDictionary {
 						''map-open'' : ASN1TaggedType {
-							#module : @12324,
-							#type : @12332,
+							#module : @12321,
+							#type : @12329,
 							#tag : ASN1Tag {
 								#number : 0
 							}
 						},
 						''map-accept'' : ASN1TaggedType {
-							#module : @12324,
-							#type : @12327,
+							#module : @12321,
+							#type : @12324,
 							#tag : ASN1Tag {
 								#number : 1
 							}
 						},
 						''map-close'' : ASN1TaggedType {
-							#module : @12324,
+							#module : @12321,
 							#type : ASN1SequenceType {
-								#module : @12324,
+								#module : @12321,
 								#elements : SmallDictionary {
 									#extensionMarker : ASN1Extension { },
 									''extensionContainer'' : ASN1ComponentType {
-										#module : @12324,
+										#module : @12321,
 										#type : @369,
 										#modifier : ASN1ModifierOptional { }
 									}
@@ -35637,14 +35631,14 @@ MAPExampleModels class >> tcapModelSton [
 							}
 						},
 						''map-refuse'' : ASN1TaggedType {
-							#module : @12324,
+							#module : @12321,
 							#type : ASN1SequenceType {
-								#module : @12324,
+								#module : @12321,
 								#elements : SmallDictionary {
 									''reason'' : ASN1ComponentType {
-										#module : @12324,
+										#module : @12321,
 										#type : ASN1EnumeratedType {
-											#module : @12324,
+											#module : @12321,
 											#elements : OrderedCollection [
 												ASN1NamedNumber {
 													#name : ''noReasonGiven'',
@@ -35663,14 +35657,14 @@ MAPExampleModels class >> tcapModelSton [
 									},
 									#extensionMarker : ASN1Extension { },
 									''extensionContainer'' : ASN1ComponentType {
-										#module : @12324,
+										#module : @12321,
 										#type : @369,
 										#modifier : ASN1ModifierOptional { }
 									},
 									''alternativeApplicationContext'' : ASN1ComponentType {
-										#module : @12324,
+										#module : @12321,
 										#type : ASN1ObjectIdentifierType {
-											#module : @12324
+											#module : @12321
 										},
 										#modifier : ASN1ModifierOptional { }
 									}
@@ -35681,37 +35675,37 @@ MAPExampleModels class >> tcapModelSton [
 							}
 						},
 						''map-userAbort'' : ASN1TaggedType {
-							#module : @12324,
+							#module : @12321,
 							#type : ASN1SequenceType {
-								#module : @12324,
+								#module : @12321,
 								#elements : SmallDictionary {
 									''map-UserAbortChoice'' : ASN1ComponentType {
-										#module : @12324,
+										#module : @12321,
 										#type : ASN1ChoiceType {
-											#module : @12324,
+											#module : @12321,
 											#elements : SmallDictionary {
 												''userSpecificReason'' : ASN1TaggedType {
-													#module : @12324,
+													#module : @12321,
 													#type : ASN1NullType {
-														#module : @12324
+														#module : @12321
 													},
 													#tag : ASN1Tag {
 														#number : 0
 													}
 												},
 												''userResourceLimitation'' : ASN1TaggedType {
-													#module : @12324,
+													#module : @12321,
 													#type : ASN1NullType {
-														#module : @12324
+														#module : @12321
 													},
 													#tag : ASN1Tag {
 														#number : 1
 													}
 												},
 												''resourceUnavailable'' : ASN1TaggedType {
-													#module : @12324,
+													#module : @12321,
 													#type : ASN1EnumeratedType {
-														#module : @12324,
+														#module : @12321,
 														#elements : OrderedCollection [
 															ASN1NamedNumber {
 																#name : ''shortTermResourceLimitation'',
@@ -35728,9 +35722,9 @@ MAPExampleModels class >> tcapModelSton [
 													}
 												},
 												''applicationProcedureCancellation'' : ASN1TaggedType {
-													#module : @12324,
+													#module : @12321,
 													#type : ASN1EnumeratedType {
-														#module : @12324,
+														#module : @12321,
 														#elements : OrderedCollection [
 															ASN1NamedNumber {
 																#name : ''handoverCancellation'',
@@ -35771,7 +35765,7 @@ MAPExampleModels class >> tcapModelSton [
 									},
 									#extensionMarker : ASN1Extension { },
 									''extensionContainer'' : ASN1ComponentType {
-										#module : @12324,
+										#module : @12321,
 										#type : @369,
 										#modifier : ASN1ModifierOptional { }
 									}
@@ -35782,14 +35776,14 @@ MAPExampleModels class >> tcapModelSton [
 							}
 						},
 						''map-providerAbort'' : ASN1TaggedType {
-							#module : @12324,
+							#module : @12321,
 							#type : ASN1SequenceType {
-								#module : @12324,
+								#module : @12321,
 								#elements : SmallDictionary {
 									''map-ProviderAbortReason'' : ASN1ComponentType {
-										#module : @12324,
+										#module : @12321,
 										#type : ASN1EnumeratedType {
-											#module : @12324,
+											#module : @12321,
 											#elements : OrderedCollection [
 												ASN1NamedNumber {
 													#name : ''abnormalDialogue'',
@@ -35804,7 +35798,7 @@ MAPExampleModels class >> tcapModelSton [
 									},
 									#extensionMarker : ASN1Extension { },
 									''extensionContainer'' : ASN1ComponentType {
-										#module : @12324,
+										#module : @12321,
 										#type : @369,
 										#modifier : ASN1ModifierOptional { }
 									}
@@ -35816,19 +35810,19 @@ MAPExampleModels class >> tcapModelSton [
 						}
 					}
 				},
-				''MAP-UserAbortInfo'' : @12375,
-				''ProcedureCancellationReason'' : @12393,
-				''MAP-CloseInfo'' : @12352,
-				''MAP-ProviderAbortReason'' : @12411,
-				''MAP-RefuseInfo'' : @12359,
+				''MAP-UserAbortInfo'' : @12372,
+				''ProcedureCancellationReason'' : @12390,
+				''MAP-CloseInfo'' : @12349,
+				''MAP-ProviderAbortReason'' : @12408,
+				''MAP-RefuseInfo'' : @12356,
 				''map-DialogueAS'' : ASN1ObjectIdentifier {
-					#module : @12324,
+					#module : @12321,
 					#contents : ''0.4.0.0.1.1.1.1''
 				},
-				''MAP-ProviderAbortInfo'' : @12408,
-				''MAP-UserAbortChoice'' : @12378,
-				''Reason'' : @12362,
-				''ResourceUnavailableReason'' : @12387
+				''MAP-ProviderAbortInfo'' : @12405,
+				''MAP-UserAbortChoice'' : @12375,
+				''Reason'' : @12359,
+				''ResourceUnavailableReason'' : @12384
 			},
 			#tagEnvironment : @410,
 			#modelRoot : @1,
@@ -35843,15 +35837,15 @@ MAPExampleModels class >> tcapModelSton [
 			},
 			#fields : {
 				''mobileDomainId'' : ASN1ObjectIdentifier {
-					#module : @12420,
+					#module : @12417,
 					#contents : ''0.4.0.0''
 				},
 				''gsm-MessagingId'' : ASN1ObjectIdentifier {
-					#module : @12420,
+					#module : @12417,
 					#contents : ''0.4.0.0.4''
 				},
 				''gsm-NetworkId'' : ASN1ObjectIdentifier {
-					#module : @12420,
+					#module : @12417,
 					#contents : ''0.4.0.0.1''
 				},
 				''ac-Id'' : ASN1IntegerValue {
@@ -35861,7 +35855,7 @@ MAPExampleModels class >> tcapModelSton [
 					#contents : 0
 				},
 				''gsm-OperationAndMaintenanceId'' : ASN1ObjectIdentifier {
-					#module : @12420,
+					#module : @12417,
 					#contents : ''0.4.0.0.3''
 				},
 				''ase-Id'' : ASN1IntegerValue {
@@ -35871,7 +35865,7 @@ MAPExampleModels class >> tcapModelSton [
 					#contents : 2
 				},
 				''CommonComponentId'' : ASN1IntegerType {
-					#module : @12420,
+					#module : @12417,
 					#namedNumbers : OrderedCollection [ ]
 				},
 				''er-Id'' : ASN1IntegerValue {
@@ -35893,7 +35887,7 @@ MAPExampleModels class >> tcapModelSton [
 					#contents : 1
 				},
 				''gsm-AccessId'' : ASN1ObjectIdentifier {
-					#module : @12420,
+					#module : @12417,
 					#contents : ''0.4.0.0.2''
 				}
 			},
@@ -35907,18 +35901,18 @@ MAPExampleModels class >> tcapModelSton [
 			},
 			#fields : {
 				''cancelFailed'' : ASN1ObjectType {
-					#module : @12440,
+					#module : @12437,
 					#clazz : ''ERROR'',
 					#attributes : {
 						''ParameterType'' : ASN1SetType {
-							#module : @12440,
+							#module : @12437,
 							#elements : OrderedCollection [
 								''problem'' : ASN1ComponentType {
-									#module : @12440,
+									#module : @12437,
 									#type : ASN1TaggedType {
-										#module : @12440,
+										#module : @12437,
 										#type : ASN1EnumeratedType {
-											#module : @12440,
+											#module : @12437,
 											#elements : OrderedCollection [
 												ASN1NamedNumber {
 													#name : ''unknownInvocation'',
@@ -35940,9 +35934,9 @@ MAPExampleModels class >> tcapModelSton [
 									}
 								},
 								''invokeId'' : ASN1ComponentType {
-									#module : @12440,
+									#module : @12437,
 									#type : ASN1TaggedType {
-										#module : @12440,
+										#module : @12437,
 										#type : ASN1IntegerType {
 											#module : ASN1Module {
 												#name : ''Remote-Operations-Generic-ROS-PDUs'',
@@ -35951,7 +35945,7 @@ MAPExampleModels class >> tcapModelSton [
 												},
 												#fields : {
 													''InvokeProblem'' : ASN1IntegerType {
-														#module : @12458,
+														#module : @12455,
 														#namedNumbers : OrderedCollection [
 															ASN1NamedNumber {
 																#name : ''duplicateInvocation'',
@@ -35988,39 +35982,39 @@ MAPExampleModels class >> tcapModelSton [
 														]
 													},
 													''InvokeId'' : ASN1ChoiceType {
-														#module : @12458,
+														#module : @12455,
 														#elements : SmallDictionary {
-															''present'' : @12457,
+															''present'' : @12454,
 															''absent'' : ASN1NullType {
-																#module : @12458
+																#module : @12455
 															}
 														}
 													},
 													''Invoke'' : ASN1SequenceType {
-														#module : @12458,
+														#module : @12455,
 														#elements : SmallDictionary {
 															''invokeId'' : ASN1ComponentType {
-																#module : @12458,
-																#type : @12471
+																#module : @12455,
+																#type : @12468
 															},
 															''linkedId'' : ASN1ComponentType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1ChoiceType {
-																	#module : @12458,
+																	#module : @12455,
 																	#elements : SmallDictionary {
 																		''present'' : ASN1TaggedType {
-																			#module : @12458,
+																			#module : @12455,
 																			#tagEnvironment : @410,
-																			#type : @12457,
+																			#type : @12454,
 																			#tag : ASN1Tag {
 																				#number : 0
 																			}
 																		},
 																		''absent'' : ASN1TaggedType {
-																			#module : @12458,
+																			#module : @12455,
 																			#tagEnvironment : @410,
 																			#type : ASN1NullType {
-																				#module : @12458
+																				#module : @12455
 																			},
 																			#tag : ASN1Tag {
 																				#number : 1
@@ -36031,31 +36025,31 @@ MAPExampleModels class >> tcapModelSton [
 																#modifier : ASN1ModifierOptional { }
 															},
 															''opcode'' : ASN1ComponentType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1ChoiceType {
-																	#module : @12458,
+																	#module : @12455,
 																	#elements : SmallDictionary {
 																		''local'' : ASN1IntegerType {
-																			#module : @12458,
+																			#module : @12455,
 																			#namedNumbers : OrderedCollection [ ]
 																		},
 																		''global'' : ASN1ObjectIdentifierType {
-																			#module : @12458
+																			#module : @12455
 																		}
 																	}
 																}
 															},
 															''argument'' : ASN1ComponentType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1OpenType {
-																	#module : @12458
+																	#module : @12455
 																},
 																#modifier : ASN1ModifierOptional { }
 															}
 														}
 													},
 													''ReturnResultProblem'' : ASN1IntegerType {
-														#module : @12458,
+														#module : @12455,
 														#namedNumbers : OrderedCollection [
 															ASN1NamedNumber {
 																#name : ''unrecognizedInvocation'',
@@ -36072,37 +36066,37 @@ MAPExampleModels class >> tcapModelSton [
 														]
 													},
 													''ROS'' : ASN1ChoiceType {
-														#module : @12458,
+														#module : @12455,
 														#elements : SmallDictionary {
 															''invoke'' : ASN1TaggedType {
-																#module : @12458,
-																#type : @12474,
+																#module : @12455,
+																#type : @12471,
 																#tag : ASN1Tag {
 																	#number : 1
 																}
 															},
 															''returnResult'' : ASN1TaggedType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1SequenceType {
-																	#module : @12458,
+																	#module : @12455,
 																	#elements : SmallDictionary {
 																		''invokeId'' : ASN1ComponentType {
-																			#module : @12458,
-																			#type : @12471
+																			#module : @12455,
+																			#type : @12468
 																		},
 																		''result'' : ASN1ComponentType {
-																			#module : @12458,
+																			#module : @12455,
 																			#type : ASN1SequenceType {
-																				#module : @12458,
+																				#module : @12455,
 																				#elements : SmallDictionary {
 																					''opcode'' : ASN1ComponentType {
-																						#module : @12458,
-																						#type : @12487
+																						#module : @12455,
+																						#type : @12484
 																					},
 																					''result'' : ASN1ComponentType {
-																						#module : @12458,
+																						#module : @12455,
 																						#type : ASN1OpenType {
-																							#module : @12458
+																							#module : @12455
 																						}
 																					}
 																				}
@@ -36116,22 +36110,22 @@ MAPExampleModels class >> tcapModelSton [
 																}
 															},
 															''returnError'' : ASN1TaggedType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1SequenceType {
-																	#module : @12458,
+																	#module : @12455,
 																	#elements : SmallDictionary {
 																		''invokeId'' : ASN1ComponentType {
-																			#module : @12458,
-																			#type : @12471
+																			#module : @12455,
+																			#type : @12468
 																		},
 																		''errcode'' : ASN1ComponentType {
-																			#module : @12458,
-																			#type : @12487
+																			#module : @12455,
+																			#type : @12484
 																		},
 																		''parameter'' : ASN1ComponentType {
-																			#module : @12458,
+																			#module : @12455,
 																			#type : ASN1OpenType {
-																				#module : @12458
+																				#module : @12455
 																			},
 																			#modifier : ASN1ModifierOptional { }
 																		}
@@ -36142,23 +36136,23 @@ MAPExampleModels class >> tcapModelSton [
 																}
 															},
 															''reject'' : ASN1TaggedType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1SequenceType {
-																	#module : @12458,
+																	#module : @12455,
 																	#elements : SmallDictionary {
 																		''invokeId'' : ASN1ComponentType {
-																			#module : @12458,
-																			#type : @12471
+																			#module : @12455,
+																			#type : @12468
 																		},
 																		''problem'' : ASN1ComponentType {
-																			#module : @12458,
+																			#module : @12455,
 																			#type : ASN1ChoiceType {
-																				#module : @12458,
+																				#module : @12455,
 																				#elements : SmallDictionary {
 																					''general'' : ASN1TaggedType {
-																						#module : @12458,
+																						#module : @12455,
 																						#type : ASN1IntegerType {
-																							#module : @12458,
+																							#module : @12455,
 																							#namedNumbers : OrderedCollection [
 																								ASN1NamedNumber {
 																									#name : ''unrecognizedPDU'',
@@ -36179,23 +36173,23 @@ MAPExampleModels class >> tcapModelSton [
 																						}
 																					},
 																					''invoke'' : ASN1TaggedType {
-																						#module : @12458,
-																						#type : @12461,
+																						#module : @12455,
+																						#type : @12458,
 																						#tag : ASN1Tag {
 																							#number : 1
 																						}
 																					},
 																					''returnResult'' : ASN1TaggedType {
-																						#module : @12458,
-																						#type : @12495,
+																						#module : @12455,
+																						#type : @12492,
 																						#tag : ASN1Tag {
 																							#number : 2
 																						}
 																					},
 																					''returnError'' : ASN1TaggedType {
-																						#module : @12458,
+																						#module : @12455,
 																						#type : ASN1IntegerType {
-																							#module : @12458,
+																							#module : @12455,
 																							#namedNumbers : OrderedCollection [
 																								ASN1NamedNumber {
 																									#name : ''unrecognizedInvocation'',
@@ -36235,30 +36229,30 @@ MAPExampleModels class >> tcapModelSton [
 														}
 													},
 													''Unbind'' : ASN1ChoiceType {
-														#module : @12458,
+														#module : @12455,
 														#elements : SmallDictionary {
 															''unbind-invoke'' : ASN1TaggedType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1OpenType {
-																	#module : @12458
+																	#module : @12455
 																},
 																#tag : ASN1Tag {
 																	#number : 19
 																}
 															},
 															''unbind-result'' : ASN1TaggedType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1OpenType {
-																	#module : @12458
+																	#module : @12455
 																},
 																#tag : ASN1Tag {
 																	#number : 20
 																}
 															},
 															''unbind-error'' : ASN1TaggedType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1OpenType {
-																	#module : @12458
+																	#module : @12455
 																},
 																#tag : ASN1Tag {
 																	#number : 21
@@ -36267,7 +36261,7 @@ MAPExampleModels class >> tcapModelSton [
 														}
 													},
 													''RejectProblem'' : ASN1IntegerType {
-														#module : @12458,
+														#module : @12455,
 														#namedNumbers : OrderedCollection [
 															ASN1NamedNumber {
 																#name : ''general-unrecognizedPDU'',
@@ -36347,9 +36341,9 @@ MAPExampleModels class >> tcapModelSton [
 															}
 														]
 													},
-													''GeneralProblem'' : @12533,
+													''GeneralProblem'' : @12530,
 													''Errors'' : ASN1SetType {
-														#module : @12458,
+														#module : @12455,
 														#elements : ASN1Union {
 															#elements : OrderedCollection [
 																ASN1ElementComplement {
@@ -36362,25 +36356,25 @@ MAPExampleModels class >> tcapModelSton [
 																				},
 																				#fields : {
 																					''OPERATION'' : ASN1ClassType {
-																						#module : @12591
+																						#module : @12588
 																					},
 																					''OPERATION-PACKAGE'' : ASN1ClassType {
-																						#module : @12591
+																						#module : @12588
 																					},
 																					''Priority'' : ASN1IntegerType {
-																						#module : @12591,
+																						#module : @12588,
 																						#namedNumbers : OrderedCollection [ ]
 																					},
-																					''Code'' : @12487,
+																					''Code'' : @12484,
 																					''ROS-OBJECT-CLASS'' : ASN1ClassType {
-																						#module : @12591
+																						#module : @12588
 																					},
 																					''CONTRACT'' : ASN1ClassType {
-																						#module : @12591
+																						#module : @12588
 																					},
-																					''ERROR'' : @12590,
+																					''ERROR'' : @12587,
 																					''CONNECTION-PACKAGE'' : ASN1ClassType {
-																						#module : @12591
+																						#module : @12588
 																					}
 																				},
 																				#tagEnvironment : @34,
@@ -36393,38 +36387,38 @@ MAPExampleModels class >> tcapModelSton [
 															]
 														}
 													},
-													''ReturnResult'' : @12505,
+													''ReturnResult'' : @12502,
 													''noInvokeId'' : ASN1ChoiceValue {
-														#module : @12458,
+														#module : @12455,
 														#type : ''absent'',
 														#value : ''NULL''
 													},
-													''ReturnError'' : @12517,
+													''ReturnError'' : @12514,
 													''Bind'' : ASN1ChoiceType {
-														#module : @12458,
+														#module : @12455,
 														#elements : SmallDictionary {
 															''bind-invoke'' : ASN1TaggedType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1OpenType {
-																	#module : @12458
+																	#module : @12455
 																},
 																#tag : ASN1Tag {
 																	#number : 16
 																}
 															},
 															''bind-result'' : ASN1TaggedType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1OpenType {
-																	#module : @12458
+																	#module : @12455
 																},
 																#tag : ASN1Tag {
 																	#number : 17
 																}
 															},
 															''bind-error'' : ASN1TaggedType {
-																#module : @12458,
+																#module : @12455,
 																#type : ASN1OpenType {
-																	#module : @12458
+																	#module : @12455
 																},
 																#tag : ASN1Tag {
 																	#number : 18
@@ -36432,18 +36426,18 @@ MAPExampleModels class >> tcapModelSton [
 															}
 														}
 													},
-													''ReturnErrorProblem'' : @12544,
+													''ReturnErrorProblem'' : @12541,
 													''NoInvokeId'' : ASN1SetType {
-														#module : @12458,
+														#module : @12455,
 														#elements : ASN1Union {
 															#elements : OrderedCollection [
 																ASN1ElementComplement {
-																	#included : @12601
+																	#included : @12598
 																}
 															]
 														}
 													},
-													''Reject'' : @12526
+													''Reject'' : @12523
 												},
 												#tagEnvironment : @410,
 												#modelRoot : @1
@@ -36459,31 +36453,31 @@ MAPExampleModels class >> tcapModelSton [
 						}
 					}
 				},
-				''CancelProblem'' : @12449,
+				''CancelProblem'' : @12446,
 				''cancel'' : ASN1ObjectType {
-					#module : @12440,
+					#module : @12437,
 					#clazz : ''OPERATION'',
 					#attributes : {
 						''Errors'' : ASN1SetType {
-							#module : @12440,
+							#module : @12437,
 							#elements : ASN1Union {
 								#elements : OrderedCollection [
 									ASN1ElementComplement {
-										#included : @12443
+										#included : @12440
 									}
 								]
 							}
 						},
-						''ArgumentType'' : @12457
+						''ArgumentType'' : @12454
 					}
 				},
 				''cancelled'' : ASN1BitStringValue {
-					#module : @12440,
+					#module : @12437,
 					#type : ASN1BitStringType {
-						#module : @12440,
-						#bits : Set [ ]
+						#module : @12437,
+						#namedBits : Set [ ]
 					},
-					#bits : [ ]
+					#contents : ''0''
 				}
 			},
 			#tagEnvironment : @34,
@@ -36504,14 +36498,14 @@ MAPExampleModels class >> tcapModelSton [
 						},
 						#fields : {
 							''End'' : ASN1SequenceType {
-								#module : @12633,
+								#module : @12629,
 								#elements : SmallDictionary {
 									''dtid'' : ASN1ComponentType {
-										#module : @12633,
+										#module : @12629,
 										#type : ASN1TaggedType {
-											#module : @12633,
+											#module : @12629,
 											#type : ASN1OctetStringType {
-												#module : @12633
+												#module : @12629
 											},
 											#tag : ASN1Tag {
 												#clazz : ''APPLICATION'',
@@ -36520,12 +36514,12 @@ MAPExampleModels class >> tcapModelSton [
 										}
 									},
 									''dialoguePortion'' : ASN1ComponentType {
-										#module : @12633,
+										#module : @12629,
 										#type : ASN1TaggedType {
-											#module : @12633,
+											#module : @12629,
 											#tagEnvironment : @34,
 											#type : ASN1ExternalType {
-												#module : @12633
+												#module : @12629
 											},
 											#tag : ASN1Tag {
 												#clazz : ''APPLICATION'',
@@ -36535,21 +36529,21 @@ MAPExampleModels class >> tcapModelSton [
 										#modifier : ASN1ModifierOptional { }
 									},
 									''components'' : ASN1ComponentType {
-										#module : @12633,
+										#module : @12629,
 										#type : ASN1TaggedType {
-											#module : @12633,
+											#module : @12629,
 											#type : ASN1TypedSequenceType {
-												#module : @12633,
+												#module : @12629,
 												#type : ASN1ChoiceType {
-													#module : @12633,
+													#module : @12629,
 													#elements : SmallDictionary {
-														''invoke'' : @12502,
-														''returnResult'' : @12504,
-														''returnError'' : @12516,
-														''reject'' : @12525,
+														''invoke'' : @12499,
+														''returnResult'' : @12501,
+														''returnError'' : @12513,
+														''reject'' : @12522,
 														''returnResultNotLast'' : ASN1TaggedType {
-															#module : @12633,
-															#type : @12504,
+															#module : @12629,
+															#type : @12501,
 															#tag : ASN1Tag {
 																#number : 7
 															}
@@ -36566,11 +36560,11 @@ MAPExampleModels class >> tcapModelSton [
 									}
 								}
 							},
-							''DialoguePortion'' : @12643,
-							''TCMessage'' : @12632,
-							''TCInvokeIdSet'' : @12471,
+							''DialoguePortion'' : @12639,
+							''TCMessage'' : @12628,
+							''TCInvokeIdSet'' : @12468,
 							''MAPOperations-Invokable'' : ASN1SetType {
-								#module : @12633,
+								#module : @12629,
 								#elements : ASN1Union {
 									#elements : OrderedCollection [
 										ASN1ElementComplement {
@@ -36589,28 +36583,28 @@ MAPExampleModels class >> tcapModelSton [
 								}
 							},
 							''Unidirectional'' : ASN1SequenceType {
-								#module : @12633,
+								#module : @12629,
 								#elements : SmallDictionary {
 									''dialoguePortion'' : ASN1ComponentType {
-										#module : @12633,
-										#type : @12643,
+										#module : @12629,
+										#type : @12639,
 										#modifier : ASN1ModifierOptional { }
 									},
 									''components'' : ASN1ComponentType {
-										#module : @12633,
-										#type : @12648
+										#module : @12629,
+										#type : @12644
 									}
 								}
 							},
 							''Continue'' : ASN1SequenceType {
-								#module : @12633,
+								#module : @12629,
 								#elements : SmallDictionary {
 									''otid'' : ASN1ComponentType {
-										#module : @12633,
+										#module : @12629,
 										#type : ASN1TaggedType {
-											#module : @12633,
+											#module : @12629,
 											#type : ASN1OctetStringType {
-												#module : @12633
+												#module : @12629
 											},
 											#tag : ASN1Tag {
 												#clazz : ''APPLICATION'',
@@ -36619,38 +36613,38 @@ MAPExampleModels class >> tcapModelSton [
 										}
 									},
 									''dtid'' : ASN1ComponentType {
-										#module : @12633,
-										#type : @12639
+										#module : @12629,
+										#type : @12635
 									},
 									''dialoguePortion'' : ASN1ComponentType {
-										#module : @12633,
-										#type : @12643,
+										#module : @12629,
+										#type : @12639,
 										#modifier : ASN1ModifierOptional { }
 									},
 									''components'' : ASN1ComponentType {
-										#module : @12633,
-										#type : @12648,
+										#module : @12629,
+										#type : @12644,
 										#modifier : ASN1ModifierOptional { }
 									}
 								}
 							},
-							''OrigTransactionID'' : @12671,
+							''OrigTransactionID'' : @12667,
 							''Abort'' : ASN1SequenceType {
-								#module : @12633,
+								#module : @12629,
 								#elements : SmallDictionary {
 									''dtid'' : ASN1ComponentType {
-										#module : @12633,
-										#type : @12639
+										#module : @12629,
+										#type : @12635
 									},
 									''reason'' : ASN1ComponentType {
-										#module : @12633,
+										#module : @12629,
 										#type : ASN1ChoiceType {
-											#module : @12633,
+											#module : @12629,
 											#elements : SmallDictionary {
 												''p-abortCause'' : ASN1TaggedType {
-													#module : @12633,
+													#module : @12629,
 													#type : ASN1IntegerType {
-														#module : @12633,
+														#module : @12629,
 														#namedNumbers : OrderedCollection [
 															ASN1NamedNumber {
 																#name : ''unrecognizedMessageType'',
@@ -36679,47 +36673,47 @@ MAPExampleModels class >> tcapModelSton [
 														#number : 10
 													}
 												},
-												''u-abortCause'' : @12643
+												''u-abortCause'' : @12639
 											}
 										},
 										#modifier : ASN1ModifierOptional { }
 									}
 								}
 							},
-							''P-AbortCause'' : @12685,
-							''Component'' : @12650,
+							''P-AbortCause'' : @12681,
+							''Component'' : @12646,
 							''Begin'' : ASN1SequenceType {
-								#module : @12633,
+								#module : @12629,
 								#elements : SmallDictionary {
 									''otid'' : ASN1ComponentType {
-										#module : @12633,
-										#type : @12671
+										#module : @12629,
+										#type : @12667
 									},
 									''dialoguePortion'' : ASN1ComponentType {
-										#module : @12633,
-										#type : @12643,
+										#module : @12629,
+										#type : @12639,
 										#modifier : ASN1ModifierOptional { }
 									},
 									''components'' : ASN1ComponentType {
-										#module : @12633,
-										#type : @12648,
+										#module : @12629,
+										#type : @12644,
 										#modifier : ASN1ModifierOptional { }
 									}
 								}
 							},
-							''MapSpecificPDUs'' : @12632,
+							''MapSpecificPDUs'' : @12628,
 							''mapSpecificAS'' : ASN1ObjectType {
-								#module : @12633,
+								#module : @12629,
 								#clazz : ''ABSTRACT-SYNTAX'',
 								#attributes : {
-									''id'' : @12424,
-									''Type'' : @12632
+									''id'' : @12421,
+									''Type'' : @12628
 								}
 							},
-							''DestTransactionID'' : @12639,
-							''ComponentPortion'' : @12648,
+							''DestTransactionID'' : @12635,
+							''ComponentPortion'' : @12644,
 							''MAPOperations-Returnable'' : ASN1SetType {
-								#module : @12633,
+								#module : @12629,
 								#elements : ASN1Union {
 									#elements : OrderedCollection [
 										ASN1ElementComplement {
@@ -36753,40 +36747,40 @@ MAPExampleModels class >> tcapModelSton [
 					},
 					#elements : SmallDictionary {
 						''unidirectional'' : ASN1TaggedType {
-							#module : @12633,
-							#type : @12663,
+							#module : @12629,
+							#type : @12659,
 							#tag : ASN1Tag {
 								#clazz : ''APPLICATION'',
 								#number : 1
 							}
 						},
 						''begin'' : ASN1TaggedType {
-							#module : @12633,
-							#type : @12695,
+							#module : @12629,
+							#type : @12691,
 							#tag : ASN1Tag {
 								#clazz : ''APPLICATION'',
 								#number : 2
 							}
 						},
 						''end'' : ASN1TaggedType {
-							#module : @12633,
-							#type : @12636,
+							#module : @12629,
+							#type : @12632,
 							#tag : ASN1Tag {
 								#clazz : ''APPLICATION'',
 								#number : 4
 							}
 						},
 						''continue'' : ASN1TaggedType {
-							#module : @12633,
-							#type : @12668,
+							#module : @12629,
+							#type : @12664,
 							#tag : ASN1Tag {
 								#clazz : ''APPLICATION'',
 								#number : 5
 							}
 						},
 						''abort'' : ASN1TaggedType {
-							#module : @12633,
-							#type : @12679,
+							#module : @12629,
+							#type : @12675,
 							#tag : ASN1Tag {
 								#clazz : ''APPLICATION'',
 								#number : 7
@@ -36795,7 +36789,7 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''Termination'' : ASN1EnumeratedType {
-					#module : @12629,
+					#module : @12625,
 					#elements : OrderedCollection [
 						ASN1NamedNumber {
 							#name : ''basic'',
@@ -36807,17 +36801,17 @@ MAPExampleModels class >> tcapModelSton [
 						}
 					]
 				},
-				''TCConsumerAS'' : @12632,
+				''TCConsumerAS'' : @12628,
 				''uniDialogue-abstract-syntax'' : ASN1ObjectType {
-					#module : @12629,
+					#module : @12625,
 					#clazz : ''ABSTRACT-SYNTAX'',
 					#attributes : {
-						''id'' : @11378,
-						''Type'' : @11379
+						''id'' : @11377,
+						''Type'' : @11378
 					}
 				},
 				''DialogueMode'' : ASN1EnumeratedType {
-					#module : @12629,
+					#module : @12625,
 					#elements : OrderedCollection [
 						ASN1NamedNumber {
 							#name : ''structured'',
@@ -36829,28 +36823,28 @@ MAPExampleModels class >> tcapModelSton [
 						}
 					]
 				},
-				''TCSupplierAS'' : @12632,
-				''TCSingleAS'' : @12632,
-				''dialogue-abstract-syntax'' : @11645,
+				''TCSupplierAS'' : @12628,
+				''TCSingleAS'' : @12628,
+				''dialogue-abstract-syntax'' : @11642,
 				''ConnectionAS'' : ASN1ChoiceType {
-					#module : @12629,
+					#module : @12625,
 					#elements : SmallDictionary {
-						''bind-invoke'' : @12604,
-						''bind-result'' : @12607,
-						''bind-error'' : @12610,
-						''unbind-invoke'' : @12555,
-						''unbind-result'' : @12558,
-						''unbind-error'' : @12561
+						''bind-invoke'' : @12601,
+						''bind-result'' : @12604,
+						''bind-error'' : @12607,
+						''unbind-invoke'' : @12552,
+						''unbind-result'' : @12555,
+						''unbind-error'' : @12558
 					}
 				},
 				''APPLICATION-CONTEXT'' : ASN1ClassType {
-					#module : @12629
+					#module : @12625
 				}
 			},
 			#tagEnvironment : @34,
 			#modelRoot : @1
 		},
-		@12633,
+		@12629,
 		ASN1Module {
 			#name : ''Remote-Operations-Useful-Definitions'',
 			#oid : ASN1ObjectIdentifier {
@@ -36858,11 +36852,11 @@ MAPExampleModels class >> tcapModelSton [
 			},
 			#fields : {
 				''no-op'' : ASN1ObjectType {
-					#module : @12738,
+					#module : @12734,
 					#clazz : ''OPERATION'',
 					#attributes : {
 						''alwaysReturns'' : ASN1PrimitiveValue {
-							#module : @12738,
+							#module : @12734,
 							#type : ASN1PrimitiveTypeNode {
 								#name : ''BOOLEAN''
 							},
@@ -36876,18 +36870,18 @@ MAPExampleModels class >> tcapModelSton [
 						}
 					}
 				},
-				''ROS-SingleAS'' : @12500,
+				''ROS-SingleAS'' : @12497,
 				''emptyBind'' : ASN1ObjectType {
-					#module : @12738,
+					#module : @12734,
 					#clazz : ''OPERATION'',
 					#attributes : {
 						''Errors'' : ASN1SetType {
-							#module : @12738,
+							#module : @12734,
 							#elements : ASN1Union {
 								#elements : OrderedCollection [
 									ASN1ElementComplement {
 										#included : ASN1ObjectType {
-											#module : @12738,
+											#module : @12734,
 											#clazz : ''ERROR'',
 											#attributes : {
 												''errorCode'' : ASN1IntegerValue {
@@ -36903,7 +36897,7 @@ MAPExampleModels class >> tcapModelSton [
 							}
 						},
 						''synchronous'' : ASN1PrimitiveValue {
-							#module : @12738,
+							#module : @12734,
 							#type : ASN1PrimitiveTypeNode {
 								#name : ''BOOLEAN''
 							},
@@ -36912,43 +36906,43 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''switch'' : ASN1ObjectType {
-					#module : @12738,
+					#module : @12734,
 					#clazz : ''OPERATION-PACKAGE'',
 					#attributes : {
 						''Both'' : ASN1SetType {
-							#module : @12738,
+							#module : @12734,
 							#elements : ASN1Union {
 								#elements : OrderedCollection [
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12594
+											#constraint : @12591
 										}
 									}
 								]
 							}
 						},
 						''id'' : ASN1ObjectIdentifierType {
-							#module : @12738
+							#module : @12734
 						},
 						''Supplier'' : ASN1SetType {
-							#module : @12738,
+							#module : @12734,
 							#elements : ASN1Union {
 								#elements : OrderedCollection [
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12594
+											#constraint : @12591
 										}
 									}
 								]
 							}
 						},
 						''Consumer'' : ASN1SetType {
-							#module : @12738,
+							#module : @12734,
 							#elements : ASN1Union {
 								#elements : OrderedCollection [
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12594
+											#constraint : @12591
 										}
 									}
 								]
@@ -36957,28 +36951,28 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''Reverse'' : ASN1SetType {
-					#module : @12738,
+					#module : @12734,
 					#elements : ASN1Union {
 						#elements : OrderedCollection [
 							ASN1ElementComplement {
 								#included : ASN1Constraint {
 									#constraint : ASN1SetType {
-										#module : @12738,
+										#module : @12734,
 										#elements : ASN1Union {
 											#elements : OrderedCollection [
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12594
+														#constraint : @12591
 													}
 												},
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12594
+														#constraint : @12591
 													}
 												},
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12594
+														#constraint : @12591
 													}
 												}
 											]
@@ -36990,33 +36984,33 @@ MAPExampleModels class >> tcapModelSton [
 					}
 				},
 				''AllOperations'' : ASN1SetType {
-					#module : @12738,
+					#module : @12734,
 					#elements : ASN1Union {
 						#elements : OrderedCollection [
 							ASN1ElementComplement {
 								#included : ASN1Constraint {
 									#constraint : ASN1SetType {
-										#module : @12738,
+										#module : @12734,
 										#elements : ASN1Union {
 											#elements : OrderedCollection [
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12782
+														#constraint : @12778
 													}
 												},
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12782
+														#constraint : @12778
 													}
 												},
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12777
+														#constraint : @12773
 													}
 												},
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12777
+														#constraint : @12773
 													}
 												}
 											]
@@ -37027,27 +37021,27 @@ MAPExampleModels class >> tcapModelSton [
 							ASN1ElementComplement {
 								#included : ASN1Constraint {
 									#constraint : ASN1SetType {
-										#module : @12738,
+										#module : @12734,
 										#elements : ASN1Union {
 											#elements : OrderedCollection [
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12782
+														#constraint : @12778
 													}
 												},
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12782
+														#constraint : @12778
 													}
 												},
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12777
+														#constraint : @12773
 													}
 												},
 												ASN1ElementComplement {
 													#included : ASN1Constraint {
-														#constraint : @12777
+														#constraint : @12773
 													}
 												}
 											]
@@ -37058,60 +37052,60 @@ MAPExampleModels class >> tcapModelSton [
 						]
 					}
 				},
-				''ROS-ConsumerAS'' : @12500,
+				''ROS-ConsumerAS'' : @12497,
 				''combine'' : ASN1ObjectType {
-					#module : @12738,
+					#module : @12734,
 					#clazz : ''OPERATION-PACKAGE'',
 					#attributes : {
 						''Both'' : ASN1SetType {
-							#module : @12738,
+							#module : @12734,
 							#elements : ASN1Union {
 								#elements : OrderedCollection [
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12594
+											#constraint : @12591
 										}
 									},
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12594
+											#constraint : @12591
 										}
 									}
 								]
 							}
 						},
 						''id'' : ASN1ObjectIdentifierType {
-							#module : @12738
+							#module : @12734
 						},
 						''Supplier'' : ASN1SetType {
-							#module : @12738,
+							#module : @12734,
 							#elements : ASN1Union {
 								#elements : OrderedCollection [
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12594
+											#constraint : @12591
 										}
 									},
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12594
+											#constraint : @12591
 										}
 									}
 								]
 							}
 						},
 						''Consumer'' : ASN1SetType {
-							#module : @12738,
+							#module : @12734,
 							#elements : ASN1Union {
 								#elements : OrderedCollection [
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12594
+											#constraint : @12591
 										}
 									},
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12594
+											#constraint : @12591
 										}
 									}
 								]
@@ -37119,15 +37113,15 @@ MAPExampleModels class >> tcapModelSton [
 						}
 					}
 				},
-				''ConsumerPerforms'' : @12796,
-				''ROS-SupplierAS'' : @12500,
-				''Forward'' : @12782,
+				''ConsumerPerforms'' : @12792,
+				''ROS-SupplierAS'' : @12497,
+				''Forward'' : @12778,
 				''emptyUnbind'' : ASN1ObjectType {
-					#module : @12738,
+					#module : @12734,
 					#clazz : ''OPERATION'',
 					#attributes : {
 						''synchronous'' : ASN1PrimitiveValue {
-							#module : @12738,
+							#module : @12734,
 							#type : ASN1PrimitiveTypeNode {
 								#name : ''BOOLEAN''
 							},
@@ -37135,14 +37129,14 @@ MAPExampleModels class >> tcapModelSton [
 						}
 					}
 				},
-				''SupplierPerforms'' : @12809,
-				''refuse'' : @12753,
+				''SupplierPerforms'' : @12805,
+				''refuse'' : @12749,
 				''recode'' : ASN1ObjectType {
-					#module : @12738,
+					#module : @12734,
 					#clazz : ''OPERATION'',
 					#attributes : {
 						''resultTypeOptional'' : ASN1BooleanType {
-							#module : @12738
+							#module : @12734
 						},
 						''InvokePriority'' : ASN1IntegerValue {
 							#type : ASN1IntegerType {
@@ -37156,11 +37150,11 @@ MAPExampleModels class >> tcapModelSton [
 										},
 										#identifier : ASN1ModuleIdentifierNode {
 											#properties : {
-												#module : @12855
+												#module : @12851
 											},
 											#oid : ASN1ObjectIdNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#type : ASN1ObjectIdentifierTypeNode {
 													
@@ -37168,28 +37162,28 @@ MAPExampleModels class >> tcapModelSton [
 												#components : [
 													ASN1ObjectIdComponentNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#name : ''joint-iso-itu-t'',
 														#number : 2
 													},
 													ASN1ObjectIdComponentNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#name : ''remote-operations'',
 														#number : 4
 													},
 													ASN1ObjectIdComponentNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#name : ''useful-definitions'',
 														#number : 7
 													},
 													ASN1ObjectIdComponentNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#name : ''version1'',
 														#number : 0
@@ -37203,15 +37197,15 @@ MAPExampleModels class >> tcapModelSton [
 										#imports : [
 											ASN1ImportNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#moduleIdentifier : ASN1ModuleIdentifierNode {
 													#properties : {
-														#module : @12855
+														#module : @12851
 													},
 													#oid : ASN1ObjectIdNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#type : ASN1ObjectIdentifierTypeNode {
 															
@@ -37225,11 +37219,11 @@ MAPExampleModels class >> tcapModelSton [
 																		},
 																		#identifier : ASN1ModuleIdentifierNode {
 																			#properties : {
-																				#module : @12883
+																				#module : @12879
 																			},
 																			#oid : ASN1ObjectIdNode {
 																				#properties : {
-																					#module : @12883
+																					#module : @12879
 																				},
 																				#type : ASN1ObjectIdentifierTypeNode {
 																					
@@ -37237,28 +37231,28 @@ MAPExampleModels class >> tcapModelSton [
 																				#components : [
 																					ASN1ObjectIdComponentNode {
 																						#properties : {
-																							#module : @12883
+																							#module : @12879
 																						},
 																						#name : ''joint-iso-itu-t'',
 																						#number : 2
 																					},
 																					ASN1ObjectIdComponentNode {
 																						#properties : {
-																							#module : @12883
+																							#module : @12879
 																						},
 																						#name : ''remote-operations'',
 																						#number : 4
 																					},
 																					ASN1ObjectIdComponentNode {
 																						#properties : {
-																							#module : @12883
+																							#module : @12879
 																						},
 																						#name : ''informationObjects'',
 																						#number : 5
 																					},
 																					ASN1ObjectIdComponentNode {
 																						#properties : {
-																							#module : @12883
+																							#module : @12879
 																						},
 																						#name : ''version1'',
 																						#number : 0
@@ -37272,38 +37266,38 @@ MAPExampleModels class >> tcapModelSton [
 																		#imports : [
 																			ASN1ImportNode {
 																				#properties : {
-																					#module : @12883
+																					#module : @12879
 																				},
 																				#moduleIdentifier : ASN1ModuleIdentifierNode {
 																					#properties : {
-																						#module : @12883
+																						#module : @12879
 																					},
 																					#oid : ASN1ObjectIdNode {
 																						#properties : {
-																							#module : @12883
+																							#module : @12879
 																						},
 																						#type : ASN1ObjectIdentifierTypeNode {
 																							
 																						},
 																						#components : OrderedCollection [
-																							@12881,
+																							@12877,
 																							ASN1ObjectIdComponentNode {
 																								#properties : {
-																									#module : @12883
+																									#module : @12879
 																								},
 																								#name : ''remote-operations'',
 																								#number : 4
 																							},
 																							ASN1ObjectIdComponentNode {
 																								#properties : {
-																									#module : @12883
+																									#module : @12879
 																								},
 																								#name : ''useful-definitions'',
 																								#number : 7
 																							},
 																							ASN1ObjectIdComponentNode {
 																								#properties : {
-																									#module : @12883
+																									#module : @12879
 																								},
 																								#name : ''version1'',
 																								#number : 0
@@ -37313,7 +37307,7 @@ MAPExampleModels class >> tcapModelSton [
 																					#name : ASN1ReferenceNode {
 																						#properties : {
 																							#constraints : Set [ ],
-																							#definition : @12855
+																							#definition : @12851
 																						},
 																						#label : ''Remote-Operations-Useful-Definitions''
 																					}
@@ -37323,19 +37317,19 @@ MAPExampleModels class >> tcapModelSton [
 																						#properties : {
 																							#definition : ASN1DefinedSyntaxObjectNode {
 																								#properties : {
-																									#module : @12855,
+																									#module : @12851,
 																									#type : ASN1ReferenceNode {
 																										#properties : {
 																											#definition : ASN1DefinedSyntaxClassNode {
 																												#properties : {
 																													#referenced : true,
 																													#assigned : true,
-																													#module : @12883
+																													#module : @12879
 																												},
 																												#fields : [
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierOptionalNode {
 																																	
@@ -37350,13 +37344,13 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														#type : ASN1OpenTypeNode {
 																															#properties : {
-																																#module : @12883
+																																#module : @12879
 																															}
 																														}
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierOptionalNode {
 																																	
@@ -37372,14 +37366,14 @@ MAPExampleModels class >> tcapModelSton [
 																														#type : ASN1PrimitiveTypeNode {
 																															#properties : {
 																																#constraints : Set [ ],
-																																#module : @12883
+																																#module : @12879
 																															},
 																															#name : ''BOOLEAN''
 																														}
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierDefaultValueNode {
 																																	#properties : {
@@ -37403,14 +37397,14 @@ MAPExampleModels class >> tcapModelSton [
 																														#type : ASN1PrimitiveTypeNode {
 																															#properties : {
 																																#constraints : Set [ ],
-																																#module : @12883
+																																#module : @12879
 																															},
 																															#name : ''BOOLEAN''
 																														}
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierOptionalNode {
 																																	
@@ -37425,13 +37419,13 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														#type : ASN1OpenTypeNode {
 																															#properties : {
-																																#module : @12883
+																																#module : @12879
 																															}
 																														}
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierOptionalNode {
 																																	
@@ -37447,14 +37441,14 @@ MAPExampleModels class >> tcapModelSton [
 																														#type : ASN1PrimitiveTypeNode {
 																															#properties : {
 																																#constraints : Set [ ],
-																																#module : @12883
+																																#module : @12879
 																															},
 																															#name : ''BOOLEAN''
 																														}
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierOptionalNode {
 																																	
@@ -37473,12 +37467,12 @@ MAPExampleModels class >> tcapModelSton [
 																																	#properties : {
 																																		#referenced : true,
 																																		#assigned : true,
-																																		#module : @12883
+																																		#module : @12879
 																																	},
 																																	#fields : [
 																																		ASN1FieldSpecNode {
 																																			#properties : {
-																																				#module : @12883,
+																																				#module : @12879,
 																																				#modifiers : Set [
 																																					ASN1ModifierOptionalNode {
 																																						
@@ -37493,13 +37487,13 @@ MAPExampleModels class >> tcapModelSton [
 																																			},
 																																			#type : ASN1OpenTypeNode {
 																																				#properties : {
-																																					#module : @12883
+																																					#module : @12879
 																																				}
 																																			}
 																																		},
 																																		ASN1FieldSpecNode {
 																																			#properties : {
-																																				#module : @12883,
+																																				#module : @12879,
 																																				#modifiers : Set [
 																																					ASN1ModifierOptionalNode {
 																																						
@@ -37515,14 +37509,14 @@ MAPExampleModels class >> tcapModelSton [
 																																			#type : ASN1PrimitiveTypeNode {
 																																				#properties : {
 																																					#constraints : Set [ ],
-																																					#module : @12883
+																																					#module : @12879
 																																				},
 																																				#name : ''BOOLEAN''
 																																			}
 																																		},
 																																		ASN1FieldSpecNode {
 																																			#properties : {
-																																				#module : @12883,
+																																				#module : @12879,
 																																				#modifiers : Set [
 																																					ASN1ModifierOptionalNode {
 																																						
@@ -37559,7 +37553,7 @@ MAPExampleModels class >> tcapModelSton [
 																																							],
 																																							#referenced : true,
 																																							#assigned : true,
-																																							#module : @12883
+																																							#module : @12879
 																																						},
 																																						#name : ''INTEGER'',
 																																						#namedNumbers : OrderedCollection [ ]
@@ -37570,7 +37564,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		},
 																																		ASN1FieldSpecNode {
 																																			#properties : {
-																																				#module : @12883,
+																																				#module : @12879,
 																																				#modifiers : Set [
 																																					ASN1ModifierUniqueNode {
 																																						#properties : {
@@ -37594,18 +37588,18 @@ MAPExampleModels class >> tcapModelSton [
 																																						#properties : {
 																																							#referenced : true,
 																																							#assigned : true,
-																																							#module : @12883
+																																							#module : @12879
 																																						},
 																																						#elements : [
 																																							ASN1NamedTypeNode {
 																																								#properties : {
-																																									#module : @12883
+																																									#module : @12879
 																																								},
 																																								#name : ''local'',
 																																								#type : ASN1IntegerTypeNode {
 																																									#properties : {
 																																										#constraints : Set [ ],
-																																										#module : @12883
+																																										#module : @12879
 																																									},
 																																									#name : ''INTEGER'',
 																																									#namedNumbers : OrderedCollection [ ]
@@ -37613,12 +37607,12 @@ MAPExampleModels class >> tcapModelSton [
 																																							},
 																																							ASN1NamedTypeNode {
 																																								#properties : {
-																																									#module : @12883
+																																									#module : @12879
 																																								},
 																																								#name : ''global'',
 																																								#type : ASN1ObjectIdentifierTypeNode {
 																																									#properties : {
-																																										#module : @12883
+																																										#module : @12879
 																																									},
 																																									#name : ''OBJECT IDENTIFIER''
 																																								}
@@ -37730,7 +37724,7 @@ MAPExampleModels class >> tcapModelSton [
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierOptionalNode {
 																																	
@@ -37745,14 +37739,14 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														#type : ASN1ReferenceNode {
 																															#properties : {
-																																#definition : @12925
+																																#definition : @12921
 																															},
 																															#label : ''OPERATION''
 																														}
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierDefaultValueNode {
 																																	#properties : {
@@ -37776,14 +37770,14 @@ MAPExampleModels class >> tcapModelSton [
 																														#type : ASN1PrimitiveTypeNode {
 																															#properties : {
 																																#constraints : Set [ ],
-																																#module : @12883
+																																#module : @12879
 																															},
 																															#name : ''BOOLEAN''
 																														}
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierDefaultValueNode {
 																																	#properties : {
@@ -37807,14 +37801,14 @@ MAPExampleModels class >> tcapModelSton [
 																														#type : ASN1PrimitiveTypeNode {
 																															#properties : {
 																																#constraints : Set [ ],
-																																#module : @12883
+																																#module : @12879
 																															},
 																															#name : ''BOOLEAN''
 																														}
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierOptionalNode {
 																																	
@@ -37829,14 +37823,14 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														#type : ASN1ReferenceNode {
 																															#properties : {
-																																#definition : @13011
+																																#definition : @13007
 																															},
 																															#label : ''Priority''
 																														}
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierOptionalNode {
 																																	
@@ -37851,14 +37845,14 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														#type : ASN1ReferenceNode {
 																															#properties : {
-																																#definition : @13011
+																																#definition : @13007
 																															},
 																															#label : ''Priority''
 																														}
 																													},
 																													ASN1FieldSpecNode {
 																														#properties : {
-																															#module : @12883,
+																															#module : @12879,
 																															#modifiers : Set [
 																																ASN1ModifierUniqueNode {
 																																	#properties : {
@@ -37878,7 +37872,7 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														#type : ASN1ReferenceNode {
 																															#properties : {
-																																#definition : @13032
+																																#definition : @13028
 																															},
 																															#label : ''Code''
 																														}
@@ -38161,16 +38155,16 @@ MAPExampleModels class >> tcapModelSton [
 																									},
 																									ASN1ValueSetNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
 																										#elementsSpec : ASN1UnionNode {
 																											#properties : {
-																												#module : @12855
+																												#module : @12851
 																											},
 																											#elements : OrderedCollection [
 																												ASN1ElementsNode {
 																													#properties : {
-																														#module : @12855
+																														#module : @12851
 																													},
 																													#entity : ASN1ReferenceNode {
 																														#properties : {
@@ -38179,12 +38173,12 @@ MAPExampleModels class >> tcapModelSton [
 																																	#referenced : true,
 																																	#type : ASN1ReferenceNode {
 																																		#properties : {
-																																			#definition : @12983
+																																			#definition : @12979
 																																		},
 																																		#label : ''ERROR''
 																																	},
 																																	#assigned : true,
-																																	#module : @12855
+																																	#module : @12851
 																																},
 																																#syntax : [
 																																	ASN1LiteralNode {
@@ -38192,7 +38186,7 @@ MAPExampleModels class >> tcapModelSton [
 																																	},
 																																	ASN1ChoiceValueNode {
 																																		#properties : {
-																																			#module : @12855
+																																			#module : @12851
 																																		},
 																																		#choice : ''local'',
 																																		#value : ASN1IntegerValueNode {
@@ -38214,9 +38208,9 @@ MAPExampleModels class >> tcapModelSton [
 																									},
 																									ASN1PrimitiveValueNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
-																										#type : @12758,
+																										#type : @12754,
 																										#value : ''TRUE''
 																									}
 																								]
@@ -38229,10 +38223,10 @@ MAPExampleModels class >> tcapModelSton [
 																						#properties : {
 																							#definition : ASN1DefinedSyntaxObjectNode {
 																								#properties : {
-																									#module : @12855,
+																									#module : @12851,
 																									#type : ASN1ReferenceNode {
 																										#properties : {
-																											#definition : @12925
+																											#definition : @12921
 																										},
 																										#label : ''OPERATION''
 																									},
@@ -38244,9 +38238,9 @@ MAPExampleModels class >> tcapModelSton [
 																									},
 																									ASN1PrimitiveValueNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
-																										#type : @12847,
+																										#type : @12843,
 																										#value : ''TRUE''
 																									}
 																								]
@@ -38261,7 +38255,7 @@ MAPExampleModels class >> tcapModelSton [
 																		#assignments : [
 																			ASN1AssignmentNode {
 																				#properties : {
-																					#module : @12883
+																					#module : @12879
 																				},
 																				#left : ASN1ReferenceNode {
 																					#properties : {
@@ -38269,11 +38263,11 @@ MAPExampleModels class >> tcapModelSton [
 																					},
 																					#label : ''OPERATION''
 																				},
-																				#right : @12925
+																				#right : @12921
 																			},
 																			ASN1AssignmentNode {
 																				#properties : {
-																					#module : @12883
+																					#module : @12879
 																				},
 																				#left : ASN1ReferenceNode {
 																					#properties : {
@@ -38281,11 +38275,11 @@ MAPExampleModels class >> tcapModelSton [
 																					},
 																					#label : ''ERROR''
 																				},
-																				#right : @12983
+																				#right : @12979
 																			},
 																			ASN1AssignmentNode {
 																				#properties : {
-																					#module : @12883
+																					#module : @12879
 																				},
 																				#left : ASN1ReferenceNode {
 																					#properties : {
@@ -38297,12 +38291,12 @@ MAPExampleModels class >> tcapModelSton [
 																					#properties : {
 																						#referenced : true,
 																						#assigned : true,
-																						#module : @12883
+																						#module : @12879
 																					},
 																					#fields : [
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -38317,14 +38311,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -38339,14 +38333,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -38361,14 +38355,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierUniqueNode {
 																										#properties : {
@@ -38388,7 +38382,7 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ObjectIdentifierTypeNode {
 																								#properties : {
-																									#module : @12883
+																									#module : @12879
 																								},
 																								#name : ''OBJECT IDENTIFIER''
 																							}
@@ -38489,7 +38483,7 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			ASN1AssignmentNode {
 																				#properties : {
-																					#module : @12883
+																					#module : @12879
 																				},
 																				#left : ASN1ReferenceNode {
 																					#properties : {
@@ -38499,14 +38493,14 @@ MAPExampleModels class >> tcapModelSton [
 																				},
 																				#right : ASN1DefinedSyntaxClassNode {
 																					#properties : {
-																						#module : @12883,
+																						#module : @12879,
 																						#assigned : true,
 																						#referenced : true
 																					},
 																					#fields : [
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierDefaultValueNode {
 																										#value : ASN1ReferenceNode {
@@ -38523,14 +38517,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierDefaultValueNode {
 																										#value : ASN1ReferenceNode {
@@ -38547,14 +38541,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierDefaultValueNode {
 																										#value : ASN1PrimitiveValueNode {
@@ -38575,14 +38569,14 @@ MAPExampleModels class >> tcapModelSton [
 																							#type : ASN1PrimitiveTypeNode {
 																								#properties : {
 																									#constraints : Set [ ],
-																									#module : @12883
+																									#module : @12879
 																								},
 																								#name : ''BOOLEAN''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierDefaultValueNode {
 																										#value : ASN1PrimitiveValueNode {
@@ -38603,14 +38597,14 @@ MAPExampleModels class >> tcapModelSton [
 																							#type : ASN1PrimitiveTypeNode {
 																								#properties : {
 																									#constraints : Set [ ],
-																									#module : @12883
+																									#module : @12879
 																								},
 																								#name : ''BOOLEAN''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierUniqueNode {
 																										
@@ -38628,7 +38622,7 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ObjectIdentifierTypeNode {
 																								#properties : {
-																									#module : @12883
+																									#module : @12879
 																								},
 																								#name : ''OBJECT IDENTIFIER''
 																							}
@@ -38741,7 +38735,7 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			ASN1AssignmentNode {
 																				#properties : {
-																					#module : @12883
+																					#module : @12879
 																				},
 																				#left : ASN1ReferenceNode {
 																					#properties : {
@@ -38753,12 +38747,12 @@ MAPExampleModels class >> tcapModelSton [
 																					#properties : {
 																						#referenced : true,
 																						#assigned : true,
-																						#module : @12883
+																						#module : @12879
 																					},
 																					#fields : [
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -38773,14 +38767,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @13405
+																									#definition : @13401
 																								},
 																								#label : ''CONNECTION-PACKAGE''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -38795,14 +38789,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @13321
+																									#definition : @13317
 																								},
 																								#label : ''OPERATION-PACKAGE''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -38817,14 +38811,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @13321
+																									#definition : @13317
 																								},
 																								#label : ''OPERATION-PACKAGE''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -38839,21 +38833,19 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @13321
+																									#definition : @13317
 																								},
 																								#label : ''OPERATION-PACKAGE''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
-																									ASN1ModifierUniqueNode {
-																										#properties : {
-																											#modifiers : Set [ ]
-																										}
-																									},
 																									ASN1ModifierOptionalNode {
+																										
+																									},
+																									ASN1ModifierUniqueNode {
 																										
 																									}
 																								]
@@ -38866,7 +38858,7 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ObjectIdentifierTypeNode {
 																								#properties : {
-																									#module : @12883
+																									#module : @12879
 																								},
 																								#name : ''OBJECT IDENTIFIER''
 																							}
@@ -39000,7 +38992,7 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			ASN1AssignmentNode {
 																				#properties : {
-																					#module : @12883
+																					#module : @12879
 																				},
 																				#left : ASN1ReferenceNode {
 																					#properties : {
@@ -39012,12 +39004,12 @@ MAPExampleModels class >> tcapModelSton [
 																					#properties : {
 																						#referenced : true,
 																						#assigned : true,
-																						#module : @12883
+																						#module : @12879
 																					},
 																					#fields : [
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -39032,14 +39024,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @13613
+																									#definition : @13607
 																								},
 																								#label : ''ROS-OBJECT-CLASS''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -39054,14 +39046,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @13506
+																									#definition : @13502
 																								},
 																								#label : ''CONTRACT''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -39076,14 +39068,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @13506
+																									#definition : @13502
 																								},
 																								#label : ''CONTRACT''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierOptionalNode {
 																										
@@ -39098,14 +39090,14 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @13506
+																									#definition : @13502
 																								},
 																								#label : ''CONTRACT''
 																							}
 																						},
 																						ASN1FieldSpecNode {
 																							#properties : {
-																								#module : @12883,
+																								#module : @12879,
 																								#modifiers : Set [
 																									ASN1ModifierUniqueNode {
 																										
@@ -39120,7 +39112,7 @@ MAPExampleModels class >> tcapModelSton [
 																							},
 																							#type : ASN1ObjectIdentifierTypeNode {
 																								#properties : {
-																									#module : @12883
+																									#module : @12879
 																								},
 																								#name : ''OBJECT IDENTIFIER''
 																							}
@@ -39213,7 +39205,7 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			ASN1AssignmentNode {
 																				#properties : {
-																					#module : @12883,
+																					#module : @12879,
 																					#PDU : true
 																				},
 																				#left : ASN1ReferenceNode {
@@ -39222,11 +39214,11 @@ MAPExampleModels class >> tcapModelSton [
 																					},
 																					#label : ''Code''
 																				},
-																				#right : @13032
+																				#right : @13028
 																			},
 																			ASN1AssignmentNode {
 																				#properties : {
-																					#module : @12883
+																					#module : @12879
 																				},
 																				#left : ASN1ReferenceNode {
 																					#properties : {
@@ -39234,7 +39226,7 @@ MAPExampleModels class >> tcapModelSton [
 																					},
 																					#label : ''Priority''
 																				},
-																				#right : @13011
+																				#right : @13007
 																			}
 																		]
 																	}
@@ -39244,21 +39236,21 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ObjectIdComponentNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#name : ''remote-operations'',
 																#number : 4
 															},
 															ASN1ObjectIdComponentNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#name : ''informationObjects'',
 																#number : 5
 															},
 															ASN1ObjectIdComponentNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#name : ''version1'',
 																#number : 0
@@ -39268,7 +39260,7 @@ MAPExampleModels class >> tcapModelSton [
 													#name : ASN1ReferenceNode {
 														#properties : {
 															#constraints : Set [ ],
-															#definition : @12883
+															#definition : @12879
 														},
 														#label : ''Remote-Operations-Information-Objects''
 													}
@@ -39276,28 +39268,28 @@ MAPExampleModels class >> tcapModelSton [
 												#symbols : [
 													ASN1ReferenceNode {
 														#properties : {
-															#definition : @12925,
+															#definition : @12921,
 															#parameters : nil
 														},
 														#label : ''OPERATION''
 													},
 													ASN1ReferenceNode {
 														#properties : {
-															#definition : @12983,
+															#definition : @12979,
 															#parameters : nil
 														},
 														#label : ''ERROR''
 													},
 													ASN1ReferenceNode {
 														#properties : {
-															#definition : @13321,
+															#definition : @13317,
 															#parameters : nil
 														},
 														#label : ''OPERATION-PACKAGE''
 													},
 													ASN1ReferenceNode {
 														#properties : {
-															#definition : @13032,
+															#definition : @13028,
 															#parameters : nil
 														},
 														#label : ''Code''
@@ -39306,38 +39298,38 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1ImportNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#moduleIdentifier : ASN1ModuleIdentifierNode {
 													#properties : {
-														#module : @12855
+														#module : @12851
 													},
 													#oid : ASN1ObjectIdNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#type : ASN1ObjectIdentifierTypeNode {
 															
 														},
 														#components : OrderedCollection [
-															@12881,
+															@12877,
 															ASN1ObjectIdComponentNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#name : ''remote-operations'',
 																#number : 4
 															},
 															ASN1ObjectIdComponentNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#name : ''generic-ROS-PDUs'',
 																#number : 6
 															},
 															ASN1ObjectIdComponentNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#name : ''version1'',
 																#number : 0
@@ -39353,11 +39345,11 @@ MAPExampleModels class >> tcapModelSton [
 																},
 																#identifier : ASN1ModuleIdentifierNode {
 																	#properties : {
-																		#module : @13736
+																		#module : @13730
 																	},
 																	#oid : ASN1ObjectIdNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#type : ASN1ObjectIdentifierTypeNode {
 																			
@@ -39365,28 +39357,28 @@ MAPExampleModels class >> tcapModelSton [
 																		#components : [
 																			ASN1ObjectIdComponentNode {
 																				#properties : {
-																					#module : @13736
+																					#module : @13730
 																				},
 																				#name : ''joint-iso-itu-t'',
 																				#number : 2
 																			},
 																			ASN1ObjectIdComponentNode {
 																				#properties : {
-																					#module : @13736
+																					#module : @13730
 																				},
 																				#name : ''remote-operations'',
 																				#number : 4
 																			},
 																			ASN1ObjectIdComponentNode {
 																				#properties : {
-																					#module : @13736
+																					#module : @13730
 																				},
 																				#name : ''generic-ROS-PDUs'',
 																				#number : 6
 																			},
 																			ASN1ObjectIdComponentNode {
 																				#properties : {
-																					#module : @13736
+																					#module : @13730
 																				},
 																				#name : ''version1'',
 																				#number : 0
@@ -39400,38 +39392,38 @@ MAPExampleModels class >> tcapModelSton [
 																#imports : [
 																	ASN1ImportNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#moduleIdentifier : ASN1ModuleIdentifierNode {
 																			#properties : {
-																				#module : @13736
+																				#module : @13730
 																			},
 																			#oid : ASN1ObjectIdNode {
 																				#properties : {
-																					#module : @13736
+																					#module : @13730
 																				},
 																				#type : ASN1ObjectIdentifierTypeNode {
 																					
 																				},
 																				#components : OrderedCollection [
-																					@12881,
+																					@12877,
 																					ASN1ObjectIdComponentNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#name : ''remote-operations'',
 																						#number : 4
 																					},
 																					ASN1ObjectIdComponentNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#name : ''informationObjects'',
 																						#number : 5
 																					},
 																					ASN1ObjectIdComponentNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#name : ''version1'',
 																						#number : 0
@@ -39441,7 +39433,7 @@ MAPExampleModels class >> tcapModelSton [
 																			#name : ASN1ReferenceNode {
 																				#properties : {
 																					#constraints : Set [ ],
-																					#definition : @12883
+																					#definition : @12879
 																				},
 																				#label : ''Remote-Operations-Information-Objects''
 																			}
@@ -39449,14 +39441,14 @@ MAPExampleModels class >> tcapModelSton [
 																		#symbols : [
 																			ASN1ReferenceNode {
 																				#properties : {
-																					#definition : @12925,
+																					#definition : @12921,
 																					#parameters : nil
 																				},
 																				#label : ''OPERATION''
 																			},
 																			ASN1ReferenceNode {
 																				#properties : {
-																					#definition : @12983,
+																					#definition : @12979,
 																					#parameters : nil
 																				},
 																				#label : ''ERROR''
@@ -39467,7 +39459,7 @@ MAPExampleModels class >> tcapModelSton [
 																#assignments : [
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -39475,7 +39467,7 @@ MAPExampleModels class >> tcapModelSton [
 																				#parameters : [
 																					ASN1ParameterNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#type : ASN1ReferenceNode {
 																							#properties : {
@@ -39483,18 +39475,18 @@ MAPExampleModels class >> tcapModelSton [
 																									#properties : {
 																										#referenced : true,
 																										#assigned : true,
-																										#module : @13736
+																										#module : @13730
 																									},
 																									#elements : [
 																										ASN1NamedTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#name : ''present'',
 																											#type : ASN1IntegerTypeNode {
 																												#properties : {
 																													#constraints : Set [ ],
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''INTEGER'',
 																												#namedNumbers : OrderedCollection [ ]
@@ -39502,12 +39494,12 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										ASN1NamedTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#name : ''absent'',
 																											#type : ASN1NullTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												}
 																											}
 																										}
@@ -39524,18 +39516,36 @@ MAPExampleModels class >> tcapModelSton [
 																						},
 																						#reference : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @13784
+																								#definition : @13778
 																							},
 																							#label : ''InvokeIdSet''
 																						}
 																					},
 																					ASN1ParameterNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#type : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @12925,
+																								#definition : @12921,
+																								#referenced : true
+																							},
+																							#label : ''OPERATION''
+																						},
+																						#reference : ASN1ReferenceNode {
+																							#properties : {
+																								#definition : @13798
+																							},
+																							#label : ''Invokable''
+																						}
+																					},
+																					ASN1ParameterNode {
+																						#properties : {
+																							#module : @13730
+																						},
+																						#type : ASN1ReferenceNode {
+																							#properties : {
+																								#definition : @12921,
 																								#referenced : true
 																							},
 																							#label : ''OPERATION''
@@ -39543,24 +39553,6 @@ MAPExampleModels class >> tcapModelSton [
 																						#reference : ASN1ReferenceNode {
 																							#properties : {
 																								#definition : @13804
-																							},
-																							#label : ''Invokable''
-																						}
-																					},
-																					ASN1ParameterNode {
-																						#properties : {
-																							#module : @13736
-																						},
-																						#type : ASN1ReferenceNode {
-																							#properties : {
-																								#definition : @12925,
-																								#referenced : true
-																							},
-																							#label : ''OPERATION''
-																						},
-																						#reference : ASN1ReferenceNode {
-																							#properties : {
-																								#definition : @13810
 																							},
 																							#label : ''Returnable''
 																						}
@@ -39596,20 +39588,20 @@ MAPExampleModels class >> tcapModelSton [
 																				],
 																				#referenced : true,
 																				#assigned : true,
-																				#module : @13736
+																				#module : @13730
 																			},
 																			#elements : [
 																				ASN1NamedTypeNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''invoke'',
 																					#type : ASN1TaggedTypeNode {
 																						#properties : {
-																							#module : @13736,
+																							#module : @13730,
 																							#tag : ASN1TagNode {
 																								#properties : {
-																									#module : @13736
+																									#module : @13730
 																								},
 																								#tagNumber : ''1''
 																							}
@@ -39649,9 +39641,9 @@ MAPExampleModels class >> tcapModelSton [
 																																#constraint : [
 																																	''WITH COMPONENTS'',
 																																	[
-																																		@13843,
+																																		@13837,
 																																		''...'',
-																																		@13844,
+																																		@13838,
 																																		[
 																																			[
 																																				''linkedId'',
@@ -39677,7 +39669,7 @@ MAPExampleModels class >> tcapModelSton [
 																																								ASN1ReferenceNode {
 																																									#label : ''RejectProblem''
 																																								},
-																																								@13822,
+																																								@13816,
 																																								ASN1ReferenceNode {
 																																									#label : ''invoke-unexpectedLinkedOperation''
 																																								}
@@ -39688,7 +39680,7 @@ MAPExampleModels class >> tcapModelSton [
 																																				]
 																																			]
 																																		],
-																																		@13848
+																																		@13842
 																																	]
 																																]
 																															}
@@ -39710,7 +39702,7 @@ MAPExampleModels class >> tcapModelSton [
 																														ASN1ReferenceNode {
 																															#label : ''RejectProblem''
 																														},
-																														@13822,
+																														@13816,
 																														ASN1ReferenceNode {
 																															#label : ''general-mistypedPDU''
 																														}
@@ -39720,34 +39712,21 @@ MAPExampleModels class >> tcapModelSton [
 																										],
 																										#referenced : true,
 																										#assigned : true,
-																										#module : @13736
+																										#module : @13730
 																									},
 																									#elements : OrderedCollection [
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''invokeId'',
 																												#type : ASN1ReferenceNode {
 																													#properties : {
 																														#constraints : Set [
-																															ASN1ConstraintNode {
-																																#constraint : ASN1UnionNode {
-																																	#elements : OrderedCollection [
-																																		ASN1ElementsNode {
-																																			#entity : ASN1ConstraintNode {
-																																				#constraint : ASN1ReferenceNode {
-																																					#label : ''InvokeIdSet''
-																																				}
-																																			}
-																																		}
-																																	]
-																																}
-																															},
 																															ASN1ConstraintNode {
 																																#constraint : [
 																																	''CONSTRAINED'',
@@ -39762,15 +39741,28 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''invoke-duplicateInvocation''
 																																		}
 																																	]
 																																]
+																															},
+																															ASN1ConstraintNode {
+																																#constraint : ASN1UnionNode {
+																																	#elements : OrderedCollection [
+																																		ASN1ElementsNode {
+																																			#entity : ASN1ConstraintNode {
+																																				#constraint : ASN1ReferenceNode {
+																																					#label : ''InvokeIdSet''
+																																				}
+																																			}
+																																		}
+																																	]
+																																}
 																															}
 																														],
-																														#definition : @13786
+																														#definition : @13780
 																													},
 																													#label : ''InvokeId''
 																												}
@@ -39778,11 +39770,11 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''linkedId'',
 																												#type : ASN1ChoiceNode {
@@ -39802,7 +39794,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''invoke-unrecognizedLinkedId''
 																																		}
@@ -39823,7 +39815,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''invoke-linkedResponseUnexpected''
 																																		}
@@ -39831,32 +39823,32 @@ MAPExampleModels class >> tcapModelSton [
 																																]
 																															}
 																														],
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#elements : [
 																														ASN1NamedTypeNode {
 																															#properties : {
-																																#module : @13736
+																																#module : @13730
 																															},
 																															#name : ''present'',
 																															#type : ASN1TaggedTypeNode {
 																																#properties : {
-																																	#module : @13736,
+																																	#module : @13730,
 																																	#tag : ASN1TagNode {
 																																		#properties : {
-																																			#module : @13736
+																																			#module : @13730
 																																		},
 																																		#tagNumber : ''0''
 																																	}
 																																},
 																																#type : ASN1SelectionTypeNode {
 																																	#properties : {
-																																		#module : @13736
+																																		#module : @13730
 																																	},
 																																	#name : ''present'',
 																																	#type : ASN1ReferenceNode {
 																																		#properties : {
-																																			#definition : @13786
+																																			#definition : @13780
 																																		},
 																																		#label : ''InvokeId''
 																																	}
@@ -39866,22 +39858,22 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														ASN1NamedTypeNode {
 																															#properties : {
-																																#module : @13736
+																																#module : @13730
 																															},
 																															#name : ''absent'',
 																															#type : ASN1TaggedTypeNode {
 																																#properties : {
-																																	#module : @13736,
+																																	#module : @13730,
 																																	#tag : ASN1TagNode {
 																																		#properties : {
-																																			#module : @13736
+																																			#module : @13730
 																																		},
 																																		#tagNumber : ''1''
 																																	}
 																																},
 																																#type : ASN1NullTypeNode {
 																																	#properties : {
-																																		#module : @13736
+																																		#module : @13730
 																																	}
 																																},
 																																#tagEnvironment : @410
@@ -39897,17 +39889,17 @@ MAPExampleModels class >> tcapModelSton [
 																											},
 																											#modifiers : ASN1ModifierOptionalNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												}
 																											}
 																										},
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''opcode'',
 																												#type : ASN1TypeFieldNode {
@@ -39933,7 +39925,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''invoke-unrecognizedOperation''
 																																		}
@@ -39941,11 +39933,11 @@ MAPExampleModels class >> tcapModelSton [
 																																]
 																															}
 																														],
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#type : ASN1ReferenceNode {
 																														#properties : {
-																															#definition : @12925
+																															#definition : @12921
 																														},
 																														#label : ''OPERATION''
 																													},
@@ -39960,11 +39952,11 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''argument'',
 																												#type : ASN1TypeFieldNode {
@@ -39972,12 +39964,12 @@ MAPExampleModels class >> tcapModelSton [
 																														#constraints : Set [
 																															ASN1ConstraintNode {
 																																#constraint : [
-																																	@13843,
+																																	@13837,
 																																	ASN1ReferenceNode {
 																																		#label : ''Operations''
 																																	},
-																																	@13848,
-																																	@13843,
+																																	@13842,
+																																	@13837,
 																																	[
 																																		[
 																																			[
@@ -39986,7 +39978,7 @@ MAPExampleModels class >> tcapModelSton [
 																																			]
 																																		]
 																																	],
-																																	@13848
+																																	@13842
 																																],
 																																#exception : [
 																																	''!'',
@@ -39994,7 +39986,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''invoke-mistypedArgument''
 																																		}
@@ -40002,11 +39994,11 @@ MAPExampleModels class >> tcapModelSton [
 																																]
 																															}
 																														],
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#type : ASN1ReferenceNode {
 																														#properties : {
-																															#definition : @12925
+																															#definition : @12921
 																														},
 																														#label : ''OPERATION''
 																													},
@@ -40020,7 +40012,7 @@ MAPExampleModels class >> tcapModelSton [
 																											},
 																											#modifiers : ASN1ModifierOptionalNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												}
 																											}
 																										}
@@ -40029,24 +40021,24 @@ MAPExampleModels class >> tcapModelSton [
 																								#parameters : [
 																									ASN1ObjectSetNode {
 																										#properties : {
-																											#module : @13736
+																											#module : @13730
 																										},
 																										#elementsSpec : ASN1UnionNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#elements : OrderedCollection [
 																												ASN1ElementsNode {
 																													#properties : {
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#entity : ASN1ConstraintNode {
 																														#properties : {
-																															#module : @13736
+																															#module : @13730
 																														},
 																														#constraint : ASN1ReferenceNode {
 																															#properties : {
-																																#definition : @13784
+																																#definition : @13778
 																															},
 																															#label : ''InvokeIdSet''
 																														}
@@ -40057,24 +40049,24 @@ MAPExampleModels class >> tcapModelSton [
 																									},
 																									ASN1ObjectSetNode {
 																										#properties : {
-																											#module : @13736
+																											#module : @13730
 																										},
 																										#elementsSpec : ASN1UnionNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#elements : OrderedCollection [
 																												ASN1ElementsNode {
 																													#properties : {
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#entity : ASN1ConstraintNode {
 																														#properties : {
-																															#module : @13736
+																															#module : @13730
 																														},
 																														#constraint : ASN1ReferenceNode {
 																															#properties : {
-																																#definition : @13804
+																																#definition : @13798
 																															},
 																															#label : ''Invokable''
 																														}
@@ -40091,15 +40083,15 @@ MAPExampleModels class >> tcapModelSton [
 																				},
 																				ASN1NamedTypeNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''returnResult'',
 																					#type : ASN1TaggedTypeNode {
 																						#properties : {
-																							#module : @13736,
+																							#module : @13730,
 																							#tag : ASN1TagNode {
 																								#properties : {
-																									#module : @13736
+																									#module : @13730
 																								},
 																								#tagNumber : ''2''
 																							}
@@ -40123,7 +40115,7 @@ MAPExampleModels class >> tcapModelSton [
 																														ASN1ReferenceNode {
 																															#label : ''RejectProblem''
 																														},
-																														@13822,
+																														@13816,
 																														ASN1ReferenceNode {
 																															#label : ''general-mistypedPDU''
 																														}
@@ -40133,16 +40125,16 @@ MAPExampleModels class >> tcapModelSton [
 																										],
 																										#referenced : true,
 																										#assigned : true,
-																										#module : @13736
+																										#module : @13730
 																									},
 																									#elements : OrderedCollection [
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''invokeId'',
 																												#type : ASN1ReferenceNode {
@@ -40162,7 +40154,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''returnResult-unrecognizedInvocation''
 																																		}
@@ -40183,7 +40175,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''returnResult-resultResponseUnexpected''
 																																		}
@@ -40191,7 +40183,7 @@ MAPExampleModels class >> tcapModelSton [
 																																]
 																															}
 																														],
-																														#definition : @13786
+																														#definition : @13780
 																													},
 																													#label : ''InvokeId''
 																												}
@@ -40199,51 +40191,30 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''result'',
 																												#type : ASN1SequenceNode {
 																													#properties : {
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#elements : OrderedCollection [
 																														ASN1ComponentTypeNode {
 																															#properties : {
-																																#module : @13736
+																																#module : @13730
 																															},
 																															#type : ASN1NamedTypeNode {
 																																#properties : {
-																																	#module : @13736
+																																	#module : @13730
 																																},
 																																#name : ''opcode'',
 																																#type : ASN1TypeFieldNode {
 																																	#properties : {
 																																		#constraints : Set [
-																																			ASN1ConstraintNode {
-																																				#constraint : [
-																																					''CONSTRAINED'',
-																																					''BY'',
-																																					''{'',
-																																					nil,
-																																					''}''
-																																				],
-																																				#exception : [
-																																					''!'',
-																																					[
-																																						ASN1ReferenceNode {
-																																							#label : ''RejectProblem''
-																																						},
-																																						@13822,
-																																						ASN1ReferenceNode {
-																																							#label : ''returnResult-unrecognizedInvocation''
-																																						}
-																																					]
-																																				]
-																																			},
 																																			ASN1ConstraintNode {
 																																				#constraint : ASN1ObjectSetNode {
 																																					#elementsSpec : ASN1UnionNode {
@@ -40258,13 +40229,34 @@ MAPExampleModels class >> tcapModelSton [
 																																						]
 																																					}
 																																				}
+																																			},
+																																			ASN1ConstraintNode {
+																																				#constraint : [
+																																					''CONSTRAINED'',
+																																					''BY'',
+																																					''{'',
+																																					nil,
+																																					''}''
+																																				],
+																																				#exception : [
+																																					''!'',
+																																					[
+																																						ASN1ReferenceNode {
+																																							#label : ''RejectProblem''
+																																						},
+																																						@13816,
+																																						ASN1ReferenceNode {
+																																							#label : ''returnResult-unrecognizedInvocation''
+																																						}
+																																					]
+																																				]
 																																			}
 																																		],
-																																		#module : @13736
+																																		#module : @13730
 																																	},
 																																	#type : ASN1ReferenceNode {
 																																		#properties : {
-																																			#definition : @12925
+																																			#definition : @12921
 																																		},
 																																		#label : ''OPERATION''
 																																	},
@@ -40279,11 +40271,11 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														ASN1ComponentTypeNode {
 																															#properties : {
-																																#module : @13736
+																																#module : @13730
 																															},
 																															#type : ASN1NamedTypeNode {
 																																#properties : {
-																																	#module : @13736
+																																	#module : @13730
 																																},
 																																#name : ''result'',
 																																#type : ASN1TypeFieldNode {
@@ -40291,12 +40283,12 @@ MAPExampleModels class >> tcapModelSton [
 																																		#constraints : Set [
 																																			ASN1ConstraintNode {
 																																				#constraint : [
-																																					@13843,
+																																					@13837,
 																																					ASN1ReferenceNode {
 																																						#label : ''Operations''
 																																					},
-																																					@13848,
-																																					@13843,
+																																					@13842,
+																																					@13837,
 																																					[
 																																						[
 																																							''@.'',
@@ -40306,7 +40298,7 @@ MAPExampleModels class >> tcapModelSton [
 																																							]
 																																						]
 																																					],
-																																					@13848
+																																					@13842
 																																				],
 																																				#exception : [
 																																					''!'',
@@ -40314,7 +40306,7 @@ MAPExampleModels class >> tcapModelSton [
 																																						ASN1ReferenceNode {
 																																							#label : ''RejectProblem''
 																																						},
-																																						@13822,
+																																						@13816,
 																																						ASN1ReferenceNode {
 																																							#label : ''returnResult-mistypedResult''
 																																						}
@@ -40322,11 +40314,11 @@ MAPExampleModels class >> tcapModelSton [
 																																				]
 																																			}
 																																		],
-																																		#module : @13736
+																																		#module : @13730
 																																	},
 																																	#type : ASN1ReferenceNode {
 																																		#properties : {
-																																			#definition : @12925
+																																			#definition : @12921
 																																		},
 																																		#label : ''OPERATION''
 																																	},
@@ -40344,7 +40336,7 @@ MAPExampleModels class >> tcapModelSton [
 																											},
 																											#modifiers : ASN1ModifierOptionalNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												}
 																											}
 																										}
@@ -40353,24 +40345,24 @@ MAPExampleModels class >> tcapModelSton [
 																								#parameters : [
 																									ASN1ObjectSetNode {
 																										#properties : {
-																											#module : @13736
+																											#module : @13730
 																										},
 																										#elementsSpec : ASN1UnionNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#elements : OrderedCollection [
 																												ASN1ElementsNode {
 																													#properties : {
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#entity : ASN1ConstraintNode {
 																														#properties : {
-																															#module : @13736
+																															#module : @13730
 																														},
 																														#constraint : ASN1ReferenceNode {
 																															#properties : {
-																																#definition : @13810
+																																#definition : @13804
 																															},
 																															#label : ''Returnable''
 																														}
@@ -40387,15 +40379,15 @@ MAPExampleModels class >> tcapModelSton [
 																				},
 																				ASN1NamedTypeNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''returnError'',
 																					#type : ASN1TaggedTypeNode {
 																						#properties : {
-																							#module : @13736,
+																							#module : @13730,
 																							#tag : ASN1TagNode {
 																								#properties : {
-																									#module : @13736
+																									#module : @13730
 																								},
 																								#tagNumber : ''3''
 																							}
@@ -40419,7 +40411,7 @@ MAPExampleModels class >> tcapModelSton [
 																														ASN1ReferenceNode {
 																															#label : ''RejectProblem''
 																														},
-																														@13822,
+																														@13816,
 																														ASN1ReferenceNode {
 																															#label : ''general-mistypedPDU''
 																														}
@@ -40429,16 +40421,16 @@ MAPExampleModels class >> tcapModelSton [
 																										],
 																										#referenced : true,
 																										#assigned : true,
-																										#module : @13736
+																										#module : @13730
 																									},
 																									#elements : OrderedCollection [
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''invokeId'',
 																												#type : ASN1ReferenceNode {
@@ -40458,7 +40450,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''returnError-unrecognizedInvocation''
 																																		}
@@ -40479,7 +40471,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''returnError-errorResponseUnexpected''
 																																		}
@@ -40487,7 +40479,7 @@ MAPExampleModels class >> tcapModelSton [
 																																]
 																															}
 																														],
-																														#definition : @13786
+																														#definition : @13780
 																													},
 																													#label : ''InvokeId''
 																												}
@@ -40495,37 +40487,16 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''errcode'',
 																												#type : ASN1TypeFieldNode {
 																													#properties : {
 																														#constraints : Set [
-																															ASN1ConstraintNode {
-																																#constraint : [
-																																	''CONSTRAINED'',
-																																	''BY'',
-																																	''{'',
-																																	nil,
-																																	''}''
-																																],
-																																#exception : [
-																																	''!'',
-																																	[
-																																		ASN1ReferenceNode {
-																																			#label : ''RejectProblem''
-																																		},
-																																		@13822,
-																																		ASN1ReferenceNode {
-																																			#label : ''returnError-unexpectedError''
-																																		}
-																																	]
-																																]
-																															},
 																															ASN1ConstraintNode {
 																																#constraint : ASN1ObjectSetNode {
 																																	#elementsSpec : ASN1UnionNode {
@@ -40546,19 +40517,40 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''returnError-unrecognizedError''
 																																		}
 																																	]
 																																]
+																															},
+																															ASN1ConstraintNode {
+																																#constraint : [
+																																	''CONSTRAINED'',
+																																	''BY'',
+																																	''{'',
+																																	nil,
+																																	''}''
+																																],
+																																#exception : [
+																																	''!'',
+																																	[
+																																		ASN1ReferenceNode {
+																																			#label : ''RejectProblem''
+																																		},
+																																		@13816,
+																																		ASN1ReferenceNode {
+																																			#label : ''returnError-unexpectedError''
+																																		}
+																																	]
+																																]
 																															}
 																														],
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#type : ASN1ReferenceNode {
 																														#properties : {
-																															#definition : @12983
+																															#definition : @12979
 																														},
 																														#label : ''ERROR''
 																													},
@@ -40573,11 +40565,11 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''parameter'',
 																												#type : ASN1TypeFieldNode {
@@ -40585,21 +40577,21 @@ MAPExampleModels class >> tcapModelSton [
 																														#constraints : Set [
 																															ASN1ConstraintNode {
 																																#constraint : [
-																																	@13843,
+																																	@13837,
 																																	ASN1ReferenceNode {
 																																		#label : ''Errors''
 																																	},
-																																	@13848,
-																																	@13843,
+																																	@13842,
+																																	@13837,
 																																	[
 																																		[
 																																			[
-																																				@13967,
+																																				@13961,
 																																				''errcode''
 																																			]
 																																		]
 																																	],
-																																	@13848
+																																	@13842
 																																],
 																																#exception : [
 																																	''!'',
@@ -40607,7 +40599,7 @@ MAPExampleModels class >> tcapModelSton [
 																																		ASN1ReferenceNode {
 																																			#label : ''RejectProblem''
 																																		},
-																																		@13822,
+																																		@13816,
 																																		ASN1ReferenceNode {
 																																			#label : ''returnError-mistypedParameter''
 																																		}
@@ -40615,11 +40607,11 @@ MAPExampleModels class >> tcapModelSton [
 																																]
 																															}
 																														],
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#type : ASN1ReferenceNode {
 																														#properties : {
-																															#definition : @12983
+																															#definition : @12979
 																														},
 																														#label : ''ERROR''
 																													},
@@ -40633,7 +40625,7 @@ MAPExampleModels class >> tcapModelSton [
 																											},
 																											#modifiers : ASN1ModifierOptionalNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												}
 																											}
 																										}
@@ -40642,20 +40634,20 @@ MAPExampleModels class >> tcapModelSton [
 																								#parameters : [
 																									ASN1ObjectSetNode {
 																										#properties : {
-																											#module : @13736
+																											#module : @13730
 																										},
 																										#elementsSpec : ASN1UnionNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#elements : OrderedCollection [
 																												ASN1ElementsNode {
 																													#properties : {
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#entity : ASN1ConstraintNode {
 																														#properties : {
-																															#module : @13736
+																															#module : @13730
 																														},
 																														#constraint : ASN1ReferenceNode {
 																															#properties : {
@@ -40663,30 +40655,30 @@ MAPExampleModels class >> tcapModelSton [
 																																	#properties : {
 																																		#referenced : true,
 																																		#assigned : true,
-																																		#module : @13736
+																																		#module : @13730
 																																	},
 																																	#elementsSpec : ASN1UnionNode {
 																																		#properties : {
-																																			#module : @13736
+																																			#module : @13730
 																																		},
 																																		#elements : OrderedCollection [
 																																			ASN1ElementsNode {
 																																				#properties : {
-																																					#module : @13736
+																																					#module : @13730
 																																				},
 																																				#entity : ASN1ConstraintNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#constraint : ASN1TypeFromObjectNode {
 																																						#properties : {
-																																							#module : @13736
+																																							#module : @13730
 																																						},
 																																						#object : ASN1ReferenceNode {
 																																							#properties : {
 																																								#definition : ASN1ReferenceNode {
 																																									#properties : {
-																																										#definition : @12925,
+																																										#definition : @12921,
 																																										#referenced : true
 																																									},
 																																									#label : ''OPERATION''
@@ -40708,24 +40700,24 @@ MAPExampleModels class >> tcapModelSton [
 																																#parameters : [
 																																	ASN1ObjectSetNode {
 																																		#properties : {
-																																			#module : @13736
+																																			#module : @13730
 																																		},
 																																		#elementsSpec : ASN1UnionNode {
 																																			#properties : {
-																																				#module : @13736
+																																				#module : @13730
 																																			},
 																																			#elements : OrderedCollection [
 																																				ASN1ElementsNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#entity : ASN1ConstraintNode {
 																																						#properties : {
-																																							#module : @13736
+																																							#module : @13730
 																																						},
 																																						#constraint : ASN1ReferenceNode {
 																																							#properties : {
-																																								#definition : @13810
+																																								#definition : @13804
 																																							},
 																																							#label : ''Returnable''
 																																						}
@@ -40751,15 +40743,15 @@ MAPExampleModels class >> tcapModelSton [
 																				},
 																				ASN1NamedTypeNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''reject'',
 																					#type : ASN1TaggedTypeNode {
 																						#properties : {
-																							#module : @13736,
+																							#module : @13730,
 																							#tag : ASN1TagNode {
 																								#properties : {
-																									#module : @13736
+																									#module : @13730
 																								},
 																								#tagNumber : ''4''
 																							}
@@ -40783,7 +40775,7 @@ MAPExampleModels class >> tcapModelSton [
 																														ASN1ReferenceNode {
 																															#label : ''RejectProblem''
 																														},
-																														@13822,
+																														@13816,
 																														ASN1ReferenceNode {
 																															#label : ''general-mistypedPDU''
 																														}
@@ -40793,21 +40785,21 @@ MAPExampleModels class >> tcapModelSton [
 																										],
 																										#referenced : true,
 																										#assigned : true,
-																										#module : @13736
+																										#module : @13730
 																									},
 																									#elements : OrderedCollection [
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''invokeId'',
 																												#type : ASN1ReferenceNode {
 																													#properties : {
-																														#definition : @13786
+																														#definition : @13780
 																													},
 																													#label : ''InvokeId''
 																												}
@@ -40815,29 +40807,29 @@ MAPExampleModels class >> tcapModelSton [
 																										},
 																										ASN1ComponentTypeNode {
 																											#properties : {
-																												#module : @13736
+																												#module : @13730
 																											},
 																											#type : ASN1NamedTypeNode {
 																												#properties : {
-																													#module : @13736
+																													#module : @13730
 																												},
 																												#name : ''problem'',
 																												#type : ASN1ChoiceNode {
 																													#properties : {
-																														#module : @13736
+																														#module : @13730
 																													},
 																													#elements : [
 																														ASN1NamedTypeNode {
 																															#properties : {
-																																#module : @13736
+																																#module : @13730
 																															},
 																															#name : ''general'',
 																															#type : ASN1TaggedTypeNode {
 																																#properties : {
-																																	#module : @13736,
+																																	#module : @13730,
 																																	#tag : ASN1TagNode {
 																																		#properties : {
-																																			#module : @13736
+																																			#module : @13730
 																																		},
 																																		#tagNumber : ''0''
 																																	}
@@ -40849,27 +40841,27 @@ MAPExampleModels class >> tcapModelSton [
 																																				#constraints : Set [ ],
 																																				#referenced : true,
 																																				#assigned : true,
-																																				#module : @13736
+																																				#module : @13730
 																																			},
 																																			#name : ''INTEGER'',
 																																			#namedNumbers : OrderedCollection [
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''unrecognizedPDU'',
 																																					#number : 0
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''mistypedPDU'',
 																																					#number : 1
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''badlyStructuredPDU'',
 																																					#number : 2
@@ -40883,15 +40875,15 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														ASN1NamedTypeNode {
 																															#properties : {
-																																#module : @13736
+																																#module : @13730
 																															},
 																															#name : ''invoke'',
 																															#type : ASN1TaggedTypeNode {
 																																#properties : {
-																																	#module : @13736,
+																																	#module : @13730,
 																																	#tag : ASN1TagNode {
 																																		#properties : {
-																																			#module : @13736
+																																			#module : @13730
 																																		},
 																																		#tagNumber : ''1''
 																																	}
@@ -40903,62 +40895,62 @@ MAPExampleModels class >> tcapModelSton [
 																																				#constraints : Set [ ],
 																																				#referenced : true,
 																																				#assigned : true,
-																																				#module : @13736
+																																				#module : @13730
 																																			},
 																																			#name : ''INTEGER'',
 																																			#namedNumbers : OrderedCollection [
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''duplicateInvocation'',
 																																					#number : 0
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''unrecognizedOperation'',
 																																					#number : 1
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''mistypedArgument'',
 																																					#number : 2
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''resourceLimitation'',
 																																					#number : 3
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''releaseInProgress'',
 																																					#number : 4
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''unrecognizedLinkedId'',
 																																					#number : 5
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''linkedResponseUnexpected'',
 																																					#number : 6
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''unexpectedLinkedOperation'',
 																																					#number : 7
@@ -40972,15 +40964,15 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														ASN1NamedTypeNode {
 																															#properties : {
-																																#module : @13736
+																																#module : @13730
 																															},
 																															#name : ''returnResult'',
 																															#type : ASN1TaggedTypeNode {
 																																#properties : {
-																																	#module : @13736,
+																																	#module : @13730,
 																																	#tag : ASN1TagNode {
 																																		#properties : {
-																																			#module : @13736
+																																			#module : @13730
 																																		},
 																																		#tagNumber : ''2''
 																																	}
@@ -40992,27 +40984,27 @@ MAPExampleModels class >> tcapModelSton [
 																																				#constraints : Set [ ],
 																																				#referenced : true,
 																																				#assigned : true,
-																																				#module : @13736
+																																				#module : @13730
 																																			},
 																																			#name : ''INTEGER'',
 																																			#namedNumbers : OrderedCollection [
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''unrecognizedInvocation'',
 																																					#number : 0
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''resultResponseUnexpected'',
 																																					#number : 1
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''mistypedResult'',
 																																					#number : 2
@@ -41026,15 +41018,15 @@ MAPExampleModels class >> tcapModelSton [
 																														},
 																														ASN1NamedTypeNode {
 																															#properties : {
-																																#module : @13736
+																																#module : @13730
 																															},
 																															#name : ''returnError'',
 																															#type : ASN1TaggedTypeNode {
 																																#properties : {
-																																	#module : @13736,
+																																	#module : @13730,
 																																	#tag : ASN1TagNode {
 																																		#properties : {
-																																			#module : @13736
+																																			#module : @13730
 																																		},
 																																		#tagNumber : ''3''
 																																	}
@@ -41046,41 +41038,41 @@ MAPExampleModels class >> tcapModelSton [
 																																				#constraints : Set [ ],
 																																				#referenced : true,
 																																				#assigned : true,
-																																				#module : @13736
+																																				#module : @13730
 																																			},
 																																			#name : ''INTEGER'',
 																																			#namedNumbers : OrderedCollection [
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''unrecognizedInvocation'',
 																																					#number : 0
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''errorResponseUnexpected'',
 																																					#number : 1
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''unrecognizedError'',
 																																					#number : 2
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''unexpectedError'',
 																																					#number : 3
 																																				},
 																																				ASN1NamedNumberNode {
 																																					#properties : {
-																																						#module : @13736
+																																						#module : @13730
 																																					},
 																																					#name : ''mistypedParameter'',
 																																					#number : 4
@@ -41118,7 +41110,7 @@ MAPExampleModels class >> tcapModelSton [
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41126,34 +41118,34 @@ MAPExampleModels class >> tcapModelSton [
 																				#parameters : [
 																					ASN1ParameterNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#type : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @13786
+																								#definition : @13780
 																							},
 																							#label : ''InvokeId''
 																						},
 																						#reference : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @14365
+																								#definition : @14359
 																							},
 																							#label : ''InvokeIdSet''
 																						}
 																					},
 																					ASN1ParameterNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#type : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @12925
+																								#definition : @12921
 																							},
 																							#label : ''OPERATION''
 																						},
 																						#reference : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @14371
+																								#definition : @14365
 																							},
 																							#label : ''Operations''
 																						}
@@ -41162,11 +41154,11 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			#label : ''Invoke''
 																		},
-																		#right : @13833
+																		#right : @13827
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41174,17 +41166,17 @@ MAPExampleModels class >> tcapModelSton [
 																				#parameters : [
 																					ASN1ParameterNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#type : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @12925
+																								#definition : @12921
 																							},
 																							#label : ''OPERATION''
 																						},
 																						#reference : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @14382
+																								#definition : @14376
 																							},
 																							#label : ''Operations''
 																						}
@@ -41193,11 +41185,11 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			#label : ''ReturnResult''
 																		},
-																		#right : @14010
+																		#right : @14004
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41205,17 +41197,17 @@ MAPExampleModels class >> tcapModelSton [
 																				#parameters : [
 																					ASN1ParameterNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#type : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @12983
+																								#definition : @12979
 																							},
 																							#label : ''ERROR''
 																						},
 																						#reference : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @14393
+																								#definition : @14387
 																							},
 																							#label : ''Errors''
 																						}
@@ -41224,11 +41216,11 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			#label : ''ReturnError''
 																		},
-																		#right : @14116
+																		#right : @14110
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41236,11 +41228,11 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			#label : ''Reject''
 																		},
-																		#right : @14247
+																		#right : @14241
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41248,11 +41240,11 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			#label : ''GeneralProblem''
 																		},
-																		#right : @14278
+																		#right : @14272
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41260,11 +41252,11 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			#label : ''InvokeProblem''
 																		},
-																		#right : @14296
+																		#right : @14290
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41272,11 +41264,11 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			#label : ''ReturnResultProblem''
 																		},
-																		#right : @14324
+																		#right : @14318
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41284,11 +41276,11 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			#label : ''ReturnErrorProblem''
 																		},
-																		#right : @14342
+																		#right : @14336
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41299,140 +41291,140 @@ MAPExampleModels class >> tcapModelSton [
 																		#right : ASN1IntegerTypeNode {
 																			#properties : {
 																				#constraints : Set [ ],
-																				#module : @13736,
+																				#module : @13730,
 																				#assigned : true
 																			},
 																			#name : ''INTEGER'',
 																			#namedNumbers : OrderedCollection [
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''general-unrecognizedPDU'',
 																					#number : 0
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''general-mistypedPDU'',
 																					#number : 1
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''general-badlyStructuredPDU'',
 																					#number : 2
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''invoke-duplicateInvocation'',
 																					#number : 10
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''invoke-unrecognizedOperation'',
 																					#number : 11
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''invoke-mistypedArgument'',
 																					#number : 12
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''invoke-resourceLimitation'',
 																					#number : 13
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''invoke-releaseInProgress'',
 																					#number : 14
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''invoke-unrecognizedLinkedId'',
 																					#number : 15
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''invoke-linkedResponseUnexpected'',
 																					#number : 16
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''invoke-unexpectedLinkedOperation'',
 																					#number : 17
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''returnResult-unrecognizedInvocation'',
 																					#number : 20
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''returnResult-resultResponseUnexpected'',
 																					#number : 21
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''returnResult-mistypedResult'',
 																					#number : 22
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''returnError-unrecognizedInvocation'',
 																					#number : 30
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''returnError-errorResponseUnexpected'',
 																					#number : 31
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''returnError-unrecognizedError'',
 																					#number : 32
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''returnError-unexpectedError'',
 																					#number : 33
 																				},
 																				ASN1NamedNumberNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''returnError-mistypedParameter'',
 																					#number : 34
@@ -41442,7 +41434,7 @@ MAPExampleModels class >> tcapModelSton [
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41450,18 +41442,18 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			#label : ''InvokeId''
 																		},
-																		#right : @13786
+																		#right : @13780
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
 																				#declaration : true,
 																				#type : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @13786
+																						#definition : @13780
 																					},
 																					#label : ''InvokeId''
 																				}
@@ -41470,7 +41462,7 @@ MAPExampleModels class >> tcapModelSton [
 																		},
 																		#right : ASN1ChoiceValueNode {
 																			#properties : {
-																				#module : @13736,
+																				#module : @13730,
 																				#assigned : true,
 																				#referenced : true
 																			},
@@ -41480,14 +41472,14 @@ MAPExampleModels class >> tcapModelSton [
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
 																				#declaration : true,
 																				#type : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @13786
+																						#definition : @13780
 																					},
 																					#label : ''InvokeId''
 																				}
@@ -41496,22 +41488,22 @@ MAPExampleModels class >> tcapModelSton [
 																		},
 																		#right : ASN1ValueSetNode {
 																			#properties : {
-																				#module : @13736,
+																				#module : @13730,
 																				#assigned : true
 																			},
 																			#elementsSpec : ASN1UnionNode {
 																				#properties : {
-																					#module : @13736
+																					#module : @13730
 																				},
 																				#elements : OrderedCollection [
 																					ASN1ElementsNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#entity : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @14473,
-																								#type : @14479
+																								#definition : @14467,
+																								#type : @14473
 																							},
 																							#label : ''noInvokeId''
 																						}
@@ -41522,26 +41514,26 @@ MAPExampleModels class >> tcapModelSton [
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
 																				#declaration : true,
 																				#type : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @12983
+																						#definition : @12979
 																					},
 																					#label : ''ERROR''
 																				},
 																				#parameters : [
 																					ASN1ParameterNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
-																						#type : @14223,
+																						#type : @14217,
 																						#reference : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @14223
+																								#definition : @14217
 																							},
 																							#label : ''Operations''
 																						}
@@ -41550,11 +41542,11 @@ MAPExampleModels class >> tcapModelSton [
 																			},
 																			#label : ''Errors''
 																		},
-																		#right : @14210
+																		#right : @14204
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41562,17 +41554,17 @@ MAPExampleModels class >> tcapModelSton [
 																				#parameters : [
 																					ASN1ParameterNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#type : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @12925
+																								#definition : @12921
 																							},
 																							#label : ''OPERATION''
 																						},
 																						#reference : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @14508
+																								#definition : @14502
 																							},
 																							#label : ''operation''
 																						}
@@ -41585,20 +41577,20 @@ MAPExampleModels class >> tcapModelSton [
 																			#properties : {
 																				#referenced : true,
 																				#assigned : true,
-																				#module : @13736
+																				#module : @13730
 																			},
 																			#elements : [
 																				ASN1NamedTypeNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''bind-invoke'',
 																					#type : ASN1TaggedTypeNode {
 																						#properties : {
-																							#module : @13736,
+																							#module : @13730,
 																							#tag : ASN1TagNode {
 																								#properties : {
-																									#module : @13736
+																									#module : @13730
 																								},
 																								#tagNumber : ''16''
 																							}
@@ -41620,11 +41612,11 @@ MAPExampleModels class >> tcapModelSton [
 																										}
 																									}
 																								],
-																								#module : @13736
+																								#module : @13730
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							},
@@ -41639,15 +41631,15 @@ MAPExampleModels class >> tcapModelSton [
 																				},
 																				ASN1NamedTypeNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''bind-result'',
 																					#type : ASN1TaggedTypeNode {
 																						#properties : {
-																							#module : @13736,
+																							#module : @13730,
 																							#tag : ASN1TagNode {
 																								#properties : {
-																									#module : @13736
+																									#module : @13730
 																								},
 																								#tagNumber : ''17''
 																							}
@@ -41669,11 +41661,11 @@ MAPExampleModels class >> tcapModelSton [
 																										}
 																									}
 																								],
-																								#module : @13736
+																								#module : @13730
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							},
@@ -41688,15 +41680,15 @@ MAPExampleModels class >> tcapModelSton [
 																				},
 																				ASN1NamedTypeNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''bind-error'',
 																					#type : ASN1TaggedTypeNode {
 																						#properties : {
-																							#module : @13736,
+																							#module : @13730,
 																							#tag : ASN1TagNode {
 																								#properties : {
-																									#module : @13736
+																									#module : @13730
 																								},
 																								#tagNumber : ''18''
 																							}
@@ -41718,11 +41710,11 @@ MAPExampleModels class >> tcapModelSton [
 																										}
 																									}
 																								],
-																								#module : @13736
+																								#module : @13730
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							},
@@ -41749,7 +41741,7 @@ MAPExampleModels class >> tcapModelSton [
 																	},
 																	ASN1AssignmentNode {
 																		#properties : {
-																			#module : @13736
+																			#module : @13730
 																		},
 																		#left : ASN1ReferenceNode {
 																			#properties : {
@@ -41757,17 +41749,17 @@ MAPExampleModels class >> tcapModelSton [
 																				#parameters : [
 																					ASN1ParameterNode {
 																						#properties : {
-																							#module : @13736
+																							#module : @13730
 																						},
 																						#type : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @12925
+																								#definition : @12921
 																							},
 																							#label : ''OPERATION''
 																						},
 																						#reference : ASN1ReferenceNode {
 																							#properties : {
-																								#definition : @14585
+																								#definition : @14579
 																							},
 																							#label : ''operation''
 																						}
@@ -41780,20 +41772,20 @@ MAPExampleModels class >> tcapModelSton [
 																			#properties : {
 																				#referenced : true,
 																				#assigned : true,
-																				#module : @13736
+																				#module : @13730
 																			},
 																			#elements : [
 																				ASN1NamedTypeNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''unbind-invoke'',
 																					#type : ASN1TaggedTypeNode {
 																						#properties : {
-																							#module : @13736,
+																							#module : @13730,
 																							#tag : ASN1TagNode {
 																								#properties : {
-																									#module : @13736
+																									#module : @13730
 																								},
 																								#tagNumber : ''19''
 																							}
@@ -41815,11 +41807,11 @@ MAPExampleModels class >> tcapModelSton [
 																										}
 																									}
 																								],
-																								#module : @13736
+																								#module : @13730
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							},
@@ -41834,15 +41826,15 @@ MAPExampleModels class >> tcapModelSton [
 																				},
 																				ASN1NamedTypeNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''unbind-result'',
 																					#type : ASN1TaggedTypeNode {
 																						#properties : {
-																							#module : @13736,
+																							#module : @13730,
 																							#tag : ASN1TagNode {
 																								#properties : {
-																									#module : @13736
+																									#module : @13730
 																								},
 																								#tagNumber : ''20''
 																							}
@@ -41864,11 +41856,11 @@ MAPExampleModels class >> tcapModelSton [
 																										}
 																									}
 																								],
-																								#module : @13736
+																								#module : @13730
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							},
@@ -41883,15 +41875,15 @@ MAPExampleModels class >> tcapModelSton [
 																				},
 																				ASN1NamedTypeNode {
 																					#properties : {
-																						#module : @13736
+																						#module : @13730
 																					},
 																					#name : ''unbind-error'',
 																					#type : ASN1TaggedTypeNode {
 																						#properties : {
-																							#module : @13736,
+																							#module : @13730,
 																							#tag : ASN1TagNode {
 																								#properties : {
-																									#module : @13736
+																									#module : @13730
 																								},
 																								#tagNumber : ''21''
 																							}
@@ -41913,11 +41905,11 @@ MAPExampleModels class >> tcapModelSton [
 																										}
 																									}
 																								],
-																								#module : @13736
+																								#module : @13730
 																							},
 																							#type : ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @12925
+																									#definition : @12921
 																								},
 																								#label : ''OPERATION''
 																							},
@@ -41951,14 +41943,14 @@ MAPExampleModels class >> tcapModelSton [
 												#symbols : [
 													ASN1ReferenceNode {
 														#properties : {
-															#definition : @13786,
+															#definition : @13780,
 															#parameters : nil
 														},
 														#label : ''InvokeId''
 													},
 													ASN1ReferenceNode {
 														#properties : {
-															#definition : @13814,
+															#definition : @13808,
 															#parameters : [ ]
 														},
 														#label : ''ROS''
@@ -41969,53 +41961,53 @@ MAPExampleModels class >> tcapModelSton [
 										#assignments : [
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
-														#type : @12923
+														#type : @12919
 													},
 													#label : ''emptyBind''
 												},
-												#right : @12921
+												#right : @12917
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
-														#type : @13302
+														#type : @13298
 													},
 													#label : ''emptyUnbind''
 												},
-												#right : @13300
+												#right : @13296
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
-														#type : @13287
+														#type : @13283
 													},
 													#label : ''refuse''
 												},
-												#right : @13285
+												#right : @13281
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
 														#type : ASN1ReferenceNode {
 															#properties : {
-																#definition : @12925
+																#definition : @12921
 															},
 															#label : ''OPERATION''
 														}
@@ -42024,8 +42016,8 @@ MAPExampleModels class >> tcapModelSton [
 												},
 												#right : ASN1DefinedSyntaxObjectNode {
 													#properties : {
-														#module : @12855,
-														#type : @14678,
+														#module : @12851,
+														#type : @14672,
 														#assigned : true
 													},
 													#syntax : [
@@ -42037,9 +42029,9 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1PrimitiveValueNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
-															#type : @12744,
+															#type : @12740,
 															#value : ''FALSE''
 														},
 														ASN1LiteralNode {
@@ -42047,7 +42039,7 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ChoiceValueNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#choice : ''local'',
 															#value : ASN1IntegerValueNode {
@@ -42060,32 +42052,32 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
 														#type : ASN1ReferenceNode {
 															#properties : {
-																#definition : @12925
+																#definition : @12921
 															},
 															#label : ''OPERATION''
 														},
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @12925,
+																		#definition : @12921,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @14701
+																		#definition : @14695
 																	},
 																	#label : ''OperationSet''
 																}
@@ -42096,26 +42088,26 @@ MAPExampleModels class >> tcapModelSton [
 												},
 												#right : ASN1ValueSetNode {
 													#properties : {
-														#module : @12855,
+														#module : @12851,
 														#assigned : true,
 														#referenced : true
 													},
 													#elementsSpec : ASN1UnionNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#elements : OrderedCollection [
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14701
+																			#definition : @14695
 																		},
 																		#label : ''OperationSet''
 																	}
@@ -42123,19 +42115,19 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1TypeFromObjectNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#object : ASN1ReferenceNode {
 																			#properties : {
-																				#definition : @14701
+																				#definition : @14695
 																			},
 																			#label : ''OperationSet''
 																		},
@@ -42152,19 +42144,19 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1TypeFromObjectNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#object : ASN1ReferenceNode {
 																			#properties : {
-																				#definition : @14701
+																				#definition : @14695
 																			},
 																			#label : ''OperationSet''
 																		},
@@ -42191,32 +42183,32 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
 														#type : ASN1ReferenceNode {
 															#properties : {
-																#definition : @12925
+																#definition : @12921
 															},
 															#label : ''OPERATION''
 														},
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @12925,
+																		#definition : @12921,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @14749
+																		#definition : @14743
 																	},
 																	#label : ''OperationSet''
 																}
@@ -42227,51 +42219,51 @@ MAPExampleModels class >> tcapModelSton [
 												},
 												#right : ASN1ValueSetNode {
 													#properties : {
-														#module : @12855,
+														#module : @12851,
 														#assigned : true,
 														#referenced : true
 													},
 													#elementsSpec : ASN1UnionNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#elements : OrderedCollection [
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14705,
+																			#definition : @14699,
 																			#parameters : [
 																				ASN1ObjectSetNode {
 																					#properties : {
-																						#module : @12855
+																						#module : @12851
 																					},
 																					#elementsSpec : ASN1UnionNode {
 																						#properties : {
-																							#module : @12855
+																							#module : @12851
 																						},
 																						#elements : OrderedCollection [
 																							ASN1ElementsNode {
 																								#properties : {
-																									#module : @12855
+																									#module : @12851
 																								},
 																								#entity : ASN1ConstraintNode {
 																									#properties : {
-																										#module : @12855
+																										#module : @12851
 																									},
 																									#constraint : ASN1TypeFromObjectNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
 																										#object : ASN1ReferenceNode {
 																											#properties : {
-																												#definition : @14749
+																												#definition : @14743
 																											},
 																											#label : ''OperationSet''
 																										},
@@ -42298,32 +42290,32 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
 														#type : ASN1ReferenceNode {
 															#properties : {
-																#definition : @12925
+																#definition : @12921
 															},
 															#label : ''OPERATION''
 														},
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13321,
+																		#definition : @13317,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION-PACKAGE''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @14789
+																		#definition : @14783
 																	},
 																	#label : ''package''
 																}
@@ -42336,49 +42328,49 @@ MAPExampleModels class >> tcapModelSton [
 													#properties : {
 														#referenced : true,
 														#assigned : true,
-														#module : @12855
+														#module : @12851
 													},
 													#elementsSpec : ASN1UnionNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#elements : OrderedCollection [
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14705,
+																			#definition : @14699,
 																			#parameters : [
 																				ASN1ObjectSetNode {
 																					#properties : {
-																						#module : @12855
+																						#module : @12851
 																					},
 																					#elementsSpec : ASN1UnionNode {
 																						#properties : {
-																							#module : @12855
+																							#module : @12851
 																						},
 																						#elements : OrderedCollection [
 																							ASN1ElementsNode {
 																								#properties : {
-																									#module : @12855
+																									#module : @12851
 																								},
 																								#entity : ASN1ConstraintNode {
 																									#properties : {
-																										#module : @12855
+																										#module : @12851
 																									},
 																									#constraint : ASN1TypeFromObjectNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
 																										#object : ASN1ReferenceNode {
 																											#properties : {
-																												#definition : @14789
+																												#definition : @14783
 																											},
 																											#label : ''package''
 																										},
@@ -42401,40 +42393,40 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14705,
+																			#definition : @14699,
 																			#parameters : [
 																				ASN1ObjectSetNode {
 																					#properties : {
-																						#module : @12855
+																						#module : @12851
 																					},
 																					#elementsSpec : ASN1UnionNode {
 																						#properties : {
-																							#module : @12855
+																							#module : @12851
 																						},
 																						#elements : OrderedCollection [
 																							ASN1ElementsNode {
 																								#properties : {
-																									#module : @12855
+																									#module : @12851
 																								},
 																								#entity : ASN1ConstraintNode {
 																									#properties : {
-																										#module : @12855
+																										#module : @12851
 																									},
 																									#constraint : ASN1TypeFromObjectNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
 																										#object : ASN1ReferenceNode {
 																											#properties : {
-																												#definition : @14789
+																												#definition : @14783
 																											},
 																											#label : ''package''
 																										},
@@ -42457,40 +42449,40 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14753,
+																			#definition : @14747,
 																			#parameters : [
 																				ASN1ObjectSetNode {
 																					#properties : {
-																						#module : @12855
+																						#module : @12851
 																					},
 																					#elementsSpec : ASN1UnionNode {
 																						#properties : {
-																							#module : @12855
+																							#module : @12851
 																						},
 																						#elements : OrderedCollection [
 																							ASN1ElementsNode {
 																								#properties : {
-																									#module : @12855
+																									#module : @12851
 																								},
 																								#entity : ASN1ConstraintNode {
 																									#properties : {
-																										#module : @12855
+																										#module : @12851
 																									},
 																									#constraint : ASN1TypeFromObjectNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
 																										#object : ASN1ReferenceNode {
 																											#properties : {
-																												#definition : @14789
+																												#definition : @14783
 																											},
 																											#label : ''package''
 																										},
@@ -42513,40 +42505,40 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14753,
+																			#definition : @14747,
 																			#parameters : [
 																				ASN1ObjectSetNode {
 																					#properties : {
-																						#module : @12855
+																						#module : @12851
 																					},
 																					#elementsSpec : ASN1UnionNode {
 																						#properties : {
-																							#module : @12855
+																							#module : @12851
 																						},
 																						#elements : OrderedCollection [
 																							ASN1ElementsNode {
 																								#properties : {
-																									#module : @12855
+																									#module : @12851
 																								},
 																								#entity : ASN1ConstraintNode {
 																									#properties : {
-																										#module : @12855
+																										#module : @12851
 																									},
 																									#constraint : ASN1TypeFromObjectNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
 																										#object : ASN1ReferenceNode {
 																											#properties : {
-																												#definition : @14789
+																												#definition : @14783
 																											},
 																											#label : ''package''
 																										},
@@ -42573,32 +42565,32 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
 														#type : ASN1ReferenceNode {
 															#properties : {
-																#definition : @12925
+																#definition : @12921
 															},
 															#label : ''OPERATION''
 														},
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13321,
+																		#definition : @13317,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION-PACKAGE''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @14895
+																		#definition : @14889
 																	},
 																	#label : ''package''
 																}
@@ -42611,49 +42603,49 @@ MAPExampleModels class >> tcapModelSton [
 													#properties : {
 														#referenced : true,
 														#assigned : true,
-														#module : @12855
+														#module : @12851
 													},
 													#elementsSpec : ASN1UnionNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#elements : OrderedCollection [
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14705,
+																			#definition : @14699,
 																			#parameters : [
 																				ASN1ObjectSetNode {
 																					#properties : {
-																						#module : @12855
+																						#module : @12851
 																					},
 																					#elementsSpec : ASN1UnionNode {
 																						#properties : {
-																							#module : @12855
+																							#module : @12851
 																						},
 																						#elements : OrderedCollection [
 																							ASN1ElementsNode {
 																								#properties : {
-																									#module : @12855
+																									#module : @12851
 																								},
 																								#entity : ASN1ConstraintNode {
 																									#properties : {
-																										#module : @12855
+																										#module : @12851
 																									},
 																									#constraint : ASN1TypeFromObjectNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
 																										#object : ASN1ReferenceNode {
 																											#properties : {
-																												#definition : @14895
+																												#definition : @14889
 																											},
 																											#label : ''package''
 																										},
@@ -42676,40 +42668,40 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14705,
+																			#definition : @14699,
 																			#parameters : [
 																				ASN1ObjectSetNode {
 																					#properties : {
-																						#module : @12855
+																						#module : @12851
 																					},
 																					#elementsSpec : ASN1UnionNode {
 																						#properties : {
-																							#module : @12855
+																							#module : @12851
 																						},
 																						#elements : OrderedCollection [
 																							ASN1ElementsNode {
 																								#properties : {
-																									#module : @12855
+																									#module : @12851
 																								},
 																								#entity : ASN1ConstraintNode {
 																									#properties : {
-																										#module : @12855
+																										#module : @12851
 																									},
 																									#constraint : ASN1TypeFromObjectNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
 																										#object : ASN1ReferenceNode {
 																											#properties : {
-																												#definition : @14895
+																												#definition : @14889
 																											},
 																											#label : ''package''
 																										},
@@ -42732,40 +42724,40 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14753,
+																			#definition : @14747,
 																			#parameters : [
 																				ASN1ObjectSetNode {
 																					#properties : {
-																						#module : @12855
+																						#module : @12851
 																					},
 																					#elementsSpec : ASN1UnionNode {
 																						#properties : {
-																							#module : @12855
+																							#module : @12851
 																						},
 																						#elements : OrderedCollection [
 																							ASN1ElementsNode {
 																								#properties : {
-																									#module : @12855
+																									#module : @12851
 																								},
 																								#entity : ASN1ConstraintNode {
 																									#properties : {
-																										#module : @12855
+																										#module : @12851
 																									},
 																									#constraint : ASN1TypeFromObjectNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
 																										#object : ASN1ReferenceNode {
 																											#properties : {
-																												#definition : @14895
+																												#definition : @14889
 																											},
 																											#label : ''package''
 																										},
@@ -42788,40 +42780,40 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14753,
+																			#definition : @14747,
 																			#parameters : [
 																				ASN1ObjectSetNode {
 																					#properties : {
-																						#module : @12855
+																						#module : @12851
 																					},
 																					#elementsSpec : ASN1UnionNode {
 																						#properties : {
-																							#module : @12855
+																							#module : @12851
 																						},
 																						#elements : OrderedCollection [
 																							ASN1ElementsNode {
 																								#properties : {
-																									#module : @12855
+																									#module : @12851
 																								},
 																								#entity : ASN1ConstraintNode {
 																									#properties : {
-																										#module : @12855
+																										#module : @12851
 																									},
 																									#constraint : ASN1TypeFromObjectNode {
 																										#properties : {
-																											#module : @12855
+																											#module : @12851
 																										},
 																										#object : ASN1ReferenceNode {
 																											#properties : {
-																												#definition : @14895
+																												#definition : @14889
 																											},
 																											#label : ''package''
 																										},
@@ -42848,32 +42840,32 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
 														#type : ASN1ReferenceNode {
 															#properties : {
-																#definition : @12925
+																#definition : @12921
 															},
 															#label : ''OPERATION''
 														},
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13321,
+																		#definition : @13317,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION-PACKAGE''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15001
+																		#definition : @14995
 																	},
 																	#label : ''package''
 																}
@@ -42886,28 +42878,28 @@ MAPExampleModels class >> tcapModelSton [
 													#properties : {
 														#referenced : true,
 														#assigned : true,
-														#module : @12855
+														#module : @12851
 													},
 													#elementsSpec : ASN1UnionNode {
 														#properties : {
-															#module : @12855
+															#module : @12851
 														},
 														#elements : OrderedCollection [
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14793,
+																			#definition : @14787,
 																			#parameters : [
 																				ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15001
+																						#definition : @14995
 																					},
 																					#label : ''package''
 																				}
@@ -42919,19 +42911,19 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ElementsNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#entity : ASN1ConstraintNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#constraint : ASN1ReferenceNode {
 																		#properties : {
-																			#definition : @14899,
+																			#definition : @14893,
 																			#parameters : [
 																				ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15001
+																						#definition : @14995
 																					},
 																					#label : ''package''
 																				}
@@ -42947,50 +42939,50 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
 														#type : ASN1ReferenceNode {
 															#properties : {
-																#definition : @12925
+																#definition : @12921
 															},
 															#label : ''OPERATION''
 														},
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @12925,
+																		#definition : @12921,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15037
+																		#definition : @15031
 																	},
 																	#label : ''operation''
 																}
 															},
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13032,
+																		#definition : @13028,
 																		#referenced : true
 																	},
 																	#label : ''Code''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15043
+																		#definition : @15037
 																	},
 																	#label : ''code''
 																}
@@ -43001,8 +42993,8 @@ MAPExampleModels class >> tcapModelSton [
 												},
 												#right : ASN1DefinedSyntaxObjectNode {
 													#properties : {
-														#module : @12855,
-														#type : @15032,
+														#module : @12851,
+														#type : @15026,
 														#assigned : true
 													},
 													#syntax : [
@@ -43011,11 +43003,11 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1TypeFromObjectNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#object : ASN1ReferenceNode {
 																#properties : {
-																	#definition : @15037
+																	#definition : @15031
 																},
 																#label : ''operation''
 															},
@@ -43030,11 +43022,11 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1TypeFromObjectNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#object : ASN1ReferenceNode {
 																#properties : {
-																	#definition : @15037
+																	#definition : @15031
 																},
 																#label : ''operation''
 															},
@@ -43049,11 +43041,11 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1TypeFromObjectNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#object : ASN1ReferenceNode {
 																#properties : {
-																	#definition : @15037
+																	#definition : @15031
 																},
 																#label : ''operation''
 															},
@@ -43068,11 +43060,11 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1TypeFromObjectNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#object : ASN1ReferenceNode {
 																#properties : {
-																	#definition : @15037
+																	#definition : @15031
 																},
 																#label : ''operation''
 															},
@@ -43090,11 +43082,11 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1TypeFromObjectNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#object : ASN1ReferenceNode {
 																#properties : {
-																	#definition : @15037
+																	#definition : @15031
 																},
 																#label : ''operation''
 															},
@@ -43109,28 +43101,28 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ValueSetNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#elementsSpec : ASN1UnionNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elements : OrderedCollection [
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15037
+																						#definition : @15031
 																					},
 																					#label : ''operation''
 																				},
@@ -43150,28 +43142,28 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ValueSetNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#elementsSpec : ASN1UnionNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elements : OrderedCollection [
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15037
+																						#definition : @15031
 																					},
 																					#label : ''operation''
 																				},
@@ -43191,11 +43183,11 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1TypeFromObjectNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#object : ASN1ReferenceNode {
 																#properties : {
-																	#definition : @15037
+																	#definition : @15031
 																},
 																#label : ''operation''
 															},
@@ -43213,11 +43205,11 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1TypeFromObjectNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#object : ASN1ReferenceNode {
 																#properties : {
-																	#definition : @15037
+																	#definition : @15031
 																},
 																#label : ''operation''
 															},
@@ -43233,34 +43225,34 @@ MAPExampleModels class >> tcapModelSton [
 														ASN1LiteralNode {
 															#string : ''PRIORITY''
 														},
-														@12853,
+														@12849,
 														ASN1LiteralNode {
 															#string : ''RESULT-PRIORITY''
 														},
 														ASN1ValueSetNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#elementsSpec : ASN1UnionNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elements : OrderedCollection [
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15037
+																						#definition : @15031
 																					},
 																					#label : ''operation''
 																				},
@@ -43280,7 +43272,7 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ReferenceNode {
 															#properties : {
-																#definition : @15043
+																#definition : @15037
 															},
 															#label : ''code''
 														}
@@ -43289,50 +43281,50 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
 														#type : ASN1ReferenceNode {
 															#properties : {
-																#definition : @13321
+																#definition : @13317
 															},
 															#label : ''OPERATION-PACKAGE''
 														},
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13321,
+																		#definition : @13317,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION-PACKAGE''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15163
+																		#definition : @15157
 																	},
 																	#label : ''package''
 																}
 															},
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ObjectIdentifierTypeNode {
 																	#properties : {
-																		#module : @12855,
+																		#module : @12851,
 																		#referenced : true
 																	},
 																	#name : ''OBJECT IDENTIFIER''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15169
+																		#definition : @15163
 																	},
 																	#label : ''id''
 																}
@@ -43343,8 +43335,8 @@ MAPExampleModels class >> tcapModelSton [
 												},
 												#right : ASN1DefinedSyntaxObjectNode {
 													#properties : {
-														#module : @12855,
-														#type : @15158,
+														#module : @12851,
+														#type : @15152,
 														#assigned : true
 													},
 													#syntax : [
@@ -43353,28 +43345,28 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ValueSetNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#elementsSpec : ASN1UnionNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elements : OrderedCollection [
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15163
+																						#definition : @15157
 																					},
 																					#label : ''package''
 																				},
@@ -43397,28 +43389,28 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ValueSetNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#elementsSpec : ASN1UnionNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elements : OrderedCollection [
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15163
+																						#definition : @15157
 																					},
 																					#label : ''package''
 																				},
@@ -43441,28 +43433,28 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ValueSetNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#elementsSpec : ASN1UnionNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elements : OrderedCollection [
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15163
+																						#definition : @15157
 																					},
 																					#label : ''package''
 																				},
@@ -43482,7 +43474,7 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ReferenceNode {
 															#properties : {
-																#definition : @15169
+																#definition : @15163
 															},
 															#label : ''id''
 														}
@@ -43491,25 +43483,43 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
 														#declaration : true,
 														#type : ASN1ReferenceNode {
 															#properties : {
-																#definition : @13321
+																#definition : @13317
 															},
 															#label : ''OPERATION-PACKAGE''
 														},
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13321,
+																		#definition : @13317,
+																		#referenced : true
+																	},
+																	#label : ''OPERATION-PACKAGE''
+																},
+																#reference : ASN1ReferenceNode {
+																	#properties : {
+																		#definition : @15232
+																	},
+																	#label : ''ConsumerConsumes''
+																}
+															},
+															ASN1ParameterNode {
+																#properties : {
+																	#module : @12851
+																},
+																#type : ASN1ReferenceNode {
+																	#properties : {
+																		#definition : @13317,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION-PACKAGE''
@@ -43518,16 +43528,16 @@ MAPExampleModels class >> tcapModelSton [
 																	#properties : {
 																		#definition : @15238
 																	},
-																	#label : ''ConsumerConsumes''
+																	#label : ''ConsumerSupplies''
 																}
 															},
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13321,
+																		#definition : @13317,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION-PACKAGE''
@@ -43535,24 +43545,6 @@ MAPExampleModels class >> tcapModelSton [
 																#reference : ASN1ReferenceNode {
 																	#properties : {
 																		#definition : @15244
-																	},
-																	#label : ''ConsumerSupplies''
-																}
-															},
-															ASN1ParameterNode {
-																#properties : {
-																	#module : @12855
-																},
-																#type : ASN1ReferenceNode {
-																	#properties : {
-																		#definition : @13321,
-																		#referenced : true
-																	},
-																	#label : ''OPERATION-PACKAGE''
-																},
-																#reference : ASN1ReferenceNode {
-																	#properties : {
-																		#definition : @15250
 																	},
 																	#label : ''base''
 																}
@@ -43564,9 +43556,9 @@ MAPExampleModels class >> tcapModelSton [
 												#right : ASN1DefinedSyntaxObjectNode {
 													#properties : {
 														#referenced : true,
-														#type : @15233,
+														#type : @15227,
 														#assigned : true,
-														#module : @12855
+														#module : @12851
 													},
 													#syntax : [
 														ASN1LiteralNode {
@@ -43574,28 +43566,28 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ValueSetNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#elementsSpec : ASN1UnionNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elements : OrderedCollection [
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15238
+																						#definition : @15232
 																					},
 																					#label : ''ConsumerConsumes''
 																				},
@@ -43609,19 +43601,19 @@ MAPExampleModels class >> tcapModelSton [
 																	},
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15244
+																						#definition : @15238
 																					},
 																					#label : ''ConsumerSupplies''
 																				},
@@ -43644,28 +43636,28 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ValueSetNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#elementsSpec : ASN1UnionNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elements : OrderedCollection [
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15238
+																						#definition : @15232
 																					},
 																					#label : ''ConsumerConsumes''
 																				},
@@ -43679,19 +43671,19 @@ MAPExampleModels class >> tcapModelSton [
 																	},
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15244
+																						#definition : @15238
 																					},
 																					#label : ''ConsumerSupplies''
 																				},
@@ -43714,28 +43706,28 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1ValueSetNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#elementsSpec : ASN1UnionNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elements : OrderedCollection [
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15238
+																						#definition : @15232
 																					},
 																					#label : ''ConsumerConsumes''
 																				},
@@ -43749,19 +43741,19 @@ MAPExampleModels class >> tcapModelSton [
 																	},
 																	ASN1ElementsNode {
 																		#properties : {
-																			#module : @12855
+																			#module : @12851
 																		},
 																		#entity : ASN1ConstraintNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#constraint : ASN1TypeFromObjectNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#object : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15244
+																						#definition : @15238
 																					},
 																					#label : ''ConsumerSupplies''
 																				},
@@ -43781,11 +43773,11 @@ MAPExampleModels class >> tcapModelSton [
 														},
 														ASN1TypeFromObjectNode {
 															#properties : {
-																#module : @12855
+																#module : @12851
 															},
 															#object : ASN1ReferenceNode {
 																#properties : {
-																	#definition : @15250
+																	#definition : @15244
 																},
 																#label : ''base''
 															},
@@ -43800,7 +43792,7 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
@@ -43808,36 +43800,36 @@ MAPExampleModels class >> tcapModelSton [
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13786,
+																		#definition : @13780,
 																		#referenced : true
 																	},
 																	#label : ''InvokeId''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15351
+																		#definition : @15345
 																	},
 																	#label : ''InvokeIdSet''
 																}
 															},
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13321,
+																		#definition : @13317,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION-PACKAGE''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15357
+																		#definition : @15351
 																	},
 																	#label : ''package''
 																}
@@ -43848,28 +43840,28 @@ MAPExampleModels class >> tcapModelSton [
 												},
 												#right : ASN1ReferenceNode {
 													#properties : {
-														#definition : @13814,
+														#definition : @13808,
 														#parameters : [
 															ASN1ObjectSetNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elementsSpec : ASN1UnionNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#elements : OrderedCollection [
 																		ASN1ElementsNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#entity : ASN1ConstraintNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#constraint : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15351
+																						#definition : @15345
 																					},
 																					#label : ''InvokeIdSet''
 																				}
@@ -43880,28 +43872,28 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ObjectSetNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elementsSpec : ASN1UnionNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#elements : OrderedCollection [
 																		ASN1ElementsNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#entity : ASN1ConstraintNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#constraint : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15005,
+																						#definition : @14999,
 																						#parameters : [
 																							ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @15357
+																									#definition : @15351
 																								},
 																								#label : ''package''
 																							}
@@ -43916,28 +43908,28 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ObjectSetNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elementsSpec : ASN1UnionNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#elements : OrderedCollection [
 																		ASN1ElementsNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#entity : ASN1ConstraintNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#constraint : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15005,
+																						#definition : @14999,
 																						#parameters : [
 																							ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @15357
+																									#definition : @15351
 																								},
 																								#label : ''package''
 																							}
@@ -43958,7 +43950,7 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#left : ASN1ReferenceNode {
 													#properties : {
@@ -43966,36 +43958,36 @@ MAPExampleModels class >> tcapModelSton [
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13786,
+																		#definition : @13780,
 																		#referenced : true
 																	},
 																	#label : ''InvokeId''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15410
+																		#definition : @15404
 																	},
 																	#label : ''InvokeIdSet''
 																}
 															},
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13321,
+																		#definition : @13317,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION-PACKAGE''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15416
+																		#definition : @15410
 																	},
 																	#label : ''package''
 																}
@@ -44006,28 +43998,28 @@ MAPExampleModels class >> tcapModelSton [
 												},
 												#right : ASN1ReferenceNode {
 													#properties : {
-														#definition : @13814,
+														#definition : @13808,
 														#parameters : [
 															ASN1ObjectSetNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elementsSpec : ASN1UnionNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#elements : OrderedCollection [
 																		ASN1ElementsNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#entity : ASN1ConstraintNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#constraint : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15410
+																						#definition : @15404
 																					},
 																					#label : ''InvokeIdSet''
 																				}
@@ -44038,28 +44030,28 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ObjectSetNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elementsSpec : ASN1UnionNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#elements : OrderedCollection [
 																		ASN1ElementsNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#entity : ASN1ConstraintNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#constraint : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @14793,
+																						#definition : @14787,
 																						#parameters : [
 																							ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @15416
+																									#definition : @15410
 																								},
 																								#label : ''package''
 																							}
@@ -44074,28 +44066,28 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ObjectSetNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elementsSpec : ASN1UnionNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#elements : OrderedCollection [
 																		ASN1ElementsNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#entity : ASN1ConstraintNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#constraint : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @14899,
+																						#definition : @14893,
 																						#parameters : [
 																							ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @15416
+																									#definition : @15410
 																								},
 																								#label : ''package''
 																							}
@@ -44116,7 +44108,7 @@ MAPExampleModels class >> tcapModelSton [
 											},
 											ASN1AssignmentNode {
 												#properties : {
-													#module : @12855,
+													#module : @12851,
 													#PDU : true
 												},
 												#left : ASN1ReferenceNode {
@@ -44125,36 +44117,36 @@ MAPExampleModels class >> tcapModelSton [
 														#parameters : [
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13786,
+																		#definition : @13780,
 																		#referenced : true
 																	},
 																	#label : ''InvokeId''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15469
+																		#definition : @15463
 																	},
 																	#label : ''InvokeIdSet''
 																}
 															},
 															ASN1ParameterNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#type : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @13321,
+																		#definition : @13317,
 																		#referenced : true
 																	},
 																	#label : ''OPERATION-PACKAGE''
 																},
 																#reference : ASN1ReferenceNode {
 																	#properties : {
-																		#definition : @15475
+																		#definition : @15469
 																	},
 																	#label : ''package''
 																}
@@ -44165,28 +44157,28 @@ MAPExampleModels class >> tcapModelSton [
 												},
 												#right : ASN1ReferenceNode {
 													#properties : {
-														#definition : @13814,
+														#definition : @13808,
 														#parameters : [
 															ASN1ObjectSetNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elementsSpec : ASN1UnionNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#elements : OrderedCollection [
 																		ASN1ElementsNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#entity : ASN1ConstraintNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#constraint : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @15469
+																						#definition : @15463
 																					},
 																					#label : ''InvokeIdSet''
 																				}
@@ -44197,28 +44189,28 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ObjectSetNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elementsSpec : ASN1UnionNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#elements : OrderedCollection [
 																		ASN1ElementsNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#entity : ASN1ConstraintNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#constraint : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @14899,
+																						#definition : @14893,
 																						#parameters : [
 																							ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @15475
+																									#definition : @15469
 																								},
 																								#label : ''package''
 																							}
@@ -44233,28 +44225,28 @@ MAPExampleModels class >> tcapModelSton [
 															},
 															ASN1ObjectSetNode {
 																#properties : {
-																	#module : @12855
+																	#module : @12851
 																},
 																#elementsSpec : ASN1UnionNode {
 																	#properties : {
-																		#module : @12855
+																		#module : @12851
 																	},
 																	#elements : OrderedCollection [
 																		ASN1ElementsNode {
 																			#properties : {
-																				#module : @12855
+																				#module : @12851
 																			},
 																			#entity : ASN1ConstraintNode {
 																				#properties : {
-																					#module : @12855
+																					#module : @12851
 																				},
 																				#constraint : ASN1ReferenceNode {
 																					#properties : {
-																						#definition : @14793,
+																						#definition : @14787,
 																						#parameters : [
 																							ASN1ReferenceNode {
 																								#properties : {
-																									#definition : @15475
+																									#definition : @15469
 																								},
 																								#label : ''package''
 																							}
@@ -44278,24 +44270,24 @@ MAPExampleModels class >> tcapModelSton [
 								},
 								#elementsSpec : ASN1UnionNode {
 									#properties : {
-										#module : @12855
+										#module : @12851
 									},
 									#elements : OrderedCollection [
 										ASN1ElementsNode {
 											#properties : {
-												#module : @12855
+												#module : @12851
 											},
 											#entity : ASN1ConstraintNode {
 												#properties : {
-													#module : @12855
+													#module : @12851
 												},
 												#constraint : ASN1TypeFromObjectNode {
 													#properties : {
-														#module : @12855
+														#module : @12851
 													},
 													#object : ASN1ReferenceNode {
 														#properties : {
-															#definition : @15037
+															#definition : @15031
 														},
 														#label : ''operation''
 													},
@@ -44312,53 +44304,53 @@ MAPExampleModels class >> tcapModelSton [
 							}
 						},
 						''alwaysReturns'' : ASN1BooleanType {
-							#module : @12738
+							#module : @12734
 						},
-						''operationCode'' : @12487,
+						''operationCode'' : @12484,
 						''ResultPriority'' : ASN1IntegerValue {
 							#type : ASN1IntegerType {
 								
 							},
-							#contents : @15136
+							#contents : @15130
 						},
 						''Errors'' : ASN1SetType {
-							#module : @12738,
+							#module : @12734,
 							#elements : ASN1Union {
 								#elements : OrderedCollection [
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12590
+											#constraint : @12587
 										}
 									}
 								]
 							}
 						},
 						''synchronous'' : ASN1BooleanType {
-							#module : @12738
+							#module : @12734
 						},
 						''Linked'' : ASN1SetType {
-							#module : @12738,
+							#module : @12734,
 							#elements : ASN1Union {
 								#elements : OrderedCollection [
 									ASN1ElementComplement {
 										#included : ASN1Constraint {
-											#constraint : @12594
+											#constraint : @12591
 										}
 									}
 								]
 							}
 						},
 						''returnResult'' : ASN1BooleanType {
-							#module : @12738
+							#module : @12734
 						},
 						''ResultType'' : ASN1OpenType {
-							#module : @12738
+							#module : @12734
 						},
 						''ArgumentType'' : ASN1OpenType {
-							#module : @12738
+							#module : @12734
 						},
 						''argumentTypeOptional'' : ASN1BooleanType {
-							#module : @12738
+							#module : @12734
 						}
 					}
 				}
@@ -44367,8 +44359,8 @@ MAPExampleModels class >> tcapModelSton [
 			#modelRoot : @1,
 			#pduLabel : ''ROS-SupplierAS''
 		},
-		@12458,
-		@12591
+		@12455,
+		@12588
 	],
 	#types : IdentityDictionary { },
 	#modulesByOid : { },
