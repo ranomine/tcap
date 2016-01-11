@@ -505,7 +505,9 @@ TCAPDialogue >> requestTcInvoke: anOperation parameters: anObject  class: aClass
 	invocation startInvocationTimer: aTimeout.
 	localInvocations add: invocation.
 	
-	componentCoordinator addComponent: (invocation asROS).
+	invocation onMessage: [ :msg |
+        componentCoordinator addComponent: (msg asROS) ].
+      invocation sendMessage: invocation.
 	^ invocation  
 ]
 
@@ -557,6 +559,16 @@ TCAPDialogue >> sendAcceptResponse [
 	"store response for the next continue or end message to pick up
 	and deliver back"
 	pendingResponse := self newAcceptedDialogueResponse: nil
+]
+
+{ #category : #accessing }
+TCAPDialogue >> setupTcReturn: anInvocation parameters: anObject [ 
+	localInvocations add: anInvocation.
+	
+	anInvocation onMessage: [ :msg |
+        componentCoordinator addComponent: (msg asROS) ].
+      anInvocation returnResultLastUsing: [ :result | result add:  anObject].
+	^ anInvocation  
 ]
 
 { #category : #accessing }
