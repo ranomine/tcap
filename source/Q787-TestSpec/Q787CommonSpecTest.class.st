@@ -83,10 +83,10 @@ Q787CommonSpecTest >> checkContinue: aByteArray [
 	self assert: (continue findEncodedValue: 'dtid') tagByteValue = 2r01001001.
 	self assert: (continue message continue dtid byteSize between: 1 and: 8).
 	
-	"component portion tag if present"
+	"component portion tag if present, component portion is last"
 	  continue hasComponents ifTrue: [ 
-		self assert: continue encodedValue elements fourth tagByteValue =  2r1101100.
-		self assert: continue encodedValue elements fourth tag  =  (ASN1Tag clazz: 'APPLICATION' number: 12)].
+		self assert: continue encodedValue elements last tagByteValue =  2r1101100.
+		self assert: continue encodedValue elements last tag  =  (ASN1Tag clazz: 'APPLICATION' number: 12)].
 	
 	^ continue
 ]
