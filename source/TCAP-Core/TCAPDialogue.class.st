@@ -562,6 +562,16 @@ TCAPDialogue >> sendAcceptResponse [
 ]
 
 { #category : #accessing }
+TCAPDialogue >> setupTcError: anInvocation name: aName [ 
+	localInvocations add: anInvocation.
+	
+	anInvocation onMessage: [ :msg |
+        componentCoordinator addComponent: (msg asROS) ].
+      anInvocation returnErrorNamed: aName.
+	^ anInvocation  
+]
+
+{ #category : #accessing }
 TCAPDialogue >> setupTcReturn: anInvocation parameters: anObject [ 
 	localInvocations add: anInvocation.
 	
