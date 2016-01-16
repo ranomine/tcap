@@ -5119,6 +5119,8 @@ Q787ValidationTest >> test2_1_3_2_1 [
 	self assert: invokeID tagByteValue = 2r00000010.
 	self assert: invokeID contents byteSize = 1.
 	
+	self flag: #TBD. "need to check problem code"
+	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
 ]
@@ -5268,4 +5270,230 @@ Q787ValidationTest >> test2_1_3_2_3 [
 	self assert: problemCode tagByteValue = 2r10000000.
 	self assert: problemCode contents asInteger  = 1. self flag: #TBD.  "Needs to be checked"
 	self assert: problemCode contents byteSize = 1.
+]
+
+{ #category : #tests }
+Q787ValidationTest >> test2_1_3_3_1 [
+	"similar to test2_1_3_2_1. difference: reject wrong type parameter"
+	
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	self flag: #TBD. "TC-U-REJECT needs to be checked!"
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnReject: nil. self flag: #TBD. "Need to reject with problem code"
+					dialog requestTcContinue ]].
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation onReject: [ :result |  called := true ].
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	begin := self checkBegin: env servicePointA sentPackets first.	
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.  "INVOKE"
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+
+	"CHECK B: WAS THE RETURN REJECT COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	continue := self checkContinue: env servicePointA receivedPackets first.
+	self assert: called == true.	
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100100. "REJECT"
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	self flag: #TBD. "need to check problem code"
+	
+	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+]
+
+{ #category : #tests }
+Q787ValidationTest >> test2_1_3_3_2 [
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	self flag: #TBD. "TC-U-REJECT needs to be checked!"
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnReject: nil. self flag: #TBD. "Need to reject with problem code"
+					dialog requestTcContinue ]].
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportFailure timeout: 500.
+	invocation onReject: [ :result |  called := true ].
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	begin := self checkBegin: env servicePointA sentPackets first.	
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.  "INVOKE"
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+
+	"CHECK B: WAS THE RETURN REJECT COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	continue := self checkContinue: env servicePointA receivedPackets first.
+	self assert: called == true.	
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100100. "REJECT"
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	self flag: #TBD. "need to check problem code"
+	
+	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+]
+
+{ #category : #tests }
+Q787ValidationTest >> test2_1_3_3_3 [
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	self flag: #TBD. "TC-U-REJECT needs to be checked!"
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnReject: nil. self flag: #TBD. "Need to reject with problem code"
+					dialog requestTcContinue ]].
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccess timeout: 500.
+	invocation onReject: [ :result |  called := true ].
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	begin := self checkBegin: env servicePointA sentPackets first.	
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.  "INVOKE"
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+
+	"CHECK B: WAS THE RETURN REJECT COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	continue := self checkContinue: env servicePointA receivedPackets first.
+	self assert: called == true.	
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100100. "REJECT"
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	self flag: #TBD. "need to check problem code"
+	
+	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+]
+
+{ #category : #tests }
+Q787ValidationTest >> test2_1_3_3_4 [
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	self flag: #TBD. "TC-U-REJECT needs to be checked!"
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnReject: nil. self flag: #TBD. "Need to reject with problem code"
+					dialog requestTcContinue ]].
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportNothing timeout: 500.
+	invocation onReject: [ :result |  called := true ].
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	begin := self checkBegin: env servicePointA sentPackets first.	
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.  "INVOKE"
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+
+	"CHECK B: WAS THE RETURN REJECT COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	continue := self checkContinue: env servicePointA receivedPackets first.
+	self assert: called == true.	
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100100. "REJECT"
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	self flag: #TBD. "need to check problem code"
+	
+	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
 ]
