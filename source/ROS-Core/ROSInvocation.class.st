@@ -309,9 +309,23 @@ ROSInvocation >> returnErrorNamed: aString using: aBlock [
 ]
 
 { #category : #'as yet unclassified' }
-ROSInvocation >> returnReject: aDictionary [
-	self sendMessage: (
-		self newMessage: ROSReject)
+ROSInvocation >> returnReject: problemCode [
+	| rosReject |
+
+	rosReject :=  self newMessage: ROSReject.
+	
+	rosReject problemCode: problemCode.
+	self sendMessage: rosReject
+ 
+]
+
+{ #category : #'as yet unclassified' }
+ROSInvocation >> returnReject: problemCode type: aString [
+	| rosReject |
+
+	rosReject :=  self newMessage: ROSReject.
+	rosReject problemCode: problemCode type: aString.
+	self sendMessage: rosReject
  
 ]
 
