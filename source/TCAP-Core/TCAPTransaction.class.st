@@ -162,7 +162,7 @@ TCAPTransaction >> requestPreArrangedEndWithUserData: anObject [
 	self state requestPreArrangedEndWithUserData: anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #requests }
 TCAPTransaction >> requestTrBegin: anASN1Dictionary [ 
 	self state requestTrBegin: anASN1Dictionary 
 ]
