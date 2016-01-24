@@ -4869,7 +4869,7 @@ Q787ValidationTest >> test2_1_3_1_1 [
 	
 	env servicePointB onDialogue: [ : dialog |
 		dialog onInvoke: [ :notification |
-			notification invocation returnReject: nil.
+			notification invocation returnReject: 0 type: 'general'. 
 			dialog requestTcContinue ]].
 
 	dialogue := env servicePointA newDialogue.
@@ -4915,8 +4915,8 @@ Q787ValidationTest >> test2_1_3_1_1 [
 	self assert: invokeID contents byteSize = 1.
 	
 	problemCode := invokeComponent elements second.
-	self assert: problemCode tagByteValue = 2r10000000.
-	self assert: problemCode contents asInteger  = 1. self flag: #TBD.  "Should be 0, #returnReject: needs to be extended"
+	self assert: problemCode tagByteValue = 2r10000000. "General Problem"
+	self assert: problemCode contents asInteger  =  0. 
 	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
@@ -4947,7 +4947,7 @@ Q787ValidationTest >> test2_1_3_1_3 [
 		timeout: 10.
 		
 	invocation onReturnLast: [ :result |  returncalled := true.
-		invocation returnReject: nil.
+		invocation returnReject: 0 type: 'returnResult'.
 	      dialogue requestTcContinue.
 		].
 
@@ -4991,8 +4991,8 @@ Q787ValidationTest >> test2_1_3_1_3 [
 	self assert: invokeID contents byteSize = 1.
 	
 	problemCode := invokeComponent elements second.
-	self assert: problemCode tagByteValue = 2r10000000.
-	self assert: problemCode contents asInteger  = 1. self flag: #TBD.  "Should be 0, #returnReject: needs to be extended"
+	self assert: problemCode tagByteValue = 2r10000010. "return result"
+	self assert: problemCode contents asInteger  =  0.  "unrecognized invoke ID"
 	self assert: problemCode contents byteSize = 1.
 ]
 
@@ -5019,7 +5019,7 @@ Q787ValidationTest >> test2_1_3_1_4 [
 		timeout: 10.
 		
 	invocation onError: [ :error|  returncalled := true.
-		invocation returnReject: nil.
+		invocation returnReject: 1 type: 'returnError'.
 	      dialogue requestTcContinue.
 		].
 
@@ -5063,15 +5063,15 @@ Q787ValidationTest >> test2_1_3_1_4 [
 	self assert: invokeID contents byteSize = 1.
 	
 	problemCode := invokeComponent elements second.
-	self assert: problemCode tagByteValue = 2r10000000.
-	self assert: problemCode contents asInteger  = 1. self flag: #TBD.  "Should be 0, #returnReject: needs to be extended"
+	self assert: problemCode tagByteValue = 2r10000011. "RETURN ERROR"
+	self assert: problemCode contents asInteger  =  2r00000001. "unrecognize remote ID"
 	self assert: problemCode contents byteSize = 1.
 ]
 
 { #category : #tests }
 Q787ValidationTest >> test2_1_3_2_1 [
 	
-	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter |
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter problemCode |
 	env := self given: #shouldCreateTestEnvironment.
 	
 	self flag: #TBD. "TC-U-REJECT needs to be checked!"
@@ -5080,7 +5080,7 @@ Q787ValidationTest >> test2_1_3_2_1 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					inv returnReject: nil. self flag: #TBD. "Need to reject with problem code"
+					inv returnReject: 0 type: 'returnError'. 
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
@@ -5119,7 +5119,10 @@ Q787ValidationTest >> test2_1_3_2_1 [
 	self assert: invokeID tagByteValue = 2r00000010.
 	self assert: invokeID contents byteSize = 1.
 	
-	self flag: #TBD. "need to check problem code"
+	problemCode := invokeComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000011. "RETURN ERROR"
+	self assert: problemCode contents asInteger  =  2r00000000. "unrecognize Invoke ID"
+	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
@@ -5149,7 +5152,7 @@ Q787ValidationTest >> test2_1_3_2_2 [
 		timeout: 10.
 		
 	invocation onReturnLast: [ :result |  returncalled := true.
-		invocation returnReject: nil.
+		invocation returnReject: 2r00000010 type: 'returnResult'.
 	      dialogue requestTcContinue.
 		].
 
@@ -5193,8 +5196,8 @@ Q787ValidationTest >> test2_1_3_2_2 [
 	self assert: invokeID contents byteSize = 1.
 	
 	problemCode := invokeComponent elements second.
-	self assert: problemCode tagByteValue = 2r10000000.
-	self assert: problemCode contents asInteger  = 1. self flag: #TBD.  "#returnReject: needs to be extended"
+	self assert: problemCode tagByteValue = 2r10000010. "RETURN RESULT"
+	self assert: problemCode contents asInteger  =  2r00000010. "wrong type parameter" 
 	self assert: problemCode contents byteSize = 1.
 ]
 
@@ -5223,7 +5226,7 @@ Q787ValidationTest >> test2_1_3_2_3 [
 		timeout: 10.
 		
 	invocation onError: [ :error|  returncalled := true.
-		invocation returnReject: nil.
+		invocation returnReject: 2r00000010 type: 'returnError'.
 	      dialogue requestTcContinue.
 		].
 
@@ -5267,8 +5270,8 @@ Q787ValidationTest >> test2_1_3_2_3 [
 	self assert: invokeID contents byteSize = 1.
 	
 	problemCode := invokeComponent elements second.
-	self assert: problemCode tagByteValue = 2r10000000.
-	self assert: problemCode contents asInteger  = 1. self flag: #TBD.  "Needs to be checked"
+	self assert: problemCode tagByteValue = 2r10000011. "RETURN ERROR"
+	self assert: problemCode contents asInteger  =  2r00000010. "unrecognized error"
 	self assert: problemCode contents byteSize = 1.
 ]
 
@@ -5276,7 +5279,7 @@ Q787ValidationTest >> test2_1_3_2_3 [
 Q787ValidationTest >> test2_1_3_3_1 [
 	"similar to test2_1_3_2_1. difference: reject wrong type parameter"
 	
-	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter |
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter problemCode |
 	env := self given: #shouldCreateTestEnvironment.
 	
 	self flag: #TBD. "TC-U-REJECT needs to be checked!"
@@ -5285,7 +5288,7 @@ Q787ValidationTest >> test2_1_3_3_1 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					inv returnReject: nil. self flag: #TBD. "Need to reject with problem code"
+					inv returnReject: 2r00000010.
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
@@ -5324,7 +5327,10 @@ Q787ValidationTest >> test2_1_3_3_1 [
 	self assert: invokeID tagByteValue = 2r00000010.
 	self assert: invokeID contents byteSize = 1.
 	
-	self flag: #TBD. "need to check problem code"
+	problemCode := invokeComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000001. "INVOKE"
+	self assert: problemCode contents asInteger  =  2r00000010. "wrong type parameter"
+	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
@@ -5332,7 +5338,7 @@ Q787ValidationTest >> test2_1_3_3_1 [
 
 { #category : #tests }
 Q787ValidationTest >> test2_1_3_3_2 [
-	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter |
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter problemCode |
 	env := self given: #shouldCreateTestEnvironment.
 	
 	self flag: #TBD. "TC-U-REJECT needs to be checked!"
@@ -5341,7 +5347,7 @@ Q787ValidationTest >> test2_1_3_3_2 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					inv returnReject: nil. self flag: #TBD. "Need to reject with problem code"
+					inv returnReject: 2r00000010.
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportFailure timeout: 500.
@@ -5380,7 +5386,10 @@ Q787ValidationTest >> test2_1_3_3_2 [
 	self assert: invokeID tagByteValue = 2r00000010.
 	self assert: invokeID contents byteSize = 1.
 	
-	self flag: #TBD. "need to check problem code"
+	problemCode := invokeComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000001. "INVOKE"
+	self assert: problemCode contents asInteger  =  2r00000010. "wrong type parameter"
+	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
@@ -5388,7 +5397,7 @@ Q787ValidationTest >> test2_1_3_3_2 [
 
 { #category : #tests }
 Q787ValidationTest >> test2_1_3_3_3 [
-	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter |
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter problemCode |
 	env := self given: #shouldCreateTestEnvironment.
 	
 	self flag: #TBD. "TC-U-REJECT needs to be checked!"
@@ -5397,7 +5406,7 @@ Q787ValidationTest >> test2_1_3_3_3 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					inv returnReject: nil. self flag: #TBD. "Need to reject with problem code"
+					inv returnReject: 2r00000010.
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccess timeout: 500.
@@ -5436,7 +5445,10 @@ Q787ValidationTest >> test2_1_3_3_3 [
 	self assert: invokeID tagByteValue = 2r00000010.
 	self assert: invokeID contents byteSize = 1.
 	
-	self flag: #TBD. "need to check problem code"
+	problemCode := invokeComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000001. "INVOKE"
+	self assert: problemCode contents asInteger  =  2r00000010. "wrong type parameter"
+	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
@@ -5444,7 +5456,7 @@ Q787ValidationTest >> test2_1_3_3_3 [
 
 { #category : #tests }
 Q787ValidationTest >> test2_1_3_3_4 [
-	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter |
+	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter problemCode |
 	env := self given: #shouldCreateTestEnvironment.
 	
 	self flag: #TBD. "TC-U-REJECT needs to be checked!"
@@ -5453,7 +5465,7 @@ Q787ValidationTest >> test2_1_3_3_4 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					inv returnReject: nil. self flag: #TBD. "Need to reject with problem code"
+					inv returnReject: 2r00000010.
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportNothing timeout: 500.
@@ -5492,7 +5504,10 @@ Q787ValidationTest >> test2_1_3_3_4 [
 	self assert: invokeID tagByteValue = 2r00000010.
 	self assert: invokeID contents byteSize = 1.
 	
-	self flag: #TBD. "need to check problem code"
+	problemCode := invokeComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000001. "INVOKE"
+	self assert: problemCode contents asInteger  =  2r00000010. "wrong type parameter"
+	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 	env servicePointA isIdle. "when it is idle there are no invocations, either"

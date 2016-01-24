@@ -165,7 +165,59 @@ Q787ValidationTodo >> test2_1_3_1_2 [
 
 { #category : #tests }
 Q787ValidationTodo >> test2_1_4_1_1 [
-		self assert: false
+
+	| env dialogue invocation invokecalled rejectACalled  componentPortion invokeComponent invokeID    problemCode begin |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	self skip.
+	env servicePointA
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					invokecalled := true.
+					inv returnReject: nil.
+					dialog requestTcContinue.
+					 ]].
+	dialogue := env servicePointB newDialogue.	
+	
+	invocation :=dialogue 
+		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
+		parameters:  '123456789' 
+		class: TCAPReportSuccessAndFailure 
+		timeout: 10.
+	
+	invocation onReject: [ rejectACalled := true ].
+
+	dialogue 
+		requestTcBeginDestinationAddress:    self originatingAddress
+		originatingAddress: self destinationAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	self assert: invokecalled == true.
+	self assert: rejectACalled == true.
+		
+	"CHECK A: WAS THE REJECT COMPONENT WITH CORRECT INFORMATION SENT BY SP A?"
+	
+	self assert: env servicePointA sentPackets size = 1.
+	begin := self checkBegin: env servicePointA receivedPackets first.
+	componentPortion := begin encodedValue elements third. 
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100100. "REJECT"
+	
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	problemCode := invokeComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000000.
+	self assert: problemCode contents asInteger  = 1. self flag: #TBD.  "Should be 0, #returnReject: needs to be extended"
+	self assert: problemCode contents byteSize = 1.
+	
+	
+	
+	"CHECK B: WAS THE REJECT COMPONENT WITH CORRECT I NFORMATION PASSED TO TC-USER BY SP A?"
+
+	
 ]
 
 { #category : #tests }
