@@ -87,11 +87,6 @@ ROSError >> parameterType [
 	^ self error attributeAt: 'ParameterType'
 ]
 
-{ #category : #converting }
-ROSError >> prepare [
-	"(self expandFieldNamed: 'errcode') at: 'local' put: (error attributeAt: 'errorCode')."
-]
-
 { #category : #accessing }
 ROSError >> setParameter: aParameter [
 	aParameter ifNil: [ Error signal: 'cannot use nil as a parameter' ].

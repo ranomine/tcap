@@ -33,12 +33,6 @@ ROSReject >> dispatchTo: aDialogue [
 ]
 
 { #category : #'as yet unclassified' }
-ROSReject >> prepare [
-	"(self expandFieldNamed: 'problem') 
-		at: 'general' put: 1"
-]
-
-{ #category : #'as yet unclassified' }
 ROSReject >> problemCode [
 	^ (self at: 'problem') at: 'general'
 ]

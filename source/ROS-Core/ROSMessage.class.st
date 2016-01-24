@@ -22,8 +22,6 @@ ROSMessage class >> withMessageType: aString [
 { #category : #converting }
 ROSMessage >> asROS [
 	| ros |
-	self prepare.
-	"self validate."
 	ros := (self asn1TypeNamed: 'ROS') newValue.
 	(ros expandFieldNamed: self class rosMessageType)
 		value: self.
@@ -40,8 +38,4 @@ ROSMessage >> invokeId: aNumber [
 	aNumber ifNil: [ Error signal: 'cannot use nil as invokeId' ].
 	(self expandFieldNamed: 'invokeId')
 		at: 'present' put: aNumber
-]
-
-{ #category : #actions }
-ROSMessage >> prepare [
 ]
