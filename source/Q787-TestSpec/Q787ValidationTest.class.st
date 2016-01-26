@@ -5205,7 +5205,7 @@ Q787ValidationTest >> test2_1_3_2_2 [
 Q787ValidationTest >> test2_1_3_2_3 [
 	"like test2_1_3_1_4, but unrecognized error and TC-U-Reject"
 	
-		| env dialogue invocation invokecalled returncalled rejectACalled begin componentPortion invokeComponent invokeID opcode parameter continue problemCode |
+		| env dialogue invocation invokecalled returncalled rejectACalled begin componentPortion invokeComponent invokeID opcode parameter continue problemCode errorCode |
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointA
@@ -5273,6 +5273,23 @@ Q787ValidationTest >> test2_1_3_2_3 [
 	self assert: problemCode tagByteValue = 2r10000011. "RETURN ERROR"
 	self assert: problemCode contents asInteger  =  2r00000010. "unrecognized error"
 	self assert: problemCode contents byteSize = 1.
+	
+	"additional check: error component according to check table"
+	
+	self assert: env servicePointB receivedPackets size = 1.
+	continue := self checkContinue: env servicePointB receivedPackets first.
+	componentPortion := continue encodedValue elements fourth.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue  = 2r10100011. "ERROR"
+	
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	errorCode := invokeComponent elements second.
+	self assert: errorCode tagByteValue = 2. "local".
+	self assert: errorCode contents byteSize = 1.
+	self assert: errorCode contents  asInteger = 34. "in this case 34"
 ]
 
 { #category : #tests }
@@ -5525,7 +5542,7 @@ Q787ValidationTest >> test2_1_4_1_1 [
 			 dialog 
 				onInvoke: [ : inv | 
 					invokecalled := true.
-					inv returnReject: 1.
+					inv returnReject: 1.   self flag: #TBD. "we should not reach here but instead reject the call earlier"
 					dialog requestTcContinue.
 					 ]].
 	dialogue := env servicePointB newDialogue.	
@@ -5586,7 +5603,7 @@ Q787ValidationTest >> test2_1_4_1_4 [
 			 dialog 
 				onInvoke: [ : inv | 
 					invokecalled := true.
-					inv returnReject: 2r00000010.
+					inv returnReject: 2r00000010.   self flag: #TBD. "we should not reach here but instead reject the call earlier"
 					dialog requestTcContinue.
 					 ]].
 	dialogue := env servicePointB newDialogue.	
