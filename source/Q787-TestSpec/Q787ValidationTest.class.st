@@ -5518,6 +5518,7 @@ Q787ValidationTest >> test2_1_4_1_1 [
 
 	| env dialogue invocation invokecalled rejectACalled  componentPortion invokeComponent invokeID  problemCode begin continue rejectComponent |
 	env := self given: #shouldCreateTestEnvironment.
+	self flag: #TBD.  "The reject should not be done manualy but automatically due to invalid invoke"
 	
 	env servicePointA
 		onDialogue: [ :dialog |
@@ -5560,6 +5561,67 @@ Q787ValidationTest >> test2_1_4_1_1 [
 	problemCode := rejectComponent elements second.
 	self assert: problemCode tagByteValue = 2r10000001.  "INVOKE"
 	self assert: problemCode contents asInteger  = 1. "unrecognized operation"
+	self assert: problemCode contents byteSize = 1.
+	
+	"CHECK B: WAS THE INVOKE ID IN THE REJECT COMPONENT THE SAME AS THE ONE IN THE INVOKE COMPONENT?"
+		
+	self assert: env servicePointB sentPackets size = 1.
+	begin := self checkBegin: env servicePointB sentPackets first.
+	componentPortion := begin encodedValue elements third. 
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001. "INVOKE"
+	"now check if invokeID matches"
+	self assert: invokeID contents = invokeComponent elements first contents.
+	
+]
+
+{ #category : #tests }
+Q787ValidationTest >> test2_1_4_1_4 [
+	| env dialogue invocation invokecalled rejectACalled  componentPortion invokeComponent invokeID  problemCode begin continue rejectComponent |
+	env := self given: #shouldCreateTestEnvironment.
+	self flag: #TBD.  "The reject should not be done manualy but automatically due to invalid invoke"
+	
+	env servicePointA
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					invokecalled := true.
+					inv returnReject: 2r00000010.
+					dialog requestTcContinue.
+					 ]].
+	dialogue := env servicePointB newDialogue.	
+	
+	invocation :=dialogue 
+		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
+		parameters:  '123456789' 
+		class: TCAPReportSuccessAndFailure 
+		timeout: 10.
+	
+	invocation onReject: [ rejectACalled := true ].
+
+	dialogue 
+		requestTcBeginDestinationAddress:   self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'. 
+	
+	self assert: invokecalled == true.
+	self assert: rejectACalled == true.
+		
+	"CHECK A: WAS THE REJECT COMPONENT WITH CORRECT INFORMATION SENT BY SP A?"
+	
+	self assert: env servicePointA sentPackets size = 1.
+	continue := self checkContinue: env servicePointA sentPackets first.
+	componentPortion := continue encodedValue elements fourth. 
+	rejectComponent :=  componentPortion elements first.
+	self assert:  rejectComponent tagByteValue = 2r10100100. "REJECT"
+	
+	invokeID := rejectComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	problemCode := rejectComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000001.  "INVOKE"
+	self assert: problemCode contents asInteger  = 2r00000010 . "wrong type parameter"
 	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK B: WAS THE INVOKE ID IN THE REJECT COMPONENT THE SAME AS THE ONE IN THE INVOKE COMPONENT?"
