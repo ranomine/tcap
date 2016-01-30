@@ -164,17 +164,56 @@ Q787CommonTodo >> test2_1_2_2_2 [
 
 { #category : #tests }
 Q787CommonTodo >> test2_1_5_1_1 [
-		self assert: false
+	"starts like 2.1.1.3.1, but return not-last followed by resturn last"
+	
+	"p 190. result-last vs. result-no-last is not modelled by ROS. ==> Backlog"
+	
+	| env dialogue invocation called           |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	self flag: #TBD.  
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnResultUsing: [ :result | result add: self exampleResult ].
+					dialog requestTcContinue.
+					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+					dialog requestTcContinue ]].
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccess timeout: 500.
+	invocation onReturnLast: [ :result |  called := true ].
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+		
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	"CHECK B: WAS THE RETURN RESULT NOT-LAST COMPONENT WITH CORRECT INFORM ATION PASSED TO TC-USER BY SP A? "
+	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	
 ]
 
 { #category : #tests }
 Q787CommonTodo >> test2_1_5_1_2 [
-		self assert: false
+	"p 192 result-last vs. result-no-last is not modelled by ROS. ==> Backlog"
+	self flag: #TBD.  
+	self assert: false.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	"CHECK B: WAS THE RETURN RESULT NOT-LAST COMPONENT WITH CORRECT INFORMATION SENT BY SP A?  "
 ]
 
 { #category : #tests }
 Q787CommonTodo >> test2_1_5_2_1 [
-		self assert: false
+	"p 194 result-last vs. result-no-last is not modelled by ROS. ==> Backlog"
+	self flag: #TBD.  
+	self assert: false.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	"CHECK B: WAS THE RETURN RESULT NOT-LAST COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? " 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A ?"
 ]
 
 { #category : #tests }
