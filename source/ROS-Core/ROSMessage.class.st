@@ -39,3 +39,15 @@ ROSMessage >> invokeId: aNumber [
 	(self expandFieldNamed: 'invokeId')
 		at: 'present' put: aNumber
 ]
+
+{ #category : #accessing }
+ROSMessage >> linkedId [
+	^ (self at: 'linkedId') at: 'present'
+]
+
+{ #category : #accessing }
+ROSMessage >> linkedId: aNumber [
+	aNumber ifNil: [ Error signal: 'cannot use nil as linkedId' ].
+	(self expandFieldNamed: 'linkedId')
+		at: 'present' put: aNumber
+]

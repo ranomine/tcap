@@ -123,6 +123,11 @@ ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
 		handler cull: anObject cull: anotherObject]
 ]
 
+{ #category : #'as yet unclassified' }
+ROSInvocation >> linkedTo: anInvoke [
+	self linkedId: anInvoke invokeId.
+]
+
 { #category : #accessing }
 ROSInvocation >> newArgumentValue [
 	^ self argumentType newValue
@@ -352,6 +357,14 @@ ROSInvocation >> returnResultLastUsing: aBlock [
 	aBlock value: result.
 	self returnResultLast: result.
  
+]
+
+{ #category : #'as yet unclassified' }
+ROSInvocation >> returnResultUsing: aBlock [
+	| result |
+	result := self newResultValue.
+	aBlock value: result.
+	self returnResult: result.
 ]
 
 { #category : #'as yet unclassified' }
