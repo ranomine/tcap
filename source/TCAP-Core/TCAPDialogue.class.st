@@ -505,6 +505,9 @@ TCAPDialogue >> requestTcInvoke: anOperation parameters: anObject  class: aClass
 	invocation startInvocationTimer: aTimeout.
 	localInvocations add: invocation.
 	
+	anInvocation ifNotNil: [ 
+		invocation linkedTo: anInvocation ].
+	
 	invocation onMessage: [ :msg |
         componentCoordinator addComponent: (msg asROS) ].
       invocation sendMessage: invocation.
