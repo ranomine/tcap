@@ -279,7 +279,8 @@ TCAPDialogue >> newRemoteInvocation: anInvocation [
 		ifFound: [  TCAPDuplicateInvocationId signal: 'invocation with id ', anInvocation id, ' alread exists'  ].
 	
 	remoteInvocations add: anInvocation.
-
+	self allocateInvokeId: anInvocation invokeId. "we need to register the id as used here, so all future invocations we do will get another ID"
+	
 	self indicationTcInvoke: anInvocation 
 ]
 
