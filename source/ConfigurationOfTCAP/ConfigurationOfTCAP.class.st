@@ -414,12 +414,13 @@ ConfigurationOfTCAP >> baseline5: spec [
 			package: 'ROS-Core' with: [
 				spec requires: #('ASN1-Tool' 'ASN1-Builder' ). ];
 			package: 'MAP-Core' with: [
-				spec requires: #('ROS-Core' ). ];
+				spec requires: #('ROS-Core' 'STON-Core'). ];
 			package: 'TCAP-Core' with: [
 				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' 'OsmoCore' 'OsmoNetwork' 'Fuel' ). ];
 			package: 'Q787-TestSpec' with: [
 				spec requires: #('TCAP-Core' 'OsmoNetwork' ). ];
 			package: 'TCAP-Benchmark';
+			package: 'STON-Core';
 			package: 'Camel-Core';
 			package: 'Camel-SCF'.
 		spec 
@@ -636,6 +637,7 @@ ConfigurationOfTCAP >> version5: spec [
 			package: 'Q787-TestSpec' with: 'Q787-TestSpec-MarcusDenker.119';
 			package: 'TCAP-Benchmark' with: 'TCAP-Benchmark-NorbertHartl.3';
 			package: 'Camel-Core' with: 'Camel-Core-NorbertHartl.10';
-			package: 'Camel-SCF' with: 'Camel-SCF-NorbertHartl.8'. ].
+			package: 'Camel-SCF' with: 'Camel-SCF-NorbertHartl.8';
+			package: 'STON-Core'with: 'STON-Core-NorbertHartl.64' ].
 
 ]
