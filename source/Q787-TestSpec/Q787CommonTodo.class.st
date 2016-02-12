@@ -61,12 +61,11 @@ Q787CommonTodo >> test2_1_2_1_1 [
 					dialog requestTcContinue ]].
 			
 	dialogue := env servicePointA newDialogue.
-	 env servicePointA onDialogue: [ :dialog |
-			 dialog 
-				onInvoke: [ : inv | 
-					invokeAcalled := true.
-					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
-					dialog requestTcContinue ]].
+	dialogue 
+		onInvoke: [ : inv | 
+			invokeAcalled := true.
+			inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+			dialogue requestTcContinue ].
 	
 	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
 	invocation onReturnLast: [ :result |  called := true ].
