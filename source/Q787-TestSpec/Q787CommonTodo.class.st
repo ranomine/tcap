@@ -47,54 +47,6 @@ Q787CommonTodo >> test1_1_3_2_1s2 [
 ]
 
 { #category : #tests }
-Q787CommonTodo >> test2_1_2_1_1 [
-	"Invoke linked components. Page 134"
-
-	| env dialogue invocation called invokeBcalled invokeAcalled |
-	env := self given: #shouldCreateTestEnvironment.
-	env servicePointB
-		onDialogue: [ :dialog |
-			 dialog 
-				onInvoke: [ : inv | 
-					invokeBcalled := true.
-					dialog requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500 linkedTo: inv.
-					dialog requestTcContinue ]].
-			
-	dialogue := env servicePointA newDialogue.
-	dialogue 
-		onInvoke: [ : inv | 
-			invokeAcalled := true.
-			inv returnResultLastUsing: [ :result | result add: self exampleResult ].
-			dialogue requestTcContinue ].
-	
-	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
-	invocation onReturnLast: [ :result |  called := true ].
-	
-		
-	dialogue 
-		requestTcBeginDestinationAddress:  self destinationAddress
-		originatingAddress:  self originatingAddress
-		applicationContextName: '0.4.0.0.1.0.14.2'.
-		
-	self assert: invokeBcalled = true.
-	self assert: invokeAcalled = true.
-	
-	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
-	"CHECK B: WAS A LINKED INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
-	"CHECK C: WAS THE LINKED ID THE SAME AS THE ORIGINAL INVOKE ID SENT BY SP B? "
-	"CHECK D: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
-	"CHECK E: WAS THE SECOND RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
-	"CHECK F: WAS THE INVOKE ID IN THE SECOND RETURN RESULT-LAST COMPONENT THE SAME AS THE ONE IN THE ORIGINAL 
-	                 INVOKE COMPONENT SENT BY SP B? "
-	"CHECK G: WAS THE OPERATION CODE IN THE SECOND RETURN RESULT-LAST COMPONENT THE SAME AS THE ONE IN 
-	                 THE ORIGINAL INVOKE COMPONENT ? "
-	"CHECK H: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?
-"
-
-
-]
-
-{ #category : #tests }
 Q787CommonTodo >> test2_1_2_1_2 [
 	"Invoke linked components. Page 137"
 
