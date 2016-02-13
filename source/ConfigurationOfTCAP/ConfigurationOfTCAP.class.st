@@ -276,6 +276,91 @@ ConfigurationOfTCAP class >> validate [
 	^ ((Smalltalk at: #MetacelloToolBox) validateConfiguration: self debug: #() recurse: false) explore
 ]
 
+{ #category : #'as yet unclassified' }
+ConfigurationOfTCAP >> baseline06: spec [
+	<version: '0.6-baseline'>
+
+	spec for: #'common' do: [
+		spec blessing: #'baseline'.
+		spec repository: 'http://smalltalkhub.com/mc/osmocom/TCAP/main'.
+		spec 
+			project: 'Phexample' with: [
+				spec
+					className: #ConfigurationOfPhexample;
+					versionString: '1.2';
+					repository: 'http://smalltalkhub.com/mc/Phexample/Phexample/main' ];
+			project: 'ASN1' with: [
+				spec
+					className: #ConfigurationOfASN1;
+					versionString: #'bleedingEdge';
+					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
+			project: 'ASN1-Tool' with: [
+				spec
+					className: #ConfigurationOfASN1;
+					versionString: #'bleedingEdge';
+					loads: #('ASN1-Tool' );
+					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
+			project: 'ASN1-Builder' with: [
+				spec
+					className: #ConfigurationOfASN1;
+					versionString: #'bleedingEdge';
+					loads: #('ASN1-Builder' );
+					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
+			project: 'ASN1-Tests-Builder' with: [
+				spec
+					className: #ConfigurationOfASN1;
+					versionString: #'bleedingEdge';
+					loads: #('ASN1-Tests-Builder' );
+					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
+			project: 'ASN1 full' with: [
+				spec
+					className: #ConfigurationOfASN1;
+					versionString: #'bleedingEdge';
+					loads: #('tests' );
+					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
+			project: 'ASN1-Tests-Tool' with: [
+				spec
+					className: #ConfigurationOfASN1;
+					versionString: #'bleedingEdge';
+					loads: #('ASN1-Tests-Tool' );
+					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
+			project: 'OsmoCore' with: [
+				spec
+					className: #ConfigurationOfOsmoCore;
+					versionString: #'bleedingEdge';
+					repository: 'http://smalltalkhub.com/mc/osmocom/Core/main/' ];
+			project: 'OsmoNetwork' with: [
+				spec
+					className: #ConfigurationOfOsmoNetwork;
+					versionString: #'bleedingEdge';
+					repository: 'http://smalltalkhub.com/mc/osmocom/Network/main/' ];
+			project: 'Fuel' with: [
+				spec
+					className: #ConfigurationOfFuel;
+					versionString: '1.9.4';
+					repository: 'http://smalltalkhub.com/mc/Pharo/Fuel/main/' ].
+		spec 
+			package: 'ROS-Core' with: [
+				spec requires: #('ASN1-Tool' 'ASN1-Builder' ). ];
+			package: 'MAP-Core' with: [
+				spec requires: #('ROS-Core' 'STON-Core' ). ];
+			package: 'TCAP-Core' with: [
+				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' 'OsmoCore' 'OsmoNetwork' 'Fuel' ). ];
+			package: 'Q787-TestSpec' with: [
+				spec requires: #('TCAP-Core' 'OsmoNetwork' ). ];
+			package: 'TCAP-Benchmark';
+			package: 'STON-Core';
+			package: 'Camel-Core';
+			package: 'Camel-SCF'.
+		spec 
+			group: 'default' with: #('ASN1-Tool' 'ROS-Core' 'MAP-Core' 'TCAP-Core' );
+			group: 'q787' with: #('Q787-TestSpec' );
+			group: 'all' with: #('default' 'ASN1 full' 'tests' 'camel' );
+			group: 'bench' with: #('default' 'TCAP-Benchmark' );
+			group: 'tests' with: #('Q787-TestSpec' );
+			group: 'camel' with: #('default' 'Camel-Core' 'Camel-SCF' ). ].
+]
+
 { #category : #baselines }
 ConfigurationOfTCAP >> baseline4: spec [
 	<version: '4-baseline'>
@@ -433,96 +518,11 @@ ConfigurationOfTCAP >> baseline5: spec [
 
 ]
 
-{ #category : #baselines }
-ConfigurationOfTCAP >> baseline6: spec [
-	<version: '6-baseline'>
-
-	spec for: #'common' do: [
-		spec blessing: #'baseline'.
-		spec repository: 'http://smalltalkhub.com/mc/osmocom/TCAP/main'.
-		spec 
-			project: 'Phexample' with: [
-				spec
-					className: #ConfigurationOfPhexample;
-					versionString: '1.2';
-					repository: 'http://smalltalkhub.com/mc/Phexample/Phexample/main' ];
-			project: 'ASN1' with: [
-				spec
-					className: #ConfigurationOfASN1;
-					versionString: #'bleedingEdge';
-					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
-			project: 'ASN1-Tool' with: [
-				spec
-					className: #ConfigurationOfASN1;
-					versionString: #'bleedingEdge';
-					loads: #('ASN1-Tool' );
-					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
-			project: 'ASN1-Builder' with: [
-				spec
-					className: #ConfigurationOfASN1;
-					versionString: #'bleedingEdge';
-					loads: #('ASN1-Builder' );
-					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
-			project: 'ASN1-Tests-Builder' with: [
-				spec
-					className: #ConfigurationOfASN1;
-					versionString: #'bleedingEdge';
-					loads: #('ASN1-Tests-Builder' );
-					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
-			project: 'ASN1 full' with: [
-				spec
-					className: #ConfigurationOfASN1;
-					versionString: #'bleedingEdge';
-					loads: #('tests' );
-					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
-			project: 'ASN1-Tests-Tool' with: [
-				spec
-					className: #ConfigurationOfASN1;
-					versionString: #'bleedingEdge';
-					loads: #('ASN1-Tests-Tool' );
-					repository: 'http://smalltalkhub.com/mc/NorbertHartl/ASN1/main' ];
-			project: 'OsmoCore' with: [
-				spec
-					className: #ConfigurationOfOsmoCore;
-					versionString: #'bleedingEdge';
-					repository: 'http://smalltalkhub.com/mc/osmocom/Core/main/' ];
-			project: 'OsmoNetwork' with: [
-				spec
-					className: #ConfigurationOfOsmoNetwork;
-					versionString: #'bleedingEdge';
-					repository: 'http://smalltalkhub.com/mc/osmocom/Network/main/' ];
-			project: 'Fuel' with: [
-				spec
-					className: #ConfigurationOfFuel;
-					versionString: '1.9.4';
-					repository: 'http://smalltalkhub.com/mc/Pharo/Fuel/main/' ].
-		spec 
-			package: 'ROS-Core' with: [
-				spec requires: #('ASN1-Tool' 'ASN1-Builder' ). ];
-			package: 'MAP-Core' with: [
-				spec requires: #('ROS-Core' 'STON-Core' ). ];
-			package: 'TCAP-Core' with: [
-				spec requires: #('ASN1-Tool' 'ASN1-Tests-Builder' 'MAP-Core' 'ASN1-Tests-Tool' 'Phexample' 'OsmoCore' 'OsmoNetwork' 'Fuel' ). ];
-			package: 'Q787-TestSpec' with: [
-				spec requires: #('TCAP-Core' 'OsmoNetwork' ). ];
-			package: 'TCAP-Benchmark';
-			package: 'STON-Core';
-			package: 'Camel-Core';
-			package: 'Camel-SCF'.
-		spec 
-			group: 'default' with: #('ASN1-Tool' 'ROS-Core' 'MAP-Core' 'TCAP-Core' );
-			group: 'q787' with: #('Q787-TestSpec' );
-			group: 'all' with: #('default' 'ASN1 full' 'tests' 'camel' );
-			group: 'bench' with: #('default' 'TCAP-Benchmark' );
-			group: 'tests' with: #('Q787-TestSpec' );
-			group: 'camel' with: #('default' 'Camel-Core' 'Camel-SCF' ). ].
-]
-
 { #category : #'as yet unclassified' }
 ConfigurationOfTCAP >> development: spec [
 	<symbolicVersion: #'development'>
 
-	spec for: #'common' version: '6-baseline'.
+	spec for: #'common' version: '0.6-baseline'.
 
 ]
 
