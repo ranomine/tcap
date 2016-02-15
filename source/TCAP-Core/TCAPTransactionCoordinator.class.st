@@ -219,7 +219,7 @@ TCAPTransactionCoordinator >> receive: aByteArray from: aSender to: aReceiver [
 { #category : #indications }
 TCAPTransactionCoordinator >> receiveEntityMessage: message from: aSender to: aReceiver [
 	| transaction |
-		"notify handlers about the message received. No transaction/dialogue created by now"
+	"notify handlers about the message received. No transaction/dialogue created by now"
 	transaction := self 
 		transactionForMessage: message
 		sender: aSender 

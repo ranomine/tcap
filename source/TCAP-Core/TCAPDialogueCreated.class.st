@@ -1,3 +1,7 @@
+"
+A TCAPDialogueCreated signals that a  dialog was created locally. 
+
+"
 Class {
 	#name : #TCAPDialogueCreated,
 	#superclass : #TCAPDialogueAnnouncement,
