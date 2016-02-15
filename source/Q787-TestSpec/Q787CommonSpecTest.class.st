@@ -4040,3 +4040,86 @@ Q787CommonSpecTest >> test2_1_2_1_4 [
 	"CHECK G: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
 ]
+
+{ #category : #tests }
+Q787CommonSpecTest >> test2_1_2_2_1 [
+	"Invoke linked components. Page 146"
+	"start like test2_1_2_1_1then second invoke with expiration like 2.1.1.1.5"
+	"TODO: timeout not working"
+	
+	| env dialogue invocation cancelCalled invokeBcalled invokeAcalled begin componentPortion invokeComponent invokeID opcode parameter continue linkeID invokeIDtoCheck sequence opcodeReturn |
+	env := self given: #shouldCreateTestEnvironment.
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv |  | linkedInvoke |
+					invokeBcalled := true.
+					linkedInvoke := dialog requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportFailure timeout: 500 linkedTo: inv.
+					dialog requestTcContinue.
+					 ]].
+			
+	dialogue := env servicePointA newDialogue.
+	dialogue 
+		onInvoke: [ : inv | 
+			invokeAcalled := true. ].
+	
+	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportNothing timeout: 500.	
+	invocation onLCancel: [ :result | cancelCalled := true ].
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+		
+	self assert: invokeBcalled = true.
+	self assert: invokeAcalled = true.
+	"self assert: cancelCalled = true." self flag: #TBD.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	
+	self assert: env servicePointA didSendMessage.
+	begin := self checkBegin: env servicePointA sentPackets first.
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	invokeIDtoCheck := invokeID contents.
+	
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+	
+	"CHECK B: WAS A LINKED INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	
+	continue := self checkContinue: env servicePointA receivedPackets first.
+	
+	componentPortion := continue encodedValue elements fourth.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	linkeID :=  invokeComponent elements second.
+	self assert: linkeID tagByteValue = 2r10000000.
+	self assert: linkeID contents byteSize = 1.
+	self assert: linkeID contents asInteger  =  1. 
+	
+	opcode := invokeComponent elements third.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements fourth.
+	self assert: parameter contents asString = '123456789'.
+	
+	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+]
