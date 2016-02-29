@@ -154,9 +154,135 @@ Q787ValidationTodo >> test1_2_2_1s1 [
 
 { #category : #tests }
 Q787ValidationTodo >> test2_1_4_1_2 [
-	"Invoke linked components. Page 174"
-	self flag: #TBD.
-	self assert: false.
+	"Invoke linked components. Page 174. Like test2_1_2_1_1 but with linked invoke uses operation code not linked "
+	
+	| env dialogue invocation called invokeBcalled invokeAcalled begin componentPortion invokeComponent invokeID opcode parameter continue linkeID invokeIDtoCheck sequence opcodeReturn |
+	
+	self flag: #TBD. "We need to detec the wrong operation code and reject"
+	
+	env := self given: #shouldCreateTestEnvironment.
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv |  | linkedInvoke |
+					invokeBcalled := true.
+					linkedInvoke := dialog requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500 linkedTo: inv.
+					linkedInvoke  onReturnLast: [ :res |   	
+												inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+												dialog requestTcContinue ].
+					dialog requestTcContinue ]].
+			
+	dialogue := env servicePointA newDialogue.
+	dialogue 
+		onInvoke: [ : inv | 
+			invokeAcalled := true.
+			inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+			dialogue requestTcContinue ].
+	
+	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation onReturnLast: [ :result |  called := true ].
+	
+		
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+		
+	self assert: invokeBcalled = true.
+	self assert: invokeAcalled = true.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	
+	self assert: env servicePointA didSendMessage.
+	begin := self checkBegin: env servicePointA sentPackets first.
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	invokeIDtoCheck := invokeID contents.
+	
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+	
+	"CHECK B: WAS A LINKED INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	
+	continue := self checkContinue: env servicePointA receivedPackets first.
+	
+	componentPortion := continue encodedValue elements fourth.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	linkeID :=  invokeComponent elements second.
+	self assert: linkeID tagByteValue = 2r10000000.
+	self assert: linkeID contents byteSize = 1.
+	self assert: linkeID contents asInteger  =  1. 
+	
+	opcode := invokeComponent elements third.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements fourth.
+	self assert: parameter contents asString = '123456789'.
+	
+	
+	"CHECK C: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	continue := self checkContinue: env servicePointA sentPackets second.
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+
+	opcodeReturn := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcodeReturn first = 2r00000010.
+	self assert: opcodeReturn second = 1.
+	self assert: opcodeReturn third = 56.
+	
+	"CHECK D: WAS THE INVOKE ID IN THE RETURN RESULT-LAST COMPONENT THE SAME AS THE ONE IN THE INVOKE COMPONENT SENT BY SP B ? "
+	self assert: invokeIDtoCheck =  linkeID contents.
+	
+	"CHECK E: WAS THE OPERATION CODE IN THE RETURN RESULT-LAST COMPONENT SENT BY SP A THE SAME AS THE ONE IN THE INVOKE COMPONENT SENT BY SP B ? "
+	self assert: opcodeReturn third = opcode contents asInteger.
+	
+	"CHECK F: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	
+	self assert: called == true.
+	
+	self assert: env servicePointA receivedPackets size = 2.
+	continue := self checkContinue: env servicePointA receivedPackets last.
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+
+	opcodeReturn := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcodeReturn first = 2r00000010.
+	self assert: opcodeReturn second = 1.
+	self assert: opcodeReturn third = 56.
+	
+	"CHECK G: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+
+	
 	
 	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
 	"CHECK B: WAS A LINKED INVOKE COMPONENT PASSED TO THE TC-USER BY SP A? "
@@ -167,9 +293,145 @@ Q787ValidationTodo >> test2_1_4_1_2 [
 
 { #category : #tests }
 Q787ValidationTodo >> test2_1_4_1_3 [
-	"Invoke linked components. Page 177"
-	self flag: #TBD.
-	self assert: false.
+	"Invoke linked components. Page 177.  Like test2_1_2_1_1 but with linked invoke contains one parameter not associated with the outcome of the operation (as in 2.1.4.1.4"
+	
+	| env dialogue invocation called invokeBcalled invokeAcalled begin componentPortion invokeComponent invokeID opcode parameter continue linkeID invokeIDtoCheck sequence opcodeReturn |
+	
+	self flag: #TBD. "We need to detec the wrong parameter and reject"
+	
+	env := self given: #shouldCreateTestEnvironment.
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv |  | linkedInvoke |
+					invokeBcalled := true.
+					linkedInvoke := dialog requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500 linkedTo: inv.
+					linkedInvoke  onReturnLast: [ :res |   	
+												inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+												dialog requestTcContinue ].
+					dialog requestTcContinue ]].
+			
+	dialogue := env servicePointA newDialogue.
+	dialogue 
+		onInvoke: [ : inv | 
+			invokeAcalled := true.
+			inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+			dialogue requestTcContinue ].
+	
+	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation onReturnLast: [ :result |  called := true ].
+	
+		
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+		
+	self assert: invokeBcalled = true.
+	self assert: invokeAcalled = true.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	
+	self assert: env servicePointA didSendMessage.
+	begin := self checkBegin: env servicePointA sentPackets first.
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	invokeIDtoCheck := invokeID contents.
+	
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+	
+	"CHECK B: WAS A LINKED INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	
+	continue := self checkContinue: env servicePointA receivedPackets first.
+	
+	componentPortion := continue encodedValue elements fourth.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	linkeID :=  invokeComponent elements second.
+	self assert: linkeID tagByteValue = 2r10000000.
+	self assert: linkeID contents byteSize = 1.
+	self assert: linkeID contents asInteger  =  1. 
+	
+	opcode := invokeComponent elements third.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements fourth.
+	self assert: parameter contents asString = '123456789'.
+	
+	
+	"CHECK C: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	continue := self checkContinue: env servicePointA sentPackets second.
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+
+	opcodeReturn := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcodeReturn first = 2r00000010.
+	self assert: opcodeReturn second = 1.
+	self assert: opcodeReturn third = 56.
+	
+	"CHECK D: WAS THE INVOKE ID IN THE RETURN RESULT-LAST COMPONENT THE SAME AS THE ONE IN THE INVOKE COMPONENT SENT BY SP B ? "
+	self assert: invokeIDtoCheck =  linkeID contents.
+	
+	"CHECK E: WAS THE OPERATION CODE IN THE RETURN RESULT-LAST COMPONENT SENT BY SP A THE SAME AS THE ONE IN THE INVOKE COMPONENT SENT BY SP B ? "
+	self assert: opcodeReturn third = opcode contents asInteger.
+	
+	"CHECK F: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	
+	self assert: called == true.
+	
+	self assert: env servicePointA receivedPackets size = 2.
+	continue := self checkContinue: env servicePointA receivedPackets last.
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+
+	opcodeReturn := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcodeReturn first = 2r00000010.
+	self assert: opcodeReturn second = 1.
+	self assert: opcodeReturn third = 56.
+	
+	"CHECK G: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+
+	
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	"CHECK B: WAS A LINKED INVOKE COMPONENT PASSED TO THE TC-USER BY SP A? "
+	"CHECK C: WAS THE REJECT COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	"CHECK D: WAS THE INVOKE ID IN THE REJECT COMPONENT THE SAME AS THE INVOKE ID IN THE INVOKE COMPONENT SENT BY SP B? "
+	"CHECK E: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	
+	
+	
+	
 	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
 	"CHECK B: WAS A LINKED INVOKE COMPONENT PASSED TO THE TC-USER BY SP A? "
 	"CHECK C: WAS THE REJECT COMPONENT SENT BY SP A? "
