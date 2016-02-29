@@ -12,7 +12,7 @@ TCAPReportSuccess class >> classNumber [
 	^ 3
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #received }
 TCAPReportSuccess class >> receivedReturnLast: aResultLast invocation: aInvocation [ 
 	aInvocation 
 		notifyReturnLast: aResultLast;

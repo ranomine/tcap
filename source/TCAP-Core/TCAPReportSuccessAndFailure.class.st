@@ -26,8 +26,8 @@ TCAPReportSuccessAndFailure class >> receivedError: anError invocation: anInvoca
 		waitForReject
 ]
 
-{ #category : #'as yet unclassified' }
-TCAPReportSuccessAndFailure class >> receivedReturn: aResult invocation: aInvocation [ 
+{ #category : #received }
+TCAPReportSuccessAndFailure class >> receivedReturn: aResult invocation: aInvocation [
 	aInvocation notifyReturn: aResult
 ]
 

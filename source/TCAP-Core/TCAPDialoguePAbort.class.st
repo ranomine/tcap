@@ -47,7 +47,6 @@ TCAPDialoguePAbort class >> unrecognizedTransactionID [
 { #category : #converting }
 TCAPDialoguePAbort >> asAbort [
 	| abort |
-	self halt.
 	abort := (self asn1TypeNamed: 'Abort') newValue.
 	(abort expandFieldNamed: 'reason') 
 		at: 'p-abortCause' put: self.

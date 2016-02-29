@@ -440,6 +440,12 @@ TCAPDialogue >> receivedReturnLast: aResultLast [
 ]
 
 { #category : #requests }
+TCAPDialogue >> requestTCUCancel: invokeID [
+	"To cancel we remove the invokeID from the localInvocations."
+	localInvocations removeAllSuchThat: [:inv | invokeID =  inv invokeId ].
+]
+
+{ #category : #requests }
 TCAPDialogue >> requestTcBeginDestinationAddress: aDestinationAddress originatingAddress: anOriginatingAddress [ 
 	self state 
 		requestTcBeginDestinationAddress: aDestinationAddress 

@@ -20,7 +20,6 @@ TCAPDialogueUAbort class >> isAsn1ModelClass [
 { #category : #converting }
 TCAPDialogueUAbort >> asAbort [
 	| abort |
-	self halt.
 	abort := (self asn1TypeNamed: 'Abort') newValue.
 	(abort expandFieldNamed: 'reason')
 		at: 'u-abortCause' put: self asExternalValue.
