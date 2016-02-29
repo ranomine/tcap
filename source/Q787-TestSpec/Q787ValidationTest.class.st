@@ -4925,6 +4925,82 @@ Q787ValidationTest >> test2_1_3_1_1 [
 ]
 
 { #category : #tests }
+Q787ValidationTest >> test2_1_3_1_2 [
+	"Invoke linked components. Page 152. . Starts like test2_1_2_1_4 but return Reject from B"
+
+	| env dialogue invocation called invokeBcalled invokeAcalled begin componentPortion invokeComponent invokeID opcode parameter continue  invokeIDtoCheck     rejectComponent problemCode |
+	env := self given: #shouldCreateTestEnvironment.
+	env servicePointA
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv |  | linkedInvoke |
+					invokeBcalled := true.
+					linkedInvoke := dialog requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500 linkedTo: inv.
+					linkedInvoke  onError: [ :res |   	
+												inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+												dialog requestTcContinue ].
+					dialog requestTcContinue ]].
+			
+	dialogue := env servicePointB newDialogue.
+	dialogue 
+		onInvoke: [ : inv | 
+			invokeAcalled := true.
+			inv returnReject: 2r10.
+			dialogue requestTcContinue ].
+	
+	invocation := dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation onReturnLast: [ :result |  called := true ].
+	
+		
+	dialogue 
+		requestTcBeginDestinationAddress:  self  originatingAddress
+		originatingAddress:  self destinationAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+		
+	self assert: invokeBcalled = true.
+	self assert: invokeAcalled = true.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
+	begin := self checkBegin: env servicePointA receivedPackets first.
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	invokeIDtoCheck := invokeID contents.
+	
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+	
+	
+	"CHECK B: WAS THE REJECT COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "	
+
+	continue := self checkContinue: env servicePointA receivedPackets second.
+	componentPortion := continue encodedValue elements third. "no no dialog portion, so 3 not 4" 
+	rejectComponent :=  componentPortion elements first.
+	self assert:  rejectComponent tagByteValue = 2r10100100. "REJECT"
+	
+	invokeID := rejectComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	problemCode := rejectComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000001. "INVOKE"
+	self assert: problemCode contents asInteger  =  2r10.  "unrecognized linked ID"
+	self assert: problemCode contents byteSize = 1.
+		
+	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	
+]
+
+{ #category : #tests }
 Q787ValidationTest >> test2_1_3_1_3 [
 	| env dialogue invocation invokecalled returncalled rejectACalled begin componentPortion invokeComponent invokeID opcode parameter continue problemCode |
 	env := self given: #shouldCreateTestEnvironment.

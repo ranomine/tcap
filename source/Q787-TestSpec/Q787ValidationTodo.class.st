@@ -153,17 +153,6 @@ Q787ValidationTodo >> test1_2_2_1s1 [
 ]
 
 { #category : #tests }
-Q787ValidationTodo >> test2_1_3_1_2 [
-	"Invoke linked components. Page 152"
-	self flag: #TBD.
-	self assert: false
-	
-	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
-	"CHECK B: WAS THE REJECT COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
-	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
-]
-
-{ #category : #tests }
 Q787ValidationTodo >> test2_1_4_1_2 [
 	"Invoke linked components. Page 174"
 	self flag: #TBD.

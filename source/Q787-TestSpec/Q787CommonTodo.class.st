@@ -48,7 +48,7 @@ Q787CommonTodo >> test1_1_3_2_1s2 [
 
 { #category : #tests }
 Q787CommonTodo >> test2_1_2_2_1 [
-	"Invoke linked components. Page 146"
+	"TimeOut Invoke linked components. Page 146"
 	self assert: false
 	
 	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
@@ -58,7 +58,7 @@ Q787CommonTodo >> test2_1_2_2_1 [
 
 { #category : #tests }
 Q787CommonTodo >> test2_1_2_2_2 [
-	"Invoke linked components. Page 148"
+	"Timeout Invoke linked components. Page 148"
 	self assert: false
 	
 	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A? "
