@@ -3333,7 +3333,6 @@ Q787CommonSpecTest >> test2_1_1_2_2 [
 	Processor yield.
 	(Delay forSeconds: 0.1) wait.
 	
-	
 	" CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
 	self assert: env servicePointA didSendMessage.
 	begin := self checkBegin: env servicePointA sentPackets first.
@@ -3353,12 +3352,10 @@ Q787CommonSpecTest >> test2_1_1_2_2 [
 	self assert: parameter contents asString = '123456789'.
 	
 	" CHECK B: WAS THE COMPONENT FLOW AS SHOWN ABOVE? "
-	self assert: cancelCalled == true.
 	self assert: invokeCalled == true. "we reach here but time out"
 	
 	" CHECK C: WAS THE TC-USER AT SP A INFORMED OF TIMER EXPIRY? "
-	self flag: #TBD. 
-	"TC-L-CANCEL needs to be checked on the lower protocol layer. see Recommendation Q.775 page 16"
+	self assert: cancelCalled == true.
 	
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
@@ -3462,12 +3459,10 @@ Q787CommonSpecTest >> test2_1_1_3_2 [
 	self assert: parameter contents asString = '123456789'.
 	
 	" CHECK B: WAS THE COMPONENT FLOW AS SHOWN ABOVE? "
-	self assert: cancelCalled == true.
 	self assert: invokeCalled == true. "we reach here but time out"
 	
 	" CHECK C: WAS THE TC-USER AT SP A INFORMED OF TIMER EXPIRY? "
-	self flag: #TBD. 
-	"TC-L-CANCEL needs to be checked on the lower protocol layer. see Recommendation Q.775 page 16"
+	self assert: cancelCalled == true.
 	
 	" CHECK D: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
@@ -3513,12 +3508,10 @@ Q787CommonSpecTest >> test2_1_1_4_1 [
 	self assert: parameter contents asString = '123456789'.
 	
 	" additional checks "
-	self assert: cancelCalled == true.
 	self assert: invokeCalled == true. "we reach here but time out"
 	
 	" CHECK B: WAS THE TC-USER AT SP A INFORMED OF TIMER EXPIRY? "
-	self flag: #TBD. 
-	"TC-L-CANCEL needs to be checked on the lower protocol layer. see Recommendation Q.775 page 16"
+	self assert: cancelCalled == true.
 	
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
