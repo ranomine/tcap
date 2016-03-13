@@ -206,6 +206,11 @@ TCAPDialogue >> initialize [
 ]
 
 { #category : #accessing }
+TCAPDialogue >> invocationWithId: aNumber [
+	^ (self localInvocationWithId: aNumber ) ifNil: [ self remoteInvocationWithId: aNumber ]
+]
+
+{ #category : #accessing }
 TCAPDialogue >> invoke: invocation withTimeout: aDuration [
 	invocation startInvocationTimer: aDuration.
 	localInvocations add: invocation.
@@ -279,8 +284,6 @@ TCAPDialogue >> newRemoteInvocation: anInvocation [
 		ifFound: [  TCAPDuplicateInvocationId signal: 'invocation with id ', anInvocation id, ' alread exists'  ].
 	
 	remoteInvocations add: anInvocation.
-	self allocateInvokeId: anInvocation invokeId. "we need to register the id as used here, so all future invocations we do will get another ID"
-	
 	self indicationTcInvoke: anInvocation 
 ]
 
@@ -430,13 +433,21 @@ TCAPDialogue >> receivedError: anError [
 ]
 
 { #category : #received }
-TCAPDialogue >> receivedReject: aReject [ 
-	(self localInvocationWithId: aReject invokeId) receivedReject: aReject
+TCAPDialogue >> receivedReject: aReject [
+	" we need to be able to reject both local and remove invokations (e.g. reject an error)"
+	(self invocationWithId: aReject invokeId) receivedReject: aReject
 ]
 
 { #category : #received }
 TCAPDialogue >> receivedReturnLast: aResultLast [ 
 	(self localInvocationWithId: aResultLast invokeId) receivedReturnLast: aResultLast 
+]
+
+{ #category : #accessing }
+TCAPDialogue >> remoteInvocationWithId: aNumber [
+	^ remoteInvocations 
+		detect: [ :each| each invokeId = aNumber  ]
+		ifNone: [  nil  ]
 ]
 
 { #category : #requests }
@@ -573,8 +584,7 @@ TCAPDialogue >> sendAcceptResponse [
 
 { #category : #accessing }
 TCAPDialogue >> setupTcError: anInvocation name: aName [ 
-	localInvocations add: anInvocation.
-	
+
 	anInvocation onMessage: [ :msg |
         componentCoordinator addComponent: (msg asROS) ].
       anInvocation returnErrorNamed: aName.
@@ -583,8 +593,7 @@ TCAPDialogue >> setupTcError: anInvocation name: aName [
 
 { #category : #accessing }
 TCAPDialogue >> setupTcReturn: anInvocation parameters: anObject [ 
-	localInvocations add: anInvocation.
-	
+
 	anInvocation onMessage: [ :msg |
         componentCoordinator addComponent: (msg asROS) ].
       anInvocation returnResultLastUsing: [ :result | result add:  anObject].
