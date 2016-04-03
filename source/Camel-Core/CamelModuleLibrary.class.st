@@ -4071,7 +4071,7 @@ callInformationRequestV2 OPERATION ::= {
 					unexpectedDataValue |
 					unexpectedParameter |
 					unknownLegID}
-}
+	CODE			opcode-callInformationRequest}
 
 callInformationRequest {PARAMETERS-BOUND : bound} OPERATION ::= {
 	ARGUMENT		CallInformationRequestArg {bound}
