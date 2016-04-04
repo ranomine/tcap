@@ -439,8 +439,9 @@ TCAPDialogue >> receivedReject: aReject [
 ]
 
 { #category : #received }
-TCAPDialogue >> receivedReturnLast: aResultLast [ 
-	(self localInvocationWithId: aResultLast invokeId) receivedReturnLast: aResultLast 
+TCAPDialogue >> receivedReturnLast: aResultLast [
+
+	(self invocationWithId: aResultLast invokeId) receivedReturnLast: aResultLast 
 ]
 
 { #category : #accessing }
@@ -580,6 +581,15 @@ TCAPDialogue >> sendAcceptResponse [
 	"store response for the next continue or end message to pick up
 	and deliver back"
 	pendingResponse := self newAcceptedDialogueResponse: nil
+]
+
+{ #category : #accessing }
+TCAPDialogue >> setupReject: anInvocation [
+
+	anInvocation onMessage: [ :msg |
+        componentCoordinator addComponent: (msg asROS) ].
+	remoteInvocations add: anInvocation.
+	^ anInvocation  
 ]
 
 { #category : #accessing }

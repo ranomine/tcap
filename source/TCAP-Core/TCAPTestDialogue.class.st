@@ -66,3 +66,12 @@ TCAPTestDialogue >> requestTcEndDestinationAddress: aDestinationAddress originat
 		applicationContextName: anApplicationContextName
 		userInformation: aUserInformation
 ]
+
+{ #category : #faults }
+TCAPTestDialogue >> setupFaultyTcError: anInvocation name: aName [ 
+
+	anInvocation onMessage: [ :msg |
+        componentCoordinator addComponent: (msg asROS) ].
+ 	 anInvocation returnFaultyErrorNamed: aName.
+	^ anInvocation  
+]
