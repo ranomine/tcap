@@ -4116,3 +4116,74 @@ Q787CommonSpecTest >> test2_1_2_2_1 [
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
 ]
+
+{ #category : #tests }
+Q787CommonSpecTest >> test2_1_6 [
+	
+	| env dialogue invocation  begin   continue  componentPortion invokeComponent invokeID opcode parameter  rejectComponent problemCode |
+	
+	env := self given: #shouldCreateTestEnvironment.
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+					dialog requestTcContinue ]].
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
+	dialogue requestTCUCancel: invocation invokeId.
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+	begin := self checkBegin: env servicePointA sentPackets first.	
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent elements third.
+	self assert: parameter contents asString = '123456789'.
+
+
+	"CHECK B: WAS THE REJECT COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
+
+	self assert:  env servicePointA sentPackets size = 2.
+	continue := self checkContinue: env servicePointA sentPackets last.
+	componentPortion := continue encodedValue elements last. 
+	rejectComponent :=  componentPortion elements first.
+	self assert:  rejectComponent tagByteValue = 2r10100100. "REJECT"
+	
+	invokeID := rejectComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	problemCode := rejectComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000010.  "RETURN RESULT"
+	self assert: problemCode contents asInteger  = 0. "unrecognized invoke ID"
+	self assert: problemCode contents byteSize = 1.
+
+
+	"CHECK C: WAS THE COMPONENT FLOW AS SHOWN ABOVE? "
+	
+	"CHECK D: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	"env servicePointA isIdle." "when it is idle there are no invocations, either"
+	
+	
+
+	
+	
+
+
+]

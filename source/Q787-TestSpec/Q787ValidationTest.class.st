@@ -5903,7 +5903,7 @@ Q787ValidationTest >> test2_1_4_3_1 [
 { #category : #tests }
 Q787ValidationTest >> test2_1_4_3_2 [
 	"similar to test2_1_4_3_1: return error has unecpected error code"
-	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter  rejectComponent problemCode errorCode |
+	| env dialogue invocation called begin continue componentPortion invokeComponent invokeID opcode parameter  rejectComponent problemCode errorCode |
 	self flag: #TBD.  "The reject should not be done manualy but automatically due to invalid invoke"
 	env := self given: #shouldCreateTestEnvironment.
 	
@@ -5911,13 +5911,13 @@ Q787ValidationTest >> test2_1_4_3_2 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					dialog setupTcError: inv name:  'systemFailure'. 
+					dialog setupFaultyTcError: inv name:  'systemFailure'. 
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
-	invocation onError: [ :result |  called := true.
-					invocation returnReject: 2r00000011 type: 'returnError'.   self flag: #TBD. "we should not reach here but instead reject the call earlier"
-	     				dialogue requestTcContinue].
+	invocation onError: [ :result |  called := true
+			"error should be notified, but reject is done by framework"
+		].
 	
 	dialogue 
 		requestTcBeginDestinationAddress:  self destinationAddress
@@ -5958,7 +5958,7 @@ Q787ValidationTest >> test2_1_4_3_2 [
 	errorCode := invokeComponent elements second.
 	self assert: errorCode tagByteValue = 2r00000010.
 	self assert: errorCode contents byteSize = 1.
-	self assert: errorCode contents asInteger = 34. "here it is 34"
+	self assert: errorCode contents asInteger = 88. "here it is 88, which is a non-valid error code"
 
 	" CHECK C: WAS THE REJECT COMPONENT SENT BY SP A? "
 	
