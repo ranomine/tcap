@@ -313,6 +313,28 @@ ROSInvocation >> returnErrorNamed: aString using: aBlock [
 	self returnError:  errorType parameter: error.
 ]
 
+{ #category : #'for testing' }
+ROSInvocation >> returnFaultyError: errorType parameter: error [
+	"construct an envelope ros error object with the error as a parameter.
+	Assign the error code from type information"
+	| rosError |
+
+	rosError := self newMessage: ROSError.
+	
+	error ifNotNil: [ 
+		 rosError setParameter: error ].
+
+	rosError errorCode: 88 asAsn1Value. "no valid!"
+
+	self sendMessage: rosError 
+]
+
+{ #category : #'for testing' }
+ROSInvocation >> returnFaultyErrorNamed: aString [
+
+	self returnFaultyError: (self errorNamed: aString) parameter: nil
+]
+
 { #category : #'as yet unclassified' }
 ROSInvocation >> returnReject: problemCode [
 	| rosReject |

@@ -46,8 +46,16 @@ ROSResult >> hasResultType [
 { #category : #accessing }
 ROSResult >> initializeFromDialogue: aDialogue [
 	super initializeFromDialogue: aDialogue.
+	invocation ifNil: [
+		invocation  := (aDialogue asn1TypeNamed: 'Invoke') newValue.
+		invocation invokeId: self invokeId.
+		aDialogue setupReject: invocation.
+		invocation returnReject: 2r00000000 type: 'returnResult'. 	
+		^aDialogue requestTcContinue.
+		].
 	self hasResultType ifTrue: [
-		(map includesKey: 'result') ifTrue: [ self decodeResult ]]
+		(map includesKey: 'result') ifTrue: [ self decodeResult ]].
+	
 ]
 
 { #category : #accessing }

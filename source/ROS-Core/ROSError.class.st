@@ -68,6 +68,7 @@ ROSError >> initializeFromDialogue: aDialogue [
 	super initializeFromDialogue: aDialogue.
 	error := aDialogue applicationContext findElement: [ :err | 
 		err isError and: [ (err attributeAt: 'errorCode') contents = self errorCode ] ].
+	error ifNil: [ invocation returnReject: 2r00000011 type: 'returnError'.  aDialogue requestTcContinue.].
 	self decodeParameter 
 ]
 
