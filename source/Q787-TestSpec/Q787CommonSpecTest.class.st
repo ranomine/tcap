@@ -4174,11 +4174,17 @@ Q787CommonSpecTest >> test2_1_6 [
 	self assert: problemCode contents asInteger  = 0. "unrecognized invoke ID"
 	self assert: problemCode contents byteSize = 1.
 
-
 	"CHECK C: WAS THE COMPONENT FLOW AS SHOWN ABOVE? "
+	"the components sent from A are checked already, so we just need check the return result last 
+	from B"
+	self assert:  env servicePointB sentPackets size = 1.
+	continue := self checkContinue: env servicePointB sentPackets last.
+	componentPortion := continue encodedValue elements last. 
+	rejectComponent :=  componentPortion elements first.
+	self assert:  rejectComponent tagByteValue = 2r10100010. "RETURN RESULT-LAST"
 	
 	"CHECK D: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	"env servicePointA isIdle." "when it is idle there are no invocations, either"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
 	
 	
 
