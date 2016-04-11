@@ -3027,9 +3027,9 @@ Q787CommonSpecTest >> test2_1_1_1_2 [
 		applicationContextName: '0.4.0.0.1.0.14.2'.
 	
 	" CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION PASSED TO TC-USER BY SP A?"
-	self assert: env servicePointB didSendMessage.
+	self assert: env servicePointA didReceiveMessage.
 	self assert: invokecalled notNil.
-	begin := self checkBegin: env servicePointB sentPackets first.
+	begin := self checkBegin: env servicePointA receivedPackets first.
 	
 	componentPortion := begin encodedValue elements third.
 	self assert: componentPortion tagByteValue =2r01101100.
