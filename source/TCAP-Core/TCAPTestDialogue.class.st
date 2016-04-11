@@ -67,6 +67,16 @@ TCAPTestDialogue >> requestTcEndDestinationAddress: aDestinationAddress originat
 		userInformation: aUserInformation
 ]
 
+{ #category : #'as yet unclassified' }
+TCAPTestDialogue >> setIDPoolForLowerValue [
+	invokeIdPool startValue: 0
+]
+
+{ #category : #'as yet unclassified' }
+TCAPTestDialogue >> setIDPoolForUpperValue [
+	invokeIdPool startValue: 255
+]
+
 { #category : #faults }
 TCAPTestDialogue >> setupFaultyTcError: anInvocation name: aName [ 
 
