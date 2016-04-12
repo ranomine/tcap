@@ -6108,7 +6108,7 @@ Q787ValidationTest >> test2_1_7_4_1_1 [
 	self assert:  invokeComponent tagByteValue = 2r10100001. "INVOKE"
  	invokeIDInvoke := invokeComponent elements first.
 	self assert: invokeIDInvoke tagByteValue = 2r00000010.
-	self assert: invokeIDInvoke contents asInteger = 255.
+	self assert: invokeIDInvoke contents asInteger = 127.
 	self assert: invokeIDInvoke contents byteSize = 1.
 	opcode := invokeComponent elements second.
 	self assert: opcode tagByteValue = 2r00000010.
@@ -6191,7 +6191,7 @@ Q787ValidationTest >> test2_1_7_4_1_2 [
  	invokeIDInvoke := invokeComponent elements first.
 	self assert: invokeIDInvoke tagByteValue = 2r00000010.
 	self assert: invokeIDInvoke contents byteSize = 1.
-	self assert: invokeIDInvoke contents asInteger = 0.
+	self assert: (ASN1IntegerType decode: invokeIDInvoke contents) = -128.
 	opcode := invokeComponent elements second.
 	self assert: opcode tagByteValue = 2r00000010.
 	self assert: opcode contents asInteger  =  56. "in this case it is 56"
@@ -6212,7 +6212,7 @@ Q787ValidationTest >> test2_1_7_4_1_2 [
  	invokeIDReturn := invokeComponent elements first.
 	self assert: invokeIDReturn tagByteValue = 2r00000010.
 	self assert: invokeIDReturn contents byteSize = 1.
-	self assert: invokeIDReturn contents asInteger  = 0.
+	self assert:  (ASN1IntegerType decode: invokeIDReturn contents) = -128.
 	
 	sequence := invokeComponent elements second.
 	self assert: sequence tagByteValue = 2r110000.
