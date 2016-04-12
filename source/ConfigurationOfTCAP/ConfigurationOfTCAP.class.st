@@ -778,6 +778,7 @@ ConfigurationOfTCAP >> version04: spec [
 			package: 'TCAP-Core' with: 'TCAP-Core-NorbertHartl.232';
 			package: 'Q787-TestSpec' with: 'Q787-TestSpec-NorbertHartl.70';
 			package: 'TCAP-Benchmark' with: 'TCAP-Benchmark-NorbertHartl.3';
+			package: 'STON-Core' with: 'STON-Core-NorbertHartl.64';
 			package: 'Camel-Core' with: 'Camel-Core-NorbertHartl.10';
 			package: 'Camel-SCF' with: 'Camel-SCF-NorbertHartl.6'. ].
 
