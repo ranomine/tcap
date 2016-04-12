@@ -82,16 +82,6 @@ TCAPIdPool >> nextIdByteArray [
 	^ self nextId asByteArray
 ]
 
-{ #category : #accessing }
-TCAPIdPool >> nextIdString [
-	^ self nextId printStringHex
-]
-
-{ #category : #accessing }
-TCAPIdPool >> noId [
-	^ -1 
-]
-
 { #category : #'as yet unclassified' }
 TCAPIdPool >> poolSize [
 	^ mutex critical: [ pool size ]
