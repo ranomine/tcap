@@ -69,12 +69,12 @@ TCAPTestDialogue >> requestTcEndDestinationAddress: aDestinationAddress originat
 
 { #category : #'as yet unclassified' }
 TCAPTestDialogue >> setIDPoolForLowerValue [
-	invokeIdPool startValue: 0
+	invokeIdPool startValue: -128
 ]
 
 { #category : #'as yet unclassified' }
 TCAPTestDialogue >> setIDPoolForUpperValue [
-	invokeIdPool startValue: 255
+	invokeIdPool startValue: 127
 ]
 
 { #category : #faults }

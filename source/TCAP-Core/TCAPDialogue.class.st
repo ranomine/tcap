@@ -199,7 +199,7 @@ TCAPDialogue >> initialize [
 	announcer := Announcer new.
 	componentCoordinator := TCAPComponentCoordinator new
 		dialogue: self.
-	invokeIdPool := TCAPIdPool new size: 16rFFFF.
+	invokeIdPool := TCAPIdPool new size: 16rFF.
 	localInvocations := Set new.
 	remoteInvocations := Set new.
 
