@@ -76,12 +76,3 @@ TCAPTestDialogue >> setIDPoolForLowerValue [
 TCAPTestDialogue >> setIDPoolForUpperValue [
 	invokeIdPool startValue: 127
 ]
-
-{ #category : #faults }
-TCAPTestDialogue >> setupFaultyTcError: anInvocation name: aName [ 
-
-	anInvocation onMessage: [ :msg |
-        componentCoordinator addComponent: (msg asROS) ].
- 	 anInvocation returnFaultyErrorNamed: aName.
-	^ anInvocation  
-]
