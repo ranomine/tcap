@@ -11,7 +11,8 @@ Class {
 		'operationClass',
 		'timer',
 		'lcancelBlock',
-		'defaultHandler'
+		'defaultHandler',
+		'dialogue'
 	],
 	#category : #'ROS-Core'
 }
@@ -92,6 +93,7 @@ ROSInvocation >> initialize [
 
 { #category : #accessing }
 ROSInvocation >> initializeFromDialogue: aDialogue [
+	dialogue := aDialogue.
 	aDialogue hasApplicationContext 
 		ifFalse: [ aDialogue guessAppplicationContextFromOperationCode: self operationCode ].
 	"we expect the dialogue to abort any action if no applicationContext can be found so we 
