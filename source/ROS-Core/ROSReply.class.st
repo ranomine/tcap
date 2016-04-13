@@ -10,6 +10,7 @@ Class {
 { #category : #accessing }
 ROSReply >> initializeFromDialogue: aDialogue [
 	invocation := aDialogue localInvocationWithId: self invokeId.
+	dialogue := aDialogue.
 
 ]
 

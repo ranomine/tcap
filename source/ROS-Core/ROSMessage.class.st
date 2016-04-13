@@ -1,6 +1,9 @@
 Class {
 	#name : #ROSMessage,
 	#superclass : #ASN1AdaptiveTypeObject,
+	#instVars : [
+		'dialogue'
+	],
 	#category : #'ROS-Core'
 }
 
