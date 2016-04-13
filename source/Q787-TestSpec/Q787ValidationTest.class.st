@@ -5831,6 +5831,12 @@ Q787ValidationTest >> test2_1_4_3_1 [
 				onInvoke: [ : inv | 
 					dialog setupTcError: inv name:  'systemFailure'. 
 					dialog requestTcContinue ]].
+			
+	"env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
+		insp := self messageInspectorOn: bytes.
+		insp encodedValue elements last elements first elements second contents: 88.
+		insp updatePacketFromEncodedValue; packet ]."
+			
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
 	invocation onError: [ :result |  called := true.
@@ -5876,7 +5882,7 @@ Q787ValidationTest >> test2_1_4_3_1 [
 	errorCode := invokeComponent elements second.
 	self assert: errorCode tagByteValue = 2r00000010.
 	self assert: errorCode contents byteSize = 1.
-	self assert: errorCode contents asInteger = 34. "here it is 34"
+	self assert: errorCode contents asInteger = 34. "here it is 88, as set before"
 
 	" CHECK C: WAS THE REJECT COMPONENT SENT BY SP A? "
 	
@@ -5904,15 +5910,20 @@ Q787ValidationTest >> test2_1_4_3_1 [
 Q787ValidationTest >> test2_1_4_3_2 [
 	"similar to test2_1_4_3_1: return error has unecpected error code"
 	| env dialogue invocation called begin continue componentPortion invokeComponent invokeID opcode parameter  rejectComponent problemCode errorCode |
-	self flag: #TBD.  "The reject should not be done manualy but automatically due to invalid invoke"
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointB
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					dialog setupFaultyTcError: inv name:  'systemFailure'. 
+					dialog setupTcError: inv name:  'systemFailure'. 
 					dialog requestTcContinue ]].
+	
+	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
+		insp := self messageInspectorOn: bytes.
+		insp encodedValue elements last elements first elements second contents: 88.
+		insp updatePacketFromEncodedValue; packet ].	
+	
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
 	invocation onError: [ :result |  called := true

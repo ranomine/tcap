@@ -100,7 +100,7 @@ Q787ValidationTodo >> test1_2_1_5s2 [
 		 ] ].
 	
 	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
-		insp := TCAPMessageInspector packet: bytes.
+		insp := self messageInspectorOn: bytes.
 		self flag: #TBD. "here we need to modify the cause length"
 		insp updatePacketFromEncodedValue; packet ].
 	
@@ -471,7 +471,78 @@ Q787ValidationTodo >> test2_1_7_3 [
 
 { #category : #tests }
 Q787ValidationTodo >> test2_1_7_4_2 [
-		self assert: false
+	"pp 208: to verify that a global operation code is correctly decoded by TCAP.
+	B sends global invokation code 'the global value does not correspond to a supported operation'
+	"
+	| env dialogue invocation invokecalled rejectACalled  componentPortion invokeComponent invokeID  problemCode begin continue rejectComponent opcode |
+	env := self given: #shouldCreateTestEnvironment.
+	self flag: #TBD.  "The reject should not be done manualy but automatically due to not supported operation"
+	
+	env servicePointA
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					invokecalled := true.
+					inv returnReject: 2r00000001.   self flag: #TBD. "we should reject the call earlier"
+					dialog requestTcContinue.
+					 ]].
+	dialogue := env servicePointB newDialogue.	
+	
+	invocation :=dialogue 
+		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
+		parameters:  '123456789' 
+		class: TCAPReportSuccessAndFailure 
+		timeout: 10.
+	
+	invocation onReject: [ rejectACalled := true ].
+
+	dialogue 
+		requestTcBeginDestinationAddress:   self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'. 
+	
+	self assert: invokecalled == true.
+	self assert: rejectACalled == true.
+		
+	"CHECK A: WAS THE REJECT COMPONENT WITH CORRECT INFORMATION SENT BY SP A?"
+	
+	self assert: env servicePointA sentPackets size = 1.
+	continue := self checkContinue: env servicePointA sentPackets first.
+	componentPortion := continue encodedValue elements fourth. 
+	rejectComponent :=  componentPortion elements first.
+	self assert:  rejectComponent tagByteValue = 2r10100100. "REJECT"
+	
+	invokeID := rejectComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	problemCode := rejectComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000001.  "INVOKE"
+	self assert: problemCode contents asInteger  = 2r00000001 . "unrecognized operation"
+	self assert: problemCode contents byteSize = 1.
+	
+	"CHECK B: WAS THE INVOKE ID IN THE REJECT COMPONENT THE SAME AS THE ONE IN THE INVOKE COMPONENT?"
+		
+	self assert: env servicePointB sentPackets size = 1.
+	begin := self checkBegin: env servicePointB sentPackets first.
+	componentPortion := begin encodedValue elements third. 
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001. "INVOKE"
+	"now check if invokeID matches"
+	self assert: invokeID contents = invokeComponent elements first contents.
+	
+	"check for global operation code"
+	opcode := invokeComponent elements second.
+	"TODO: 
+	    - create invoke with global op-code as below
+	    - detect unsupported opcode and reject automatically"
+	
+	"self assert: opcode tagByteValue = 2r00000110."
+	"operation code should be:
+	0000 0000
+	0001 0001
+	1000 0101"
+	
 ]
 
 { #category : #tests }
