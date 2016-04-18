@@ -126,11 +126,11 @@ ROSInvocation >> invokeHandler: aBlock with: anObject [
 
 { #category : #actions }
 ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
-	"dialogue synchronizedDo: [  "
+	dialogue synchronizedDo: [ 
 		(aBlock ifNil: [ defaultHandler ]) ifNotNil: [ :handler |
 			handler cull: anObject cull: anotherObject] 
 		
-	"]"
+	]
 ]
 
 { #category : #'as yet unclassified' }
