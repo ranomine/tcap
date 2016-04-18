@@ -50,6 +50,7 @@ ROSResult >> initializeFromDialogue: aDialogue [
 		invocation  := (aDialogue asn1TypeNamed: 'Invoke') newValue.
 		invocation invokeId: self invokeId.
 		aDialogue setupReject: invocation.
+		invocation dialogue: aDialogue.
 		invocation returnReject: 2r00000000 type: 'returnResult'. 	
 		^aDialogue requestTcContinue.
 		].

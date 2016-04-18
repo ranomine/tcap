@@ -75,6 +75,11 @@ ROSInvocation >> defaultHandler: aBlock [
 	defaultHandler := aBlock
 ]
 
+{ #category : #accessing }
+ROSInvocation >> dialogue:	aDialogue [
+	dialogue := aDialogue
+]
+
 { #category : #dispatching }
 ROSInvocation >> dispatchTo: aDialogue [ 
 	aDialogue newRemoteInvocation: self
@@ -121,8 +126,11 @@ ROSInvocation >> invokeHandler: aBlock with: anObject [
 
 { #category : #actions }
 ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
-	(aBlock ifNil: [ defaultHandler ]) ifNotNil: [ :handler |
-		handler cull: anObject cull: anotherObject]
+	"dialogue synchronizedDo: [  "
+		(aBlock ifNil: [ defaultHandler ]) ifNotNil: [ :handler |
+			handler cull: anObject cull: anotherObject] 
+		
+	"]"
 ]
 
 { #category : #'as yet unclassified' }
