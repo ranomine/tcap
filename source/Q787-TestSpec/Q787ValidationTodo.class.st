@@ -9,7 +9,7 @@ Q787ValidationTodo class >> isAbstract [
 	^ true
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test1_1_2_5_1 [
 	"TC addressing; Register address change page 49"
 	self assert: false.
@@ -23,7 +23,7 @@ Q787ValidationTodo >> test1_1_2_5_1 [
 		--> need to generate UDT package for adress change."
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test1_1_3_1_1_1s1 [
 	"Encoding Variation Test: CP length encoding. Page 50"
 	| env  endCalled  |
@@ -48,7 +48,7 @@ Q787ValidationTodo >> test1_1_3_1_1_1s1 [
 	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test1_1_3_1_1_1s2 [
 	"Encoding Variation Test: CP length encoding. Page 52"
 	self assert: false.
@@ -60,7 +60,7 @@ Q787ValidationTodo >> test1_1_3_1_1_1s2 [
 	" CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test1_1_3_1_1_2s1 [
 	"Encoding Variation Test: CP length encoding. Page 54"
 	self assert: false.
@@ -72,7 +72,7 @@ Q787ValidationTodo >> test1_1_3_1_1_2s1 [
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test1_1_3_1_1_3s1 [
 	"Encoding Variation Test: CP length encoding. Page 56"
 	self assert: false.
@@ -84,7 +84,7 @@ Q787ValidationTodo >> test1_1_3_1_1_3s1 [
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test1_2_1_5s2 [
 	| env  abortCalled |
 	"Abort message: P-Abort cause length incorrect. Page 71"
@@ -136,7 +136,7 @@ Q787ValidationTodo >> test1_2_1_5s2 [
 
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test1_2_2_1s1 [
 	"Unidirectional Message Type: Unknown information element present. Page 73"
 	self assert: false.
@@ -152,7 +152,7 @@ Q787ValidationTodo >> test1_2_2_1s1 [
 
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test2_1_4_1_2 [
 	"Invoke linked components. Page 174. Like test2_1_2_1_1 but with linked invoke uses operation code not linked "
 	
@@ -291,7 +291,7 @@ Q787ValidationTodo >> test2_1_4_1_2 [
 	"CHECK E: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test2_1_4_1_3 [
 	"Invoke linked components. Page 177.  Like test2_1_2_1_1 but with linked invoke contains one parameter not associated with the outcome of the operation (as in 2.1.4.1.4"
 	
@@ -439,7 +439,7 @@ Q787ValidationTodo >> test2_1_4_1_3 [
 	"CHECK E: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test2_1_7_1 [
 	"To verify that a component portion with a definite short form can be accepted. PP 198"
 		self assert: false.
@@ -449,7 +449,7 @@ Q787ValidationTodo >> test2_1_7_1 [
 	"CHECK B: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION SENT BY SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test2_1_7_2 [
 	"To verify that a component portion with a definite long form can be accepted. PP 200"
 		self assert: false.
@@ -459,7 +459,7 @@ Q787ValidationTodo >> test2_1_7_2 [
 	"CHECK B: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION SENT BY SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test2_1_7_3 [
 	"To verify that a component portion with a indefinite form can be accepted. PP 202"
 		self assert: false.
@@ -469,7 +469,7 @@ Q787ValidationTodo >> test2_1_7_3 [
 	"CHECK B: WAS THE RETURN RESULT-LAST COMPONENT WITH CORRECT INFORMATION SENT BY SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787ValidationTodo >> test2_1_7_4_2 [
 	"pp 208: to verify that a global operation code is correctly decoded by TCAP.
 	B sends global invokation code 'the global value does not correspond to a supported operation'

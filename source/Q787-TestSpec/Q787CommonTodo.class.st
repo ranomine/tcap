@@ -4,7 +4,7 @@ Class {
 	#category : #'Q787-TestSpec'
 }
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787CommonTodo >> test1_1_1_1 [
 	"Unidirectional: Sending page 6"
 	self assert: false.
@@ -13,7 +13,7 @@ Q787CommonTodo >> test1_1_1_1 [
 	"CHECK B: WAS THE TSL STATE MACHINE ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787CommonTodo >> test1_1_1_2 [
 	"Unidirectional: Receiving page 7"
 	self assert: false.
@@ -22,7 +22,7 @@ Q787CommonTodo >> test1_1_1_2 [
 	"CHECK B: WAS THE TSL STATE MACHINE ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787CommonTodo >> test1_1_3_2_1s1 [
 	"Value variations: Transaction ID; length is one octet. Page 58"
 	self assert: false.
@@ -34,7 +34,7 @@ Q787CommonTodo >> test1_1_3_2_1s1 [
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787CommonTodo >> test1_1_3_2_1s2 [
 	"Value variations: Transaction ID: Length is four octets. Page 60"
 	self assert: false.
@@ -46,7 +46,7 @@ Q787CommonTodo >> test1_1_3_2_1s2 [
 	"CHECK D: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787CommonTodo >> test2_1_2_2_1 [
 	"TimeOut Invoke linked components. Page 146"
 	self assert: false
@@ -56,7 +56,7 @@ Q787CommonTodo >> test2_1_2_2_1 [
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787CommonTodo >> test2_1_2_2_2 [
 	"Timeout Invoke linked components. Page 148"
 	self assert: false
@@ -67,7 +67,7 @@ Q787CommonTodo >> test2_1_2_2_2 [
 	"CHECK D: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787CommonTodo >> test2_1_5_1_1 [
 	"starts like 2.1.1.3.1, but return not-last followed by resturn last"
 	
@@ -101,7 +101,7 @@ Q787CommonTodo >> test2_1_5_1_1 [
 	
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787CommonTodo >> test2_1_5_1_2 [
 	"p 192 result-last vs. result-no-last is not modelled by ROS. ==> Backlog"
 	self flag: #TBD.  
@@ -111,7 +111,7 @@ Q787CommonTodo >> test2_1_5_1_2 [
 	"CHECK B: WAS THE RETURN RESULT NOT-LAST COMPONENT WITH CORRECT INFORMATION SENT BY SP A?  "
 ]
 
-{ #category : #tests }
+{ #category : #'tests - inBackLog' }
 Q787CommonTodo >> test2_1_5_2_1 [
 	"p 194 result-last vs. result-no-last is not modelled by ROS. ==> Backlog"
 	self flag: #TBD.  

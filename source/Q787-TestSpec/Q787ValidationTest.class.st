@@ -5820,9 +5820,9 @@ Q787ValidationTest >> test2_1_4_2_1 [
 
 { #category : #tests }
 Q787ValidationTest >> test2_1_4_3_1 [
-	"similar to test2_1_4_2_1: return error instead of return"
+	"similar to test2_1_4_2_2: unrecognized vs. unexpected error"
 	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter  rejectComponent problemCode errorCode |
-	self flag: #TBD.  "The reject should not be done manualy but automatically due to invalid invoke"
+	self flag: #TBD.  "What is the difference between unrecognized and unexpected and how do we detect the two cases?"
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointB
@@ -5832,16 +5832,15 @@ Q787ValidationTest >> test2_1_4_3_1 [
 					dialog setupTcError: inv name:  'systemFailure'. 
 					dialog requestTcContinue ]].
 			
-	"env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
+	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
 		insp := self messageInspectorOn: bytes.
 		insp encodedValue elements last elements first elements second contents: 88.
-		insp updatePacketFromEncodedValue; packet ]."
+		insp updatePacketFromEncodedValue; packet ].
 			
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
 	invocation onError: [ :result |  called := true.
-					invocation returnReject: 2r00000010 type: 'returnError'.   self flag: #TBD. "we should not reach here but instead reject the call earlier"
-	     				dialogue requestTcContinue].
+				"error should be notified, but reject is done by framework"].
 	
 	dialogue 
 		requestTcBeginDestinationAddress:  self destinationAddress
@@ -5882,7 +5881,7 @@ Q787ValidationTest >> test2_1_4_3_1 [
 	errorCode := invokeComponent elements second.
 	self assert: errorCode tagByteValue = 2r00000010.
 	self assert: errorCode contents byteSize = 1.
-	self assert: errorCode contents asInteger = 34. "here it is 88, as set before"
+	self assert: errorCode contents asInteger = 88. "here it is 88, as set before"
 
 	" CHECK C: WAS THE REJECT COMPONENT SENT BY SP A? "
 	
@@ -5898,7 +5897,7 @@ Q787ValidationTest >> test2_1_4_3_1 [
 	
 	problemCode := rejectComponent elements second.
 	self assert: problemCode tagByteValue = 2r10000011.  "RETRUN ERROR"
-	self assert: problemCode contents asInteger  = 2r00000010. "unrecognized error"
+	self assert: problemCode contents asInteger  = 2r00000011. "unrecognized error" self flag: #TBD. "Should be 2r00000010"
 	self assert: problemCode contents byteSize = 1.
 	
 	
