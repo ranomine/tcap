@@ -44,7 +44,7 @@ TCAPBeginMessage >> transactionIn: aTransactionCoordinator [
 		on: TCAPNoFreeId 
 		do: [ :err |
 			(TCAPResourceLimitExceeded new transaction: tx) signal ].
-	^ tx asSynchronizedWrapper
+	^ tx
 ]
 
 { #category : #validating }

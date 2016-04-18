@@ -224,9 +224,11 @@ TCAPTransactionCoordinator >> receiveEntityMessage: message from: aSender to: aR
 		transactionForMessage: message
 		sender: aSender 
 		receiver: aReceiver.
-	transaction notifyBeforeMessage: message.
-	message dispatchTo: transaction.
-	transaction notifyAfterMessage: message
+	transaction synchronizedDo: [  
+		transaction notifyBeforeMessage: message.
+		message dispatchTo: transaction.
+		transaction notifyAfterMessage: message ]
+
 ]
 
 { #category : #'as yet unclassified' }
