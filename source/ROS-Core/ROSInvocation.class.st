@@ -101,13 +101,16 @@ ROSInvocation >> initialize [
 
 { #category : #accessing }
 ROSInvocation >> initializeFromDialogue: aDialogue [
+	| searchForOperation  |
 	dialogue := aDialogue.
 	aDialogue hasApplicationContext 
 		ifFalse: [ aDialogue guessAppplicationContextFromOperationCode: self operationCode ].
 	"we expect the dialogue to abort any action if no applicationContext can be found so we 
 	just proceed"
-	operation := ROSOperation on: (
-		aDialogue applicationContext operationWithCode: self operationCode).
+	searchForOperation := aDialogue applicationContext operationWithCode: self operationCode.
+	searchForOperation ifNil: [  ^self "the invocation will be rejecated later" ].
+	operation := ROSOperation on: searchForOperation.  
+		
 	operation hasArgumentType ifTrue: [  
 		self privAt: 'argument' put: (operation decodeArgument: (self privAt: 'argument')) ]
 ]
