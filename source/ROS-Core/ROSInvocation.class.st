@@ -82,7 +82,10 @@ ROSInvocation >> dialogue:	aDialogue [
 
 { #category : #dispatching }
 ROSInvocation >> dispatchTo: aDialogue [ 
-	aDialogue newRemoteInvocation: self
+	aDialogue newRemoteInvocation: self.
+	"if the invoke has a not-known operation, we need to reject it"
+	operation ifNil: [ self returnReject: 2r00000001.  
+					aDialogue requestTcContinue. ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -256,7 +259,7 @@ ROSInvocation >> operationClass: aClass [
 
 { #category : #accessing }
 ROSInvocation >> operationCode [
-	^ (self at: 'opcode') at: 'local'
+	^ (self at: 'opcode') at: 'local' ifAbsent: [(self at: 'opcode') at: 'global'  ]
 ]
 
 { #category : #accessing }
