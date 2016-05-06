@@ -262,7 +262,9 @@ ROSInvocation >> operationClass: aClass [
 
 { #category : #accessing }
 ROSInvocation >> operationCode [
-	^ (self at: 'opcode') at: 'local' ifAbsent: [(self at: 'opcode') at: 'global'  ]
+	| opcode |
+	opcode := self at: 'opcode' ifAbsent: [ ^nil ].
+	^ opcode at: 'local' ifAbsent: [opcode at: 'global' ifAbsent: nil ]
 ]
 
 { #category : #accessing }
