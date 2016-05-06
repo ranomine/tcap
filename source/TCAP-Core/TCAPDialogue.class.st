@@ -282,7 +282,7 @@ TCAPDialogue >> newRemoteInvocation: anInvocation [
 	
 	remoteInvocations  
 		detect: [ :each| each invokeId = anInvocation invokeId  ]
-		ifFound: [  TCAPDuplicateInvocationId signal: 'invocation with id ', anInvocation id, ' alread exists'  ].
+		ifFound: [  TCAPDuplicateInvocationId signal: 'invocation with id ', anInvocation invokeId asString, ' alread exists'  ].
 	
 	remoteInvocations add: anInvocation.
 	self indicationTcInvoke: anInvocation 
@@ -441,8 +441,16 @@ TCAPDialogue >> receivedReject: aReject [
 
 { #category : #received }
 TCAPDialogue >> receivedReturnLast: aResultLast [
+	| invokation |
+	invokation := (self invocationWithId: aResultLast invokeId).
+	invokation receivedReturnLast: aResultLast.
+	"see test #test2_1_4_2_1: we need to reject *after* TC-Result-L ind. if the opcode is different"
+	"works for now only for local operations"
+	invokation operationCode ifNil: [ ^self ].
+	aResultLast  result opcode local = invokation operationCode ifFalse: [ 
+		invokation returnReject: 2r00000010 type: 'returnResult'.
+		self requestTcContinue ]
 
-	(self invocationWithId: aResultLast invokeId) receivedReturnLast: aResultLast 
 ]
 
 { #category : #accessing }
