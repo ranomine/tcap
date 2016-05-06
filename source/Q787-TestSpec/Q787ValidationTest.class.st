@@ -5794,7 +5794,7 @@ Q787ValidationTest >> test2_1_4_2_1 [
 	2) Arrange the data at SP B such that a Return Result-Last with an invalid operation code is generated"
 	
 	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter sequence rejectComponent problemCode |
-	self flag: #TBD.  "The reject should not be done manualy but automatically due to invalid invoke"
+	self flag: #TBD.  "The reject should not be done manualy but automatically due to invalid return result last"
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointB
@@ -5803,11 +5803,15 @@ Q787ValidationTest >> test2_1_4_2_1 [
 				onInvoke: [ : inv | 
 					dialog setupTcReturn: inv parameters:  self exampleResult. 
 					dialog requestTcContinue ]].
+			
+	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
+		insp := self messageInspectorOn: bytes.
+		insp encodedValue elements fourth elements first elements second elements first contents: #[ 3 ].
+		insp updatePacketFromEncodedValue; packet ].						
+			
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccess timeout: 500.
-	invocation onReturnLast: [ :result |  called := true.
-					invocation returnReject: 2r00000010 type: 'returnResult'.   self flag: #TBD. "we should not reach here but instead reject the call earlier"
-	     				dialogue requestTcContinue].
+	invocation onReturnLast: [ :result |  called := true].
 	
 	dialogue 
 		requestTcBeginDestinationAddress:  self destinationAddress
@@ -5850,7 +5854,7 @@ Q787ValidationTest >> test2_1_4_2_1 [
 	opcode := (continue message find: 'opcode') encodeToByteArray.
 	self assert: opcode first = 2r00000010.
 	self assert: opcode second = 1.
-	self assert: opcode third = 56.
+	self assert: opcode third = 3.
 
 	" CHECK C: WAS THE REJECT COMPONENT SENT BY SP A? "
 	
