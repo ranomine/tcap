@@ -435,8 +435,11 @@ TCAPDialogue >> receivedError: anError [
 
 { #category : #received }
 TCAPDialogue >> receivedReject: aReject [
+	| invokation |
 	" we need to be able to reject both local and remove invokations (e.g. reject an error)"
-	(self invocationWithId: aReject invokeId) receivedReject: aReject
+	invokation :=  (self invocationWithId: aReject invokeId).
+	invokation ifNotNil: [ :inv | inv receivedReject: aReject].
+	
 ]
 
 { #category : #received }
