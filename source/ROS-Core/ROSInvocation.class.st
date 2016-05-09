@@ -83,9 +83,16 @@ ROSInvocation >> dialogue:	aDialogue [
 { #category : #dispatching }
 ROSInvocation >> dispatchTo: aDialogue [ 
 	aDialogue newRemoteInvocation: self.
+	"if the invokeID is invalid, we reject"
+	(self invokeId between: -128 and: 127) ifFalse:  [ 
+		self returnReject: 2r00000001 type: 'general'.	
+		^aDialogue requestTcContinue.
+	].
 	"if the invoke has a not-known operation, we need to reject it"
 	operation ifNil: [ self returnReject: 2r00000001.  
-					aDialogue requestTcContinue. ]
+					^aDialogue requestTcContinue. ].
+				
+	
 ]
 
 { #category : #'as yet unclassified' }
@@ -108,7 +115,7 @@ ROSInvocation >> initializeFromDialogue: aDialogue [
 	"we expect the dialogue to abort any action if no applicationContext can be found so we 
 	just proceed"
 	searchForOperation := aDialogue applicationContext operationWithCode: self operationCode.
-	searchForOperation ifNil: [  ^self "the invocation will be rejecated later" ].
+	searchForOperation ifNil: [  ^self "the invocation will be rejected later" ].
 	operation := ROSOperation on: searchForOperation.  
 		
 	operation hasArgumentType ifTrue: [  
