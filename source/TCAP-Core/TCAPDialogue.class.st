@@ -447,6 +447,7 @@ TCAPDialogue >> receivedReturnLast: aResultLast [
 	"see test #test2_1_4_2_1: we need to reject *after* TC-Result-L ind. if the opcode is different"
 	"works for now only for local operations"
 	invokation operationCode ifNil: [ ^self ].
+	aResultLast  result  ifNil: [ ^self ]. self flag: #TBD.
 	aResultLast  result opcode local = invokation operationCode ifFalse: [ 
 		invokation returnReject: 2r00000010 type: 'returnResult'.
 		self requestTcContinue ]
