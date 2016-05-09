@@ -6373,3 +6373,63 @@ Q787ValidationTest >> test2_1_7_4_2 [
 	self assert: opcode contents asInteger  =  2r000000000001000110000101. "as required by the test"
 	self assert: opcode contents byteSize = 3.
 ]
+
+{ #category : #tests }
+Q787ValidationTest >> test2_2_1_1 [
+	"invoke ID with size > 1 should be rejected"
+	|  env dialogue invocation begin componentPortion invokeComponent invokeID continue rejectComponent problemCode |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	dialogue := env servicePointB newDialogue.	
+
+	"add post processing to change invoke ID to be 2 byte long"	
+	env servicePointB transactionCoordinator postProcessPayload: [ :bytes| | insp |
+		insp := self messageInspectorOn: bytes.
+		componentPortion := insp encodedValue elements third.
+		invokeComponent :=  componentPortion elements first.
+ 		invokeComponent elements first contents: 300.
+		insp updatePacketFromEncodedValue; packet ].	
+		
+	
+	invocation :=dialogue 
+		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
+		parameters:  '123456789' 
+		class: TCAPReportSuccessAndFailure 
+		timeout: 10.
+
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+		
+	"check invoke id send has 2 bytes"
+	
+	begin := self checkBegin: env servicePointB sentPackets first.	
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	self assert:  invokeComponent tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 2.
+		
+	"CHECK A: WAS THE REJECT COMPONENT WITH CORRECT INFORMATION SENT BY SP A?"
+	self assert:  env servicePointA sentPackets size = 1.  "Invoke needs to be rejected due to 2 byte Invoke ID"
+	continue := self checkContinue: env servicePointA sentPackets first.
+	componentPortion := continue encodedValue elements last. 
+	rejectComponent :=  componentPortion elements first.
+	self assert:  rejectComponent tagByteValue = 2r10100100. "REJECT"
+	
+	invokeID := rejectComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	
+	problemCode := rejectComponent elements second.
+	self assert: problemCode tagByteValue = 2r10000000.  "General Problem"
+	self assert: problemCode contents asInteger  = 1. "mistyped component"
+	self assert: problemCode contents byteSize = 1.
+	
+	
+	
+]

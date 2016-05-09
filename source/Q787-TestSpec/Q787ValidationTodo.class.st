@@ -448,11 +448,6 @@ Q787ValidationTodo >> test2_1_9_7_4 [
 ]
 
 { #category : #tests }
-Q787ValidationTodo >> test2_2_1_1 [
-		self assert: false
-]
-
-{ #category : #tests }
 Q787ValidationTodo >> test2_2_1_2 [
 		self assert: false
 ]
