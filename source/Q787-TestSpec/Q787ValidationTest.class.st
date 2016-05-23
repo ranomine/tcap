@@ -6375,6 +6375,200 @@ Q787ValidationTest >> test2_1_7_4_2 [
 ]
 
 { #category : #tests }
+Q787ValidationTest >> test2_1_8_1 [
+	| env dialogue invocation1 invocation2 called1 called2 begin componentPortion invokeComponent1 invokeID opcode parameter invokeComponent2 continue  invokeComponent sequence |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+					"only on the second call we do the continue to create one packet with two components"
+					inv invocation invokeId = 2 ifTrue: [ dialog requestTcContinue].
+					 ]].
+	dialogue := env servicePointA newDialogue.	
+		
+	invocation1 :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '1' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation2  :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '2' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
+	
+	invocation1 onReturnLast: [ :result |  called1 := true ].
+	invocation2 onReturnLast: [ :result |  called2 := true ].
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+		
+	self assert: called1.
+	self assert: called2.
+	
+	"CHECK A: WERE ALL THE INVOKE COMPONENTS WITHIN A TSL MESSAGE SENT BY SP A WITH CORRECT INFORMATION? "
+	
+	begin := self checkBegin: env servicePointA sentPackets first.	
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent1 :=  componentPortion elements first.
+	self assert:  invokeComponent1 tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent1 elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent1 elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent1 elements third.
+	self assert: parameter contents asString = '1'.
+	
+	
+	invokeComponent2 :=  componentPortion elements second.
+	self assert:  invokeComponent2 tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent2 elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent2 elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent2 elements third.
+	self assert: parameter contents asString = '2'.
+	
+	"CHECK B: WERE ALL THE RETURN-LAST COMPONENTS INSIDE A TSL MESSAGE PASSED TO TC-USER IN THE SAME ORDER AS PROVIDED BY SP B WITH CORRECT INFORMATION?"
+
+	self assert: env servicePointA receivedPackets size = 1. "Make sure there is just one packet generated"
+	
+	continue := self checkContinue: env servicePointA receivedPackets first.
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	self assert: invokeID contents asInteger = 1.
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+
+	opcode := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcode first = 2r00000010.
+	self assert: opcode second = 1.
+	self assert: opcode third = 56.
+	
+	invokeComponent :=  componentPortion elements second.
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	self assert: invokeID contents asInteger = 2.
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+
+	opcode := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcode first = 2r00000010.
+	self assert: opcode second = 1.
+	self assert: opcode third = 56.
+	
+	"CHECK C: WERE ALL THE INVOKE STATE MACHINES (1, ..., n) IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+]
+
+{ #category : #tests }
+Q787ValidationTest >> test2_1_8_2 [
+	| env dialogue invocation1 invocation2 called1 called2 begin componentPortion invokeComponent1 invokeID opcode parameter invokeComponent2 continue  invokeComponent sequence |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	env servicePointA
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+					"only on the second call we do the continue to create one packet with two components"
+					inv invocation invokeId = 2 ifTrue: [ dialog requestTcContinue].
+					 ]].
+	dialogue := env servicePointB newDialogue.	
+		
+	invocation1 :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '1' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
+	invocation2  :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '2' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
+	
+	invocation1 onReturnLast: [ :result |  called1 := true ].
+	invocation2 onReturnLast: [ :result |  called2 := true ].
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self originatingAddress
+		originatingAddress:   self destinationAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+		
+	self assert: called1.
+	self assert: called2.
+	
+	"CHECK A: WERE ALL THE INVOKE COMPONENTS WITHIN A TSL MESSAGE SENT BY SP A WITH CORRECT INFORMATION? "
+	
+	begin := self checkBegin: env servicePointB sentPackets first.	
+	
+	componentPortion := begin encodedValue elements third.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent1 :=  componentPortion elements first.
+	self assert:  invokeComponent1 tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent1 elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent1 elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent1 elements third.
+	self assert: parameter contents asString = '1'.
+	
+	
+	invokeComponent2 :=  componentPortion elements second.
+	self assert:  invokeComponent2 tagByteValue = 2r10100001.
+ 	invokeID := invokeComponent2 elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	opcode := invokeComponent2 elements second.
+	self assert: opcode tagByteValue = 2r00000010.
+	self assert: opcode contents asInteger  =  56. "in this case it is 56"
+	self assert: opcode contents byteSize = 1.
+	parameter := invokeComponent2 elements third.
+	self assert: parameter contents asString = '2'.
+	
+	"CHECK B: WERE ALL THE RETURN-LAST COMPONENTS INSIDE A TSL MESSAGE PASSED TO TC-USER IN THE SAME ORDER AS PROVIDED BY SP B WITH CORRECT INFORMATION?"
+
+	self assert: env servicePointA receivedPackets size = 1. "Make sure there is just one packet generated"
+	
+	continue := self checkContinue: env servicePointB receivedPackets first.
+	componentPortion := continue encodedValue elements last.
+	self assert: componentPortion tagByteValue =2r01101100.
+	invokeComponent :=  componentPortion elements first.
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	self assert: invokeID contents asInteger = 1.
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+
+	opcode := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcode first = 2r00000010.
+	self assert: opcode second = 1.
+	self assert: opcode third = 56.
+	
+	invokeComponent :=  componentPortion elements second.
+	invokeID := invokeComponent elements first.
+	self assert: invokeID tagByteValue = 2r00000010.
+	self assert: invokeID contents byteSize = 1.
+	self assert: invokeID contents asInteger = 2.
+	sequence := invokeComponent elements second.
+	self assert: sequence tagByteValue = 2r110000.
+
+	opcode := (continue message find: 'opcode') encodeToByteArray.
+	self assert: opcode first = 2r00000010.
+	self assert: opcode second = 1.
+	self assert: opcode third = 56.
+	
+	"CHECK C: WERE ALL THE INVOKE STATE MACHINES (1, ..., n) IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+]
+
+{ #category : #tests }
 Q787ValidationTest >> test2_2_1_1 [
 	"invoke ID with size > 1 should be rejected"
 	|  env dialogue invocation begin componentPortion invokeComponent invokeID continue rejectComponent problemCode |
