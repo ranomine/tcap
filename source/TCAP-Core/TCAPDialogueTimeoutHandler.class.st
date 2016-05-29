@@ -9,12 +9,6 @@ Class {
 	#category : #'TCAP-Core-Handler'
 }
 
-{ #category : #'instance creation' }
-TCAPDialogueTimeoutHandler class >> registerAt: aServiceEndPoint [ 
-	^ self new
-		registerAt: aServiceEndPoint 
-]
-
 { #category : #'as yet unclassified' }
 TCAPDialogueTimeoutHandler >> abortDialogue: aDialogue [
 	self flag: #needsRedesign.
