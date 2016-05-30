@@ -86,7 +86,7 @@ TCAPDialogueTimeoutHandler >> markAsActive: aDialogue [
 TCAPDialogueTimeoutHandler >> removeDialogue: aDialogue [
 	
 	monitor critical: [
-		(dialogues removeKey: aDialogue) cancel ]
+		(dialogues removeKey: aDialogue ifAbsent: [nil]) ifNotNil: [:timer | timer cancel ]]
 ]
 
 { #category : #accessing }
