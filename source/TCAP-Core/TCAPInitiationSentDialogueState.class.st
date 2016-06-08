@@ -45,16 +45,16 @@ TCAPInitiationSentDialogueState >> indicationTrEnd: aMessage [
 			ifTrue: [ 
 				dialoguePortion := aMessage dialoguePortion.
 				(dialoguePortion value pduType = 'dialogueResponse') 
-				ifTrue: [ 
+				ifTrue: [
+					dialogue indicationTcEnd: aMessage. "end needs to be signaled before the components are processed"
 					aMessage hasComponents ifTrue: [
-						dialogue processComponentsOf: aMessage ].
-							dialogue indicationTcEnd: aMessage ]
+						dialogue processComponentsOf: aMessage ] ]
 				ifFalse: [  ^ dialogue abortAbnormal  ] ]
 		"absent case"
 		ifFalse: [ 
+			dialogue indicationTcEnd: aMessage. "end needs to be signaled before the components are processed"
 			aMessage hasComponents ifTrue: [
-				dialogue processComponentsOf: aMessage ].
-			dialogue indicationTcEnd: aMessage ] ]
+				dialogue processComponentsOf: aMessage ] ] ]
 ]
 
 { #category : #'as yet unclassified' }
