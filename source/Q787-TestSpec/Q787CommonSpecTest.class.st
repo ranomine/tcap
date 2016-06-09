@@ -4193,3 +4193,43 @@ Q787CommonSpecTest >> test2_1_6 [
 
 
 ]
+
+{ #category : #'test - additional' }
+Q787CommonSpecTest >> testAbortInvoke [
+	" when aborting an invoke, the state of the dialog should be stopped"
+	| env dialogue invocation  |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					dialog requestTcUAbort: nil ]]. 
+			
+	
+			
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue 
+		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
+		parameters:  '123456789' asByteArray
+		class: TCAPReportSuccessAndFailure 
+		timeout: 10.
+
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	"check 1: has the abort been send and received?"
+	self assert: env servicePointB didSendMessage.
+	self checkAbort: env servicePointB sentPackets first.
+	self checkAbort: env servicePointA receivedPackets first.
+	
+	"check 2: is the statemachine in stopped state?"
+	self assert: dialogue state class == TCAPStoppedDialogueState. 
+	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
+	env servicePointA isIdle. "when it is idle there are no invocations, either"
+
+
+
+]
