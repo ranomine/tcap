@@ -66,7 +66,9 @@ TCAPInitiationSentDialogueState >> indicationTrPAbort: anObject [
 { #category : #indications }
 TCAPInitiationSentDialogueState >> indicationTrUAbort: anObject [
 	self flag: #unchecked.
-	dialogue notifyUAbort: anObject 
+	dialogue notifyUAbort: anObject.
+	"U-abort in initiation sent should terminate, see Q774, page 36"
+	dialogue terminate.
 ]
 
 { #category : #requests }
