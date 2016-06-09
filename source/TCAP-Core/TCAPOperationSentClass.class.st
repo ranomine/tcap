@@ -6,6 +6,8 @@ Class {
 
 { #category : #'as yet unclassified' }
 TCAPOperationSentClass class >> terminate [
+	self isThisEverCalled.
+	"#cancelTimer is defined on the invoke...  "
 	self cancelTimer
 ]
 

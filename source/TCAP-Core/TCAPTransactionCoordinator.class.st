@@ -339,9 +339,7 @@ TCAPTransactionCoordinator >> requestTrPAbort: aNumber transaction: aTransaction
 
 { #category : #requests }
 TCAPTransactionCoordinator >> requestTrUAbort: anObject transaction: aTransaction [  
-	aTransaction 
-		requestTrUAbort: anObject;
-		stop
+	aTransaction requestTrUAbort: anObject
 ]
 
 { #category : #requests }

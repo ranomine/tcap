@@ -53,9 +53,13 @@ TCAPInitiationSentTransactionState >> requestPreArrangedEndWithUserData: anObjec
 { #category : #requests }
 TCAPInitiationSentTransactionState >> requestTrEnd: aBoolean [ 
 	"Q.774 p. 36" 
+	"transaction needs to be put in stopped state"
+	transaction stop
 ]
 
 { #category : #requests }
 TCAPInitiationSentTransactionState >> requestTrUAbort: aDictionary [
 	"do nothing. This is a purely local action. Q.774 p. 36 "
+	"transaction needs to be put in stopped state"
+	transaction stop.
 ]
