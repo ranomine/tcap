@@ -76,3 +76,12 @@ TCAPInitiationSentDialogueState >> requestTcEnd: aTerminationBoolean [
 	"Q.774 p. 45" 
 	self endDialogue: true
 ]
+
+{ #category : #requests }
+TCAPInitiationSentDialogueState >> requestTcUAbort: anAbort [
+	| apdu |
+	dialogue hasApplicationContext ifTrue: [ 
+		apdu := anAbort ifNil: [ dialogue newUAbort serviceUser ] ].
+	dialogue transaction requestTrUAbort: (apdu asAbortIn: self factory) .
+	dialogue terminate.
+]
