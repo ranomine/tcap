@@ -4197,7 +4197,7 @@ Q787CommonSpecTest >> test2_1_6 [
 { #category : #'test - additional' }
 Q787CommonSpecTest >> testAbortInvoke [
 	" when aborting an invoke, the state of the dialog should be stopped"
-	| env dialogue invocation  |
+	| env dialogue invocation  retCalled | 
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointB
@@ -4206,14 +4206,15 @@ Q787CommonSpecTest >> testAbortInvoke [
 				onInvoke: [ : inv | 
 					dialog requestTcUAbort: nil ]]. 
 			
-	
-			
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue 
 		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
 		parameters:  '123456789' asByteArray
 		class: TCAPReportSuccessAndFailure 
 		timeout: 10.
+
+	invocation onReturnLast: [ : inv | 
+					retCalled := true]. 
 
 	dialogue 
 		requestTcBeginDestinationAddress:  self destinationAddress
@@ -4225,10 +4226,154 @@ Q787CommonSpecTest >> testAbortInvoke [
 	self checkAbort: env servicePointB sentPackets first.
 	self checkAbort: env servicePointA receivedPackets first.
 	
+	"invokation does not return"
+	self assert: retCalled isNil.
+	
 	"check 2: is the statemachine in stopped state?"
 	self assert: dialogue state class == TCAPStoppedDialogueState. 
-	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+
+
+]
+
+{ #category : #'test - additional' }
+Q787CommonSpecTest >> testAbortInvokeInInitSendState [
+	" aborting an invoke when the dialoge is in InitiationSendState"
+	| env dialogue invocation  retCalled |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	dialogue := env servicePointA newDialogue.	
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					dialogue requestTcUAbort: nil. "abort on A"
+					dialog requestTcContinue. "send continue"]]. 
+			
+	
+	invocation :=dialogue 
+		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
+		parameters:  '123456789' asByteArray
+		class: TCAPReportSuccessAndFailure 
+		timeout: 10.
+		
+	invocation onReturnLast: [ : inv | 
+					retCalled := true]. 
+
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	"check 1: has the abort been send and received?"
+	self assert: env servicePointB didSendMessage.
+	self checkContinue: env servicePointB sentPackets first.
+	self checkContinue: env servicePointA receivedPackets first.
+	
+	"invokation does not return"
+	self assert: retCalled isNil.
+	
+	"check 2: is the statemachine in stopped state?"
+	self assert: dialogue state class == TCAPStoppedDialogueState. 
+
+
+]
+
+{ #category : #'test - additional' }
+Q787CommonSpecTest >> testOnReturnWithContinue [
+	" when sending a return as part of a Continue, onReturnLast Handler is called"
+	| env dialogue invocation called retCalled |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					called := true.
+					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+					dialog requestTcContinue]]. 
+
+
+	env servicePointA
+		onDialogue: [ :dialog |
+			 dialog 
+				onReturn: [ : inv | 
+					retCalled := true.]]. 
+			
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue 
+		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
+		parameters:  '123456789' asByteArray
+		class: TCAPReportSuccessAndFailure 
+		timeout: 10.
+		
+	invocation onReturnLast: [ : inv | 
+					retCalled := true.]. 
+
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	"B did send a continue with the result"
+	self assert: env servicePointB didSendMessage.
+	self checkContinue: env servicePointB sentPackets first.
+	self assert: called.
+	
+	"A received it"
+	self checkContinue: env servicePointA receivedPackets first.
+	"but the return was not called"
+	self deny: retCalled isNil.
+	
+	
+
+]
+
+{ #category : #'test - additional' }
+Q787CommonSpecTest >> testTerminateInvoke [
+	" when terminating an invoke, the state of the dialog should be stopped *and* the returnLast of the invokation will not be done."
+	| env dialogue invocation called retCalled |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	
+	dialogue := env servicePointA newDialogue.	
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					called := true.
+					dialogue terminate. "terminate the dialoge on the A"
+					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+					dialog requestTcEnd: false ]]. 
+
+
+	invocation :=dialogue 
+		requestTcInvokeNamed: 'sendAuthenticationInfoV2' 
+		parameters:  '123456789' asByteArray
+		class: TCAPReportSuccessAndFailure 
+		timeout: 10.
+		
+	invocation onReturnLast: [ : inv | 
+					retCalled := true]. 
+
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+	
+	"B did send a continue with the result"
+	self assert: env servicePointB didSendMessage.
+	self checkEnd: env servicePointB sentPackets first.
+	self assert: called.
+	
+	"A received it"
+	self checkEnd: env servicePointA receivedPackets first.
+	"but the return was not called"
+	self assert: retCalled isNil.
+	
+	"this is as we are in stopped state"
+	self assert: dialogue state class == TCAPStoppedDialogueState. 
 
 
 
