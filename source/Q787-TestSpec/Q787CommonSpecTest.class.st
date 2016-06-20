@@ -4374,6 +4374,7 @@ Q787CommonSpecTest >> testTerminateInvoke [
 	
 	"this is as we are in stopped state"
 	self assert: dialogue state class == TCAPStoppedDialogueState. 
+	self assert: dialogue dialogueHasEnded.
 
 
 
