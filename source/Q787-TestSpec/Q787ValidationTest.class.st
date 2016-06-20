@@ -3766,15 +3766,18 @@ Q787ValidationTest >> test1_2_1_1s2 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_1_2s1 [
-	| env  continueCalled begin abort  |
+	| env dialog stateBeforeContinue continueCalled begin abort  |
 	env := self given: #shouldCreateTestEnvironment.
+	
+	dialog := env servicePointA newDialogue.
 	
 	env servicePointB onDialogue: [ :dialogue| |  |
 		dialogue onBegin: [ 
+			stateBeforeContinue := dialog state class.
 			dialogue transaction remoteTransactionId: '' asByteArray.
 			dialogue requestTcContinue ] ].
 	
-	env servicePointA newDialogue
+	dialog
 		onContinue: [ continueCalled := true ];
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -3788,8 +3791,7 @@ Q787ValidationTest >> test1_2_1_2s1 [
 	self assert: continueCalled isNil.
 	
 	" CHECK C: WERE THE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION PRIOR TO THE CONTINUE MESSAGE LEFT IN INITIATION SENT STATE ? "
-	self flag: #TBD. 
-	"How can we check that? 	dialogue transaction state before  #requestTcContinue is TCAPInitiationReceivedTransactionState "
+	self assert: stateBeforeContinue = TCAPInitiationSentDialogueState.
 
 	" CHECK D: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND P-ABORT CAUSE VALUE?"
 	self assert: env servicePointA sentPackets size = 2.
