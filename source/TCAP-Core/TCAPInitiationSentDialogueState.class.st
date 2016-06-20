@@ -1,3 +1,6 @@
+"
+Init Sent (IS): A begin message has been send: an indication from the peer entity wether the transaction has been established or not is awaited.
+"
 Class {
 	#name : #TCAPInitiationSentDialogueState,
 	#superclass : #TCAPDialogueState,

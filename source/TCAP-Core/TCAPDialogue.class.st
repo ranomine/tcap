@@ -101,6 +101,13 @@ TCAPDialogue >> defaultOperationSentClass [
 	 ^ TCAPReportSuccessAndFailure 
 ]
 
+{ #category : #testing }
+TCAPDialogue >> dialogueHasEnded [
+	"this dialog can not be used for sending a continue, it will end"
+	^(state class = TCAPIdleDialogueState)
+			or: [ state class = TCAPStoppedDialogueState ]
+]
+
 { #category : #accessing }
 TCAPDialogue >> flushComponents [
 	^ componentCoordinator flushComponents

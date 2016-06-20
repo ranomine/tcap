@@ -1,3 +1,18 @@
+"
+The sublasses model 5 states that a dialog can have:
+
+- Idle
+- Init Sent (IS)
+- Init Received (IR)
+- Active
+
+and Stopped.
+
+The dialog state follows the state of the underlying transaction.
+See TCAPTransactionState.
+
+See Q.774 page 20 (description) and 21 for a state diagram.
+"
 Class {
 	#name : #TCAPDialogueState,
 	#superclass : #Object,

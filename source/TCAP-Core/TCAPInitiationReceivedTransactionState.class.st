@@ -1,3 +1,8 @@
+"
+Init Received (IR)
+
+A Begin message has been received: a request from the TR-user either to continue or to terminate, is avaited.
+"
 Class {
 	#name : #TCAPInitiationReceivedTransactionState,
 	#superclass : #TCAPTransactionState,

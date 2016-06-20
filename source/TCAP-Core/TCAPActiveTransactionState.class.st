@@ -1,3 +1,8 @@
+"
+Active
+
+The transaction is established: Continue messages can be exchanged in both directions simultaniously.
+"
 Class {
 	#name : #TCAPActiveTransactionState,
 	#superclass : #TCAPTransactionState,

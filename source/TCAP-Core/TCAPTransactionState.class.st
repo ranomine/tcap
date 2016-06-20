@@ -1,3 +1,15 @@
+"
+The sublasses model 5 states of the transaction.
+
+- Idle
+- Init Sent (IS)
+- Init Received (IR)
+- Active
+
+and Stopped.
+
+See Q.774 page 20 (description) and 21 for a state diagram.
+"
 Class {
 	#name : #TCAPTransactionState,
 	#superclass : #Object,

@@ -1,3 +1,7 @@
+"
+Idle: No state machine exists
+
+"
 Class {
 	#name : #TCAPIdleTransactionState,
 	#superclass : #TCAPTransactionState,
