@@ -4104,7 +4104,7 @@ Q787ValidationTest >> test1_2_2_3s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_2_3s2 [
-	| env dialog continueCalled  beginInspector abortInspector |
+	| env dialog stateBeforeContinue continueCalled  beginInspector abortInspector |
 	continueCalled := false.
 	
 	env := self given: #shouldCreateTestEnvironment.
@@ -4114,7 +4114,7 @@ Q787ValidationTest >> test1_2_2_3s2 [
 	
 	env servicePointB onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
-			dialog halt.
+			stateBeforeContinue := dialog state class.
 			dialogue requestTcContinue  ]].
 	
 	
@@ -4134,8 +4134,7 @@ Q787ValidationTest >> test1_2_2_3s2 [
 	self assert: env servicePointA sentPackets size = 2.
 	self assert: env servicePointB sentPackets size = 1.
 	" CHECK C: WERE THE TSL STATE MACHINES ASSOCIATED WITH THE TRANSACTION, PRIOR TO THE CONTINUE MESSAGE, LEFT IN THE INITIATION SENT STATE? "
-	self flag: #TBD.
-
+	self assert: stateBeforeContinue = TCAPInitiationSentDialogueState.
 	" CHECK D: IF AN ABORT MESSAGE WAS SENT, WAS IT SENT CORRECTLY FROM SP A WITH CORRECT DTID AND CORRECT P-ABORT CAUSE VALUE?"	
 	abortInspector := self checkAbort: (env servicePointA sentPackets second).
 	self assert: (abortInspector message abort reason at: 'p-abortCause') = TCAPDialoguePAbort incorrectTransactionPortion value.
