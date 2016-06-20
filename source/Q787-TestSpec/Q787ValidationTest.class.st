@@ -3851,18 +3851,20 @@ Q787ValidationTest >> test1_2_1_3s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_1_4s1 [
-	| env  endCalled |
+	| env  dialog endCalled stateBeforeEnd |
 	endCalled := false.
 	
 	env := self given: #shouldCreateTestEnvironment.
+	dialog := env servicePointA newDialogue.
 	
 	env servicePointB onDialogue: [ :dialogue|
 		dialogue onBegin: [ 
+			stateBeforeEnd := dialog state class.
 			dialogue transaction remoteTransactionId: '1234567890' asByteArray.
 			dialogue requestTcEnd: false.
 		 ] ].
 	
-	env servicePointA newDialogue
+	dialog
 		onEnd: [ endCalled := true];
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
@@ -3885,7 +3887,7 @@ Q787ValidationTest >> test1_2_1_4s1 [
 	self assert: env servicePointB sentPackets size = 1.
 
 	" CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION PRIOR TO THE END MESSAGE, LEFT IN THE INITIATION SENT STATE? "
-	self flag: #TBD.
+	stateBeforeEnd = TCAPInitiationSentDialogueState.
 ]
 
 { #category : #tests }
@@ -4100,19 +4102,23 @@ Q787ValidationTest >> test1_2_2_3s1 [
 
 { #category : #tests }
 Q787ValidationTest >> test1_2_2_3s2 [
-	| env continueCalled  beginInspector abortInspector |
+	| env dialog continueCalled  beginInspector abortInspector |
 	continueCalled := false.
 	
 	env := self given: #shouldCreateTestEnvironment.
 	
 	env servicePointB transactionCoordinator postProcessDictionary: [ :dict| dict continue removeKey: 'dtid' ].
+	dialog := env servicePointA newDialogue.
 	
 	env servicePointB onDialogue: [ : dialogue |
 		dialogue onBegin: [ 
+			dialog halt.
 			dialogue requestTcContinue  ]].
 	
 	
-	env servicePointA newDialogue
+	
+
+	dialog
 		onContinue: [ continueCalled := true ];
 		requestTcBeginDestinationAddress:  self destinationAddress
 		originatingAddress:  self originatingAddress
