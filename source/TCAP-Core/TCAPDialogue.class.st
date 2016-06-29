@@ -639,9 +639,10 @@ TCAPDialogue >> state [
 
 { #category : #actions }
 TCAPDialogue >> terminate [
-	localInvocations do: [:each | each cancelTimer ].
-	self nextState: TCAPStoppedDialogueState new. 
-	container dialogueHandler removeDialogue: self 
+	self critical:  [  
+		localInvocations do: [:each | each cancelTimer ].
+		self nextState: TCAPStoppedDialogueState new. 
+		container dialogueHandler removeDialogue: self ]
 ]
 
 { #category : #accessing }
