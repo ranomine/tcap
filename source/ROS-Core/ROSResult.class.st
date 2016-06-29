@@ -7,14 +7,9 @@ Class {
 	#category : #'ROS-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ROSResult class >> asn1TypeName [
 	^ 'ReturnResultNotLast'
-]
-
-{ #category : #'as yet unclassified' }
-ROSResult class >> isAsn1ModelClass [
-	^ false
 ]
 
 { #category : #accessing }

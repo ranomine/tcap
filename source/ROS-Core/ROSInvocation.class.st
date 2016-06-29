@@ -17,12 +17,12 @@ Class {
 	#category : #'ROS-Core'
 }
 
-{ #category : #'initailize-release' }
+{ #category : #accessing }
 ROSInvocation class >> asn1TypeName [
 	^ 'Invoke'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 ROSInvocation class >> isAsn1ModelClass [
 	^ true
 ]

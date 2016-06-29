@@ -4,14 +4,9 @@ Class {
 	#category : #'ROS-Core'
 }
 
-{ #category : #'initailize-release' }
+{ #category : #accessing }
 ROS class >> asn1TypeName [
 	^ 'ROS'
-]
-
-{ #category : #'initailize-release' }
-ROS class >> typedCollection [
-	^ ASN1TypedCollectionType type: self
 ]
 
 { #category : #accessing }

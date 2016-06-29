@@ -17,7 +17,7 @@ ROSReject class >> dispatchInstanceCreationOn: aFactory [
 	^ aFactory newROSReject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 ROSReject class >> isAsn1ModelClass [
 	^ true
 ]

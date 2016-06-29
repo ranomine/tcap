@@ -17,7 +17,7 @@ ROSError class >> dispatchInstanceCreationOn: aFactory [
 	^ aFactory newROSError
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 ROSError class >> isAsn1ModelClass [
 	^ true
 ]

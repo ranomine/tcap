@@ -4,7 +4,7 @@ Class {
 	#category : #'ROS-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 ROSOperation class >> on: aDictionary [
 	^ self new
 		initializeFrom: aDictionary 
@@ -15,14 +15,14 @@ ROSOperation >> argumentType [
 	^ type attributeAt: 'ArgumentType'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #decoding }
 ROSOperation >> decodeArgument: anObject [
 	^ ASN1 
 		read: anObject
 		usingType: self argumentType.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #decoding }
 ROSOperation >> decodeResult: anObject [
 	^ ASN1
 		read: anObject 
@@ -34,7 +34,7 @@ ROSOperation >> errorNamed: aString [
 	^ self errors findElement: [ :each| each isError and: [ each originalBindingName = aString  ]]
 ]
 
-{ #category : #acces }
+{ #category : #accessing }
 ROSOperation >> errors [
 	^ type attributeAt: 'Errors'
 ]
@@ -49,7 +49,7 @@ ROSOperation >> initializeFrom: anOperation [
 	type := anOperation
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #invokation }
 ROSOperation >> invokeWithArgument: anObject [
 	| invocation |
 	invocation := self newInvocation 
@@ -73,7 +73,7 @@ ROSOperation >> newArgumentValue: anObject [
 	^ self argumentType newValue: anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #invokation }
 ROSOperation >> newInvocation [
 	^ (type modelRoot typeNamed: 'Invoke') newValue
 		operation: self 

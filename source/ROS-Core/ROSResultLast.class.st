@@ -4,7 +4,7 @@ Class {
 	#category : #'ROS-Core'
 }
 
-{ #category : #'initailize-release' }
+{ #category : #accessing }
 ROSResultLast class >> asn1TypeName [
 	^ 'ReturnResult'
 ]
@@ -14,12 +14,12 @@ ROSResultLast class >> dispatchInstanceCreationOn: aFactory [
 	^ aFactory newROSResultLast
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 ROSResultLast class >> isAsn1ModelClass [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ROSResultLast class >> rosMessageType [
 	^ 'returnResult'
 ]
