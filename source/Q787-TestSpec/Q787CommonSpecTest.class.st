@@ -13,7 +13,7 @@ Q787CommonSpecTest class >> isAbstract [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 Q787CommonSpecTest >> asn1Model [
 	^ TCAPTestModel instance
 ]
@@ -138,7 +138,7 @@ Q787CommonSpecTest >> checkUAbort: aByteArray [
 	^ abort
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 Q787CommonSpecTest >> createDialogueResponse [
 
 	^ (TCAPDialogueResponse newIn: self asn1Model)
@@ -150,7 +150,7 @@ Q787CommonSpecTest >> createDialogueResponse [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 Q787CommonSpecTest >> exampleResult [
 	^ (self asn1Model typeNamed: 'AuthenticationSet') newValue
 		at: 'rand' put: (ByteArray readHexFrom: 'DEADBEEF');
@@ -159,14 +159,14 @@ Q787CommonSpecTest >> exampleResult [
 		yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 Q787CommonSpecTest >> readTcapFrom: aByteArray [
 	^ self asn1Model 
 		readFrom: aByteArray readStream 
 		usingModuleNamed: 'TCAPMessages'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 Q787CommonSpecTest >> sendTrBegin: aTestEnvironment userData: aDictionary [ 
 	^ aTestEnvironment servicePointA transactionCoordinator 
 		requestTrBegin: aTestEnvironment servicePointA dialogueHandler newDialogue transaction
@@ -4325,6 +4325,60 @@ Q787CommonSpecTest >> testOnReturnWithContinue [
 	"but the return was not called"
 	self deny: retCalled isNil.
 	
+	
+
+]
+
+{ #category : #'test - additional' }
+Q787CommonSpecTest >> testReplyToInvokeWithEND [
+	"instead of doing a returnLast, we answer an invoke with another invoke inside and END."
+	| env dialogue invocation invocationB begin end invokeACalled invokeBCalled endHappens |
+	env := self given: #shouldCreateTestEnvironment.
+	
+	env servicePointB
+		onDialogue: [ :dialog |
+			 dialog 
+				onInvoke: [ : inv | 
+					invokeACalled := true.
+					"instead of doing a return, we do another invoke in an END package"
+					invocationB := dialog requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
+					dialog requestTcEnd: false ]].
+	dialogue := env servicePointA newDialogue.	
+	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
+	
+	dialogue onEnd: [ endHappens := true ].
+	dialogue onInvoke: [ : inv |   invokeBCalled := true].
+	
+	dialogue 
+		requestTcBeginDestinationAddress:  self destinationAddress
+		originatingAddress:  self originatingAddress
+		applicationContextName: '0.4.0.0.1.0.14.2'.
+
+	"Invoke was sent"
+	begin := self checkBegin: env servicePointA sentPackets first.	
+	
+	"we do send back an END "
+	end := self checkEnd: env servicePointA receivedPackets first.
+	
+	"do we call the first invoke?"
+	self assert: invokeACalled == true.
+	
+	"do we call the second invoke?"
+	self assert: invokeBCalled == true.
+	
+	"end?"
+	self assert: endHappens == true.
+	
+	"transaction is stopped"
+	self assert: dialogue transaction state class == TCAPStoppedTransactionState.
+
+	"timer of original invoke is not cancelled"
+	self deny: ((dialogue localInvocationWithId: 1) instVarNamed: 'timer') isCanceled.
+	
+	"we got an end, so the dialog should have ended"
+	self assert: dialogue dialogueHasEnded.
+	"In which state is the dialog?"
+	self assert: dialogue state class == TCAPStoppedDialogueState.
 	
 
 ]

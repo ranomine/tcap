@@ -9,7 +9,7 @@ Q787ValidationTest class >> isAbstract [
 	^ false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 Q787ValidationTest >> addExtraElementAfterDtidBlock [
 	^ [ :bytes| | insp |
 		insp := TCAPMessageInspector packet: bytes.
@@ -19,7 +19,7 @@ Q787ValidationTest >> addExtraElementAfterDtidBlock [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 Q787ValidationTest >> authInfoV3Arguments [
 	^ (self newValueOfTypeNamed: 'SendAuthenticationInfoArgV3')
 		at: 'imsi' put: (ByteArray readHexFrom: '72040800004067F4');
