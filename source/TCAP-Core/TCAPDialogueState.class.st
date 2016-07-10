@@ -38,6 +38,7 @@ TCAPDialogueState >> dialogue: aDialogue [
 TCAPDialogueState >> endDialogue: aTerminationBoolean [
 	"if aTerminationBoolean is true the dialogue has to be terminated locally without any 
 	further sends."
+
 	aTerminationBoolean 
 		ifTrue: [ 
 			dialogue transaction requestTrEnd: nil ]

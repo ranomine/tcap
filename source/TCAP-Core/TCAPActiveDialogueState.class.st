@@ -27,6 +27,7 @@ TCAPActiveDialogueState >> indicationTrContinue: aContinueMessage [
 { #category : #indications }
 TCAPActiveDialogueState >> indicationTrEnd: aMessage [
 	self flag: #unchecked.
+	
 	dialogue processComponentsOf: aMessage.
 	dialogue indicationTcEnd: aMessage.
 ]

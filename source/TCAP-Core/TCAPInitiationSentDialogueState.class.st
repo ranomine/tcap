@@ -57,7 +57,8 @@ TCAPInitiationSentDialogueState >> indicationTrEnd: aMessage [
 		ifFalse: [ 
 			dialogue indicationTcEnd: aMessage. "end needs to be signaled before the components are processed"
 			aMessage hasComponents ifTrue: [
-				dialogue processComponentsOf: aMessage ] ] ]
+				dialogue processComponentsOf: aMessage ] ] ].
+	dialogue terminate. "we need to put the dialog in the stop state"
 ]
 
 { #category : #'as yet unclassified' }
