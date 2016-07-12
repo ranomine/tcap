@@ -115,7 +115,7 @@ TCAPEntityMessage >> dtid [
 
 { #category : #testing }
 TCAPEntityMessage >> hasComponents [
-	^ self components notNil and: [ self components notEmpty ]
+	^ self components notNil and: [ self components size > 0 ]
 ]
 
 { #category : #testing }
