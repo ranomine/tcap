@@ -35,11 +35,6 @@ TCAPTransactionCoordinator >> asn1Context [
 ]
 
 { #category : #accessing }
-TCAPTransactionCoordinator >> asn1Model [
-	^ self asn1Context model 
-]
-
-{ #category : #accessing }
 TCAPTransactionCoordinator >> asn1TypeNamed: aString [
 	^ self asn1Model typeNamed: aString
 ]

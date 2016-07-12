@@ -177,11 +177,6 @@ TCAPMessageInspector >> packetUpdated [
 	self updateMessageFromEncodedValue.
 ]
 
-{ #category : #accessing }
-TCAPMessageInspector >> tcapModule [
-	^ self asn1Model moduleNamed: 'TCAPMessages'
-]
-
 { #category : #updating }
 TCAPMessageInspector >> update: aBlock onError: anErrorBlock [
 	[ aBlock value ]

@@ -18,11 +18,6 @@ TCAPTestServiceEndPoint >> connectTo: aServer [
 	aServer networkService connectTo: self networkService
 ]
 
-{ #category : #accessing }
-TCAPTestServiceEndPoint >> createNetworkService [
-	^ SCCPMockNetworkService new.
-]
-
 { #category : #'as yet unclassified' }
 TCAPTestServiceEndPoint >> defaultIdPool [
 	^ self idPoolClass new 
@@ -113,11 +108,6 @@ TCAPTestServiceEndPoint >> receivedPackets [
 { #category : #accessing }
 TCAPTestServiceEndPoint >> sentPackets [
 	^ networkService sentPackets 
-]
-
-{ #category : #accessing }
-TCAPTestServiceEndPoint >> tcapModule [
-	^ self asn1Model moduleNamed: 'TCAPMessages'
 ]
 
 { #category : #'as yet unclassified' }

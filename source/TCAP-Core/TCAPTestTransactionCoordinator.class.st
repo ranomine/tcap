@@ -13,11 +13,6 @@ TCAPTestTransactionCoordinator >> asn1 [
 	^ TestASN1 
 ]
 
-{ #category : #accessing }
-TCAPTestTransactionCoordinator >> dialogueHandler [
-	^ container dialogueHandler 
-]
-
 { #category : #'as yet unclassified' }
 TCAPTestTransactionCoordinator >> encodePayload: aPayload [
 	| payload |

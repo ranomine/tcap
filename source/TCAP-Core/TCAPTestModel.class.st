@@ -1,9 +1,6 @@
 Class {
 	#name : #TCAPTestModel,
 	#superclass : #ASN1TestModel,
-	#classInstVars : [
-		'model'
-	],
 	#category : #'TCAP-Core-Tests'
 }
 
