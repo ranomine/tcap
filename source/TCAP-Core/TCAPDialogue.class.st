@@ -234,7 +234,9 @@ TCAPDialogue >> isIdleForId: anInvokeId [
 
 { #category : #accessing }
 TCAPDialogue >> localInvocationOrOperationsWithId: aNumber [
-	^ (self localInvocationWithId: aNumber ) ifNil: [ self opertionsWithId: aNumber ]
+	"this is only called when receiving a reject. "
+
+	^ (self operationsWithId: aNumber ) ifNil: [ self localInvocationWithId: aNumber ] 
 ]
 
 { #category : #accessing }
@@ -422,7 +424,7 @@ TCAPDialogue >> operationWithCode: aNumber [
 ]
 
 { #category : #accessing }
-TCAPDialogue >> opertionsWithId: aNumber [
+TCAPDialogue >> operationsWithId: aNumber [
 	^ localOperations  
 		detect: [ :each| each invokeId = aNumber  ]
 		ifNone: [  nil  ]
@@ -462,7 +464,6 @@ TCAPDialogue >> receivedError: anError [
 { #category : #received }
 TCAPDialogue >> receivedReject: aReject [
 	| invokation |
-	" we need to be able to reject both local and remove invokations (e.g. reject an error)"
 	invokation :=  (self localInvocationOrOperationsWithId: aReject invokeId).
 	invokation ifNotNil: [ :inv | inv receivedReject: aReject].
 	
@@ -471,7 +472,8 @@ TCAPDialogue >> receivedReject: aReject [
 { #category : #received }
 TCAPDialogue >> receivedReturnLast: aResultLast [
 	| invokation |
-	invokation := (self localInvocationOrOperationsWithId:  aResultLast invokeId).
+	invokation := (self localInvocationWithId:  aResultLast invokeId).
+	invokation ifNil: [ ^self "reject happens later"].
 	invokation receivedReturnLast: aResultLast.
 	"see test #test2_1_4_2_1: we need to reject *after* TC-Result-L ind. if the opcode is different"
 	"works for now only for local operations"
