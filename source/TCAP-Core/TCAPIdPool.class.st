@@ -48,6 +48,11 @@ TCAPIdPool >> freeString: aString [
 ]
 
 { #category : #testing }
+TCAPIdPool >> hasId: anInteger [ 
+	^(pool includes: anInteger) not
+]
+
+{ #category : #testing }
 TCAPIdPool >> hasIdsAllocated [
 	^ mutex critical: [ pool notEmpty ]
 ]

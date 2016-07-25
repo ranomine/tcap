@@ -1,3 +1,8 @@
+"
+.... note about operation vs invocation
+
+localOperations: Here we remember return and errors that we send so that we can receive a rejection.
+"
 Class {
 	#name : #TCAPDialogue,
 	#superclass : #TCAPEnvironment,
@@ -8,6 +13,7 @@ Class {
 		'invokeIdPool',
 		'localInvocations',
 		'remoteInvocations',
+		'localOperations',
 		'announcer',
 		'userInformation',
 		'pendingResponse'
@@ -208,13 +214,9 @@ TCAPDialogue >> initialize [
 		dialogue: self.
 	invokeIdPool := TCAPIdPool new size: 16rFF.
 	localInvocations := Set new.
+	localOperations := Set new.
 	remoteInvocations := Set new.
 
-]
-
-{ #category : #accessing }
-TCAPDialogue >> invocationWithId: aNumber [
-	^ (self localInvocationWithId: aNumber ) ifNil: [ self remoteInvocationWithId: aNumber ]
 ]
 
 { #category : #accessing }
@@ -223,6 +225,16 @@ TCAPDialogue >> invoke: invocation withTimeout: aDuration [
 	localInvocations add: invocation.
 	componentCoordinator addComponent: (invocation asROS).
 
+]
+
+{ #category : #testing }
+TCAPDialogue >> isIdleForId: anInvokeId [ 
+	^invokeIdPool  hasId: anInvokeId.
+]
+
+{ #category : #accessing }
+TCAPDialogue >> localInvocationOrOperationsWithId: aNumber [
+	^ (self localInvocationWithId: aNumber ) ifNil: [ self opertionsWithId: aNumber ]
 ]
 
 { #category : #accessing }
@@ -409,6 +421,13 @@ TCAPDialogue >> operationWithCode: aNumber [
 
 ]
 
+{ #category : #accessing }
+TCAPDialogue >> opertionsWithId: aNumber [
+	^ localOperations  
+		detect: [ :each| each invokeId = aNumber  ]
+		ifNone: [  nil  ]
+]
+
 { #category : #actions }
 TCAPDialogue >> processComponentsOf: aMessage [
 	aMessage rosMessages do: [ :message|
@@ -444,7 +463,7 @@ TCAPDialogue >> receivedError: anError [
 TCAPDialogue >> receivedReject: aReject [
 	| invokation |
 	" we need to be able to reject both local and remove invokations (e.g. reject an error)"
-	invokation :=  (self invocationWithId: aReject invokeId).
+	invokation :=  (self localInvocationOrOperationsWithId: aReject invokeId).
 	invokation ifNotNil: [ :inv | inv receivedReject: aReject].
 	
 ]
@@ -452,7 +471,7 @@ TCAPDialogue >> receivedReject: aReject [
 { #category : #received }
 TCAPDialogue >> receivedReturnLast: aResultLast [
 	| invokation |
-	invokation := (self invocationWithId: aResultLast invokeId).
+	invokation := (self localInvocationOrOperationsWithId:  aResultLast invokeId).
 	invokation receivedReturnLast: aResultLast.
 	"see test #test2_1_4_2_1: we need to reject *after* TC-Result-L ind. if the opcode is different"
 	"works for now only for local operations"
@@ -609,7 +628,7 @@ TCAPDialogue >> setupReject: anInvocation [
 
 	anInvocation onMessage: [ :msg |
         componentCoordinator addComponent: (msg asROS) ].
-	remoteInvocations add: anInvocation.
+	localOperations add: anInvocation.
 	^ anInvocation  
 ]
 
@@ -619,6 +638,7 @@ TCAPDialogue >> setupTcError: anInvocation name: aName [
 	anInvocation onMessage: [ :msg |
         componentCoordinator addComponent: (msg asROS) ].
       anInvocation returnErrorNamed: aName.
+	localOperations add: anInvocation.
 	^ anInvocation  
 ]
 
@@ -628,6 +648,7 @@ TCAPDialogue >> setupTcReturn: anInvocation parameters: anObject [
 	anInvocation onMessage: [ :msg |
         componentCoordinator addComponent: (msg asROS) ].
       anInvocation returnResultLastUsing: [ :result | result add:  anObject].
+	localOperations add: anInvocation.
 	^ anInvocation  
 ]
 

@@ -105,6 +105,13 @@ TCAPServiceEndPoint >> isIdle [
 	^self hasTransactions not
 ]
 
+{ #category : #testing }
+TCAPServiceEndPoint >> isIdleForId: anInvokeID [
+	"Here we need to check that none of the dialogs knows anInvokeID"
+
+	^self dialoguesAndTransactions anySatisfy:  [ :each | each dialogue isIdleForId:  anInvokeID  ]
+]
+
 { #category : #accessing }
 TCAPServiceEndPoint >> networkService [
 	^ networkService ifNil: [ 
