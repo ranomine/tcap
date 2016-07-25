@@ -4983,7 +4983,7 @@ Q787ValidationTest >> test2_1_3_1_1 [
 	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either" 
+	"self assert: (env servicePointA isIdleForId:  invokeID contents asInteger)." self flag: #TBD. "We do not de-allocated IDs"
 
 ]
 
@@ -5435,7 +5435,7 @@ Q787ValidationTest >> test2_1_3_2_3 [
 Q787ValidationTest >> test2_1_3_3_1 [
 	"similar to test2_1_3_2_1. difference: reject wrong type parameter"
 	
-	| env dialogue invocation called begin   continue  componentPortion invokeComponent invokeID opcode parameter problemCode |
+	| env dialogue invocation called begin continue componentPortion invokeComponent invokeID opcode parameter problemCode |
 	env := self given: #shouldCreateTestEnvironment.
 	
 	self flag: #TBD. "TC-U-REJECT needs to be checked!"

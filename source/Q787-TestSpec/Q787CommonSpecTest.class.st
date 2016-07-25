@@ -2957,7 +2957,7 @@ Q787CommonSpecTest >> test2_1_1_1_1 [
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
-	invocation onReturnLast: [ :result |  called := true ].
+	invocation onReturnLast: [ :result | called := true ].
 	
 	dialogue 
 		requestTcBeginDestinationAddress:  self destinationAddress
@@ -2999,7 +2999,7 @@ Q787CommonSpecTest >> test2_1_1_1_1 [
 	self assert: opcode third = 56.
 
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	"self assert: (env servicePointA isIdleForId:  invokeID contents asInteger)." self flag: #TBD. "We do not deallocate IDs on return"
 ]
 
 { #category : #tests }
@@ -3244,8 +3244,9 @@ Q787CommonSpecTest >> test2_1_1_1_5 [
 	self assert: parameter contents asString = '123456789'.
 	
 	" CHECK B: WAS THE COMPONENT FLOW AS SHOWN ABOVE? "
-	self assert: cancelCalled == true.
+	
 	self assert: invokeCalled == true. "we reach here but time out"
+	self assert: cancelCalled == true.
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
 	env servicePointA isIdle. "when it is idle there are no invocations, either"
 ]
@@ -3438,7 +3439,6 @@ Q787CommonSpecTest >> test2_1_1_3_2 [
 		applicationContextName: '0.4.0.0.1.0.14.2'.
 	Processor yield.
 	(Delay forSeconds: 0.1) wait.
-	
 	
 	" CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
 	self assert: env servicePointA didSendMessage.
@@ -4128,7 +4128,7 @@ Q787CommonSpecTest >> test2_1_6 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					inv returnResultLastUsing: [ :result | result add: self exampleResult ].
+					dialog setupTcReturn: inv parameters: self exampleResult. 
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
