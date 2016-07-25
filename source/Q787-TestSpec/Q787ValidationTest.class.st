@@ -5219,7 +5219,7 @@ Q787ValidationTest >> test2_1_3_2_1 [
 		onDialogue: [ :dialog |
 			 dialog 
 				onInvoke: [ : inv | 
-					inv returnReject: 0 type: 'returnError'. 
+					inv returnReject: 0 type: 'invoke'. 
 					dialog requestTcContinue ]].
 	dialogue := env servicePointA newDialogue.	
 	invocation :=dialogue requestTcInvokeNamed: 'sendAuthenticationInfoV2' parameters:  '123456789' asByteArray class: TCAPReportSuccessAndFailure timeout: 500.
@@ -5259,7 +5259,7 @@ Q787ValidationTest >> test2_1_3_2_1 [
 	self assert: invokeID contents byteSize = 1.
 	
 	problemCode := invokeComponent elements second.
-	self assert: problemCode tagByteValue = 2r10000011. "RETURN ERROR"
+	self assert: problemCode tagByteValue = 2r10000001. "INVOKE" "NOTE: TYPO in test description!!!"
 	self assert: problemCode contents asInteger  =  2r00000000. "unrecognize Invoke ID"
 	self assert: problemCode contents byteSize = 1.
 	
