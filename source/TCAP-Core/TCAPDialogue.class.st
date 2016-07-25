@@ -233,13 +233,6 @@ TCAPDialogue >> isIdleForId: anInvokeId [
 ]
 
 { #category : #accessing }
-TCAPDialogue >> localInvocationOrOperationsWithId: aNumber [
-	"this is only called when receiving a reject. "
-
-	^ (self operationsWithId: aNumber ) ifNil: [ self localInvocationWithId: aNumber ] 
-]
-
-{ #category : #accessing }
 TCAPDialogue >> localInvocationWithId: aNumber [
 	^ localInvocations  
 		detect: [ :each| each invokeId = aNumber  ]
@@ -463,12 +456,16 @@ TCAPDialogue >> receivedError: anError [
 
 { #category : #received }
 TCAPDialogue >> receivedReject: aReject [
-	| invokation |
-	"still a possibility that the reject has the same ID as a local invoke???"
-	invokation :=  (self localInvocationOrOperationsWithId: aReject invokeId).
-	invokation ifNotNil: [ :inv | inv receivedReject: aReject].
-	self flag: #TBD. "nil check only for test2_2_1_1, should not be needed "
+	| id invokation |
+	id :=  aReject invokeId.
 	
+	"The reject either is because a return or error was send before that was rejected
+	  or due to a rejection of a invokation"
+	invokation :=   (self operationsWithId: id ) ifNil: [ self localInvocationWithId: id ] .
+	invokation "if a reject comes in where we do not know the id, we just ignore it"
+		ifNil: [ ^self ].
+	invokation receivedReject: aReject.
+
 ]
 
 { #category : #received }
