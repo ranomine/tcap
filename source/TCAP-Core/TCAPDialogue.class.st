@@ -456,12 +456,22 @@ TCAPDialogue >> receivedError: anError [
 
 { #category : #received }
 TCAPDialogue >> receivedReject: aReject [
-	| id invokation |
+	| id rejectType invokation |
 	id :=  aReject invokeId.
+	rejectType := aReject problem keys first.
 	
-	"The reject either is because a return or error was send before that was rejected
-	  or due to a rejection of a invokation"
-	invokation :=   (self operationsWithId: id ) ifNil: [ self localInvocationWithId: id ] .
+	"if the reject is from a return, we know that it has to be the rejection of an remote invoke where we did send a return"
+	(rejectType = 'returnResult')
+		ifTrue: [ invokation := self operationsWithId: id].
+	
+	"for returnError, we do not know...  test2_1_3_2_1 requires we can reject an invoke with returnError. It could be
+	a reject of a Error, too"	
+	(rejectType = 'returnError') 
+		ifTrue: [  invokation :=  (self operationsWithId: id) ifNil: [self localInvocationWithId: id] ].
+	
+	"if we have not found it, look in the local invokations (normal case)"
+	invokation ifNil: [ invokation := self localInvocationWithId: id ].
+	
 	invokation "if a reject comes in where we do not know the id, we just ignore it"
 		ifNil: [ ^self ].
 	invokation receivedReject: aReject.
