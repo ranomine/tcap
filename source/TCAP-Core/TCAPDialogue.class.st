@@ -683,13 +683,6 @@ TCAPDialogue >> terminate [
 		container dialogueHandler removeDialogue: self ]
 ]
 
-{ #category : #actions }
-TCAPDialogue >> terminateWithoutTimerCancel [
-	self critical:  [  
-		self nextState: TCAPStoppedDialogueState new. 
-		container dialogueHandler removeDialogue: self ]
-]
-
 { #category : #accessing }
 TCAPDialogue >> transaction [
 	^ container transaction
