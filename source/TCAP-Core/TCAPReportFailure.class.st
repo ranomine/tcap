@@ -21,7 +21,7 @@ TCAPReportFailure class >> receivedError: anError invocation: anInvocation [
 { #category : #received }
 TCAPReportFailure class >> receivedReturnLast: aResultLast invocation: aInvocation [ 
 	aInvocation 
-		cancelTimer;
+		cancelTimer; "cancel invokation timer"
 		notifyReturnLast: aResultLast;
 		switchToIdle.
 ]

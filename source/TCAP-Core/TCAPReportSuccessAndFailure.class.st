@@ -15,7 +15,7 @@ TCAPReportSuccessAndFailure class >> classNumber [
 { #category : #received }
 TCAPReportSuccessAndFailure class >> receivedError: anError invocation: anInvocation [ 
 	anInvocation 
-		cancelTimer;
+		cancelTimer; "cancel invokation timer"
 		switchToWaitForReject;
 		notifyError: anError;
 		switchToIdle
@@ -31,7 +31,7 @@ TCAPReportSuccessAndFailure class >> receivedReturn: aResult invocation: aInvoca
 { #category : #received }
 TCAPReportSuccessAndFailure class >> receivedReturnLast: aResultLast invocation: aInvocation [ 
 	aInvocation
-		cancelTimer;
+		cancelTimer; "cancel invokation timer"
 		switchToWaitForReject;
 		notifyReturnLast: aResultLast;
 		switchToIdle

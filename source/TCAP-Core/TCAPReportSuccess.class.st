@@ -15,7 +15,7 @@ TCAPReportSuccess class >> classNumber [
 { #category : #received }
 TCAPReportSuccess class >> receivedReturnLast: aResultLast invocation: aInvocation [ 
 	aInvocation 
-		cancelTimer;
+		cancelTimer; "cancel invokation timer"
 		switchToWaitForReject;		
 		notifyReturnLast: aResultLast;
 		switchToIdle.
