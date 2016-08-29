@@ -27,22 +27,22 @@ ROSReject class >> rosMessageType [
 	^ 'reject'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #dispatching }
 ROSReject >> dispatchTo: aDialogue [ 
 	aDialogue receivedReject: self 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ROSReject >> problemCode [
 	^ (self at: 'problem') at: 'general'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ROSReject >> problemCode: aNumber [
 	self problemCode: aNumber type: invocation class rosMessageType
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ROSReject >> problemCode: aNumber type: aString [
 	problem :=  self expandFieldNamed: 'problem'.
 	problem at:  aString put: aNumber.

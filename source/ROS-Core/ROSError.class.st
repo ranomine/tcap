@@ -27,7 +27,7 @@ ROSError class >> rosMessageType [
 	^ 'returnError'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #resolving }
 ROSError >> decodeParameter [
 
 	(map at: 'parameter' ifAbsent: [ ^ self ]) contents isAsn1EncodedValue ifTrue: [  

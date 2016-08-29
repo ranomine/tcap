@@ -1,3 +1,9 @@
+"
+timer is used for two destinct timers:
+
+1) the invokation timer. If an invokation takes to long, it will be aborted.
+2) reject timer. After receiving a return value, we go into a ""wait for reject"" state so that the user level can still reject the invoke. 
+"
 Class {
 	#name : #ROSInvocation,
 	#superclass : #ROSMessage,
@@ -52,7 +58,7 @@ ROSInvocation class >> rosMessageType [
 	^ 'invoke'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ROSInvocation >> argumentType [
 	^ self operation argumentType 
 ]
@@ -104,7 +110,7 @@ ROSInvocation >> dispatchTo: aDialogue [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ROSInvocation >> errorNamed: aString [
 	^ self operation errorNamed: aString
 ]
@@ -131,13 +137,13 @@ ROSInvocation >> initializeFromDialogue: aDialogue [
 		self privAt: 'argument' put: (operation decodeArgument: (self privAt: 'argument')) ]
 ]
 
-{ #category : #actions }
+{ #category : #timer }
 ROSInvocation >> invocationTimerExpired [
 	self notifyLCancel.
 	self switchToIdle.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ROSInvocation >> invokeArgument: anObject [
 	operation invokeArgument: anObject on: self 
 ]
@@ -156,7 +162,7 @@ ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
 	]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 ROSInvocation >> linkedTo: anInvoke [
 	self linkedId: anInvoke invokeId.
 ]
@@ -321,12 +327,12 @@ ROSInvocation >> receivedReturnLast: aResultLast [
 	operationClass receivedReturnLast: aResultLast invocation: self  
 ]
 
-{ #category : #accessing }
+{ #category : #timer }
 ROSInvocation >> rejectExpireTime [
 	^ 10
 ]
 
-{ #category : #actions }
+{ #category : #timer }
 ROSInvocation >> rejectTimerExpired [
 	self switchToIdle.
 ]
@@ -430,7 +436,7 @@ ROSInvocation >> setArgument: aParameter [
  	(self expandFieldNamed: 'argument') contents: aParameter
 ]
 
-{ #category : #accessing }
+{ #category : #timer }
 ROSInvocation >> startInvocationTimer: aDuration [ 
 	timer := OsmoTimeScheduler 
 		scheduleIn: aDuration 

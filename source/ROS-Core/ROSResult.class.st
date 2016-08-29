@@ -1,9 +1,6 @@
 Class {
 	#name : #ROSResult,
 	#superclass : #ROSReply,
-	#instVars : [
-		'encodedResult'
-	],
 	#category : #'ROS-Core'
 }
 
@@ -19,21 +16,21 @@ ROSResult class >> rosMessageType [
 
 { #category : #decoding }
 ROSResult >> decodeResult [
-
-	self result result isAsn1EncodedValue ifTrue: [  
-		self hasResultType ifFalse: [ 
-			ROSInvocationError signal: 'decoding ', self class name,' failed because operation ', self operationName,'  has no resultType ' ].
-		self result privAt: 'result' put: (ASN1
-			read: self result result
-			usingType: self resultType) ]
+	self result result isAsn1EncodedValue
+		ifFalse: [ ^ self ].
+	self hasResultType
+		ifFalse: [ 
+			ROSInvocationError
+				signal: 'decoding ' , self class name , ' failed because operation ' , self operationName , '  has no resultType ' ].
+	self result privAt: 'result' put: (ASN1 read: self result result usingType: self resultType)
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #dispatching }
 ROSResult >> dispatchTo: aDialogue [ 
 	aDialogue receivedReturn: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 ROSResult >> hasResultType [
 	^self resultType notNil
 ]
