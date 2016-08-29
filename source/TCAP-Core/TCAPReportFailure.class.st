@@ -14,14 +14,14 @@ TCAPReportFailure class >> classNumber [
 
 { #category : #received }
 TCAPReportFailure class >> receivedError: anError invocation: anInvocation [ 
-	"we do not notify errors"
+	
+	anInvocation switchToIdle.
 ]
 
 { #category : #received }
 TCAPReportFailure class >> receivedReturnLast: aResultLast invocation: aInvocation [ 
 	aInvocation 
-		notifyReturnLast: aResultLast;
 		cancelTimer;
-		startRejectTimer;
-		waitForReject
+		notifyReturnLast: aResultLast;
+		switchToIdle.
 ]

@@ -120,6 +120,11 @@ TCAPDialogue >> flushComponents [
 ]
 
 { #category : #'as yet unclassified' }
+TCAPDialogue >> freeInvokeId: aNumber [
+	invokeIdPool free: aNumber
+]
+
+{ #category : #'as yet unclassified' }
 TCAPDialogue >> guessAppplicationContextFromOperationCode: aNumber [
 	applicationContext := self applicationContextForOperationCode: aNumber
 ]
@@ -222,9 +227,16 @@ TCAPDialogue >> initialize [
 { #category : #accessing }
 TCAPDialogue >> invoke: invocation withTimeout: aDuration [
 	invocation startInvocationTimer: aDuration.
+	invocation switchToOperationSent.
 	localInvocations add: invocation.
 	componentCoordinator addComponent: (invocation asROS).
 
+]
+
+{ #category : #testing }
+TCAPDialogue >> isIdleForAllIDs [
+	"tests often just allocate exactly those IDs that should be free later. So we can use this instead of isIdleForId:"
+	^(invokeIdPool  hasIdsAllocated) not
 ]
 
 { #category : #testing }
@@ -459,7 +471,7 @@ TCAPDialogue >> receivedReject: aReject [
 	|  rejectType invokation |
 	rejectType := aReject problem keys first.
 	
-	"if the reject is from a return or ab error, we know that it has to be the rejection of an remote invoke where we did send a return"
+	"if the reject is from a return or an error, we know that it has to be the rejection of an remote invoke"
 	 invokation := (rejectType = 'returnResult' or: [ rejectType = 'returnError'])
 		ifTrue: [ self operationsWithId: aReject invokeId]
 		ifFalse:  [ self localInvocationWithId: aReject invokeId ].
@@ -497,6 +509,7 @@ TCAPDialogue >> remoteInvocationWithId: aNumber [
 TCAPDialogue >> requestTCUCancel: invokeID [
 	"To cancel we remove the invokeID from the localInvocations."
 	localInvocations removeAllSuchThat: [:inv | invokeID =  inv invokeId ].
+	invokeIdPool free: invokeID.
 ]
 
 { #category : #requests }
@@ -565,6 +578,7 @@ TCAPDialogue >> requestTcInvoke: anOperation parameters: anObject  class: aClass
 		yourself.
 	invocation operationClass: aClass.
 	invocation startInvocationTimer: aTimeout.
+	invocation switchToOperationSent.
 	localInvocations add: invocation.
 	
 	anInvocation ifNotNil: [ 
@@ -664,7 +678,7 @@ TCAPDialogue >> state [
 { #category : #actions }
 TCAPDialogue >> terminate [
 	self critical:  [  
-		localInvocations do: [:each | each cancelTimer ].
+		localInvocations do: [:each | each switchToIdle ].
 		self nextState: TCAPStoppedDialogueState new. 
 		container dialogueHandler removeDialogue: self ]
 ]

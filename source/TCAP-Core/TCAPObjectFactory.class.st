@@ -2,8 +2,6 @@ Class {
 	#name : #TCAPObjectFactory,
 	#superclass : #ASN1ObjectFactory,
 	#instVars : [
-		'activeDialogueStateClass',
-		'stateClasses',
 		'dialogueStateClasses',
 		'transactionStateClasses'
 	],

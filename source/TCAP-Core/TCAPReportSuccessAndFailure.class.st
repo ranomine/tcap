@@ -12,30 +12,27 @@ TCAPReportSuccessAndFailure class >> classNumber [
 	^ 1
 ]
 
-{ #category : #'as yet unclassified' }
-TCAPReportSuccessAndFailure class >> invocationTimerExpiredOn: aROSInvocation [ 
-	self shouldBeImplemented.
-]
-
 { #category : #received }
 TCAPReportSuccessAndFailure class >> receivedError: anError invocation: anInvocation [ 
 	anInvocation 
-		notifyError: anError;
 		cancelTimer;
-		startRejectTimer;
-		waitForReject
+		switchToWaitForReject;
+		notifyError: anError;
+		switchToIdle
+		
 ]
 
 { #category : #received }
 TCAPReportSuccessAndFailure class >> receivedReturn: aResult invocation: aInvocation [
-	aInvocation notifyReturn: aResult
+	aInvocation 
+		notifyReturn: aResult.
 ]
 
 { #category : #received }
 TCAPReportSuccessAndFailure class >> receivedReturnLast: aResultLast invocation: aInvocation [ 
-	aInvocation 
-		notifyReturnLast: aResultLast;
+	aInvocation
 		cancelTimer;
-		startRejectTimer;
-		waitForReject
+		switchToWaitForReject;
+		notifyReturnLast: aResultLast;
+		switchToIdle
 ]

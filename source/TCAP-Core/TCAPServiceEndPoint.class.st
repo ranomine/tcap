@@ -106,10 +106,17 @@ TCAPServiceEndPoint >> isIdle [
 ]
 
 { #category : #testing }
+TCAPServiceEndPoint >> isIdleForAllIDs [
+	"Here we need to check that none of the dialogs knows an anInvokeID"
+
+	^self dialoguesAndTransactions allSatisfy:   [ :each | each dialogue isIdleForAllIDs  ]
+]
+
+{ #category : #testing }
 TCAPServiceEndPoint >> isIdleForId: anInvokeID [
 	"Here we need to check that none of the dialogs knows anInvokeID"
 
-	^self dialoguesAndTransactions anySatisfy:  [ :each | each dialogue isIdleForId:  anInvokeID  ]
+	^self dialoguesAndTransactions allSatisfy:   [ :each | each dialogue isIdleForId:  anInvokeID  ]
 ]
 
 { #category : #accessing }
