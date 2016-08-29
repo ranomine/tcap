@@ -9,6 +9,7 @@ Class {
 		'rejectBlock',
 		'messageBlock',
 		'operationClass',
+		'state',
 		'timer',
 		'lcancelBlock',
 		'defaultHandler',
@@ -75,6 +76,14 @@ ROSInvocation >> defaultHandler: aBlock [
 	defaultHandler := aBlock
 ]
 
+{ #category : #'invocation state' }
+ROSInvocation >> defaultInvocationStateClasses [
+	^ { #idle -> ROSIdle .
+		#operationSent -> ROSOperationSent .
+		#waitForReject -> ROSWaitForReject 
+	    } asDictionary
+]
+
 { #category : #accessing }
 ROSInvocation >> dialogue:	aDialogue [
 	dialogue := aDialogue
@@ -124,7 +133,8 @@ ROSInvocation >> initializeFromDialogue: aDialogue [
 
 { #category : #actions }
 ROSInvocation >> invocationTimerExpired [
-	self notifyLCancel
+	self notifyLCancel.
+	self switchToIdle.
 ]
 
 { #category : #'as yet unclassified' }
@@ -161,6 +171,11 @@ ROSInvocation >> newArgumentValue: anObject [
 	^ self operation argumentType newValue: anObject
 ]
 
+{ #category : #'invocation state' }
+ROSInvocation >> newInvocationState: aSymbol [
+	^ (self defaultInvocationStateClasses at: aSymbol) new
+]
+
 { #category : #'as yet unclassified' }
 ROSInvocation >> newMessage: aClass [
 
@@ -173,6 +188,16 @@ ROSInvocation >> newMessage: aClass [
 { #category : #accessing }
 ROSInvocation >> newResultValue [
 	^ self operation newResultValue 
+]
+
+{ #category : #'invocation state' }
+ROSInvocation >> newState: aSymbol [
+	^ self newInvocationState: aSymbol.
+]
+
+{ #category : #'invocation state' }
+ROSInvocation >> nextState: aState [
+	state := aState
 ]
 
 { #category : #accessing }
@@ -286,8 +311,9 @@ ROSInvocation >> receivedError: aError [
 
 { #category : #received }
 ROSInvocation >> receivedReject: aReject [ 
-	self terminateState.
+	self switchToIdle.
 	self notifyReject: aReject.
+	
 ]
 
 { #category : #received }
@@ -302,7 +328,7 @@ ROSInvocation >> rejectExpireTime [
 
 { #category : #actions }
 ROSInvocation >> rejectTimerExpired [
-
+	self switchToIdle.
 ]
 
 { #category : #'as yet unclassified' }
@@ -418,12 +444,33 @@ ROSInvocation >> startRejectTimer [
 		block: [ self rejectTimerExpired  ]
 ]
 
-{ #category : #termination }
-ROSInvocation >> terminateState [
-	self cancelTimer.
+{ #category : #'invocation state' }
+ROSInvocation >> state [
+	^ state ifNil: [ 
+		self switchState: #idle ]
 ]
 
-{ #category : #reject }
-ROSInvocation >> waitForReject [
-	operationClass := TCAPWaitForReject 
+{ #category : #'invocation state' }
+ROSInvocation >> switchState: aSymbol [
+	self nextState: (self newState: aSymbol).
+]
+
+{ #category : #'invocation state' }
+ROSInvocation >> switchToIdle [
+	self cancelTimer.
+	self switchState: #idle.
+	"we free the invokeID here so that the end-point is idle for this ID as requested in the tests"
+	self flag: #TBD. "later we need to recycle ids correctly, not free them immediatly but keep them blocked for a while"
+	dialogue freeInvokeId: self invokeId.
+]
+
+{ #category : #'invocation state' }
+ROSInvocation >> switchToOperationSent [
+	self switchState: #operationSent.
+]
+
+{ #category : #'invocation state' }
+ROSInvocation >> switchToWaitForReject [
+	self switchState: #waitForReject.
+	self startRejectTimer.
 ]
