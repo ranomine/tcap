@@ -228,9 +228,8 @@ Q787ValidationTodo >> test2_1_4_1_2 [
 	self assert: opcodeReturn third = 56.
 	
 	"CHECK G: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: env servicePointA isIdleForAllIDs.
 
-	
 	
 	"CHECK A: WAS THE INVOKE COMPONENT WITH CORRECT INFORMATION SENT BY SP A? "
 	"CHECK B: WAS A LINKED INVOKE COMPONENT PASSED TO THE TC-USER BY SP A? "

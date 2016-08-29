@@ -4983,7 +4983,7 @@ Q787ValidationTest >> test2_1_3_1_1 [
 	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	"self assert: (env servicePointA isIdleForId:  invokeID contents asInteger)." self flag: #TBD. "We do not de-allocated IDs"
+	self assert: (env servicePointA isIdleForAllIDs)
 
 ]
 
@@ -5059,7 +5059,7 @@ Q787ValidationTest >> test2_1_3_1_2 [
 	self assert: problemCode contents byteSize = 1.
 		
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 	
 ]
 
@@ -5264,7 +5264,7 @@ Q787ValidationTest >> test2_1_3_2_1 [
 	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -5489,7 +5489,7 @@ Q787ValidationTest >> test2_1_3_3_1 [
 	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -5548,7 +5548,7 @@ Q787ValidationTest >> test2_1_3_3_2 [
 	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -5607,7 +5607,7 @@ Q787ValidationTest >> test2_1_3_3_3 [
 	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -5666,7 +5666,7 @@ Q787ValidationTest >> test2_1_3_3_4 [
 	self assert: problemCode contents byteSize = 1.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -5882,7 +5882,7 @@ Q787ValidationTest >> test2_1_4_2_1 [
 	
 	
 	" CHECK D: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -5969,7 +5969,7 @@ Q787ValidationTest >> test2_1_4_3_1 [
 	
 	
 	" CHECK D: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -6056,7 +6056,7 @@ Q787ValidationTest >> test2_1_4_3_2 [
 	
 	
 	" CHECK D: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -6138,7 +6138,7 @@ Q787ValidationTest >> test2_1_4_3_3 [
 	
 	
 	" CHECK D: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }

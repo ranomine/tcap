@@ -2999,7 +2999,7 @@ Q787CommonSpecTest >> test2_1_1_1_1 [
 	self assert: opcode third = 56.
 
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	"self assert: (env servicePointA isIdleForId:  invokeID contents asInteger)." self flag: #TBD. "We do not deallocate IDs on return"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -3135,7 +3135,7 @@ Q787CommonSpecTest >> test2_1_1_1_3 [
 	self assert: errorCode contents byteSize = 1.
 	self assert: errorCode contents asInteger = 34. "here it is 34"
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 
 
 
@@ -3248,7 +3248,7 @@ Q787CommonSpecTest >> test2_1_1_1_5 [
 	self assert: invokeCalled == true. "we reach here but time out"
 	self assert: cancelCalled == true.
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -3311,7 +3311,7 @@ Q787CommonSpecTest >> test2_1_1_2_1 [
 	
 	
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -3359,7 +3359,7 @@ Q787CommonSpecTest >> test2_1_1_2_2 [
 	self assert: cancelCalled == true.
 	
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -3417,7 +3417,7 @@ Q787CommonSpecTest >> test2_1_1_3_1 [
 	self assert: opcode third = 56.
 
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -3465,7 +3465,7 @@ Q787CommonSpecTest >> test2_1_1_3_2 [
 	self assert: cancelCalled == true.
 	
 	" CHECK D: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -3514,7 +3514,7 @@ Q787CommonSpecTest >> test2_1_1_4_1 [
 	self assert: cancelCalled == true.
 	
 	" CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A? "
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -3642,7 +3642,7 @@ Q787CommonSpecTest >> test2_1_2_1_1 [
 	self assert: opcodeReturn third = 56.
 	
 	"CHECK G: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 
 ]
 
@@ -3778,7 +3778,7 @@ Q787CommonSpecTest >> test2_1_2_1_2 [
 	self assert: opcodeReturn third = opcode contents asInteger.
 	
 	"CHECK H: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -3904,7 +3904,7 @@ Q787CommonSpecTest >> test2_1_2_1_3 [
 	self assert: opcodeReturn third = 56.
 	
 	"CHECK G: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 
 ]
 
@@ -4031,7 +4031,7 @@ Q787CommonSpecTest >> test2_1_2_1_4 [
 	self assert: invokeID contents = invokeIDtoCheck contents.	
 		
 	"CHECK G: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 ]
 
 { #category : #tests }
@@ -4040,7 +4040,7 @@ Q787CommonSpecTest >> test2_1_2_2_1 [
 	"start like test2_1_2_1_1then second invoke with expiration like 2.1.1.1.5"
 	"TODO: timeout not working"
 	
-	| env dialogue invocation cancelCalled invokeBcalled invokeAcalled begin componentPortion invokeComponent invokeID opcode parameter continue linkeID invokeIDtoCheck sequence opcodeReturn |
+	| env dialogue invocation cancelCalled invokeBcalled invokeAcalled begin componentPortion invokeComponent invokeID opcode parameter continue linkeID invokeIDtoCheck   |
 	env := self given: #shouldCreateTestEnvironment.
 	env servicePointB
 		onDialogue: [ :dialog |
@@ -4114,7 +4114,7 @@ Q787CommonSpecTest >> test2_1_2_2_1 [
 	self assert: parameter contents asString = '123456789'.
 	
 	"CHECK C: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	"self assert: (env servicePointA isIdleForAllIDs). " self flag: #TBD.
 ]
 
 { #category : #tests }
@@ -4184,7 +4184,7 @@ Q787CommonSpecTest >> test2_1_6 [
 	self assert:  rejectComponent tagByteValue = 2r10100010. "RETURN RESULT-LAST"
 	
 	"CHECK D: WAS THE INVOCATION STATE MACHINE IDLE AT SP A?"
-	env servicePointA isIdle. "when it is idle there are no invocations, either"
+	self assert: (env servicePointA isIdleForAllIDs)
 	
 	
 
@@ -4372,7 +4372,7 @@ Q787CommonSpecTest >> testReplyToInvokeWithEND [
 	"transaction is stopped"
 	self assert: dialogue transaction state class == TCAPStoppedTransactionState.
 
-	"timer of original invoke is not cancelled"
+	"timer of original invoke is not cancelled"   "why not?"
 	self deny: ((dialogue localInvocationWithId: 1) instVarNamed: 'timer') isCanceled.
 	
 	"we got an end, so the dialog should have ended"
