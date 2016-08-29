@@ -4372,8 +4372,11 @@ Q787CommonSpecTest >> testReplyToInvokeWithEND [
 	"transaction is stopped"
 	self assert: dialogue transaction state class == TCAPStoppedTransactionState.
 
-	"timer of original invoke is not cancelled"   "why not?"
-	self deny: ((dialogue localInvocationWithId: 1) instVarNamed: 'timer') isCanceled.
+	"timer of original invoke is cancelled"  
+	self assert: ((dialogue localInvocationWithId: 1) instVarNamed: 'timer') isCanceled.
+	
+	"invoke is idle after end"
+	self assert: (dialogue isIdleForId: 1).
 	
 	"we got an end, so the dialog should have ended"
 	self assert: dialogue dialogueHasEnded.
