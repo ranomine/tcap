@@ -11,6 +11,11 @@ Class {
 }
 
 { #category : #accessing }
+TCAPIdPool >> allAllocatedIDs [
+	^pool asArray.
+]
+
+{ #category : #accessing }
 TCAPIdPool >> allocate: aNumber [
 	^ mutex critical: [  
 		(pool includes: aNumber)  ifTrue: [ 
@@ -49,7 +54,7 @@ TCAPIdPool >> freeString: aString [
 
 { #category : #testing }
 TCAPIdPool >> hasId: anInteger [ 
-	^(pool includes: anInteger) not
+	^pool includes: anInteger
 ]
 
 { #category : #testing }

@@ -236,12 +236,15 @@ TCAPDialogue >> invoke: invocation withTimeout: aDuration [
 { #category : #testing }
 TCAPDialogue >> isIdleForAllIDs [
 	"tests often just allocate exactly those IDs that should be free later. So we can use this instead of isIdleForId:"
-	^(invokeIdPool  hasIdsAllocated) not
+	^invokeIdPool allAllocatedIDs allSatisfy: [ :id | 
+		(self localInvocationWithId: id) isIdle  ]
 ]
 
 { #category : #testing }
 TCAPDialogue >> isIdleForId: anInvokeId [ 
-	^invokeIdPool  hasId: anInvokeId.
+	^(invokeIdPool hasId: anInvokeId)
+		ifFalse: [  true ]
+		ifTrue: [ (self localInvocationWithId: anInvokeId) isIdle ]
 ]
 
 { #category : #accessing }
