@@ -162,6 +162,11 @@ ROSInvocation >> invokeHandler: aBlock with: anObject with: anotherObject [
 	]
 ]
 
+{ #category : #'as yet unclassified' }
+ROSInvocation >> isIdle [
+	^self state class == ROSIdle.
+]
+
 { #category : #accessing }
 ROSInvocation >> linkedTo: anInvoke [
 	self linkedId: anInvoke invokeId.
@@ -465,9 +470,8 @@ ROSInvocation >> switchState: aSymbol [
 ROSInvocation >> switchToIdle [
 	self cancelTimer.
 	self switchState: #idle.
-	"we free the invokeID here so that the end-point is idle for this ID as requested in the tests"
 	self flag: #TBD. "later we need to recycle ids correctly, not free them immediatly but keep them blocked for a while"
-	dialogue freeInvokeId: self invokeId.
+	"dialogue freeInvokeId: self invokeId." "for now we never free IDs"
 ]
 
 { #category : #'invocation state' }
