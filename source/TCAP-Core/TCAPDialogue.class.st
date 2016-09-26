@@ -9,7 +9,6 @@ Class {
 	#instVars : [
 		'applicationContext',
 		'componentCoordinator',
-		'state',
 		'invokeIdPool',
 		'localInvocations',
 		'remoteInvocations',
@@ -40,16 +39,6 @@ TCAPDialogue >> addPendingMessagesTo: aMessage [
 		pendingResponse := nil ].
 	
 	self addComponentsTo: aMessage
-]
-
-{ #category : #accessing }
-TCAPDialogue >> allocateId [
-	container allocateId
-]
-
-{ #category : #accessing }
-TCAPDialogue >> allocateId: aNumber [
-	container allocateId: aNumber
 ]
 
 { #category : #'as yet unclassified' }
@@ -137,16 +126,6 @@ TCAPDialogue >> hasApplicationContext [
 { #category : #testing }
 TCAPDialogue >> hasComponents [
 	^ componentCoordinator hasComponents
-]
-
-{ #category : #accessing }
-TCAPDialogue >> id [
-	^ container id
-]
-
-{ #category : #accessing }
-TCAPDialogue >> id: aString [ 
-	container id: aString
 ]
 
 { #category : #indications }
@@ -325,7 +304,7 @@ TCAPDialogue >> newState: aSymbol [
 { #category : #actions }
 TCAPDialogue >> nextState: aState [
 	aState dialogue: self.
-	state := aState
+	super nextState: aState
 ]
 
 { #category : #notifying }
@@ -672,12 +651,6 @@ TCAPDialogue >> setupTcReturn: anInvocation parameters: anObject [
 	^ anInvocation  
 ]
 
-{ #category : #accessing }
-TCAPDialogue >> state [
-	^ state ifNil: [ 
-		self switchState: #idle ]
-]
-
 { #category : #actions }
 TCAPDialogue >> terminate [
 	self critical:  [  
@@ -689,11 +662,6 @@ TCAPDialogue >> terminate [
 { #category : #accessing }
 TCAPDialogue >> transaction [
 	^ container transaction
-]
-
-{ #category : #accessing }
-TCAPDialogue >> transactionCoordinator [
-	^ container transactionCoordinator
 ]
 
 { #category : #accessing }

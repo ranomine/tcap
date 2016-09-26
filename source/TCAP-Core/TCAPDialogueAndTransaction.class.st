@@ -13,7 +13,7 @@ Class {
 
 { #category : #accessing }
 TCAPDialogueAndTransaction >> allocateId [
-	id := container idPool nextIdByteArray 
+	^id := container idPool nextIdByteArray 
 ]
 
 { #category : #accessing }

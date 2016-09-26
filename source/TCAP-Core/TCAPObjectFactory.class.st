@@ -5,11 +5,6 @@ Class {
 		'dialogueStateClasses',
 		'transactionStateClasses'
 	],
-	#classInstVars : [
-		'defaultStateClasses',
-		'defaultDialogueStateClasses',
-		'defaultTransactionStateClasses'
-	],
 	#category : #'TCAP-Core-Model'
 }
 

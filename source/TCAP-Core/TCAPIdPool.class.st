@@ -1,3 +1,11 @@
+"
+TCAPIdPool is used for kinds of IDs:
+
+- the dialog ID (see TCAPServiceEndPoint)
+- the invoke ID of components (see TCAPDialogue) 
+
+
+"
 Class {
 	#name : #TCAPIdPool,
 	#superclass : #Object,
@@ -87,12 +95,12 @@ TCAPIdPool >> nextId [
 			ifFalse: [ self findAndAllocateFreedId ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TCAPIdPool >> nextIdByteArray [
 	^ self nextId asByteArray
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TCAPIdPool >> poolSize [
 	^ mutex critical: [ pool size ]
 ]

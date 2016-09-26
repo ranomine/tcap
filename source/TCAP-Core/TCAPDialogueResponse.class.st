@@ -2,7 +2,6 @@ Class {
 	#name : #TCAPDialogueResponse,
 	#superclass : #TCAPDialogueAPDU,
 	#instVars : [
-		'source',
 		'diagnostic'
 	],
 	#category : #'TCAP-Core-Message'

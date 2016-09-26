@@ -17,7 +17,7 @@ TCAPModelRoot class >> on: anASN1ModelRoot [
 		initializeFromModelRoot: anASN1ModelRoot 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TCAPModelRoot >> allOperations [
 	^asn1Model allOperations
 ]
@@ -29,7 +29,7 @@ TCAPModelRoot >> applicationContextForOperation: anOperation [
 		ifAbsentPut: [ asn1Model applicationContextForOperation: anOperation ] 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TCAPModelRoot >> applicationContextOidForOperationNamed: aString [ 
 	^ asn1Model applicationContextOidForOperationNamed: aString
 ]
@@ -63,7 +63,7 @@ TCAPModelRoot >> asTcapModelRoot [
 	^ self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 TCAPModelRoot >> configureModel [
 	| col |
 	col := OrderedCollection new.
@@ -87,7 +87,7 @@ TCAPModelRoot >> initialize [
 	applicationContexts := Dictionary new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 TCAPModelRoot >> initializeFromModelRoot: aModelRoot [
 	asn1Model := aModelRoot.
 	self configureModel.
@@ -110,7 +110,7 @@ TCAPModelRoot >> objectsWithClass: aString [
 		ifAbsentPut: [ asn1Model objectsWithClass: aString ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TCAPModelRoot >> reset [
 	super reset.
 	applicationContextByOid  := Dictionary new.
@@ -123,7 +123,7 @@ TCAPModelRoot >> resolveOidsWhile: aBlock [
 	^ asn1Model resolveOidsWhile: aBlock
 ]
 
-{ #category : #delegation }
+{ #category : #delegating }
 TCAPModelRoot >> typeNamed: aString [ 
 	^ asn1Model typeNamed: aString
 ]

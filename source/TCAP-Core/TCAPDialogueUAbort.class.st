@@ -1,9 +1,6 @@
 Class {
 	#name : #TCAPDialogueUAbort,
 	#superclass : #TCAPDialogueAPDU,
-	#instVars : [
-		'source'
-	],
 	#category : #'TCAP-Core-Message'
 }
 

@@ -4,8 +4,7 @@ Class {
 	#instVars : [
 		'address',
 		'remoteAddress',
-		'remoteTransactionId',
-		'state'
+		'remoteTransactionId'
 	],
 	#category : #'TCAP-Core-Model'
 }
@@ -25,12 +24,7 @@ TCAPTransaction >> address: anAddress [
 	address := anAddress 
 ]
 
-{ #category : #'as yet unclassified' }
-TCAPTransaction >> allocateId [
-	container allocateId 
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #requests }
 TCAPTransaction >> basicAbort: abort [
 	| tcMessage |
 	self remoteTransactionId ifNotNil: [  
@@ -52,16 +46,6 @@ TCAPTransaction >> dialogue [
 { #category : #accessing }
 TCAPTransaction >> dialogueHandler [
 	^ container dialogueHandler
-]
-
-{ #category : #accessing }
-TCAPTransaction >> id [
-	^ container id
-]
-
-{ #category : #accessing }
-TCAPTransaction >> id: aString [ 
-	container id: aString
 ]
 
 { #category : #indications }
@@ -89,7 +73,7 @@ TCAPTransaction >> newState: aSymbol [
 { #category : #actions }
 TCAPTransaction >> nextState: aState [ 
 	aState transaction: self.
-	state := aState
+	super nextState: aState
 ]
 
 { #category : #notifying }
@@ -107,7 +91,7 @@ TCAPTransaction >> pAbort: aPAbort [
 	self basicAbort: (aPAbort asAbortIn: self factory)
 ]
 
-{ #category : #indication }
+{ #category : #indications }
 TCAPTransaction >> receivedAbort: aDictionary [ 
 	self state receivedAbort: aDictionary
 ]
@@ -195,19 +179,8 @@ TCAPTransaction >> sendPayload: aValue [
 		from: address
 ]
 
-{ #category : #accessing }
-TCAPTransaction >> state [
-	^ state ifNil: [ 
-		self switchState: #idle ]
-]
-
-{ #category : #'as yet unclassified' }
+{ #category : #actions }
 TCAPTransaction >> stop [
 	self switchState: #stopped.
 	container transactionCoordinator removeTransaction: self.
-]
-
-{ #category : #accessing }
-TCAPTransaction >> transactionCoordinator [
-	^ container transactionCoordinator 
 ]
