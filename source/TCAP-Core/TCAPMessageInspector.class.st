@@ -11,19 +11,19 @@ Class {
 	#category : #'TCAP-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 TCAPMessageInspector class >> encodedValue: aTaggedValue [ 
 	^ self new
 		encodedValue: aTaggedValue
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 TCAPMessageInspector class >> message: aMessage [ 
 	^ self new
 		message: aMessage
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 TCAPMessageInspector class >> packet: aByteArray [ 
 	^ self new
 		packet: aByteArray
@@ -58,7 +58,7 @@ TCAPMessageInspector >> encodedValue: anEncodedValue [
 	encodedValue := anEncodedValue
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #updating }
 TCAPMessageInspector >> encodedValueUpdated [
 	self updateMessageFromEncodedValue.
 	self updatePacketFromEncodedValue.
@@ -142,12 +142,12 @@ TCAPMessageInspector >> messageHasDialoguePortion [
 	^ self messageContainsKey: 'dialoguePortion'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TCAPMessageInspector >> messageType [
 	^ self message keys first
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #updating }
 TCAPMessageInspector >> messageUpdated [
 	self updateEncodedValueFromMessage.
 	self updatePacketFromEncodedValue.
@@ -171,7 +171,7 @@ TCAPMessageInspector >> packet: aByteArray [
 	packet := aByteArray
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #updating }
 TCAPMessageInspector >> packetUpdated [
 	self updateEncodedValueFromPacket.
 	self updateMessageFromEncodedValue.

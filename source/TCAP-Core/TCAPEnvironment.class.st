@@ -29,11 +29,6 @@ TCAPEnvironment >> allocateId: aNumber [
 	container allocateId: aNumber
 ]
 
-{ #category : #converting }
-TCAPEnvironment >> asSynchronizedWrapper [
-	^ TCAPSynchronizedWrapper on: self 
-]
-
 { #category : #accessing }
 TCAPEnvironment >> asn1Context [
 	^ container asn1Context
