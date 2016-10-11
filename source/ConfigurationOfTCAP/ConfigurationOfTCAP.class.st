@@ -1074,7 +1074,7 @@ ConfigurationOfTCAP >> version72: spec [
 			package: 'ROS-Core' with: 'ROS-Core-MarcusDenker.64';
 			package: 'TCAP-Benchmark' with: 'TCAP-Benchmark-NorbertHartl.3';
 			package: 'STON-Core' with: 'STON-Core-NorbertHartl.64';
-			package: 'MAP-Core' with: ' MAP-Core-HolgerHansPeterFreyther.72';
+			package: 'MAP-Core' with: 'MAP-Core-HolgerHansPeterFreyther.72';
 			package: 'TCAP-Core' with: 'TCAP-Core-MarcusDenker.271';
 			package: 'Q787-TestSpec' with: 'Q787-TestSpec-MarcusDenker.119';
 			package: 'Camel-Core' with: 'Camel-Core-HolgerHansPeterFreyther.11';
