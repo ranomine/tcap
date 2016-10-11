@@ -118,6 +118,7 @@ IMPORTS
       FROM MobileDomainDefinitions {
          itu-t (0) identified-organization (4) etsi (0) mobileDomain (0)
          mobileDomainDefinitions (0) version1 (1)}
+   networkLocUpContract-v2,
    networkLocUpContract-v3,
    locationCancellationContract-v3,
    roamingNumberEnquiryContract-v2,
@@ -188,6 +189,14 @@ FROM MAP-Contracts {
 
 
 map-ac  OBJECT IDENTIFIER ::= {gsm-NetworkId ac-Id}
+
+networkLocUpContext-v2 APPLICATION-CONTEXT ::= {
+    -- Responder is HLR if Initiator is VLR
+    CONTRACT                    networkLocUpContract-v2
+    DIALOGUE MODE               structured
+    ABSTRACT SYNTAXES           dialogue-abstract-syntax
+    APPLICATION CONTEXT NAME    {map-ac networkLocUp(1) version2(2)}
+}
 
 networkLocUpContext-v3 APPLICATION-CONTEXT ::= {
     -- Responder is HLR if Initiator is VLR
@@ -2434,6 +2443,16 @@ FROM MAP-OperationPackages {
    gsm-Network (1) modules (3) map-OperationPackages (1)
    version12 (12)}
 ;
+
+networkLocUpContract-v2 CONTRACT ::= {
+    -- Responder is HLR if Initiator is VLR
+    INITIATOR CONSUMER OF {
+    locationUpdatingPackage-v2 |
+    dataRestorationPackage-v2}
+    RESPONDER CONSUMER OF {
+    subscriberDataMngtPackage-v2 |
+    tracingPackage-v2}
+}
 
 networkLocUpContract-v3 CONTRACT ::= {
     -- Responder is HLR if Initiator is VLR
@@ -9645,6 +9664,13 @@ FROM SS-Operations {
 
 ;
 
+locationUpdatingPackage-v2  OPERATION-PACKAGE ::= {
+	-- Supplier is HLR if Consumer is VLR
+	CONSUMER INVOKES {
+		updateLocation}
+	SUPPLIER INVOKES {
+		forwardCheckSS-Indication} }
+
 locationUpdatingPackage-v3  OPERATION-PACKAGE ::= {
 	-- Supplier is HLR if Consumer is VLR
 	CONSUMER INVOKES {
@@ -9839,6 +9865,11 @@ functionalSsPackage-v1  OPERATION-PACKAGE ::= {
 	SUPPLIER INVOKES {
 		getPassword} }
 
+tracingPackage-v2  OPERATION-PACKAGE ::= {
+	-- Supplier is VLR or SGSN if Consumer is HLR
+	CONSUMER INVOKES {
+		activateTraceModeV2} }
+
 tracingPackage-v3  OPERATION-PACKAGE ::= {
 	-- Supplier is VLR or SGSN if Consumer is HLR
 	CONSUMER INVOKES {
@@ -9933,6 +9964,11 @@ alertingPackage-v1  OPERATION-PACKAGE ::= {
 	-- Supplier is IWMSC if Consumer is HLR
 	CONSUMER INVOKES {
 		alertServiceCentreWithoutResult} }
+
+dataRestorationPackage-v2  OPERATION-PACKAGE ::= {
+	-- Supplier is HLR if Consumer is VLR
+	CONSUMER INVOKES {
+		restoreData} }
 
 dataRestorationPackage-v3  OPERATION-PACKAGE ::= {
 	-- Supplier is HLR if Consumer is VLR
