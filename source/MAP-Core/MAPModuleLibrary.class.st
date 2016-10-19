@@ -6304,7 +6304,8 @@ EquipmentStatus ::= ENUMERATED {
 -- subscriber management types
 InsertSubscriberDataArgV2 ::= SEQUENCE {
 	imsi			[0] IMSI		OPTIONAL,
-	COMPONENTS OF	SubscriberDataV2
+	COMPONENTS OF	SubscriberDataV2,
+	...
 	}
 	-- If the Network Access Mode parameter is sent, it shall be present only in
 	-- the first sequence if seqmentation is used
