@@ -56,8 +56,8 @@ Q787CommonSpecTest >> checkBegin: aByteArray [
 	
 	"component portion tag if present"
 	 begin hasComponents ifTrue: [ 
-		self assert: begin encodedValue elements last  tagByteValue =  2r01101100.
-		self assert: begin encodedValue elements last tag  =  (ASN1Tag clazz: 'APPLICATION' number: 12)].
+		self assert: begin encodedValue elements last tagByteValue = 2r01101100.
+		self assert: begin encodedValue elements last tag = (ASN1Tag clazz: 'APPLICATION' number: 12)].
 	^ begin
 ]
 
@@ -2258,21 +2258,21 @@ Q787CommonSpecTest >> test1_1_2_1_1s2 [
 
 { #category : #tests }
 Q787CommonSpecTest >> test1_1_2_1_2_1s1 [
-	| env  begin end endCalled |
+	| env begin end endCalled |
 	env := self given: #shouldCreateTestEnvironment.
-	env servicePointA onDialogue: [ :dialogue|
-		dialogue onBegin: [ 
-			env servicePointA transactionCoordinator  
-				requestTrEnd: (self createDialogueResponse asEndMessageIn: dialogue factory)
-				transaction: dialogue transaction ] ].
-	
+	env servicePointA
+		onDialogue: [ :dialogue | 
+			dialogue
+				onBegin: [ env servicePointA transactionCoordinator
+						requestTrEnd: (self createDialogueResponse asEndMessageIn: dialogue factory)
+						transaction: dialogue transaction ] ].
 	env servicePointB newDialogue
 		onEnd: [ endCalled := true ];
-		requestTcBeginDestinationAddress:  self destinationAddress
-		originatingAddress:  self originatingAddress
-		applicationContextName: self anyApplicationContextId. 
-	
-	
+		requestTcBeginDestinationAddress: self destinationAddress
+			originatingAddress: self originatingAddress
+			applicationContextName: self anyApplicationContextId.
+
+
 	"CHECK A: WAS THE BEGIN MESSAGE CORRECTLY RECEIVED AT SP A AND PASSED TO THE TR-USER? "
 	self assert: env servicePointA didReceiveMessage.
 	begin := self checkBegin: env servicePointA receivedPackets first.
@@ -2283,14 +2283,14 @@ Q787CommonSpecTest >> test1_1_2_1_2_1s1 [
 
 	"end called on B"
 	self assert: endCalled notNil.
-	
-	"CHECK C: WAS THE DTID IN THE END MESSAGE THE SAME AS THE OTID IN THE BEGIN MESSAGE? "
-	self assert:  (end findKey: 'dtid') contents = (begin findKey: 'otid') contents.
-	
-	"CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
-	self assert: env servicePointA isIdle.	
-	
 
+	"CHECK C: WAS THE DTID IN THE END MESSAGE THE SAME AS THE OTID IN THE BEGIN MESSAGE? "
+	self
+		assert: (end findKey: 'dtid') contents
+		equals: (begin findKey: 'otid') contents.
+
+	"CHECK C: WERE TSL STATE MACHINES ASSOCIATED WITH THIS TRANSACTION LEFT IN THE IDLE STATE AT SP A?"
+	self assert: env servicePointA isIdle
 ]
 
 { #category : #tests }
@@ -4192,6 +4192,46 @@ Q787CommonSpecTest >> test2_1_6 [
 	
 
 
+]
+
+{ #category : #tests }
+Q787CommonSpecTest >> test2_1_9_1_1 [
+	| env begin dialogPortion pdu endCalled|
+	env := self given: #shouldCreateTestEnvironment.
+	env servicePointA
+		onDialogue: [ :dialogue | 
+			dialogue
+				onBegin: [ env servicePointA transactionCoordinator
+						requestTrEnd: (self createDialogueResponse asEndMessageIn: dialogue factory)
+						transaction: dialogue transaction ] ].
+	env servicePointB newDialogue
+		onEnd: [ endCalled := true ];
+		requestTcBeginDestinationAddress: self destinationAddress
+		originatingAddress: self originatingAddress
+		applicationContextName: self anyApplicationContextId.
+	begin := self checkBegin: env servicePointA receivedPackets first.
+
+	"we have a dialog portion"
+	dialogPortion := begin encodedValue elements second.
+	self assert: dialogPortion tagByteValue equals: 2r01101011.
+	
+	"CHECK A: DOES THE DIALOGUE PORTION IN THE BEGIN MESSAGE CONTAIN THE APDU AARQ?"
+	
+	"External data type in dialogue portion"
+	self assert: dialogPortion elements first tagByteValue equals: 2r00101000. "external typ tag"
+	self assert: dialogPortion elements first elements first tagByteValue equals: 2r00000110. "object identifier tag"
+	self assert: dialogPortion elements first elements first contents size equals: 2r00000111. "object identifier length"
+	self assert: dialogPortion elements first elements first contents hex equals: '00118605010101'. "object identifier"
+	self assert: dialogPortion elements first elements second contents tagByteValue equals: 2r10100000. "asn.1 type tag"
+	
+	"Dialog PDU"
+	pdu := dialogPortion elements first elements second elements first.
+	self assert: pdu tagByteValue equals: 2r01100000. "Dialog Request Tag"
+	self assert: pdu elements second tagByteValue equals: 2r10100001. "Application context tag"
+	self assert: pdu elements second elements first tagByteValue equals: 2r110. "Object Identifier tag"
+	
+	"did we send an end back?"		
+	self assert: endCalled == true.
 ]
 
 { #category : #'test - additional' }

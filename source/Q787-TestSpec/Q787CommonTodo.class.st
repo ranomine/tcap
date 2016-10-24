@@ -122,11 +122,6 @@ Q787CommonTodo >> test2_1_5_2_1 [
 ]
 
 { #category : #tests }
-Q787CommonTodo >> test2_1_9_1_1 [
-		self assert: false
-]
-
-{ #category : #tests }
 Q787CommonTodo >> test2_1_9_1_2 [
 		self assert: false
 ]
