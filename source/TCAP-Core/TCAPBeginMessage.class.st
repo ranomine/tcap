@@ -14,12 +14,12 @@ TCAPBeginMessage class >> dispatchInstanceCreationOn: anObjectFactory [
 	^ anObjectFactory newBeginMessage
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 TCAPBeginMessage class >> isAsn1ModelClass [
 	^ true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 TCAPBeginMessage class >> type [
 	^ 'begin'
 ]
