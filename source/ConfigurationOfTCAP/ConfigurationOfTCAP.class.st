@@ -1205,6 +1205,37 @@ ConfigurationOfTCAP >> version76: spec [
 			package: 'Camel-SCF' with: 'Camel-SCF-NorbertHartl.8'. ].
 ]
 
+{ #category : #'as yet unclassified' }
+ConfigurationOfTCAP >> version77: spec [
+	<version: '7.7' imports: #('0.7-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 7.6'.
+		spec author: 'HolgerHansPeterFreyther'.
+		spec timestamp: '10/30/2016 17:40'.
+		spec 
+			project: 'Phexample' with: '1.2';
+			project: 'ASN1' with: '1.1';
+			project: 'ASN1-Tool' with: '1.1';
+			project: 'ASN1-Builder' with: '1.1';
+			project: 'ASN1-Tests-Builder' with: '1.1';
+			project: 'ASN1 full' with: '1.1';
+			project: 'ASN1-Tests-Tool' with: '1.1';
+			project: 'OsmoCore' with: '2';
+			project: 'OsmoNetwork' with: '4';
+			project: 'Fuel' with: '1.9.4'.
+		spec 
+			package: 'ROS-Core' with: 'ROS-Core-MarcusDenker.64';
+			package: 'TCAP-Benchmark' with: 'TCAP-Benchmark-NorbertHartl.3';
+			package: 'STON-Core' with: 'STON-Core-NorbertHartl.64';
+			package: 'MAP-Core' with: 'MAP-Core-HolgerHansPeterFreyther.76';
+			package: 'TCAP-Core' with: 'TCAP-Core-MarcusDenker.271';
+			package: 'Q787-TestSpec' with: 'Q787-TestSpec-MarcusDenker.119';
+			package: 'Camel-Core' with: 'Camel-Core-HolgerHansPeterFreyther.11';
+			package: 'Camel-SCF' with: 'Camel-SCF-NorbertHartl.8'. ].
+]
+
 { #category : #versions }
 ConfigurationOfTCAP >> version7: spec [
 	<version: '7' imports: #('0.7-baseline' )>
