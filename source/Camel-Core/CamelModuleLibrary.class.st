@@ -785,7 +785,7 @@ cs2(20) modules(0) in-cs2-datatypes(0) version1(0)}
 	ISDN-AddressString,
 	LAIFixedLength,
 	GSN-Address,--  WS moved to common datatypes in rel 9.0.0	
---	RAIdentity,  WS moved to common datatypes in rel 10.4.0
+	RAIdentity, -- WS moved to common datatypes in rel 10.4.0
 	NAEA-CIC
 FROM MAP-CommonDataTypes {itu-t(0) identified-organization(4) etsi(0) mobileDomain(0)
 gsm-Network(1) modules(3) map-CommonDataTypes(18) version12(12)}
@@ -798,7 +798,7 @@ gsm-Network(1) modules(3) map-CommonDataTypes(18) version12(12)}
 	LocationInformation,
 	LSAIdentity,
 	QoS-Subscribed,
-	RAIdentity, -- WS moved to common datatypes in rel 10.4.0
+--	RAIdentity, WS moved to common datatypes in rel 10.4.0
 	SubscriberState,
 	GPRSChargingID
 FROM MAP-MS-DataTypes {itu-t(0) identified-organization(4) etsi(0) mobileDomain(0)
@@ -2580,15 +2580,15 @@ cs2(20) modules(0) in-cs2-datatypes (0) version1(0)}
 	IMEI,
 	IMSI,
 	GSN-Address,  -- WS moved to common datatypes in rel 9.0.0
---	RAIdentity,   WS moved to common datatypes in rel 10.4.0
+	RAIdentity, --  WS moved to common datatypes in rel 10.4.0
 	ISDN-AddressString
 FROM MAP-CommonDataTypes {itu-t(0) identified-organization(4) etsi(0) mobileDomain(0)
 gsm-Network(1) modules(3) map-CommonDataTypes(18) version12(12)}
 
 	GPRSChargingID,
-	GPRSMSClass,
+	GPRSMSClass
 --	GSN-Address,  WS moved to common datatypes in rel 9.0.0
-	RAIdentity  -- WS moved to common datatypes in rel 10.4.0
+--	RAIdentity  WS moved to common datatypes in rel 10.4.0
 FROM MAP-MS-DataTypes {itu-t(0) identified-organization(4) etsi(0) mobileDomain(0)
 gsm-Network(1) modules(3) map-MS-DataTypes(11) version12(12)}
 
