@@ -8108,7 +8108,7 @@ ProvideSubscriberInfoArg ::= SEQUENCE {
 	}
 
 ProvideSubscriberInfoRes ::= SEQUENCE {
-	subscriberInfo	SubscriberInfo,
+	subscriberInfo	SubscriberInfo			OPTIONAL,
 	extensionContainer	ExtensionContainer	OPTIONAL,
 	...}
 
