@@ -4663,7 +4663,7 @@ InitialDPArgV2						::= SEQUENCE {
 	timeAndTimezone						[57] TimeAndTimezone					OPTIONAL,
 	gsm-ForwardingPending				[58] NULL								OPTIONAL,
 		...,
-	initialDPArgExtension				[59] InitialDPArgExtension				OPTIONAL
+	initialDPArgExtension				[59] InitialDPArgExtensionV2				OPTIONAL
 
 	}
 
@@ -4701,6 +4701,15 @@ InitialDPArg {PARAMETERS-BOUND : bound} ::= SEQUENCE {
 	initialDPArgExtension				[59] InitialDPArgExtension {bound}			OPTIONAL,
 	...
 	}
+
+
+-- In their wisdom they not only removed naCarrierInformation but renumbered
+-- all the tags. Introduce a V2 version for it.
+InitialDPArgExtensionV2 ::= SEQUENCE {
+	naCarrierInformation [0] NACarrierInformation OPTIONAL,
+	gmscAddress [1] ISDN-AddressString OPTIONAL,
+	...
+}
 
 InitialDPArgExtension {PARAMETERS-BOUND : bound} ::= SEQUENCE {
 	gmscAddress							[0] ISDN-AddressString						OPTIONAL,
