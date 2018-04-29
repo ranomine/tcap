@@ -17,7 +17,7 @@ SCFPhase1DialogueTest >> applicationContextFor: aString [
 
 { #category : #'as yet unclassified' }
 SCFPhase1DialogueTest >> asn1Model [
-	^ CamelTestModel instance
+	^ CamelTestModel instance asTcapModelRoot
 ]
 
 { #category : #'as yet unclassified' }
