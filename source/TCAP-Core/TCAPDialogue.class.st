@@ -205,8 +205,8 @@ TCAPDialogue >> initialize [
 
 { #category : #accessing }
 TCAPDialogue >> invoke: invocation withTimeout: aDuration [
-	invocation startInvocationTimer: aDuration.
 	invocation switchToOperationSent.
+	invocation startInvocationTimer: aDuration.
 	localInvocations add: invocation.
 	componentCoordinator addComponent: (invocation asROS).
 
