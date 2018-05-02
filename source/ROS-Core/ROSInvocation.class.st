@@ -442,7 +442,9 @@ ROSInvocation >> setArgument: aParameter [
 ]
 
 { #category : #timer }
-ROSInvocation >> startInvocationTimer: aDuration [ 
+ROSInvocation >> startInvocationTimer: aDuration [
+	aDuration ifNil: [ ^self ].
+
 	timer := OsmoTimeScheduler 
 		scheduleIn: aDuration 
 		block: [ self invocationTimerExpired  ]
