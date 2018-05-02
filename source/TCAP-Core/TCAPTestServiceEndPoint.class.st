@@ -2,7 +2,8 @@ Class {
 	#name : #TCAPTestServiceEndPoint,
 	#superclass : #TCAPServiceEndPoint,
 	#instVars : [
-		'fakeId'
+		'fakeId',
+		'endPointName'
 	],
 	#category : #'TCAP-Core-Tests-Model'
 }
@@ -43,6 +44,11 @@ TCAPTestServiceEndPoint >> didReceiveMessage [
 { #category : #testing }
 TCAPTestServiceEndPoint >> didSendMessage [
 	^ networkService sentPackets notEmpty
+]
+
+{ #category : #'as yet unclassified' }
+TCAPTestServiceEndPoint >> endPointName: aString [ 
+	endPointName := aString
 ]
 
 { #category : #'as yet unclassified' }

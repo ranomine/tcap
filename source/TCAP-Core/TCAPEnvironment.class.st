@@ -149,7 +149,7 @@ TCAPEnvironment >> notifyBeforeMessage: aMessage [
 { #category : #accessing }
 TCAPEnvironment >> state [
 	^ state ifNil: [ 
-		self switchState: #idle ]
+		self switchState: #idle. state ]
 ]
 
 { #category : #actions }

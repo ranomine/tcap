@@ -14,6 +14,12 @@ TCAPProtocolAbortMessage >> handleUnassignedTransaction [
 	self discard
 ]
 
+{ #category : #accessing }
+TCAPProtocolAbortMessage >> pAbortCause [
+	^ self reason ifNotNil: [:r|
+		r at: 'p-abortCause' ]
+]
+
 { #category : #validating }
 TCAPProtocolAbortMessage >> validateProtocolVersion [
 	
