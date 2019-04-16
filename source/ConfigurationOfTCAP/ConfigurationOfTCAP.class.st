@@ -1298,6 +1298,44 @@ ConfigurationOfTCAP >> version714: spec [
 	]
 ]
 
+{ #category : #versions }
+ConfigurationOfTCAP >> version715: spec [
+	<version: '7.15' imports: #('0.7.1-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 7.15'.
+		spec author: 'HolgerHansPeterFreyther'.
+		spec timestamp: '04/16/2019 06:15'.
+		spec 
+			project: 'Phexample' with: '3.2';
+			project: 'ASN1' with: '1.3';
+			project: 'ASN1-Tool' with: '1.3';
+			project: 'ASN1-Builder' with: '1.3';
+			project: 'ASN1-Tests-Builder' with: '1.3';
+			project: 'ASN1 full' with: '1.3';
+			project: 'ASN1-Tests-Tool' with: '1.3';
+			project: 'OsmoCore' with: '6';
+			project: 'OsmoNetwork' with: '7';
+			project: 'Fuel' with: '1.9.4'.
+		spec 
+			package: 'ROS-Core' with: 'ROS-Core-MarcusDenker.64';
+			package: 'TCAP-Benchmark' with: 'TCAP-Benchmark-NorbertHartl.3';
+			package: 'MAP-Core' with: 'MAP-Core-HolgerHansPeterFreyther.81';
+			package: 'TCAP-Core' with: 'TCAP-Core-MarcusDenker.271';
+			package: 'Q787-TestSpec' with: 'Q787-TestSpec-MarcusDenker.119';
+			package: 'Camel-Core' with: 'Camel-Core-HolgerHansPeterFreyther.14';
+			package: 'Camel-SCF' with: 'Camel-SCF-NorbertHartl.8'. ].
+
+	"Use our custom STON up to pharo6.x."
+	spec for: #(#'pharo4.x' #'pharo5.x' #'pharo6.x') do: [
+		spec package: 'STON-Core'.
+		spec package: 'MAP-Core' with: [
+				spec requires: #('ROS-Core' 'STON-Core' ). ].
+		spec package: 'STON-Core' with: 'STON-Core-NorbertHartl.64'.
+	]
+]
+
 { #category : #'as yet unclassified' }
 ConfigurationOfTCAP >> version71: spec [
 	<version: '7.1' imports: #('0.7-baseline' )>
