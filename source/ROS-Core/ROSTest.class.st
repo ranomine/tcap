@@ -11,6 +11,9 @@ ROSTest >> shouldNotTriggerDefaultHandlerIfSpecificHandlerPresent [
 	falseTriggered := false.
 	self shouldnt: [ 
 		ROSInvocation new
+			dialogue: (TCAPDialogue new
+				container: Mutex new;
+				yourself);
 			onError: [ triggered := true ];
 			defaultHandler: [ falseTriggered := true ];
 			notifyError: 'error' ] raise: Error. 
@@ -26,6 +29,9 @@ ROSTest >> shouldTriggerDefaultHandlerIfPresent [
 	triggered := false.
 	self shouldnt: [ 
 		ROSInvocation new
+			dialogue: (TCAPDialogue new
+				container: Mutex new;
+				yourself);
 			defaultHandler: [ triggered := true ];
 			notifyError: 'error' ] raise: Error. 
 	self assert: triggered
@@ -36,7 +42,11 @@ ROSTest >> shouldTriggerDefaultHandlerIfPresent [
 { #category : #'as yet unclassified' }
 ROSTest >> shouldntFailOnMissingHandler [
 	self shouldnt: [ 
-		ROSInvocation new notifyError: 'error' ] raise: Error.
+		ROSInvocation new
+			dialogue: (TCAPDialogue new
+				container: Mutex new;
+				yourself);
+			notifyError: 'error' ] raise: Error.
 	
 		
 		
