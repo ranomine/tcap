@@ -23,7 +23,7 @@ BaselineOfTCAP >> baseline: spec [
 			loads: #( 'Core' ) ].
 	spec baseline: 'ASN1' with: [
 		spec
-			repository: 'github://noha/asn.1:0.9';
+			repository: 'github://zecke/asn.1:v0.9_z1';  "Temporarily for the equality handling of ASN1OctetStringValue"
 			loads: #( 'default' ) ].
 	spec project: 'ASN1 Full' copyFrom: 'ASN1' with: [
 		spec loads: #( 'tests' )].
