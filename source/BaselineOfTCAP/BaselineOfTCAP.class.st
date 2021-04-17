@@ -10,7 +10,7 @@ BaselineOfTCAP >> baseline: spec [
 
 	spec baseline: 'OsmoLogging' with: [
 		spec
-			repository: 'github://moiji-mobile/osmocom-logging:v7/source'].
+			repository: 'github://moiji-mobile/osmocom-logging:v8/source'].
 	spec baseline: 'OsmoCore' with: [
 		spec
 			repository: 'github://moiji-mobile/osmocom-core:v8/source'].
