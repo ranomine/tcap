@@ -16,7 +16,7 @@ BaselineOfTCAP >> baseline: spec [
 			repository: 'github://moiji-mobile/osmocom-core:v8/source'].
 	spec baseline: 'OsmoNetwork' with: [
 		spec
-			repository: 'github://moiji-mobile/osmocom-network:v8/source'].
+			repository: 'github://moiji-mobile/osmocom-network:v10/source'].
 	spec baseline: 'PetitParser' with: [
 		spec
 			repository: 'github://moosetechnology/PetitParser:v2.2.0/src';
