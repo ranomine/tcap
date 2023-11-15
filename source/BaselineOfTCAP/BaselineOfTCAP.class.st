@@ -23,7 +23,7 @@ BaselineOfTCAP >> baseline: spec [
 			loads: #( 'Core' ) ].
 	spec baseline: 'ASN1' with: [
 		spec
-			repository: 'github://ranomine/ASN.1:master';
+			repository: 'github://ranomine/ASN.1:features/pharo10';
 			loads: #( 'default' ) ].
 	spec project: 'ASN1 Full' copyFrom: 'ASN1' with: [
 		spec loads: #( 'tests' )].
