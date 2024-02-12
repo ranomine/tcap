@@ -10,13 +10,13 @@ BaselineOfTCAP >> baseline: spec [
 
 	spec baseline: 'OsmoLogging' with: [
 		spec
-			repository: 'github://moiji-mobile/osmocom-logging:v8/source'].
+			repository: 'github://ranomine/osmocom-logging:pharo10-migration/source'].
 	spec baseline: 'OsmoCore' with: [
 		spec
-			repository: 'github://moiji-mobile/osmocom-core:v8/source'].
+			repository: 'github://ranomine/osmocom-core:pharo10-migration/source'].
 	spec baseline: 'OsmoNetwork' with: [
 		spec
-			repository: 'github://moiji-mobile/osmocom-network:v10/source'].
+			repository: 'github://ranomine/osmocom-network:pharo10-migration/source'].
 	spec baseline: 'PetitParser' with: [
 		spec
 			repository: 'github://moosetechnology/PetitParser:v2.2.0/src';
