@@ -19,7 +19,7 @@ BaselineOfTCAP >> baseline: spec [
 			repository: 'github://ranomine/osmocom-network:pharo10-migration/source'].
 	spec baseline: 'PetitParser' with: [
 		spec
-			repository: 'github://moosetechnology/PetitParser:v2.2.0/src';
+			repository: 'github://moosetechnology/PetitParser:v3.0.0/src';
 			loads: #( 'Core' ) ].
 	spec baseline: 'ASN1' with: [
 		spec
